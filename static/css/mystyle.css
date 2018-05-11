@@ -1,19 +1,22 @@
-.sidebar-profile-picture  {
-	display:none !important;
+ .sidebar-profile .sidebar-profile-picture  {
+width: 250px !important;
+height: auto !important;
+border-radius: 1px !important;
+}
+
+#about #about-card #about-card-picture {
+width: 250px !important;
+height: auto !important;
+border-radius: 1px !important;
 }
 .sidebar-profile-name, .sidebar-profile-bio{
-	color: black !important;
 }
 .sidebar-container {
-	padding:100px 80px;
-	opacity: 1 !important;
 }
 
 #sidebar {
-	justify-content: initial !important;
 
 }
 
 #sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
-	color:black !important;
 }

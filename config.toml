@@ -37,7 +37,7 @@ canonifyurls = true
   job = "CTO en Sentinel.la"
   location = "México"
   # Your profile picture
-  picture = "profile.png"
+  picture = "images/profile.png"
   # Your Twitter username without the @. E.g : thibaudlepretre
   twitter = "galvarado89"
 
@@ -50,6 +50,12 @@ canonifyurls = true
   url = "/"
 [[menu.main]]
   weight = 2
+  identifier = "Acerca de"
+  name = "Acerca de"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
+  url = "/#about"
+[[menu.main]]
+  weight = 3
   identifier = "Categorias"
   name = "Categorias"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
@@ -60,12 +66,25 @@ canonifyurls = true
   name = "Archivo"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
-[[menu.main]]
-  weight = 5
-  identifier = "Acerca de"
-  name = "Acerca de"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
-  url = "/#about"
+
+[[menu.links]]
+  weight = 0
+  identifier = "LinkedIn"
+  name = "LinkedIn"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "https://linkedin.com/in/guillermoalvarado89"
+[[menu.links]]
+  weight = 1
+  identifier = "Twitter"
+  name = "Twitter"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
+  url = "https://twitter.com/galvarado89"
+[[menu.links]]
+  weight = 2
+  identifier = "Github"
+  name = "Github"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
+  url = "https://github.com/galvarado"
 
 [params]
   # Customize date format use to render blog post date, categories and other
@@ -86,9 +105,9 @@ canonifyurls = true
 
   # Define categories will create hierarchy between parents: `categories = ["foo", "bar"]` will consider "bar" a sub-category of "foo". 
   # If false it will flat categories.
-  hierarchicalCategories = false
+  hierarchicalCategories = true
 
-  description = "Guillermo Alvarado Blog"
+  description = "Mi experiencia como desarrollador en el mundo de la infraestructura"
 
   # Customization
   # Define the behavior of the sidebar
@@ -180,4 +199,4 @@ canonifyurls = true
 
   # Customize copyright value "© 2018 Guillermo Alvarado. All Rights Reserved"
   [params.footer]
-    copyright = "<a href=\"https://galvarado.com.mx\">Guillermo Alvarado</a>"
+    copyright = "Guillermo Alvarado construido con <a href=\"https://github.com/kakawait/hugo-tranquilpeak-theme\">hugo tranquilpeak theme</a>"

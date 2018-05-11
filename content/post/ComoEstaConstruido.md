@@ -2,10 +2,7 @@
 title: "Como está construido este Blog"
 date: 2018-05-11
 categories:
-- cloud
-- devops
 - arquitectura
-- herramientas
 autoThumbnailImage: false
 thumbnailImagePosition: "top"
 thumbnailImage: images/build.jpg
