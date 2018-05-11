@@ -5,5 +5,15 @@
 	color: black !important;
 }
 .sidebar-container {
-	top: 10px !important;
+	padding:100px 80px;
+	opacity: 1 !important;
+}
+
+#sidebar {
+	justify-content: initial !important;
+
+}
+
+#sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
+	color:black !important;
 }

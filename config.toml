@@ -18,8 +18,8 @@ languageCode = "es-es"
 defaultContentLanguage = "es-es"
 title = "Guillermo Alvarado Blog"
 theme = "hugo-tranquilpeak-theme"
-disqusShortname = "hugo-tranquilpeak-theme"
-# googleAnalytics = ""
+disqusShortname = "galvarado-com-mx"
+googleAnalytics = "UA-118969871-1"
 paginate = 7
 canonifyurls = true
 
@@ -86,7 +86,7 @@ canonifyurls = true
 
   # Define categories will create hierarchy between parents: `categories = ["foo", "bar"]` will consider "bar" a sub-category of "foo". 
   # If false it will flat categories.
-  hierarchicalCategories = true
+  hierarchicalCategories = false
 
   description = "Guillermo Alvarado Blog"
 

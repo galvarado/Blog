@@ -4,10 +4,8 @@ date: 2018-05-11
 categories:
 - cloud
 - devops
-- docker
-- openstack
-- containers
-- microservices
+- arquitectura
+- herramientas
 autoThumbnailImage: false
 thumbnailImagePosition: "top"
 thumbnailImage: images/build.jpg
@@ -15,6 +13,9 @@ metaAlignment: center
 ---
 
 Como primer entrada, me gustaría compartir como está construido este blog. Los blogs anteriores que tuve estuvieron siempre desplegados en Digital Ocean y usé Wordpress, está vez elegí desplegar un blog completamente estático. 
+
+<!--more-->
+
 
 ## Hugo como generador de sitios estáticos
 

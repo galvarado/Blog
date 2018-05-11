@@ -5,7 +5,6 @@ categories:
 - cloud
 - devops
 - docker
-- openstack
 - containers
 - microservices
 autoThumbnailImage: false
