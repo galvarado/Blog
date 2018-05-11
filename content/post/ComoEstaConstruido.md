@@ -31,11 +31,14 @@ Los generadores estáticos, mediante algún motor nos ayudan a crear todos los a
 
 ## Netlify como CDN
 
-Eel despliegue está hecho usando [Netlify](https://www.netlify.com) un CDN para sitios estáticos que se integra con Github. Este CDN lo he usado anteriormente para desplegar en la empresa ya que nos apegamos al JAM Stack - JavaScript, APIs and Markup. Es el stack de mayor crecimiento para construir aplicaciones web, significa no más servidores, hostear todo el front-end en un CDN y usar APIs para cualquier parte dinámica.
+El despliegue está hecho usando [Netlify](https://www.netlify.com) un CDN para sitios estáticos que se integra con Github. Este CDN lo he usado anteriormente para desplegar en la empresa ya que nos apegamos al JAM Stack - JavaScript, APIs and Markup. Es el stack de mayor crecimiento para construir aplicaciones web, significa no más servidores, hostear todo el front-end en un CDN y usar APIs para cualquier parte dinámica.
 
 Con Netlify simplemente hacemos push del repositorio de  nuestro sitio a su CDN ya que está integrado con Github. Después de un git push, la versión más nueva está disponible de inmediato en todas partes .
 
-Netlify tiene muchas funciones como protección DDoS, snapshot, control de versiones y reversiones, invalidación de caché instantánea, alojamiento de DNS, registro de dominios, etc. Se puede  consultar más funciones de Netlify [aquí:](https://www.netlify.com/features/)
+Netlify tiene muchas funciones como protección DDoS, snapshot, control de versiones y reversiones, invalidación de caché instantánea, alojamiento de DNS, registro de dominios, etc. Se puede  consultar más funciones de Netlify [aquí](https://www.netlify.com/features/)
+
+
+## Small footprint
 
 La elección la hice ya que está ocasión no quiero pasar tiempo admistrando una instancia cloud más y tampoco administrar un Wordpress y lo que eso implica:
 
@@ -52,6 +55,5 @@ La elección la hice ya que está ocasión no quiero pasar tiempo admistrando un
 
  Eliminando todos los puntos anteriores se obtiene lo que se llama un "small footprint" y eso permite que las aplicaciones sean migradas más facilmente y tengan mejor escalabilidad (Aunque en este caso es un simple blog, puede ser todo un proyecto en AngularJS/ReactJS que sirva de UI para una aplicación que exponga una API escrita en Python/Ruby por poner un ejemplo)
 
- No sé diga más, bienvenido.
 
 
