@@ -60,31 +60,25 @@ canonifyurls = true
   name = "Categorias"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
   url = "/categories"
-[[menu.main]]
-  weight = 4
+[[menu.links]]
+  weight = 0
   identifier = "Archivo"
   name = "Archivo"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
 
 [[menu.links]]
-  weight = 0
+  weight = 1
   identifier = "LinkedIn"
   name = "LinkedIn"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
   url = "https://linkedin.com/in/guillermoalvarado89"
 [[menu.links]]
-  weight = 1
+  weight = 2
   identifier = "Twitter"
   name = "Twitter"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
   url = "https://twitter.com/galvarado89"
-[[menu.links]]
-  weight = 2
-  identifier = "Github"
-  name = "Github"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
-  url = "https://github.com/galvarado"
 
 [params]
   # Customize date format use to render blog post date, categories and other
@@ -199,4 +193,4 @@ canonifyurls = true
 
   # Customize copyright value "© 2018 Guillermo Alvarado. All Rights Reserved"
   [params.footer]
-    copyright = "Guillermo Alvarado construido con <a href=\"https://github.com/kakawait/hugo-tranquilpeak-theme\">hugo tranquilpeak theme</a>"
+    copyright = "Guillermo Alvarado. Construido con <a href=\"https://github.com/kakawait/hugo-tranquilpeak-theme\">hugo tranquilpeak theme</a>"
