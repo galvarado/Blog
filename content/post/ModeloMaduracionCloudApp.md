@@ -11,7 +11,7 @@ thumbnailImage: images/tech.jpg
 metaAlignment: center
 ---
 
-¿Cómo se que tan madura es mi aplicación en terminos de nube? ¿Cual debería ser mi objetivo para explotar todas las ventajas de la nube? Estoy prerado material para un curso que dictaré en Santiago de Chile para uno de nuestros clientes y estoy agregando el modelo propuesto por la Open Datacenter alliance que leí hace unos meses, ellos en una publicación "Architecting Cloud Aware Applications" recomiendan las mejores practicas para arquitecturar una aplicación en la nube y describen un modelo para evaluar la madure que me gustaría compartir ya que no hay mucha informaciń en español al respecto...
+¿Cómo sé que tan madura es mi aplicación en términos de nube? ¿Cual debería ser mi objetivo para explotar todas las ventajas de la nube? Estoy prerado material para un curso que dictaré en Santiago de Chile para uno de nuestros clientes y estoy agregando el modelo propuesto por la Open Datacenter Alliance que leí hace unos meses, ellos en una publicación "Architecting Cloud Aware Applications" recomiendan las mejores practicas para arquitecturar una aplicación en la nube y describen un modelo para evaluar la madure que me gustaría compartir ya que no hay mucha informaciń en español al respecto...
 
 
 
