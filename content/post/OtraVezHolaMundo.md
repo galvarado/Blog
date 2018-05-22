@@ -3,7 +3,6 @@ title: "Hola mundo, otra vez"
 date: 2018-05-10
 categories:
 - cloud
-
 autoThumbnailImage: false
 thumbnailImagePosition: "top"
 thumbnailImage: images/walle.jpg
