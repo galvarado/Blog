@@ -11,7 +11,7 @@ thumbnailImage: images/tech.jpg
 metaAlignment: center
 ---
 
-¿Cómo sé que tan madura es mi aplicación en términos de nube? ¿Cual debería ser mi objetivo para explotar todas las ventajas de la nube? Estoy prerado material para un curso que dictaré en Santiago de Chile para uno de nuestros clientes y estoy agregando el modelo propuesto por la Open Datacenter Alliance que leí hace unos meses, ellos en una publicación "Architecting Cloud Aware Applications" recomiendan las mejores practicas para arquitecturar una aplicación en la nube y describen un modelo para evaluar la madure que me gustaría compartir ya que no hay mucha informaciń en español al respecto...
+¿Cómo sé que tan madura es mi aplicación en términos de nube? ¿Cual debería ser mi objetivo para explotar todas las ventajas de la nube? Estoy prerado material para un curso que dictaré en Santiago de Chile para uno de nuestros clientes y estoy agregando el modelo propuesto por la Open Datacenter Alliance que leí hace unos meses, ellos en una publicación "Architecting Cloud Aware Applications" recomiendan las mejores practicas para arquitecturar una aplicación en la nube y describen un modelo para evaluar la madurez que me gustaría compartir ya que no hay mucha información en español al respecto...
 
 
 
@@ -50,6 +50,6 @@ La arquitectura de  Microservicios es un buen ejemplo de una arquitectura de apl
 
 En este nivel, la aplicación puede detectar o anticipar cambios y reaccionar ante ellos de manera totalmente automática. Por ejemplo, Netflix usa un algoritmo predictivo de escalado automático. Las aplicaiones diseñadas en este nivel explotan completamente las cualidades  de un entorno de nube. Aplicaciones en este nivel de la madurez puede migrar sin problemas de un proveedor de nube a otro, parcial o completamente, sin interrupción en el servicio.
 
-El documento de ODCA también habla sobre la migración dinámica entre proveedores. Este es un objetivo deseable, sin embargo, la realidad actual es que la dependencia en  cada proveedor de la nube es bastante. Una razón por la que los contenedores de aplicaciones, como Docker, se han vuelto tan populares rápidamente es que prometen facilitar el desafío de portabilidad en la nube, pero todavía son una pequeña pieza del rompecabezas general. Se necesita mucho más para la verdadera portabilidad de la aplicación entre los proveedores. Sin embargo, mientras más cerca estemos y menos interaccipones humanas se necesiten, estaremos más cerca de alcanzar este nivel.
+El documento de ODCA también habla sobre la migración dinámica entre proveedores. Este es un objetivo deseable, sin embargo, la realidad actual es que la dependencia en  cada proveedor de la nube es bastante. Una razón por la que los contenedores de aplicaciones, como Docker, se han vuelto tan populares rápidamente es que prometen facilitar el desafío de portabilidad en la nube, pero todavía son una pequeña pieza del rompecabezas general. Se necesita mucho más para la verdadera portabilidad de la aplicación entre los proveedores. Sin embargo, mientras más cerca estemos y menos interacciones humanas se necesiten, estaremos más cerca de alcanzar este nivel.
 
 Referencias: [architecting_cloud_aware_applications.pdf](https://github.com/Sentinel-la/architecting_cloud_aware_applications)
