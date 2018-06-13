@@ -2,7 +2,7 @@
 title: "Virtualización a fondo ¿Cuales son las diferencias entre KVM y QEMU? ¿Son sinónimos?"
 date: 2018-06-13
 categories:
-- virtualizacíón
+- virtualizacion
 - cloud
 autoThumbnailImage: false
 thumbnailImagePosition: "top"
