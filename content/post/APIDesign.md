@@ -9,14 +9,9 @@ thumbnailImagePosition: "top"
 thumbnailImage: images/api.jpg
 metaAlignment: center
 ---
-
-Un tema recurrente con nuestros clientes que entran en procesos de migración a la nube o mejora de aplicaciones para acercarse a los niveles de Cloud Native Apps es ¿Deberíamos diseñar una nueva API? Debido a esto es que escribí este post con las mejores practicas para el diseño de una API y algunas herramientas relacionadas. 
-
-Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software...
+¿Cómo debo diseñar mi API? ¿Cómo voy a exponerla a distintos desarrolladores? Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software. Todos los productos necesitan un manual de uso  y las APIs no son la excepción. Es por eso que hoy escribí sobre OpenAPI, que es un estandar para crear este manual de uso para nuestra API.
 
 <!--more-->
-
-Un tema recurrente con nuestros clientes que entran en procesos de migración a la nube o mejora de aplicaciones para acercarse a los niveles de Cloud Native Apps es ¿Deberíamos diseñar una nueva API? ¿Cómo la diseñamos? Debido a esto es que escribí este post con las mejores practicas para el diseño de una API y algunas herramientas relacionadas. 
 
 Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software, debido a esto, es importante planear muy bien más antes de salir y comenzar a implementar una API. Aquí es donde entran en juego el diseño, los estándares y las especificaciones, como OpenAPI.
 
