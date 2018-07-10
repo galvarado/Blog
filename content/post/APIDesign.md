@@ -1,5 +1,5 @@
 ---
-title: "¿Cómo diseñar una API?"
+title: "¿Cómo diseñar una API? Introducción a OpenAPI Specification"
 date: 2018-07-10
 categories:
 - development
