@@ -21,11 +21,17 @@ fields:
   label: Categories
   type: list
   hidden: false
-  default: ''
+  default:
+  - devops
   config:
     use_select: true
     source:
-      type: datafiles
+      type: simple
+    options:
+    - devops
+    - architecture
+    - development
+    - cloud
 - name: thumbnailImagePosition
   label: Thumbnailimageposition
   type: text
