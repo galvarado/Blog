@@ -6,33 +6,47 @@ fields:
 - name: title
   label: Title
   type: text
-  hidden: title
+  hidden: false
   default: ''
+  config:
+    required: true
 - name: date
   label: Date
   type: datetime
-  hidden: date
+  hidden: false
   default: ''
+  config:
+    required: true
 - name: categories
   label: Categories
   type: list
-  hidden: categories
+  hidden: false
   default: ''
+  config:
+    use_select: true
+    source:
+      type: datafiles
 - name: thumbnailImagePosition
   label: Thumbnailimageposition
   type: text
-  hidden: thumbnailImagePosition
+  hidden: false
   default: ''
+  config:
+    required: true
 - name: thumbnailImage
   label: Thumbnailimage
   type: text
-  hidden: thumbnailImage
+  hidden: false
   default: ''
+  config:
+    required: true
 - name: metaAlignment
   label: Metaalignment
   type: text
-  hidden: metaAlignment
+  hidden: false
   default: ''
+  config:
+    required: true
 - type: text
 pages:
 - content/post/0-herramientas-de-linea-de-comandos-imprescindibles-para-devops.md
