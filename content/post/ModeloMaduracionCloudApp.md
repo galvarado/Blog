@@ -1,31 +1,27 @@
 ---
-title: "Modelo de madurez de una aplicación nativa de nube"
-date: 2018-05-21
+title: Modelo de madurez de una aplicación nativa de nube
+date: 2018-05-21 00:00:00 +0000
 categories:
 - arquitectura
 - cloud
 - devops
 autoThumbnailImage: false
-thumbnailImagePosition: "top"
+thumbnailImagePosition: top
 thumbnailImage: images/tech.jpg
 metaAlignment: center
+
 ---
-
 ¿Cómo sé que tan madura es mi aplicación en términos de nube? ¿Cual debería ser mi objetivo para explotar todas las ventajas de la nube? Estoy prerado material para un curso que dictaré en Santiago de Chile para uno de nuestros clientes y estoy agregando el modelo propuesto por la Open Datacenter Alliance que leí hace unos meses, ellos en una publicación "Architecting Cloud Aware Applications" recomiendan las mejores practicas para arquitecturar una aplicación en la nube y describen un modelo para evaluar la madurez que me gustaría compartir ya que no hay mucha información en español al respecto...
-
-
 
 <!--more-->
 
-##  Niveles del modelo de madurez
+## Niveles del modelo de madurez
 
-El modelo es una forma simple de evaluar el nivel de madurez en la nube de nuestra aplicación. El modelo de madurez sugiere cambios que pueden implementarse para aumentar la resiliencia, flexibilidad y escalabilidad de la aplicación. En este modelo hay cuatro niveles para el modelo de madurez con el nivel 3 que representa el nivel más alto de madurez y el nivel 0 que representael nivel más bajo.
+El modelo es una forma simple de evaluar el nivel de madurez en la nube de nuestra aplicación. El modelo de madurez sugiere cambios que pueden implementarse para aumentar la resiliencia, flexibilidad y escalabilidad de la aplicación. En este modelo hay cuatro niveles para el modelo de madurez con el nivel 3 que representa el nivel más alto de madurez y el nivel 0 que representa el nivel más bajo.
 
-En la siguiente tabla se resumen las caracteristicas de cada nivel:  
+En la siguiente tabla se resumen las caracteristicas de cada nivel:
 
 {{< image classes="fancybox enter" src="/images/tabla_madurez.png" title="Tabla de madurez de aplicaciones nativa de nube" >}}
-
-
 
 ### Nivel  0: Aplicación Virtualizada.
 
