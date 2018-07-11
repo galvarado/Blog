@@ -33,3 +33,5 @@ fields:
   type: text
   hidden: metaAlignment
   default: ''
+pages:
+- content/post/0-herramientas-de-linea-de-comandos-imprescindibles-para-devops.md
