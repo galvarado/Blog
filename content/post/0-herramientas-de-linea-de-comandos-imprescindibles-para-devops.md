@@ -3,7 +3,7 @@ categories = []
 date = "2018-06-29T11:57:32-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/devops.jpg"
-thumbnailImagePosition = "center"
+thumbnailImagePosition = "top"
 title = "20 herramientas de línea de comandos imprescindibles para DevOps"
 undefined = ""
 
