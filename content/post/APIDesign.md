@@ -8,6 +8,7 @@ autoThumbnailImage: false
 thumbnailImagePosition: top
 thumbnailImage: images/api.jpg
 metaAlignment: center
+draft: true
 
 ---
 ¿Cómo debo diseñar mi API? ¿Cómo voy a exponerla a distintos desarrolladores? Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software. Todos los productos necesitan un manual de uso  y las APIs no son la excepción. Es por eso que hoy escribí sobre OpenAPI, que es un estandar para crear este manual de uso para nuestra API.
@@ -79,6 +80,14 @@ Como se puede observar, el documento simplementa ha definido como se puede inter
 
 El lenguaje con el que esta supuesta API está construida no importa, simplemente al ser una interfaz, el desarrollador puede comenzar a escribir código consumiendo este servicio y esa es la finalidad del diseño de la API. Servir de manual de usuario.
 
-Ahora bien, hay varias herramientas compatibles con este formato una de ellas es Swagger UI, que generan a partir de documentos como este, un sitio completo de documentación listo para servirse en HTML. Incluso Swagger puede generar los formularios de los parametros para comenzar a consumir esta API. También existen extensiones por ejemplo para Flask, para generar la documentación de una API escrita en Python usando este framework. Aquí se puede ver un ejemplo de \[Flasgger\] (https://github.com/rochacbruno/flasgger)
+Ahora bien, hay varias herramientas compatibles con este formato una de ellas es Swagger UI, que generan a partir de documentos como este, un sitio completo de documentación listo para servirse en HTML. Incluso Swagger puede generar los formularios de los parametros para comenzar a consumir esta API. 
 
-Para profundizar en el tema, se puede leer todala especificación de OpenAPI [aquí](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasDocument/) y sobre  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/)
+## Swagger UI
+
+ Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/). 
+
+## Flasgger
+
+También existen extensiones por ejemplo para Flask, para generar la documentación de una API escrita en Python usando este framework. Aquí se puede ver un ejemplo de \[Flasgger\] (https://github.com/rochacbruno/flasgger)
+
+Para profundizar en el tema, se puede leer todala especificación de OpenAPI [aquí](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasDocument/)
