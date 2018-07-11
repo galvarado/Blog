@@ -33,3 +33,4 @@ fields:
   type: text
   hidden: metaAlignment
   default: ''
+- type: text
