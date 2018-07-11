@@ -36,7 +36,7 @@ fields:
 - type: file
   label: thumbnailImage
   name: thumbnailImage
-  default: "/uploads/devops.jpg"
+  default: ''
 - name: metaAlignment
   label: Metaalignment
   type: text
