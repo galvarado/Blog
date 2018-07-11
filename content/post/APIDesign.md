@@ -48,18 +48,19 @@ Para ejemplo definiré en documento en YAML que describe una API que nos permite
 
 ```bash
 
-openapi: "3.0"
+    swagger: "2.0"
     info:
-      title: "Códigos de aeropuertos"
-      description: "Obtener el nombre de un aeropuerto desde su código IATA de 3 letras."
+      title: "Airport Codes"
+      description: "Get the name of an airport from its three-letter IATA code."
       version: "1.0.0"
-    host: "getairport.com
+    # This field will be replaced by the deploy_api.sh script.
+    host: "YOUR-PROJECT-ID.appspot.com"
     schemes:
       - "https"
     paths:
       "/airportName":
         get:
-          description: "Obtener el nombre del aeropuerto para un código IATA dado."
+          description: "Get the airport name for a given IATA code."
           operationId: "airportName"
           parameters:
             -
@@ -73,21 +74,34 @@ openapi: "3.0"
               schema:
                 type: string
             400:
-              description: "El código IATA es inválido"
+              description: "The IATA code is invalid or missing."
 ```
 
 Como se puede observar, el documento simplementa ha definido como se puede interactuar con esta API. El desarrollador al leer esto, sabrá que tiene un path "/airportName" que podrá consultar, también podrá saber los parametros que se permiten y los códigos de respuesta que podrá obtener.
 
 El lenguaje con el que esta supuesta API está construida no importa, simplemente al ser una interfaz, el desarrollador puede comenzar a escribir código consumiendo este servicio y esa es la finalidad del diseño de la API. Servir de manual de usuario.
 
-Ahora bien, hay varias herramientas compatibles con este formato una de ellas es Swagger UI, que generan a partir de documentos como este, un sitio completo de documentación listo para servirse en HTML. Incluso Swagger puede generar los formularios de los parametros para comenzar a consumir esta API. 
+Ahora bien, hay varias herramientas compatibles con este formato una de ellas es Swagger UI, que generan a partir de documentos como este, un sitio completo de documentación listo para servirse en HTML. Incluso Swagger puede generar los formularios de los parametros para comenzar a consumir esta API.
 
 ## Swagger UI
 
- Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/). 
+Swgger UI permite a cualquier persona, visualizar e interactuar con los recursos de la API sin tener implementada la lógica de implementación. Se genera automáticamente a partir de escribir archivos que cumplan con la especificación OpenAPI, con esto, la documentación visual se crea y  facilita la implementación de back-end y el consumo del lado del cliente. 
+
+Tomando como ejemplo el archivo anterior respecto a la API del aeropuerto, generé el sitio de documentación de esta API con Swagger. Aquí hay varias opciones, se puede descargar Swagger UI o usar SwaggerHub, que es la versión en la nube de todas las herramientas. 
+
+A manera de ejemplificar el poder de todo este tema de OpenAPI y entender por que es una buena idea usarlo, usé el SwaggerHub para generar el sitio de documentación del ejemplo de archivo YAML que estamos usando y se ve así:
+
+![](/uploads/Screenshot-20180711115151-1032x783.png)  
+  
+  
+EL sitio generado, tamibién sirve para comenzar a hacer peticiones a la API ya que integra un formunlario para enviar los argumentos que se necesitan y realizar las peticiones HTTP desde ahí sin necesidad de hacer una petición con CURL o usar Postma.  
+  
+Es una API con un solo endpoint, y es un GET, lo sé, pero imaginas una API con 120 endpoints y diferentes operaciones y métodos para cada uno, con 3, 4 o 5 argumentos por cada uno? Con Swagger siguiendo la especificacióon de OpenAPI todo estaría hecho y los desarrolladores comenzarían a trabajar en el FrontEnd de inmediato.  =) 
+
+Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/).
 
 ## Flasgger
 
 También existen extensiones por ejemplo para Flask, para generar la documentación de una API escrita en Python usando este framework. Aquí se puede ver un ejemplo de \[Flasgger\] (https://github.com/rochacbruno/flasgger)
 
-Para profundizar en el tema, se puede leer todala especificación de OpenAPI [aquí](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasDocument/)
+Para profundizar en el tema, se puede leer toda la especificación de OpenAPI [aquí](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasDocument/)
