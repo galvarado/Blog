@@ -33,13 +33,10 @@ fields:
   default: ''
   config:
     required: true
-- name: thumbnailImage
-  label: Thumbnailimage
-  type: text
-  hidden: false
-  default: ''
-  config:
-    required: true
+- type: file
+  label: thumbnailImage
+  name: thumbnailImage
+  default: "/uploads/devops.jpg"
 - name: metaAlignment
   label: Metaalignment
   type: text
