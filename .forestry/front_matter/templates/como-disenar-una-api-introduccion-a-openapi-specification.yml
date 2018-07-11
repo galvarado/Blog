@@ -34,5 +34,3 @@ fields:
   hidden: metaAlignment
   default: ''
 - type: text
-pages:
-- content/post/example.md
