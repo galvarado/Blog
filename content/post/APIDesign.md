@@ -18,7 +18,7 @@ Todos los productos necesitan un manual de uso  y las APIs no son la excepción.
 
 ## OpenAPI Specification
 
-Todos los productos necesitan un manual de uso, y las APIs no son la excepción. OpenAPI es un estandar para crear este manual de uso para nuestra API. La Especificación\[OpenAPI\] (https://github.com/OAI/OpenAPI-Specification) es una especificación abierta impulsada por la comunidad y es ahora un proyecto colaborativo de la Fundación Linux. En los últimos años, Swagger se ha convertido en el estándar de facto para definir o documentar una API y ahora se ha movido como un proyecto Opensource y se ha renombrado como OpenAPI Spec. La versión 3 ha estado en proceso por un tiempo y ahora ha sido liberada, de esta estarémos hablando.
+Todos los productos necesitan un manual de uso, y las APIs no son la excepción. OpenAPI es un estándar para crear este manual de uso para nuestra API. La especificación [OpenAPI](https://github.com/OAI/OpenAPI-Specification)) estándar es una especificación abierta impulsada por la comunidad y es ahora un proyecto colaborativo de la Fundación Linux. En los últimos años, Swagger se ha convertido en el estándar de facto para definir o documentar una API y ahora se ha movido como un proyecto Opensource y se ha renombrado como OpenAPI Spec. La versión 3 ha estado en proceso por un tiempo y ahora ha sido liberada, de esta estaremos hablando.
 
 Las características más importantes de OpenAPI son las siguientes:
 
@@ -100,6 +100,6 @@ Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/
 
 ## Flasgger
 
-También existen extensiones por ejemplo para Flask, para generar la documentación de una API escrita en Python usando este framework. Aquí se puede ver un ejemplo de \[Flasgger\] (https://github.com/rochacbruno/flasgger)
+También existen extensiones por ejemplo para Flask, para generar la documentación de una API escrita en Python usando este framework. Aquí se puede ver un ejemplo de [Flasgger](https://github.com/rochacbruno/flasgger)
 
 Para profundizar en el tema, se puede leer toda la especificación de OpenAPI [aquí](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasDocument/)
