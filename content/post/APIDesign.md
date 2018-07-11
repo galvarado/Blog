@@ -8,7 +8,6 @@ autoThumbnailImage: false
 thumbnailImagePosition: top
 thumbnailImage: images/api.jpg
 metaAlignment: center
-draft: true
 
 ---
 ¿Cómo debo diseñar mi API? ¿Cómo voy a exponerla a distintos desarrolladores? Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software. Todos los productos necesitan un manual de uso  y las APIs no son la excepción. Es por eso que hoy escribí sobre OpenAPI, que es un estandar para crear este manual de uso para nuestra API.
