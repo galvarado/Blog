@@ -84,18 +84,17 @@ Ahora bien, hay varias herramientas compatibles con este formato una de ellas es
 
 ## Swagger UI
 
-Swgger UI permite a cualquier persona, visualizar e interactuar con los recursos de la API sin tener implementada la lógica de implementación. Se genera automáticamente a partir de escribir archivos que cumplan con la especificación OpenAPI, con esto, la documentación visual se crea y  facilita la implementación de back-end y el consumo del lado del cliente. 
+Swgger UI permite a cualquier persona, visualizar e interactuar con los recursos de la API sin tener implementada la lógica de implementación. Se genera automáticamente a partir de escribir archivos que cumplan con la especificación OpenAPI, con esto, la documentación visual se crea y  facilita la implementación de back-end y el consumo del lado del cliente.
 
-Tomando como ejemplo el archivo anterior respecto a la API del aeropuerto, generé el sitio de documentación de esta API con Swagger. Aquí hay varias opciones, se puede descargar Swagger UI o usar SwaggerHub, que es la versión en la nube de todas las herramientas. 
+Tomando como ejemplo el archivo anterior respecto a la API del aeropuerto, generé el sitio de documentación de esta API con Swagger. Aquí hay varias opciones, se puede descargar Swagger UI o usar SwaggerHub, que es la versión en la nube de todas las herramientas.
 
 A manera de ejemplificar el poder de todo este tema de OpenAPI y entender por que es una buena idea usarlo, usé el SwaggerHub para generar el sitio de documentación del ejemplo de archivo YAML que estamos usando y se ve así:
 
-![](/uploads/Screenshot-20180711115151-1032x783.png)  
-  
-  
-EL sitio generado, tamibién sirve para comenzar a hacer peticiones a la API ya que integra un formunlario para enviar los argumentos que se necesitan y realizar las peticiones HTTP desde ahí sin necesidad de hacer una petición con CURL o usar Postma.  
-  
-Es una API con un solo endpoint, y es un GET, lo sé, pero imaginas una API con 120 endpoints y diferentes operaciones y métodos para cada uno, con 3, 4 o 5 argumentos por cada uno? Con Swagger siguiendo la especificacióon de OpenAPI todo estaría hecho y los desarrolladores comenzarían a trabajar en el FrontEnd de inmediato.  =) 
+![](/uploads/Screenshot-20180711115151-1032x783.png)
+
+EL sitio generado, también sirve para comenzar a hacer peticiones a la API ya que integra un formunlario para enviar los argumentos que se necesitan y realizar las peticiones HTTP desde ahí sin necesidad de hacer una petición con CURL o usar Postman.
+
+Es una API con un solo endpoint, y es un GET, lo sé, pero imaginas una API con 120 endpoints y diferentes operaciones y métodos para cada uno, con 3, 4 o 5 argumentos por cada uno? Con Swagger siguiendo la especificacióon de OpenAPI todo estaría hecho y los desarrolladores comenzarían a trabajar en el FrontEnd de inmediato.  =)
 
 Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/).
 
