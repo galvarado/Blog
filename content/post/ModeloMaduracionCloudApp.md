@@ -21,7 +21,7 @@ El modelo es una forma simple de evaluar el nivel de madurez en la nube de nuest
 
 En la siguiente tabla se resumen las caracteristicas de cada nivel:
 
-{{< image classes="fancybox enter" src="/images/tabla_madurez.png" title="Tabla de madurez de aplicaciones nativa de nube" >}}
+![](/uploads/tabla_madurez.png)
 
 ### Nivel  0: Aplicación Virtualizada.
 
