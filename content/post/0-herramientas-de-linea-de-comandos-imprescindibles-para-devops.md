@@ -1,9 +1,9 @@
 +++
-categories = []
+categories = ["devops"]
 date = "2018-06-29T11:57:32-06:00"
 metaAlignment = "center"
-thumbnailImage = "images/devops.jpg"
-thumbnailImagePosition = "center"
+thumbnailImage = "/uploads/devops.jpg"
+thumbnailImagePosition = "top"
 title = "20 herramientas de línea de comandos imprescindibles para DevOps"
 undefined = ""
 
