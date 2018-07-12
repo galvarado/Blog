@@ -51,5 +51,3 @@ fields:
   config:
     required: true
 - type: text
-pages:
-- content/post/0-herramientas-de-linea-de-comandos-imprescindibles-para-devops.md
