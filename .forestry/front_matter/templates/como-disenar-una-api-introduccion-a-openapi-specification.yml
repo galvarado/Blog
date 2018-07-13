@@ -52,4 +52,5 @@ fields:
     required: true
 - type: text
 pages:
+- content/estrategias-operacionales-clave-para-aplicaciones-nativas-de-nube.md
 - content/post/DevopsTools.md
