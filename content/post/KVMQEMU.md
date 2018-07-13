@@ -1,15 +1,15 @@
 ---
-title: "Virtualización a fondo ¿Cuales son las diferencias entre KVM y QEMU? ¿Son sinónimos?"
-date: 2018-06-13
+title: Virtualización a fondo ¿Cuales son las diferencias entre KVM y QEMU? ¿Son sinónimos?
+date: 2018-05-30 23:00:00 -0600
 categories:
 - virtualizacion
 - cloud
 autoThumbnailImage: false
-thumbnailImagePosition: "top"
+thumbnailImagePosition: top
 thumbnailImage: images/virtualization.jpg
 metaAlignment: center
----
 
+---
 Cuando comenzamos en el mundo de la virtualización, la opción más recurrente para comenzar es KVM. Después nos damos cuenta de que se comienza a usar tamién otro componente muy amenudo, QEMU y siempre hay muchas preguntas en torno a cómo funciona KVM y QEMU o cual es la diferencia entre ellos, es por esto que escribí al respecto
 
 
@@ -67,5 +67,3 @@ http://serverfault.com/questions/208693/difference-between-kvm-and-qemu
 http://www.innervoice.in/blogs/2014/03/10/kvm-and-qemu/
 
 http://www.quora.com/Virtualization/What-is-the-difference-between-KVM-and-QEMU
-
-
