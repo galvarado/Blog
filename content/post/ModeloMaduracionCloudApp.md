@@ -1,10 +1,9 @@
 ---
 title: Modelo de madurez de una aplicación nativa de nube
-date: 2018-05-21 00:00:00 +0000
+date: 2018-07-01 18:00:00 -0600
 categories:
 - arquitectura
 - cloud
-- devops
 autoThumbnailImage: false
 thumbnailImagePosition: top
 thumbnailImage: images/tech.jpg
