@@ -36,7 +36,7 @@ fields:
   label: Thumbnailimageposition
   type: text
   hidden: false
-  default: ''
+  default: top
   config:
     required: true
 - type: file
@@ -47,7 +47,7 @@ fields:
   label: Metaalignment
   type: text
   hidden: false
-  default: ''
+  default: center
   config:
     required: true
 - type: text
