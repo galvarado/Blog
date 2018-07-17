@@ -25,7 +25,7 @@ Este documento sintetiza toda la experiencia y observaciones del equipo de Ingen
 
 Ofrecer un conjunto de soluciones conceptualmente robustas para esos problemas acompañados de su correspondiente terminología.
 
-###### ¿Porqué son importantes?
+**¿Porque son importantes?**
 
 Empresas como Facebook, Uber, Netflix, Airbnb y Tesla crecen continuamente, siendo líderes en la industria y dictando pauta en sus modelos de entrega de servicio.
 
