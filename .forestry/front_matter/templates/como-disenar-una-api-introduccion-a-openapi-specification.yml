@@ -32,6 +32,7 @@ fields:
     - architecture
     - development
     - cloud
+    - microservices
 - name: thumbnailImagePosition
   label: Thumbnailimageposition
   type: text
