@@ -1,7 +1,6 @@
 +++
 categories = ["architecture"]
 date = "2018-07-13T16:36:31-06:00"
-draft = true
 metaAlignment = "center"
 thumbnailImage = "/uploads/saas.jpg"
 thumbnailImagePosition = "top"
