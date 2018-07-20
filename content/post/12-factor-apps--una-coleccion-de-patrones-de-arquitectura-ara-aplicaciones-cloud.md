@@ -8,17 +8,15 @@ title = "12 Factor apps: Una colección de patrones de arquitectura para aplicac
 undefined = ""
 
 +++
-“The twelve-factor app” es una metodología para construir aplicaciones. Lo podriamos ver como un conjunto de prácticas de desarrollo y arquitectura, que presta especial atención a las dinámicas del escalamiento, evitando el coste de la entropía del software.
-
-Si se siguen estos lineamientos se logra una notable diferencia entre una aplicación que puede funcionar en la nube y otra que está diseñada para aprovechar la nube:
-
-**¿Quién debería leer este documento?**
+> “The twelve-factor app” es una metodología para construir aplicaciones. Lo podriamos ver como un conjunto de prácticas de desarrollo y arquitectura. Si se siguen estos lineamientos se logra una notable diferencia entre una aplicación que puede funcionar en la nube y otra que está diseñada para aprovechar la nube
+>
+> **¿Quién debería leer este documento?**
 
 Cualquier desarrollador que construya aplicaciones y las ejecute como un servicio. Ingenieros de operaciones que desplieguen y gestionen dichas aplicaciones.
 
 **¿Quién escribió este documento?**
 
-Este documento sintetiza toda la experiencia y observaciones del equipo de Ingeniería de Heroku sobre una amplia variedad de aplicaciones SaaS. Es la triangulación entre practicas para el desarrollo de aplicaciones, prestando especial atención a las dinámicas del crecimiento natural de una aplicación a lo largo del tiempo, [evitando el coste de la entropía del software](http://blog.heroku.com/archives/2011/6/28/the_new_heroku_4_erosion_resistance_explicit_contracts/).
+Este documento sintetiza toda la experiencia y observaciones del equipo de Ingeniería de [Heroku](https://www.heroku.com/) sobre una amplia variedad de aplicaciones SaaS. Es la triangulación entre practicas para el desarrollo de aplicaciones, prestando especial atención a las dinámicas del crecimiento natural de una aplicación a lo largo del tiempo, [evitando el coste de la entropía del software](https://es.wikipedia.org/wiki/Entrop%C3%ADa_del_software).
 
 **¿Cual es su objetivo?**
 
@@ -30,9 +28,9 @@ Empresas como Facebook, Uber, Netflix, Airbnb y Tesla crecen continuamente, sien
 
 **¿Qué tienen en común estas empresas?**
 
-1. • Velocidad de innovación
-2. • Servicios siempre disponibles
-3. • Escalabilidad web
+1.  Velocidad de innovación
+2.  Servicios siempre disponibles
+3.  Escalabilidad web
 
 _La nube es una evolución natural del software. Las arquitecturas de aplicaciones nativas de la nube son el centro de cómo estas empresas obtuvieron su carácter disruptivo._
 
@@ -40,7 +38,7 @@ _La nube es una evolución natural del software. Las arquitecturas de aplicacion
 
 ### 1. Código base
 
-Utilizar un código base sobre el que hacer el control de versiones y múltiples despliegues. Se utiliza un sistema de control de versiones (por ej. Git). Este código base es único, aunque pueden haber tantos despliegues de la aplicación como sean necesarios. 
+Utilizar un código base sobre el que hacer el control de versiones y múltiples despliegues. Se utiliza un sistema de control de versiones (por ej. Git). Este código base es único, aunque pueden haber tantos despliegues de la aplicación como sean necesarios.
 
 ### 2. Dependencias
 
@@ -72,7 +70,7 @@ Heredada por el manejo de procesos. Por horizontalidad y concurrencia, los proce
 
 ### 9. Desechabilidad
 
-Hacer el sistema más robusto intentando conseguir inicios rápidos y finalizaciones seguras. Se debe poder iniciar o finalizar en el momento que sea necesario. Una aplicación no se puede escalar, implementar, liberar o recuperar rápidamente si no puede comenzar rápidamente y cerrar con gracia. 
+Hacer el sistema más robusto intentando conseguir inicios rápidos y finalizaciones seguras. Se debe poder iniciar o finalizar en el momento que sea necesario. Una aplicación no se puede escalar, implementar, liberar o recuperar rápidamente si no puede comenzar rápidamente y cerrar con gracia.
 
 ### 10. Igualdad entre desarrollo y producción
 
