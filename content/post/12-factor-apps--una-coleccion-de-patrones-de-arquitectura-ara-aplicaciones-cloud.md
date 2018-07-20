@@ -1,5 +1,5 @@
 +++
-categories = ["architecture"]
+categories = ["arquitectura"]
 date = "2018-07-13T16:36:31-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/saas.jpg"
