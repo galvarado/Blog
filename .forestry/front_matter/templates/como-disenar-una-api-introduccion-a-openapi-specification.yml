@@ -32,7 +32,7 @@ fields:
     - development
     - cloud
     - microservices
-    - arquitectira
+    - arquitectura
 - name: thumbnailImagePosition
   label: Thumbnailimageposition
   type: text
