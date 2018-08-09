@@ -62,3 +62,5 @@ Me voy a atreves a categorizar y enumerar los conocimientos que alguien debe cum
 10. Conocimientos de Contenedores (Docker/Kubernetes)
 
 Cada negocio y necesidad son diferentes, pero me parecen una buena lista a buscar si estás interesado en formar o contratar personal.
+
+¿Qué opinas? Me gustaría leer tus comentarios sobre tu experiencia en equipos DevOps
