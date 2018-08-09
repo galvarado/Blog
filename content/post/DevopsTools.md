@@ -8,6 +8,7 @@ thumbnailImagePosition: top
 thumbnailImage: "/uploads/devops.jpg"
 metaAlignment: center
 undefined: ''
+draft: true
 
 ---
 Una gran parte del mundo DevOps consiste en mantener la operación continua de las plataformas, una gran parte es desarrollar y mantener las aplicaciones, pero también está la infraestructura. Es difícil monitorear y debbugear problemas de performance, pero con las herramientas indicadas, en el momento justo, la tarea puede ser más sencilla. Aquí mi lista de herramientas que probablemente has escuchado, otras no sabias que existian y seguro otras más que ya estás usando:
