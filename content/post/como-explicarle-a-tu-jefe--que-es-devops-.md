@@ -27,6 +27,8 @@ Esto muestra una enorme fricción entre desarrollo y operaciones, lo cual afecta
 
 > "No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas“. - Jerry Weinberg
 
+**DevOps es ese cambio de mentalidad con el que se tiene una visión holística del proceso de desarrollo y se rompe la barrera entre Dev y Ops.**
+
 ## Objetivos de DevOps
 
 Podemos dividir los objetivos de esta cultura y metodología de la siguiente manera:
