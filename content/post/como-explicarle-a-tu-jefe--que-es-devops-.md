@@ -11,7 +11,7 @@ undefined = ""
 +++
 Cuando estás inmerso en el mundo del Software es mucho más fácil distinguir tendencias y una de las más fuertes en los últimos años  en torno a la construcción de equipos es DevOps**.** 
 
-**¿Que pasa cuando tienes que explicarle a tu jefe que es DevOps y porque vale la pena poner atención?** Te comparto como abordo el tema yo por si te es de utilidad en el futuro y si coincides o te es de utilidad, por favor comparte.  
+**¿Que pasa cuando tienes que explicarle a tu jefe que es DevOps y porque vale la pena poner atención?** Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.  
   
 Hay muchas definiciones de que es DevOps y yo me quedo con esta: "Es un modelo cultural y organizacional que promueve la colaboración para habilitar que los equipos de TI de alto rendimiento que consigan los objetivos del negocio."
 
