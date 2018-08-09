@@ -18,7 +18,9 @@ Cuando estás inmerso en el mundo del Software es mucho más fácil distinguir t
   
 Hay muchas definiciones de que es DevOps y yo me quedo con esta: "Es un modelo cultural y organizacional que promueve la colaboración para habilitar que los equipos de TI de alto rendimiento que consigan los objetivos del negocio."
 
-Ahora bien, definiciones y frases hay muchas, pero para dar justo en el corazón del tema, siempre trato de explicar que  DevOps es más que conocimientos técnicos y de desarrollo. DevOps se trata de **conectar a las personas dentro de tu empresa, para crear una cadena de valor** para entregar software.
+Ahora bien, definiciones y frases hay muchas, pero para dar justo en el corazón del tema, siempre trato de explicar que  DevOps es más que conocimientos técnicos y de desarrollo. 
+
+_DevOps se trata de conectar a las personas dentro de tu empresa, para crear una cadena de valor para entregar software._
 
 Todo esto ha tomado mucha fuerza por que los perfiles y equipos de las empresas demandan mayor velocidad para crear y operar aplicaciones, para apoyar estos argumentos algunas conclusiones personales:
 
