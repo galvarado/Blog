@@ -8,7 +8,7 @@ title = "Como explicar DevOps y hacer que funcione en tu empresa."
 undefined = ""
 
 +++
-Si lees de Cloud, de Microservicios, de Docker, de Kubernetes, te vas a topar con un término: **DevOps.**
+Si lees de Cloud, de Microservicios, de Docker, de Kubernetes, te vas a topar con un término en común, **DevOps.**
 
 Para que todas las estrategias anteriores funcionen, tu organización debe haber comprendido el valor de esta metodología, pero no siempre es fácil hacer que todas las áreas de la organización lo hagan ¿Que pasa cuando tienes que explicarle a las demás áreas de una empresa que es DevOps y porque vale la pena poner atención? Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.
 
