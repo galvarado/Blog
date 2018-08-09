@@ -4,12 +4,13 @@ date = "2018-08-09T12:16:58-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/devops_banner.png"
 thumbnailImagePosition = "top"
-title = "Cambios culturales en una empresa que quiere adoptar DevOps"
+title = "Como explicar DevOps y hacer que funcione en tu empresa."
 undefined = ""
 
 +++
+Si lees de Cloud, de Microservicios, de Docker, de Kubernetes, te vas a topar con un término: **DevOps.**
 
-**¿Que pasa cuando tienes que explicarle a las demás áreas de una empresa que es DevOps y porque vale la pena poner atención?** Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.
+Para que todas las estrategias anteriores funcionen, tu organización debe haber comprendido el valor de esta metodología, pero no siempre es fácil hacer que todas las áreas de la organización lo hagan ¿Que pasa cuando tienes que explicarle a las demás áreas de una empresa que es DevOps y porque vale la pena poner atención? Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.
 
 ## ¿Qué es DevOps?
 
@@ -25,8 +26,6 @@ Imagina el siguiente escenario:
 Esto muestra una enorme fricción entre desarrollo y operaciones, lo cual afecta al negocio. Y esto no pasa por las herramientas que usemos.
 
 > "No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas“. - Jerry Weinberg
-
-La siguiente imagen tiene como intención entender las disciplinas de un equipo DevOps:
 
 ## Objetivos de DevOps
 
@@ -59,11 +58,11 @@ Hay DevOps más centrados en el desarrollo y otros más centrados en la operaci�
 
 ## Puntos críticos a cambiar en la cultura organizacional
 
-**Apoyo de las demás áreas:** Las organizaciones de DevOps requieren que la organización los habilite para actuar como startups que innovan continuamente y les permite cambiar los productos y servicios que recibirán un nivel máximo de satisfacción del cliente.
+**Apoyo de las demás áreas:** Los equipos  DevOps requieren que la organización los habilite para actuar como startups que innovan continuamente y les permite cambiar los productos y servicios que recibirán un nivel máximo de satisfacción del cliente.
 
 **Crear con el fin en mente**: Las organizaciones necesitan dejar de lado los modelos de cascada y orientados a procesos donde cada unidad o individuo trabaja solo para un rol / función particular, sin ver la imagen completa.
 
-**Responsabilidad de extremo a extremo:** Cuando las organizaciones tradicionales desarrollan soluciones de TI y luego las transfieren a Operaciones suceden conflictos y se generan errores. En un entorno de DevOps, los equipos se organizan verticalmente de modo que sean completamente responsables desde el concepto hasta la operación.
+**Responsabilidad de extremo a extremo:** Cuando las organizaciones tradicionales desarrollan soluciones de TI y luego las transfieren a operaciones suceden conflictos y se generan errores. En un entorno de DevOps, los equipos se organizan verticalmente de modo que sean completamente responsables desde el concepto hasta la operación.
 
 **Automatiza todo lo que puedas:** Automatización no solo del proceso de desarrollo de software sino también de todo el panorama de la infraestructura mediante el desarrollo de plataformas en la nube. La automatización es sinónimo del impulso para renovar la forma en que se entrega un servicio
 
