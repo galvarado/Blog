@@ -1,6 +1,6 @@
 +++
 categories = ["devops"]
-date = "2018-08-10T12:16:58-06:00"
+date = "2018-08-09T12:16:58-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/devops_banner.png"
 thumbnailImagePosition = "top"
