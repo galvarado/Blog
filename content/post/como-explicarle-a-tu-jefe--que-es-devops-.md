@@ -39,7 +39,7 @@ Todo esto ha tomado mucha fuerza por que los perfiles y equipos de las empresas 
 
 Esto muestra una enorme fricción entre desarrollo y operaciones, lo cual afecta al negocio. Y esto no pasa por las herramientas que usemos. 
 
-> “_No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas_“.  Jerry Weinberg
+> "_No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas_“.  Jerry Weinberg
 
 La siguiente imagen tiene como intención entender las disciplinas de un equipo DevOps:
 
@@ -72,6 +72,21 @@ Un error común es confundir DevOps como que todos los miembros del equipo técn
 
 Estrictamente no existen profesionales con estudios en _DevOps_ sino ingenieros de distintas ramas con capacidades para integrarse en equipos DevOps.
 
-Hay DevOps más centrados en el desarrollo y otros más centrados en la operación. Depengde de las necesidades del negocio.
+Hay DevOps más centrados en el desarrollo y otros más centrados en la operación. Depende de las necesidades del negocio.
+
+## ¿Que debe saber un Ingeniero DevOps?
+
+Este es el Top 10 Skills específicas que nosotros buscamos en alguien o tratamos formar, para el perfil de Ingeniero DevOps:
+
+ 1. Buen nivel en Linux  (Aunque hay DevOps 100% Microsoft)
+ 2. Entendimiento cloud (Webservices, APIs, REST) y plataformas (AWS, GCP, Azure, OS)
+ 3. Scripting (Bash, Python) 
+ 4. Herramientas de Configuración distribuida (Ansible,Puppet, Chef)
+ 5. Manejo de servidores web y de aplicaciones
+ 6. Manejo de herramientas de monitoreo (Nagios, zabbix) y APM (Tracing)
+ 7. Conocimientos de red y herramientas (Balanceo, DNS, HTTP, tcpdump, telnet, dig, traceroute) 
+ 8. Capacidad de Troubleshooting (Resolución de problemas de desarrollo e infraestructura)
+ 9. Conocimientos de seguridad (SSL, Sesiones, Tokens, Autorización)
+10. Conocimientos de Contenedores (Docker)
 
 ¿Qué opinas? Me gustaría leer tus comentarios sobre tu experiencia en equipos DevOps
