@@ -33,7 +33,8 @@ canonifyurls = true
 
 [author]
   name = "Guillermo Alvarado"
-  bio = "Ingeniero de Software y desarrollador. Este blog es otro intento de generar una bitacora de mis experiencias viviendo del Software. Aquí encontrarás la experiencia de un desarrollador que migró al mundo de la infraestructura. Hablo de Cloud, Containers, Virtualización, DevOps, Entrega continua, Microservicios, etc."
+  bio = "Tengo 8 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 4
+años enfocado en cloud, containers, devops e integración continua.Este blog es otro intento de generar una bitacora de mis experiencias viviendo del Software. Aquí encontrarás la experiencia de un desarrollador que migró al mundo de la infraestructura. Hablo de Cloud, Containers, Virtualización, DevOps, Entrega continua, Microservicios, etc."
   job = "CTO en Sentinel.la"
   location = "México"
   # Your profile picture
