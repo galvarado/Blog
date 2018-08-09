@@ -22,9 +22,9 @@ Ahora bien, definiciones y frases hay muchas, pero para dar justo en el corazón
 
 Todo esto ha tomado mucha fuerza por que los perfiles y equipos de las empresas demandan mayor velocidad para crear y operar aplicaciones, para apoyar estos argumentos algunas conclusiones personales:
 
-1. Hoy en día, todos compiten con una startup. En la economía definida por software todo cambia más rápido que antes.
-2. El antiguo modelo de TI de consumo pasivo dónde se está atrapado en sistemas obligatorios y procesos rígidos está deteniendo la aceleración de las empresas.  En el mundo de hoy, se trata de crear tus propios servicios e implementarlos rápidamente en producción.
-3. En el pasado, la tecnología entró a los negocios. Hoy en día los negocios giran en torno a la tecnología y es parte fundamental de las ventajas comerciales.
+* Hoy en día, todos compiten con una startup. En la economía definida por software todo cambia más rápido que antes.
+* El antiguo modelo de TI de consumo pasivo dónde se está atrapado en sistemas obligatorios y procesos rígidos está deteniendo la aceleración de las empresas.  En el mundo de hoy, se trata de crear tus propios servicios e implementarlos rápidamente en producción.
+* En el pasado, la tecnología entró a los negocios. Hoy en día los negocios giran en torno a la tecnología y es parte fundamental de las ventajas comerciales.
 
 Imagina el siguiente escenario:
 
