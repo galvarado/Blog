@@ -39,7 +39,7 @@ Podemos dividir los objetivos de esta cultura y metodología de la siguiente man
 **Tecnología:**
 
 * **Calidad:** Reducción de defectos en el código. Mejores SLAs para las aplicaciones.
-* **Adopción de nuevas plataformas** y herramientas de nube. containers, CI/CD para liberar nuevos y mejores servicios.
+* **Adopción de nuevas plataformas** y herramientas de nube, containers, CI/CD para liberar nuevos y mejores servicios.
 
 **Procesos**
 
