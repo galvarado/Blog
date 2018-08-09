@@ -4,27 +4,18 @@ date = "2018-08-09T12:16:58-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/devops_banner.png"
 thumbnailImagePosition = "top"
-title = "Como explicarle a tu jefe ¿Qué es DevOps?"
+title = "Cambios culturales en una empresa que quiere adoptar DevOps"
 undefined = ""
 
 +++
-Cuando estás inmerso en el mundo del Software es mucho más fácil distinguir tendencias y una de las más fuertes en los últimos años  en torno a la construcción de equipos es DevOps.
 
-**¿Que pasa cuando tienes que explicarle a tu jefe que es DevOps y porque vale la pena poner atención?** Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.
+**¿Que pasa cuando tienes que explicarle a las demás áreas de una empresa que es DevOps y porque vale la pena poner atención?** Te comparto como abordo el tema yo por si te resulta de útil en el futuro y si coincides, por favor comparte.
 
 ## ¿Qué es DevOps?
 
 Hay muchas definiciones de que es DevOps y yo me quedo con esta: "Es un modelo cultural y organizacional que promueve la colaboración para habilitar que los equipos de TI de alto rendimiento que consigan los objetivos del negocio."
 
-Ahora bien, definiciones y frases hay muchas, pero para dar justo en el corazón del tema, siempre trato de explicar que  DevOps es más que conocimientos técnicos y de desarrollo.
-
-#### **DevOps se trata de conectar a las personas dentro de tu empresa, para crear una cadena de valor para entregar software.**
-
-Todo esto ha tomado mucha fuerza por que los perfiles y equipos de las empresas demandan mayor velocidad para crear y operar aplicaciones, para apoyar estos argumentos algunas conclusiones personales:
-
-* Hoy en día, todos compiten con una startup. En la economía definida por software todo cambia más rápido que antes.
-* El antiguo modelo de TI de consumo pasivo dónde se está atrapado en sistemas obligatorios y procesos rígidos está deteniendo la aceleración de las empresas.  En el mundo de hoy, se trata de crear tus propios servicios e implementarlos rápidamente en producción.
-* En el pasado, la tecnología entró a los negocios. Hoy en día los negocios giran en torno a la tecnología y es parte fundamental de las ventajas comerciales.
+Ahora bien, definiciones y frases hay muchas, pero para dar justo en el corazón del tema, siempre trato de explicar que  DevOps es más que conocimientos técnicos y de desarrollo. **DevOps se trata de conectar a las personas dentro de tu empresa, para crear una cadena de valor para entregar software.**
 
 Imagina el siguiente escenario:
 
@@ -33,11 +24,9 @@ Imagina el siguiente escenario:
 
 Esto muestra una enorme fricción entre desarrollo y operaciones, lo cual afecta al negocio. Y esto no pasa por las herramientas que usemos.
 
-> "_No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas_“.  Jerry Weinberg
+> "No importa lo que parezca a simple vista, siempre es un problema relacionado a las personas“. - Jerry Weinberg
 
 La siguiente imagen tiene como intención entender las disciplinas de un equipo DevOps:
-
-![](/uploads/Untitled(3).png)
 
 ## Objetivos de DevOps
 
@@ -60,7 +49,7 @@ Podemos dividir los objetivos de esta cultura y metodología de la siguiente man
 * **Automatización:** Ayudando a modernizar procesos de TI e implementar gestiones y correcciones más rápido.
 * **No dependencia:** Evita los silos, el conocimiento no está únicamente en una persona/equipo, centrado en ser multidisciplinario e integral.
 
-## ¿Qué no es DevOps?
+## Y....¿Qué no es DevOps?
 
 Un error común es confundir DevOps como que todos los miembros del equipo técnico saben de desarrollo, de infraestructura, de operación y de redes.
 
@@ -68,9 +57,19 @@ Estrictamente no existen profesionales con estudios en _DevOps_ sino ingenieros 
 
 Hay DevOps más centrados en el desarrollo y otros más centrados en la operación. Depende de las necesidades del negocio.
 
-## ¿Que debe saber un Ingeniero DevOps?
+## Puntos críticos a cambiar en la cultura organizacional
 
-Este es el Top 10 Skills específicas que nosotros buscamos en alguien o tratamos formar, para el perfil de Ingeniero DevOps:
+**Apoyo de las demás áreas:** Las organizaciones de DevOps requieren que la organización los habilite para actuar como startups que innovan continuamente y les permite cambiar los productos y servicios que recibirán un nivel máximo de satisfacción del cliente.
+
+**Crear con el fin en mente**: Las organizaciones necesitan dejar de lado los modelos de cascada y orientados a procesos donde cada unidad o individuo trabaja solo para un rol / función particular, sin ver la imagen completa.
+
+**Responsabilidad de extremo a extremo:** Cuando las organizaciones tradicionales desarrollan soluciones de TI y luego las transfieren a Operaciones suceden conflictos y se generan errores. En un entorno de DevOps, los equipos se organizan verticalmente de modo que sean completamente responsables desde el concepto hasta la operación.
+
+**Automatiza todo lo que puedas:** Automatización no solo del proceso de desarrollo de software sino también de todo el panorama de la infraestructura mediante el desarrollo de plataformas en la nube. La automatización es sinónimo del impulso para renovar la forma en que se entrega un servicio
+
+## Top 10 skills a buscar en un perfil DevOps
+
+Este es el Top 10 Skills  que nosotros buscamos en alguien o tratamos formar para el perfil de Ingeniero DevOps:
 
  1. Buen nivel en Linux  (Aunque hay DevOps 100% Microsoft)
  2. Entendimiento cloud (Webservices, APIs, REST) y plataformas (AWS, GCP, Azure, OS)
