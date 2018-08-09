@@ -44,7 +44,7 @@ Podemos dividir los objetivos de esta cultura y metodología de la siguiente man
 **Procesos**
 
 * **Time-to-market:** Nuevas funcionalidades, más rápido.
-* **Productividad:** incrementar la productividad y generar confianza mediante los 3 frentes de acción DevOps: Desarrollo + Operación + Aseguramiento de la Calidad (QA)
+* **Productividad:** Incrementar la productividad y generar confianza mediante los 3 frentes de acción DevOps: Desarrollo + Operación + Aseguramiento de la Calidad (QA)
 * **Automatización:** Ayudando a modernizar procesos de TI e implementar gestiones y correcciones más rápido.
 * **No dependencia:** Evita los silos, el conocimiento no está únicamente en una persona/equipo, centrado en ser multidisciplinario e integral.
 
