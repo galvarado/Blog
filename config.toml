@@ -33,7 +33,7 @@ canonifyurls = true
 
 [author]
   name = "Guillermo Alvarado"
-  bio = "Actualmente soy Co-fundador y CTO de <a href="www.sentinel.la">Sentinel.la</a> y este blog es otro intento de generar una bitacora de mis experiencias viviendo del Software. Aquí encontrarás la experiencia de un desarrollador que migró al mundo de la infraestructura. Hablo de Cloud, Containers, Virtualización, DevOps, Entrega continua, Microservicios, etc."
+  bio = "Este blog es otro intento de generar una bitacora de mis experiencias viviendo del Software. Aquí encontrarás la experiencia de un desarrollador que migró al mundo de la infraestructura. Hablo de mi experiencia en Cloud, Containers, Virtualización, DevOps, Entrega continua, Microservicios, etc."
   job = "CTO en Sentinel.la"
   location = "México"
   # Your profile picture
