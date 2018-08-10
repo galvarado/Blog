@@ -4,7 +4,7 @@ date = "2018-08-10T09:00:00-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/devops_banner.png"
 thumbnailImagePosition = "top"
-title = "Como explicar DevOps y hacer que funcione en tu empresa."
+title = "Cómo explicar DevOps y hacer que funcione en tu empresa."
 undefined = ""
 
 +++
