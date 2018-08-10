@@ -1,14 +1,14 @@
 ---
-title: "Como está construido este Blog"
-date: 2018-05-11
+title: Cómo está construido este Blog
+date: 2018-05-11 00:00:00 +0000
 categories:
 - arquitectura
 autoThumbnailImage: false
-thumbnailImagePosition: "top"
+thumbnailImagePosition: top
 thumbnailImage: images/build.jpg
 metaAlignment: center
----
 
+---
 Como primer entrada, me gustaría compartir como está construido este blog. Los blogs anteriores que tuve estuvieron siempre desplegados en Digital Ocean y usé Wordpress, está vez elegí desplegar un blog completamente estático. 
 
 <!--more-->
@@ -51,6 +51,3 @@ La elección la hice ya que está ocasión no quiero pasar tiempo admistrando un
  Sé que podría haber elegido un servicio de Wordpress-as-a-service, pero incluso eso requiere cierta operación además de que las plataformas de esa naturaleza incrementan costos.
 
  Eliminando todos los puntos anteriores se obtiene lo que se llama un "small footprint" y eso permite que las aplicaciones sean migradas más facilmente y tengan mejor escalabilidad (Aunque en este caso es un simple blog, puede ser todo un proyecto en AngularJS/ReactJS que sirva de UI para una aplicación que exponga una API escrita en Python/Ruby por poner un ejemplo)
-
-
-
