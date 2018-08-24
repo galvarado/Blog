@@ -53,6 +53,7 @@ fields:
     required: true
 - type: text
 pages:
+- content/post/como-elegir-el-proveedor-de-nube-que-realmente-necesito.md
 - content/post/5-estrategias-para-migrar-aplicaciones-a-la-nube.md
 - content/post/12-factor-apps--una-coleccion-de-patrones-de-arquitectura-ara-aplicaciones-cloud.md
 - content/post/construir-microservicios-con-python.md
