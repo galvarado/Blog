@@ -53,12 +53,13 @@ fields:
     required: true
 - type: text
 pages:
-- content/post/DevopsTools.md
-- content/post/como-explicarle-a-tu-jefe--que-es-devops-.md
-- content/post/estrategias-operacionales-clave-para-aplicaciones-nativas-de-nube.md
-- content/post/construir-microservicios-con-python.md
-- content/post/-conoces-el-scale-cube--un-modelo-para-escalar-aplicaciones-de-nube.md
-- content/post/KVMQEMU.md
-- content/post/ModeloMaduracionCloudApp.md
-- content/post/gui-de-sobrevivencia-devops-para-degradaciones-y-perdidas-de-servicio.md
+- content/post/5-estrategias-para-migrar-aplicaciones-a-la-nube.md
 - content/post/12-factor-apps--una-coleccion-de-patrones-de-arquitectura-ara-aplicaciones-cloud.md
+- content/post/construir-microservicios-con-python.md
+- content/post/estrategias-operacionales-clave-para-aplicaciones-nativas-de-nube.md
+- content/post/como-explicarle-a-tu-jefe--que-es-devops-.md
+- content/post/ModeloMaduracionCloudApp.md
+- content/post/KVMQEMU.md
+- content/post/gui-de-sobrevivencia-devops-para-degradaciones-y-perdidas-de-servicio.md
+- content/post/-conoces-el-scale-cube--un-modelo-para-escalar-aplicaciones-de-nube.md
+- content/post/DevopsTools.md
