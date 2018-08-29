@@ -53,6 +53,7 @@ fields:
     required: true
 - type: text
 pages:
+- content/post/hablando-de-microservicios-que-es-service-mesh.md
 - content/post/7-mejores-practicas-para-operar-contenedores.md
 - content/post/como-elegir-el-proveedor-de-nube-que-realmente-necesito.md
 - content/post/5-estrategias-para-migrar-aplicaciones-a-la-nube.md
