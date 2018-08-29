@@ -19,9 +19,7 @@ En las arquitecturas monolíticas, tratamos casi exclusivamente con tráfico nor
 
 El tráfico este-oeste (entre APIs de nuestros microservicios) representa una mayor desafío, este tráfico demandan  más en términos de estandarización de llamadas entre cada microservicio, su  monitorización, el despliegue  y aprovisionamiento de recursos.
 
-Normalmente los programadores de cada microservicio usaran algún protocolo de alto nivel, como  HTTP, sin tener en cuenta cómo viajan los paquetes dentro de  la red ni cómo se gestionan la misma. Esto representa una ventaja  cuando se desarrolla ya que cada equipo se centra en la lógica de negocio y no en las comunicaciones.
-
-Además, como cada microservicio puede ser programado en un lenguje diferente, se busca solo homegenizar la comunicación exponiendo cada uno su propia API bajo un protocolo comú. Pero en cada lenguaje la libreria usada para tales fines será seguramente diferente. De nuevo, esto es una ventaja que da independencia, pero sigue sin resolver la estandarización necesaria en todo el entorno.
+Normalmente los programadores de cada microservicio usaran algún protocolo de alto nivel, como  HTTP, sin tener en cuenta cómo viajan los paquetes dentro de  la red ni cómo se gestiona la misma. Esto representa una ventaja  cuando se desarrolla ya que cada equipo se centra en la lógica de negocio y no en las comunicaciones.Además, como cada microservicio puede ser programado en un lenguaje diferente, se busca solo homegenizar la comunicación exponiendo cada uno su propia API bajo un protocolo común. Pero en cada lenguaje la librería usada para tales fines será seguramente diferente. De nuevo, esto es una ventaja que da independencia, pero sigue sin resolver la estandarización necesaria en todo el entorno.
 
 ## Service mesh como unificador de comunicaciones
 
