@@ -23,7 +23,7 @@ Normalmente los programadores de cada microservicio usaran algún protocolo de a
 
 ## Service mesh como unificador de comunicaciones
 
-La estandarización  es precisamente el problema que vienen a resolver los **_Service Mesh._** Con estos componentes se implementan patrones directamente sobre la infraestructura, no sobre el código. Por lo tanto, cuando realiza una comunicación de servicio a servicio, no se necesita implementar patrones de comunicación como circuit-breakers, ni se necesita manejar tiempos de espera en el código. Incluso el service mesh va más allá y proporciona otras funcionalidades  como descubrimiento de servicio, observabilidad, métricas, trazabilidad distribuida de las peticiones, seguridad, etc.
+La estandarización  es precisamente el problema que vienen a resolver los **_Service Mesh._** Con estos componentes se implementan patrones directamente sobre la infraestructura, no sobre el código. Por lo tanto, cuando se realiza una comunicación de servicio a servicio, no se necesita implementar patrones de comunicación como circuit-breakers, ni se necesita manejar tiempos de espera en el código. Incluso el service mesh va más allá y proporciona otras funcionalidades  como descubrimiento de servicio, observabilidad, métricas, trazabilidad distribuida de las peticiones, seguridad, etc.
 
 Estas son algunas de las características que un service mesh provee:
 
@@ -48,12 +48,12 @@ Además, todos los proxies(side-cars) del service mesh  son administrados centra
 
 ![](/uploads/Untitled.png)
 
-En diagrama se observa: 
+En el diagrama anterior se observa: 
 
 1. Las aplicaciones solo se comunican con su proxy. 
 2. Los proxy se comunican entre sí unicamente.
 3. La capa de control gestiona a cada uno de los proxy de manera centralizada.
 
-Al traducir la español **Service Mesh, significa Malla de servicio.** Esta malla de comunicación es precisamente la que se forma entre la comunicación de cada proxy y la capa de control.
+Al traducir a español **Service Mesh, significa Malla de servicio.** Esta malla de comunicación es precisamente la que se forma entre la comunicación de cada proxy y la capa de control.
 
 Si te resulta útil, comparte =)
