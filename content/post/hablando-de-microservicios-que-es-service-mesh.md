@@ -9,7 +9,7 @@ title = "Hablando de microservicios...¿Qué es Service Mesh?"
 undefined = ""
 
 +++
-Cómo toda arquitectura, los microservicios tienen muchas ventajas, pero tambien se introducen nuevos retos. Cuando se atomiza una aplicación en base a microservicios, una parte clave nuestra solución depende de la comunicación vía red entre diversos componentes.
+Cómo toda arquitectura, los microservicios tienen muchas ventajas, pero tambien se introducen nuevos retos. Cuando se atomiza una aplicación en base a microservicios, una parte clave de nuestra solución depende de la comunicación vía red entre diversos componentes.
 
 Un service mesh,  es una capa dentro de la  infraestructura  de una aplicación de microservicios que hace que la comunicación entre servicios sea flexible, confiable y rápida. Proporciona descubrimiento de servicios, equilibrio de carga, cifrado, autenticación y autorización, soporte para el patrón de interruptor de circuito (circuit-breaker) entre otras capacidades.
 
