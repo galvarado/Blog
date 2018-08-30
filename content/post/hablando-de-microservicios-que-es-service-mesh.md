@@ -42,7 +42,7 @@ Referencia: [https://medium.com/microservices-in-practice/service-mesh-for-micro
 
 Usando un service mesh como [Envoy](https://www.envoyproxy.io/) , [Linkerd](https://linkerd.io/) o [Istio](https://istio.io/) los microservicios  no se comunicarán directamente con los otros microservicios sino que todas las comunicaciones de servicio a servicio se realizarán en  el service mesh. 
 
-Y esto sucede regularmente con la implementación de una instancia de proxy, implementada como side-car, para cada instancia de servicio. Lo que significa que este proxy se implementa junto la aplicación en una relación de uno a uno. Así la aplicación interactúa con el mundo exterior a través de su Proxy.
+Y esto sucede regularmente con la implementación de una instancia de proxy, implementada como side-car (para comprender más el concepto de side-car, [este articulo lo explica bastante bien](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/)), para cada instancia de servicio. Lo que significa que este proxy se implementa junto la aplicación en una relación de uno a uno. Así la aplicación interactúa con el mundo exterior a través de su Proxy.
 
 Además, todos los proxies(side-cars) del service mesh  son administrados centralmente por un una capa de control. 
 
