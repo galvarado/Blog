@@ -21,9 +21,9 @@ El tráfico este-oeste (entre APIs de nuestros microservicios) representa una ma
 
 Normalmente los programadores de cada microservicio usaran algún protocolo de alto nivel, como  HTTP, sin tener en cuenta cómo viajan los paquetes dentro de  la red ni cómo se gestiona la misma. Esto representa una ventaja  cuando se desarrolla ya que cada equipo se centra en la lógica de negocio y no en las comunicaciones.Además, como cada microservicio puede ser programado en un lenguaje diferente, se busca solo homegenizar la comunicación exponiendo cada uno su propia API bajo un protocolo común. Pero en cada lenguaje la librería usada para tales fines será seguramente diferente. De nuevo, esto es una ventaja que da independencia, pero sigue sin resolver la estandarización necesaria en todo el entorno.
 
-## Service mesh como unificador de comunicaciones
+## Service mesh para unificar la comunicación
 
-La estandarización  es precisamente el problema que vienen a resolver los **_Service Mesh._** Con estos componentes se implementan patrones directamente sobre la infraestructura, no sobre el código. Por lo tanto, cuando se realiza una comunicación de servicio a servicio, no se necesita implementar patrones de comunicación como circuit-breakers, ni se necesita manejar tiempos de espera en el código. Incluso el service mesh va más allá y proporciona otras funcionalidades  como descubrimiento de servicio, observabilidad, métricas, trazabilidad distribuida de las peticiones, seguridad, etc.
+La estandarización  es precisamente el problema que vienen a resolver los **_Service Mesh._** Con estos componentes se implementan patrones directamente sobre la infraestructura, no sobre el código. Por lo tanto, cuando se realiza una comunicación de servicio a servicio, no se necesita implementar patrones de comunicación como circuit-breakers, ni se necesita manejar tiempos de espera (timeouts) en el código. Incluso el service mesh va más allá y proporciona otras funcionalidades  como descubrimiento de servicio, observabilidad, métricas, trazabilidad distribuida de las peticiones, seguridad, etc.
 
 Estas son algunas de las características que un service mesh provee:
 
