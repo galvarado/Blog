@@ -1,7 +1,6 @@
 +++
 categories = ["microservices"]
 date = "2018-08-29T08:55:45-06:00"
-draft = true
 metaAlignment = "center"
 thumbnailImage = "/uploads/mesh.png"
 thumbnailImagePosition = "top"
