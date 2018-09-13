@@ -161,6 +161,15 @@ canonifyurls = true
   # [[params.customJS]]
   #   src = "js/myscript.js"
 
+  [[params.customJS]]
+    src = "//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js"
+    crossorigin = "anonymous"
+    async = true
+    defer = true
+
+  [[params.customJS]]
+   src = "js/myscript.js"
+
   # Display `Next` on left side of the pagination, and `Prev` on right side one.
   # If you set this value to `true`, these positions swap.
    swapPaginator = true
