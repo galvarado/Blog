@@ -1,9 +1,9 @@
 +++
-categories = ["devops"]
+categories = ["cloud"]
 date = "2018-09-19T10:09:00-06:00"
 draft = true
 metaAlignment = "center"
-thumbnailImage = ""
+thumbnailImage = "/uploads/cloud-computing-banner.jpg"
 thumbnailImagePosition = "top"
 title = "OpenStack: Convertir imágenes ISO a QCOW2"
 undefined = ""
