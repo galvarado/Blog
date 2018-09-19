@@ -13,7 +13,7 @@ En cualquier nube, una instancia (VM) es una máquina virtual alojada en la infr
 
 ## Diferencias entre ISO y QCOW2
 
-En la nube, las imágenes de maquina virtual  normalmente NO SON ARCHIVOS ISO. 
+En la nube, las imágenes de maquina virtual  normalmente NO SON ARCHIVOS ISO.
 
 El formato ISO es una imagen de disco óptico utilizado para CD y DVD. Como decía, no pensamos en ISO como un formato de imagen de máquina virtual, dado que los ISO contienen sistemas de archivos de arranque para instalar un sistema operativo en algún disco para luego, arrancar desde este disco ya instalado.
 
@@ -23,7 +23,7 @@ En pocas palabras, ISO es para instalar desde cero un sistema operativo y en QCO
 
 ## Crear instancias desde ISO en OpenStack
 
-La forma más sencilla de obtener una imagen de máquina virtual que funcione con OpenStack es descargar una que alguien más ya haya creado. La mayoría de las imágenes contienen el paquete cloud-init para admitir el par de claves SSH y la inyección de datos del usuario. 
+La forma más sencilla de obtener una imagen de máquina virtual que funcione con OpenStack es descargar una que alguien más ya haya creado. La mayoría de las imágenes contienen el paquete cloud-init para admitir el par de claves SSH y la inyección de datos del usuario.
 
 Para obtener imagenes de sistemas operativos como CentOS, Ubuntu, RHEL, SuSE, CirrOS, Debian, Fedora, Windows, [aqui se encuentran disponibles para descarga](https://docs.openstack.org/image-guide/obtain-images.html)
 
@@ -33,9 +33,23 @@ Sin embargo, comúnmente tenemos requerimientos de nuestros clientes que necesit
 
 Para estos casos, seguimos el siguiente procedimiento:
 
+#### TLDR;
+
+###### 1. Subir imagen ISO
+
+###### 2. Crear instancia para instalar SO
+
+###### 3. Crear volumen para destino del SO e instalar
+
+###### 4. Subir volumen con SO instalado como imagen
+
+###### 5. Crear instancia desde nueva imagen de SO
+
+A continuación, el procedimiento desde el dashboard de OpenStack:
+
 #### Subir imagen ISO
 
-El ISO del cual se desea instalar un Sistema Operativo, se debe subir al catálogo de Glance, en el ejemplo se crea una imagen llaamda EjemploISO, en este caso el nombre de la instancia es VMparaInstalarSO
+El ISO del cual se desea instalar un Sistema Operativo, se debe subir al catálogo de Glance, en el ejemplo se crea una imagen llamada EjemploISO, en este caso el nombre de la instancia es VMparaInstalarSO
 
 ![](/uploads/Screenshot-20180919121701-945x775.png)
 
@@ -47,9 +61,8 @@ Una vez con la imagen en el catálogo se crea una instancia donde se realizará 
 
 #### Crear volumen para destino del SO
 
-Después de crear la instancia, se creará un volumen para que la instalación use este volumen como sistema de archivos destino. En el ejemplo se crea un volumen llamada DestinoDelSO, con un tamaño de 20 GB. Este tamaño debe ser el necesario e indicado como minimo para que el ISO se pueda instalar. Se debe revisar que requirimientos tiene el ISO que se usa.
+Después de crear la instancia, se creará un volumen para que la instalación use este volumen como sistema de archivos destino. En el ejemplo se crea un volumen llamada DestinoDelSO, con un tamaño de 20 GB. Este tamaño debe ser el necesario e indicado como mínimo para que el ISO se pueda instalar. Se debe revisar que requerimientos tiene el ISO que se usa.
 
-  
 ![](/uploads/Screenshot-20180919121928-720x621.png)
 
 Una vez creado el volumen, lo adjuntamos a la instancia VMparaInstalarSO.
