@@ -53,6 +53,7 @@ fields:
     required: true
 - type: text
 pages:
+- content/post/Openstack-Convertir-imágenes-ISO-a-QCOW2.md
 - content/post/5-estrategias-para-migrar-aplicaciones-a-la-nube.md
 - content/post/-conoces-el-scale-cube--un-modelo-para-escalar-aplicaciones-de-nube.md
 - content/post/hablando-de-microservicios-que-es-service-mesh.md
