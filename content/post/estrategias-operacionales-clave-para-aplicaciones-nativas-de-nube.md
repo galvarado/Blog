@@ -5,7 +5,7 @@ draft = true
 metaAlignment = "center"
 thumbnailImage = "/uploads/ops.jpg"
 thumbnailImagePosition = "top"
-title = "Estrategias de opera clave para aplicaciones nativas de nube"
+title = "Estrategias de operación clave para aplicaciones nativas de nube"
 undefined = ""
 
 +++
