@@ -2,7 +2,7 @@
 categories = ["cloud"]
 date = "2018-11-06T08:05:48-06:00"
 metaAlignment = "center"
-thumbnailImage = "/uploads/cloud_platform_webinar_banner_v2.png"
+thumbnailImage = "/uploads/cloud_platform_webinar_banner_v2-1.png"
 thumbnailImagePosition = "top"
 title = "Migrar una VM entre Centros de Datos en Google Cloud"
 undefined = ""
