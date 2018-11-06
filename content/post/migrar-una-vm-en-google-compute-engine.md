@@ -8,11 +8,11 @@ title = "Migrar una VM entre Centros de Datos en Google Cloud"
 undefined = ""
 
 +++
-Google Cloud está disponible en 17 regiones o centros de datos alrededor del mundo y a su vez, divididos cada uno en zonas, teniendo un total de 52 zonas. En este post explico como migrar una VM de un centro de datos de Google a otro. En mi caso de la  región US-Central que está en **Iowa**  hacia US-East que está en Carolina del Sur. Sin embargo el procedimiento funciona entre cualquier región.
+dGoogle Cloud está disponible en 17 regiones o centros de datos alrededor del mundo y a su vez, divididos cada uno en zonas, teniendo un total de 52 zonas. En este post explico como migrar una VM de un centro de datos de Google a otro. En mi caso de la  región US-Central que está en **Iowa**  hacia US-East que está en Carolina del Sur. Sin embargo el procedimiento funciona entre cualquier región.
 
 El objetivo es migrar la VM de la siguiente manera:
 
-![](/uploads/GCE.png)
+![](/uploads/GCE-1.png)
 
 Distinguimos 2 estrategias distintas para la migración:
 
@@ -24,7 +24,7 @@ Consiste en crear una nueva VM, instalar el software requerido y configurar las 
 
 Trasladar totalmente el disco de la maquina virtual y crear una nueva a partir de este disco, preservando software, configuraciones y datos. Esta es la opción más transparente para la aplicación.
 
-En la documentación en linea encontré [ ésta guía ](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones)dónde existe un comando de gcloud para mover una VM de una zona a otra dentro de la misma región, pero no entre regiones. Se menciona que para mover una VM de una región a otra, es necesario hacer un procedimiento manual.
+En la documentación en línea encontré [ ésta guía ](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones)dónde existe un comando de gcloud para mover una VM de una zona a otra dentro de la misma región, pero no entre regiones. Se menciona que para mover una VM de una región a otra, es necesario hacer un procedimiento manual.
 
 Encontré [esta publicación ](https://stackoverflow.com/questions/36441423/migrate-google-compute-engine-instance-to-a-different-region)en la Biblia (Stack Overflow)  donde sugieren los pasos a seguir, entonces realicé  el procedimiento para realizar la migración manual usando gcloud, [el cliente de Google Cloud.](https://cloud.google.com/sdk/gcloud/)
 
@@ -48,11 +48,11 @@ Es importante considerar que la IP pública de la VM cambiará a menos de que se
 
 ### 1. Obtener el nombre del disco origen al cual se realizará el snapshot
 
-Para listar las caracteristicas de la VM origen:
+Para listar las características de la VM origen:
 
     $ gcloud compute instances  describe <NAME>
 
-Copiar el nombre del disco, identificado con "deviceName". Sse lee algo similar a esto en el output del comando anterior:
+Copiar el nombre del disco, identificado con "deviceName". Se lee algo similar a esto en el output del comando anterior:
 
     disks:
     
@@ -71,7 +71,7 @@ Para detener la VM:
 
     $ gcloud compute instances stop <NAME>
 
-Al detener una instancia, Compute Engine envía la señal de apagado ACPI a la instancia. Casi todos los sistemas operativos   stán configurados para realizar un apagado limpio antes de apagarse en respuesta a la señal de apagado. Compute Engine espera un breve tiempo para que el invitado termine de apagarse y luego realiza la transición de la instancia al estado TERMINADO. 
+Al detener una instancia, Compute Engine envía la señal de apagado ACPI a la instancia. Casi todos los sistemas operativos  están configurados para realizar un apagado limpio antes de apagarse en respuesta a la señal de apagado. Compute Engine espera un breve tiempo para que el invitado termine de apagarse y luego realiza la transición de la instancia al estado TERMINADO. 
 
 Si la instancia aún se está ejecutando después de período , Compute Engine la termina a la fuerza incluso si la secuencia de comandos de cierre todavía se está ejecutando. Las instancias normales tienen un período de apagado que generalmente dura al menos 90 segundos, pero podría ser más largo.
 
@@ -98,7 +98,7 @@ Crear la imagen para lanzar la nueva VM en la región destino:
 
 Lanzamos la nueva VM, que tendrá como imagen el disco origen de la VM, con esto preservamos los datos:
 
-Listar las imagenes disponibles:
+Listar las imágenes disponibles:
 
     $ gcloud compute images list
 
