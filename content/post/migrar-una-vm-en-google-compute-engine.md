@@ -71,7 +71,7 @@ Para detener la VM:
 
     $ gcloud compute instances stop <NAME>
 
-Al detener una instancia, Compute Engine envía la señal de apagado ACPI a la instancia. Casi todos los sistemas operativos  están configurados para realizar un apagado limpio antes de apagarse en respuesta a la señal de apagado. Compute Engine espera un breve tiempo para que el invitado termine de apagarse y luego realiza la transición de la instancia al estado TERMINADO. 
+Al detener una instancia, Compute Engine envía la señal de apagado ACPI a la instancia. Casi todos los sistemas operativos  están configurados para realizar un apagado limpio antes de apagarse en respuesta a la señal de apagado. Compute Engine espera un breve tiempo para que el invitado termine de apagarse y luego realiza la transición de la instancia al estado TERMINADO.
 
 Si la instancia aún se está ejecutando después de período , Compute Engine la termina a la fuerza incluso si la secuencia de comandos de cierre todavía se está ejecutando. Las instancias normales tienen un período de apagado que generalmente dura al menos 90 segundos, pero podría ser más largo.
 
@@ -94,7 +94,7 @@ Crear la imagen para lanzar la nueva VM en la región destino:
 
     $ gcloud compute images create [IMAGE_NAME] --source-snapshot [SOURCE_SNAPSHOT]
 
-### 5. Lanzar nueva maquina virtual 
+### 5. Lanzar nueva maquina virtual
 
 Lanzamos la nueva VM, que tendrá como imagen el disco origen de la VM, con esto preservamos los datos:
 
@@ -107,7 +107,7 @@ Crear VM a partir de la imagen recién creada, especificamos la region donde des
     $ gcloud compute instances create <INSTANCE_NAME> --image <IMAGE_NAME> --zone <ZONE>
 
 _  
-Donde ZONE es la zona donde queremos migrar la VM. Esta será una zona dentro de la región destino._
+Donde ZONE es la zona donde queremos migrar la VM. Esta será una zona dentro de la región destino.
 
 Despues de crear la VM, entrar a comprobar que los datos fueron preservados, actualizar la IP en el DNS y comenzar a servir los servicios desde esta instancia.
 
