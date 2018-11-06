@@ -22,7 +22,7 @@ Consiste en crear una nueva VM, instalar el software requerido y configurar las 
 
 #### 2. Trasladar las máquinas virtuales
 
-Trasladar totalmente el disco de la maquina virtual y crear una nueva a partir de este disco, preservando software, configuraciones y datos. Esta es la opción más transparente para la aplicación.
+Trasladar totalmente el disco de la maquina virtual y crear una nueva a partir de este disco, preservando software, configuraciones y datos. Esta es la opción más transparente para la aplicación y es la estrategia que sigue este post.
 
 En la documentación en línea encontré [ ésta guía ](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones)dónde existe un comando de gcloud para mover una VM de una zona a otra dentro de la misma región, pero no entre regiones. Se menciona que para mover una VM de una región a otra, es necesario hacer un procedimiento manual.
 
