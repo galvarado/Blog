@@ -1,7 +1,6 @@
 +++
 categories = ["cloud"]
 date = "2018-11-06T08:05:48-06:00"
-draft = true
 metaAlignment = "center"
 thumbnailImage = "/uploads/google.cloud-platform-app-1200x565 (1).jpg"
 thumbnailImagePosition = "top"
@@ -14,6 +13,16 @@ Google Cloud está disponible en 17 regiones o centros de datos alrededor del m
 El objetivo es migrar la VM de la siguiente manera:
 
 ![](/uploads/GCE.png)
+
+Distinguimos 2 estrategias distintas para la migración:
+
+#### 1 Transferir los datos
+
+Consiste en crear una nueva VM, instalar el software requerido y configurar las aplicaciones para transferir los datos necesarios para ejecutar las aplicaciones.
+
+#### 2. Trasladar las máquinas virtuales
+
+Trasladar totalmente el disco de la maquina virtual y crear una nueva a partir de este disco, preservando software, configuraciones y datos. Esta es la opción más transparente para la aplicación.
 
 En la documentación en linea encontré [ ésta guía ](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones)dónde existe un comando de gcloud para mover una VM de una zona a otra dentro de la misma región, pero no entre regiones. Se menciona que para mover una VM de una región a otra, es necesario hacer un procedimiento manual.
 
@@ -99,5 +108,9 @@ Crear VM a partir de la imagen recién creada, especificamos la region donde des
 
 _  
 Donde ZONE es la zona donde queremos migrar la VM. Esta será una zona dentro de la región destino._
+
+Despues de crear la VM, entrar a comprobar que los datos fueron preservados, actualizar la IP en el DNS y comenzar a servir los servicios desde esta instancia.
+
+Una vez comprobado que todo resulto buen, se puede apagar la VM original, esto ya no genera cosots, pero si planeas no volver a encenderl, es mejor eliminarla.
 
 Si te resulta útil, porfavor comparte =)
