@@ -111,6 +111,6 @@ Donde ZONE es la zona donde queremos migrar la VM. Esta será una zona dentro de
 
 Despues de crear la VM, entrar a comprobar que los datos fueron preservados, actualizar la IP en el DNS y comenzar a servir los servicios desde esta instancia.
 
-Una vez comprobado que todo resulto buen, se puede apagar la VM original, esto ya no genera cosots, pero si planeas no volver a encenderl, es mejor eliminarla.
+Una vez comprobado que todo resulto bien, se puede apagar la VM original, esto ya no genera costos, pero si no planeas  volver a encenderla, es mejor eliminarla.
 
 Si te resulta útil, porfavor comparte =)
