@@ -26,7 +26,7 @@ Trasladar totalmente el disco de la maquina virtual y crear una nueva a partir d
 
 En la documentación en línea encontré [ ésta guía ](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones)dónde existe un comando de gcloud para mover una VM de una zona a otra dentro de la misma región, pero no entre regiones. Se menciona que para mover una VM de una región a otra, es necesario hacer un procedimiento manual.
 
-Encontré [esta publicación ](https://stackoverflow.com/questions/36441423/migrate-google-compute-engine-instance-to-a-different-region)en la Biblia (Stack Overflow)  donde sugieren los pasos a seguir, entonces realicé  el procedimiento para realizar la migración manual usando gcloud, [el cliente de Google Cloud.](https://cloud.google.com/sdk/gcloud/)
+En la Biblia (Stack Overflow)  leí un comentario en [esta publicación ](https://stackoverflow.com/questions/36441423/migrate-google-compute-engine-instance-to-a-different-region) donde sugieren algunos pasos , entonces realicé  el procedimiento para realizar la migración manual usando gcloud, [el cliente de Google Cloud.](https://cloud.google.com/sdk/gcloud/)
 
 En resumen los pasos necesarios son:
 
