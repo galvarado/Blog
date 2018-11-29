@@ -14,3 +14,11 @@ Cada vez es más común encontrar en el ecosistema  aplicaciones construidas y e
 Las aplicaciones críticas para el negocio requieren que datos  permanezcan disponibles más allá de la vida útil del contenedor. La capa de almacenamiento entonces debe ser elástica, aprovisionada  fácilmente y orquestada.
 
 En esta ocasión decidí escribir acerca de las diferentes estrategias que se pueden seguir para construir in ambiente de OpenShift con almacenamiento persistente provisto por Gluster.
+
+OpenShift
+
+Gluster
+
+Arquitectura
+
+Tipos de despliegue
