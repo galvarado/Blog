@@ -3,7 +3,16 @@ categories = ["devops"]
 date = "2018-11-29T13:24:03-06:00"
 draft = true
 metaAlignment = "center"
+thumbnailImage = ""
 thumbnailImagePosition = "top"
 title = "Almacenamiento persistente para contenedores: Red Hat OpenShift + Red Hat Gluster Storage"
+undefined = ""
 
 +++
+Cada vez es más común encontrar en el ecosistema  aplicaciones construidas y entregadas en contenedores. Una de las primeras dudas cuando se trata de migrar a este tipo de arquitecturas es el tema del almacenamiento ya que los contenedores son efímeros, no persistentes, si el proceso muere o el contenedor es reiniciado, todos los datos de las aplicaciones residentes se pierden.  
+  
+Las aplicaciones críticas para el negocio requieren los datos del contenedor permanezcan disponibles más allá de la vida útil del contenedor. La capa de almacenamiento entonces debe ser elástica, aprovisionada  fácilmente y orquestada.  
+  
+Hay muchas ventajas en elegir OpenShift para formar un cluster de contenedores, este funciona por debajo con Kubernetes y se agregan muchas más funcionalidades de la mano de Red Hat.
+
+En esta ocasión decidí escribir acerca de las diferentes estrategias que se pueden seguir para construir in ambiente de OpenShift con almacenamiento persistente provisto por Gluster.
