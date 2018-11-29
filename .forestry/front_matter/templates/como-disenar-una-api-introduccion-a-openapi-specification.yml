@@ -53,6 +53,7 @@ fields:
     required: true
 - type: text
 pages:
+- content/post/almacenamiento-persistente-para-contenedores-red-hat-openshift-+-red-hat-gluster-storage.md
 - content/post/migrar-una-vm-en-google-compute-engine.md
 - content/post/Openstack-Convertir-imágenes-ISO-a-QCOW2.md
 - content/post/5-estrategias-para-migrar-aplicaciones-a-la-nube.md
