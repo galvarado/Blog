@@ -53,17 +53,17 @@ Red Hat Gluster Storage puede configurarse para proporcionar almacenamiento pers
 
 Configuración de un nuevo clúster de GlusterFS alojado de forma nativa. En este escenario, los pods de GlusterFS se implementan en nodos en el clúster OpenShift que están configurados para proporcionar almacenamiento.
 
-![](/uploads/Screenshot-20181129164551-885x666.png)
+A continuación la arquitectura de la solución en modo convergente:
 
-Imagen 1. Arquitectura de la solución en modo convergente.
+![](/uploads/Screenshot-20181129164551-885x666.png)
 
 ### 2. Modo independiente
 
 Configurando un nuevo cluster externo de GlusterFS. En este escenario, los nodos del clúster tienen el software GlusterFS preinstalado pero aún no se han configurado. El instalador se encargará de configurar los clústers para su uso por las aplicaciones OpenShift.
 
-![](/uploads/Screenshot-20181129164603-868x527.png)
+A continuación la arquitectura de la solución en modo independiente y standalone:
 
-Imagen 2 . Arquitectura de la solución en modo independiente y standalone.
+![](/uploads/Screenshot-20181129164603-868x527.png)
 
 ### 3. Modo standalone
 
