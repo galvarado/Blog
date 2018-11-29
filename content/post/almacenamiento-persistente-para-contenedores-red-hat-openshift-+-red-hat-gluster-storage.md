@@ -29,10 +29,30 @@ La capa subyacente que mejor se acopla a OpenShift es Gluster.
 
 ## Almacenamiento para contenedores
 
-Cuando haPodemos distinguir 2 tipos:
+La literatura entorno al temas distingue 2 tipos de almacenamiento:
 
-**Almacenamiento para contenedores:** también conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuestos a un contenedor desde un punto de montaje externo a través de la red. La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
+**Almacenamiento para contenedores:** también conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuesto a un contenedor desde un punto de montaje externo a través de la red. 
 
-**Almacenamiento en contenedores:**  también conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores. Teniendo los contenedores de almacenamiento en el mismo plano de gestión, se pueden ejecutar las aplicaciones y la plataforma de almacenamiento en el mismo conjunto de infraestructura, lo que reduce el gasto en infraestructura. Adicionalmente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores.
+La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
 
-_El aprovisionamiento dinámico de volúmenes_ permite que cualquier persona con acceso a la consola de gestión de OpenShift para crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
+**Almacenamiento en contenedores:**  también conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores.
+
+Teniendo los contenedores de almacenamiento en el mismo plano de gestión, se pueden ejecutar las aplicaciones y la plataforma de almacenamiento en el mismo conjunto de infraestructura, lo que reduce el gasto en infraestructura.
+
+Adicional mente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores.
+
+**El aprovisionamiento dinámico de volúmenes** permite que cualquier persona con acceso a la consola de gestión de OpenShift pueda crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
+
+## Red Hat Gluster Storage
+
+Red Hat Gluster Storage puede configurarse para proporcionar almacenamiento persistente y aprovisionamiento dinámico para  OpenShift. Puede utilizarse desplegado en contenedores "container native " dentro de OpenShift, llamado modo convergente o  sin estar en contenedores, instalado en sus propio nodos "container ready", llamado modo independiente. Podemos identificar otra variante del modo independiente, llamada Standalone.
+
+### Modo convergente
+
+### 
+
+### Modo independiente
+
+### 
+
+### Modo standalone
