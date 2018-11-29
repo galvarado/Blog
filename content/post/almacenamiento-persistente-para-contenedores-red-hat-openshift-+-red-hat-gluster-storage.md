@@ -1,6 +1,6 @@
 +++
 categories = ["arquitectura"]
-date = "2018-11-30T10:00:00-06:00"
+date = "2018-11-29T10:00:00-06:00"
 metaAlignment = "center"
 thumbnailImage = "/uploads/container_storage.png"
 thumbnailImagePosition = "top"
