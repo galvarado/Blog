@@ -9,6 +9,10 @@ title = "Almacenamiento persistente para contenedores: Red Hat OpenShift + Red H
 undefined = ""
 
 +++
+![](/uploads/cns3-6-4.png)
+
+Imagen desde: [https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/](https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/ "https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/")
+
 Cada vez es más común encontrar en el ecosistema  aplicaciones construidas y entregadas en contenedores. Una de las primeras dudas cuando se trata de migrar a este tipo de arquitecturas es el tema del almacenamiento ya que los contenedores son efímeros, no persistentes, si el proceso del contenedor muere, todos los datos de las aplicaciones residentes se pierden.  
   
 Las aplicaciones críticas para el negocio requieren que los datos  permanezcan disponibles más allá de la vida útil del contenedor. La capa de almacenamiento entonces debe ser elástica, aprovisionada  fácilmente y orquestada.
