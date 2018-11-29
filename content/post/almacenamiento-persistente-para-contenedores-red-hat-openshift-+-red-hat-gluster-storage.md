@@ -23,9 +23,7 @@ El primer ejemplo que aprendemos cuando comenzamos con Docker, entorno al almace
 
 Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real donde en realidad no hay un host sino varios que son orquestados, el almacenamiento local no es suficiente porque si el contenedor se mueve a otro host, pierde acceso a los datos. Por tanto se requiere una capa de almacenamiento subyacente para proporcionar características empresariales como las que están disponibles para las aplicaciones  en entornos virtualizados.
 
-Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**
-
-La capa subyacente que mejor se acopla a OpenShift es Gluster.
+Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**La capa subyacente que mejor se acopla a OpenShift es Gluster.
 
 La literatura entorno al temas distingue 2 tipos de almacenamiento:
 
@@ -51,12 +49,26 @@ Adicional mente los desarrolladores se benefician al poder proveer a las aplicac
 
 Red Hat Gluster Storage puede configurarse para proporcionar almacenamiento persistente y aprovisionamiento dinámico para  OpenShift. Puede utilizarse desplegado en contenedores "container native " dentro de OpenShift, llamado modo convergente o  sin estar en contenedores, instalado en sus propio nodos "container ready", llamado modo independiente. Podemos identificar otra variante del modo independiente, llamada Standalone.
 
-### Modo convergente
+### 1. Modo convergente
 
-### 
+Configuración de un nuevo clúster de GlusterFS alojado de forma nativa. En este escenario, los pods de GlusterFS se implementan en nodos en el clúster OpenShift que están configurados para proporcionar almacenamiento.
 
-### Modo independiente
+![](/uploads/Screenshot-20181129164551-885x666.png)
 
-### 
+Imagen 1. Arquitectura de la solución en modo convergente.
 
-### Modo standalone
+### 2. Modo independiente
+
+Configurando un nuevo cluster externo de GlusterFS. En este escenario, los nodos del clúster tienen el software GlusterFS preinstalado pero aún no se han configurado. El instalador se encargará de configurar los clústers para su uso por las aplicaciones OpenShift.
+
+![](/uploads/Screenshot-20181129164603-868x527.png)
+
+Imagen 2 . Arquitectura de la solución en modo independiente y standalone.
+
+### 3. Modo standalone
+
+Usando los clusters existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por un servicio heketi.
+
+Referencias: [https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html](https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html "https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html")
+
+Si te es de utilidad, por favor comparte =)
