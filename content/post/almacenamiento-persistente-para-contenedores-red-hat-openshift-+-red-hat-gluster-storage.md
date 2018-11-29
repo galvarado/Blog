@@ -27,21 +27,25 @@ Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entr
 
 La capa subyacente que mejor se acopla a OpenShift es Gluster.
 
-## Almacenamiento para contenedores
-
 La literatura entorno al temas distingue 2 tipos de almacenamiento:
 
-**Almacenamiento para contenedores:** también conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuesto a un contenedor desde un punto de montaje externo a través de la red. 
+## **Almacenamiento para contenedores**
+
+También conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuesto a un contenedor desde un punto de montaje externo a través de la red. 
 
 La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
 
-**Almacenamiento en contenedores:**  también conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores.
+## **Almacenamiento en contenedores**
+
+ También conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores.
 
 Teniendo los contenedores de almacenamiento en el mismo plano de gestión, se pueden ejecutar las aplicaciones y la plataforma de almacenamiento en el mismo conjunto de infraestructura, lo que reduce el gasto en infraestructura.
 
 Adicional mente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores.
 
-**El aprovisionamiento dinámico de volúmenes** permite que cualquier persona con acceso a la consola de gestión de OpenShift pueda crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
+## **Aprovisionamiento dinámico de volúmenes**
+
+ Permite que cualquier persona con acceso a la consola de gestión de OpenShift pueda crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
 
 ## Red Hat Gluster Storage
 
