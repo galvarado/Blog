@@ -9,16 +9,30 @@ title = "Almacenamiento persistente para contenedores: Red Hat OpenShift + Red H
 undefined = ""
 
 +++
-Cada vez es más común encontrar en el ecosistema  aplicaciones construidas y entregadas en contenedores. Una de las primeras dudas cuando se trata de migrar a este tipo de arquitecturas es el tema del almacenamiento ya que los contenedores son efímeros, no persistentes, si el proceso muere o el contenedor es reiniciado, todos los datos de las aplicaciones residentes se pierden.  
+Cada vez es más común encontrar en el ecosistema  aplicaciones construidas y entregadas en contenedores. Una de las primeras dudas cuando se trata de migrar a este tipo de arquitecturas es el tema del almacenamiento ya que los contenedores son efímeros, no persistentes, si el proceso del contenedor muere, todos los datos de las aplicaciones residentes se pierden.  
   
-Las aplicaciones críticas para el negocio requieren que datos  permanezcan disponibles más allá de la vida útil del contenedor. La capa de almacenamiento entonces debe ser elástica, aprovisionada  fácilmente y orquestada.
+Las aplicaciones críticas para el negocio requieren que los datos  permanezcan disponibles más allá de la vida útil del contenedor. La capa de almacenamiento entonces debe ser elástica, aprovisionada  fácilmente y orquestada.
 
-En esta ocasión decidí escribir acerca de las diferentes estrategias que se pueden seguir para construir in ambiente de OpenShift con almacenamiento persistente provisto por Gluster.
+En esta ocasión decidí escribir acerca de las diferentes estrategias que se pueden seguir para construir un ambiente de OpenShift con almacenamiento persistente provisto por Gluster.
 
-OpenShift
+## El almacenamiento local no es suficiente. 
 
-Gluster
+Al igual que con las VMS, algunas aplicaciones deben conservar sus estado, datos y configuración. Un ejemplo es un contenedor de base de datos. Este necesita almacenamiento persistente para su almacén de datos (donde la base de datos real vive). 
 
-Arquitectura
+El primer ejemplo que aprendemos cuando comenzamos con Docker, entorno al almacenamiento, es que podemos usar el host y su almacenamiento, como volumen para nuestros contenedores. Finalmente los datos terminan siendo persistentes en el host. 
 
-Tipos de despliegue
+Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real donde en realidad no hay un host sino varios que son orquestados, el almacenamiento local no es suficiente porque si el contenedor se mueve a otro host, pierde acceso a los datos. Por tanto se requiere una capa de almacenamiento subyacente para proporcionar características empresariales como las que están disponibles para las aplicaciones  en entornos virtualizados.
+
+Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**
+
+La capa subyacente que mejor se acopla a OpenShift es Gluster.
+
+## Almacenamiento para contenedores
+
+Cuando haPodemos distinguir 2 tipos:
+
+**Almacenamiento para contenedores:** también conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuestos a un contenedor desde un punto de montaje externo a través de la red. La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
+
+**Almacenamiento en contenedores:**  también conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores. Teniendo los contenedores de almacenamiento en el mismo plano de gestión, se pueden ejecutar las aplicaciones y la plataforma de almacenamiento en el mismo conjunto de infraestructura, lo que reduce el gasto en infraestructura. Adicionalmente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores.
+
+_El aprovisionamiento dinámico de volúmenes_ permite que cualquier persona con acceso a la consola de gestión de OpenShift para crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
