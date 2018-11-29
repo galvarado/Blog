@@ -67,8 +67,13 @@ Imagen 2 . Arquitectura de la solución en modo independiente y standalone.
 
 ### 3. Modo standalone
 
-Usando los clusters existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por un servicio heketi.
+Usando los clusters existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por el servicio [heketi](https://github.com/heketi/heketi).
 
-Referencias: [https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html](https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html "https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html")
+Referencias:
+
+*  [https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html](https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html "https://docs.openshift.com/container-platform/3.10/install_config/persistent_storage/persistent_storage_glusterfs.html")
+* [https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs](https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs "https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs")
+* [https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic](https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic "https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic")
+* [https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage](https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage "https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage")
 
 Si te es de utilidad, por favor comparte =)
