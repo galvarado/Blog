@@ -26,7 +26,7 @@ Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real
 
 Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**La capa subyacente que mejor se acopla a OpenShift es Gluster.
 
-La literatura entorno al temas distingue 2 tipos de almacenamiento:
+La literatura entorno al tema distingue 2 tipos de almacenamiento:
 
 ## **Almacenamiento para contenedores**
 
@@ -36,19 +36,23 @@ La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configu
 
 ## **Almacenamiento en contenedores**
 
-También conocido como "Container native storage" y es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores.
+También conocido como "Container native storage" es almacenamiento desplegado dentro de contenedores, junto a las aplicaciones que se ejecutan en contenedores.
 
 Teniendo los contenedores de almacenamiento en el mismo plano de gestión, se pueden ejecutar las aplicaciones y la plataforma de almacenamiento en el mismo conjunto de infraestructura, lo que reduce el gasto en infraestructura.
 
-Adicional mente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores.
+Adicional mente los desarrolladores se benefician al poder proveer a las aplicaciones almacenamiento que es altamente elástico y amigable para estos entornos. Con esta solución tenemos almacenamiento con aprovisionamieto dinámico para los contenedores. No es la única manera de obtener el aprovisionamiento dinámico, pero es una de las vías mejor integradas.
 
-## **Aprovisionamiento dinámico de volúmenes**
+## **¿Qué es el aprovisionamiento dinámico de volúmenes?**
 
 Permite que cualquier persona con acceso a la consola de gestión de OpenShift pueda crear volúmenes de almacenamiento bajo demanda. Con esto, los desarrolladores pueden aprovisionar el almacenamiento por su cuenta sin la necesidad de conocer la tecnología subyacente. Los desarrolladores ya no tienen que enviar una solicitud de almacenamiento a un administrador y esperar a que sea atendida.
 
+Sin almacenamiento aprovisionado dinamicamente, tenemos 2 inconvenientes:  La tarea de crear un volumen de almacenamiento usualmente lo hace otro administrador especialista de esta capa, entonces se tiene una dependencia y un cuello de botella en cuanto a la capacidad de atener estas peticiones.
+
+El otro tema es que con el aprovisionamiento estático, los desarrolladores tienen  que estimar la cantidad de almacenamiento que van necesitar y solicitarlo a la administrador y cambiar este espacio, requeriría una nueva solicitud.
+
 ## Red Hat Gluster Storage
 
-Red Hat Gluster Storage puede configurarse para proporcionar almacenamiento persistente y aprovisionamiento dinámico para  OpenShift. Puede utilizarse desplegado en contenedores "container native " dentro de OpenShift, llamado modo convergente o  sin estar en contenedores, instalado en sus propio nodos "container ready", llamado modo independiente. Podemos identificar otra variante del modo independiente, llamada Standalone.
+Red Hat Gluster Storage puede configurarse para proporcionar almacenamiento persistente y aprovisionamiento dinámico para  OpenShift. Puede utilizarse desplegado en contenedores, esto sería  "container native " y sería una configuración convergente . La otra alternativa es desplegarlo sin estar en contenedores, instalado en sus propio nodos, esto sería "container ready" y sería una configuración de gluster en modo independiente. Podemos identificar otra variante del modo independiente, llamada Standalone. ****Está última alternativa llamada standalone no ofrece almacenamiento con aprovisionamiento dinámico.**
 
 ### 1. Modo convergente
 
@@ -62,13 +66,17 @@ A continuación la arquitectura de la solución en modo convergente:
 
 Configurando un nuevo cluster externo de GlusterFS. En este escenario, los nodos del clúster tienen el software GlusterFS preinstalado pero aún no se han configurado. El instalador se encargará de configurar los clústers para su uso por las aplicaciones OpenShift.
 
+### 3. Modo standalone
+
+Usando un cluster existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por el servicio [heketi](https://github.com/heketi/heketi).
+
 A continuación la arquitectura de la solución en modo independiente y standalone:
 
 ![](/uploads/Screenshot-20181129164603-868x527.png)
 
-### 3. Modo standalone
+No  solo Kubernetes y Red Hat Gluster Storage son importantes para la gestión dinámica del volumen de almacenamiento, realidad Heketi y [gluster-kubernetes ](https://github.com/gluster/gluster-kubernetes)son proyectos que habilitan esta solución. El proyecto Heketi proporciona una API RESTful y una CLI par a aprovisionamiento dinámico de volúmenes. Heketi soporta cualquier número de clusters de almacenamiento de Red Hat Gluster. El proyecto gluster ‐ kubernetes permite administrar la implementación y configuración de GlusterFS en Kubernetes y gestiona automáticamente el hardware.
 
-Usando los clusters existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por el servicio [heketi](https://github.com/heketi/heketi).
+Podemos concluir que el aprovisionamiento dinámico es una parte importante en toda la solución de orquestación de contenedores y elegir una capa que permita esto será determinante en la manera de trabajar sobre la plataforma. 
 
 Referencias:
 
@@ -76,6 +84,5 @@ Referencias:
 * [https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs](https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs "https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs")
 * [https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic](https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic "https://www.redhat.com/es/resources/solving-persistent-storage-for-containers-infographic")
 * [https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage](https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage "https://www.redhat.com/es/technologies/cloud-computing/openshift-container-storage")
-* [https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/](https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/ "https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/")
 
 Si te es de utilidad, por favor comparte =)
