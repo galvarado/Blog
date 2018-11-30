@@ -68,7 +68,7 @@ Configurando un nuevo cluster externo de GlusterFS. En este escenario, los nodos
 
 ### 3. Modo standalone
 
-Usando un cluster existentes de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por el servicio [heketi](https://github.com/heketi/heketi).
+Usando un cluster existente de GlusterFS. En este escenario, se supone que uno o más clústeres de GlusterFS ya están configurados. Estos clústeres pueden ser nativos o externos, pero deben ser gestionados por el servicio [heketi](https://github.com/heketi/heketi).
 
 A continuación la arquitectura de la solución en modo independiente y standalone:
 
