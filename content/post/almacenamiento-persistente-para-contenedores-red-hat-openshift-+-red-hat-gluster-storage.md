@@ -16,7 +16,7 @@ Las aplicaciones críticas para el negocio requieren que los datos  permanezcan 
 
 En esta ocasión decidí escribir acerca de las diferentes estrategias que se pueden seguir para construir un ambiente de OpenShift con almacenamiento persistente provisto por Gluster.
 
-## El almacenamiento local no es suficiente.
+## El almacenamiento local no es suficiente
 
 Al igual que con las VMS, algunas aplicaciones deben conservar sus estado, datos y configuración. Un ejemplo es un contenedor de base de datos. Este necesita almacenamiento persistente para su almacén de datos (donde la base de datos real vive).
 
@@ -24,9 +24,9 @@ El primer ejemplo que aprendemos cuando comenzamos con Docker, entorno al almace
 
 Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real donde en realidad no hay un host sino varios que son orquestados, el almacenamiento local no es suficiente porque si el contenedor se mueve a otro host, pierde acceso a los datos. Por tanto se requiere una capa de almacenamiento subyacente para proporcionar características empresariales como las que están disponibles para las aplicaciones  en entornos virtualizados.
 
-Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**La capa subyacente que mejor se acopla a OpenShift es Gluster.
+Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.** 
 
-La literatura entorno al tema distingue 2 tipos de almacenamiento:
+La capa subyacente que mejor se acopla a OpenShift es Gluster. La literatura entorno al tema distingue 2 tipos de almacenamiento:
 
 ## **Almacenamiento para contenedores**
 
