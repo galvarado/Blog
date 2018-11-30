@@ -74,7 +74,7 @@ A continuación la arquitectura de la solución en modo independiente y standalo
 
 ![](/uploads/Screenshot-20181129164603-868x527.png)
 
-No  solo Kubernetes y Red Hat Gluster Storage son importantes para la gestión dinámica del volumen de almacenamiento, realidad Heketi y [gluster-kubernetes ](https://github.com/gluster/gluster-kubernetes)son proyectos que habilitan esta solución. El proyecto Heketi proporciona una API RESTful y una CLI par a aprovisionamiento dinámico de volúmenes. Heketi soporta cualquier número de clusters de almacenamiento de Red Hat Gluster. El proyecto gluster ‐ kubernetes permite administrar la implementación y configuración de GlusterFS en Kubernetes y gestiona automáticamente el hardware.
+No  solo Kubernetes y Red Hat Gluster Storage son importantes para la gestión dinámica del volumen de almacenamiento, en realidad Heketi y [gluster-kubernetes ](https://github.com/gluster/gluster-kubernetes)son proyectos que habilitan esta solución. El proyecto Heketi proporciona una API RESTful y una CLI para aprovisionamiento dinámico de volúmenes. Heketi soporta cualquier número de clusters de almacenamiento de Red Hat Gluster. El proyecto gluster ‐ kubernetes permite administrar la implementación y configuración de GlusterFS en Kubernetes y gestiona automáticamente el hardware.
 
 Podemos concluir que el aprovisionamiento dinámico es una parte importante en toda la solución de orquestación de contenedores y elegir una capa que permita esto será determinante en la manera de trabajar sobre la plataforma. 
 
