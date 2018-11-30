@@ -24,7 +24,7 @@ El primer ejemplo que aprendemos cuando comenzamos con Docker, entorno al almace
 
 Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real donde en realidad no hay un host sino varios que son orquestados, el almacenamiento local no es suficiente porque si el contenedor se mueve a otro host, pierde acceso a los datos. Por tanto se requiere una capa de almacenamiento subyacente para proporcionar características empresariales como las que están disponibles para las aplicaciones  en entornos virtualizados.
 
-Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.** 
+Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.**
 
 La capa subyacente en este caso para  OpenShift es Gluster y la literatura entorno al tema distingue 2 tipos de almacenamiento:
 
@@ -32,7 +32,7 @@ La capa subyacente en este caso para  OpenShift es Gluster y la literatura entor
 
 También conocido como "Container ready storage", esto es esencialmente una configuración donde el almacenamiento es expuesto a un contenedor desde un punto de montaje externo a través de la red.
 
-La mayoría de soluciones soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
+La mayoría de soluciones, incluyendo SDS, SAN o NAS se puede configurar de esta manera utilizando interfaces estándar. Sin embargo, esto  no ofrece  valor adicional ya que pocos almacenamientos tradicionales tienen APIs que pueden ser aprovechados por Kubernetes para otorgar aprovisionamiento dinámico. _Más tarde definimos qué es el aprovisionamiento dinámico._
 
 ## **Almacenamiento en contenedores**
 
@@ -76,7 +76,7 @@ A continuación la arquitectura de la solución en modo independiente y standalo
 
 No  solo Kubernetes y Red Hat Gluster Storage son importantes para la gestión dinámica del volumen de almacenamiento, en realidad Heketi y [gluster-kubernetes ](https://github.com/gluster/gluster-kubernetes)son proyectos que habilitan esta solución. El proyecto Heketi proporciona una API RESTful y una CLI para aprovisionamiento dinámico de volúmenes. Heketi soporta cualquier número de clusters de almacenamiento de Red Hat Gluster. El proyecto gluster ‐ kubernetes permite administrar la implementación y configuración de GlusterFS en Kubernetes y gestiona automáticamente el hardware.
 
-Podemos concluir que el aprovisionamiento dinámico es una parte importante en toda la solución de orquestación de contenedores y elegir una capa que permita esto será determinante en la manera de trabajar sobre la plataforma. 
+Podemos concluir que el aprovisionamiento dinámico es una parte importante en toda la solución de orquestación de contenedores y elegir una capa que permita esto será determinante en la manera de trabajar sobre la plataforma.
 
 Referencias:
 
