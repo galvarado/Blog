@@ -26,7 +26,7 @@ Pero cuando usamos una tecnología de orquestación, que es un ejemplo más real
 
 Con el fin de abordar el problema de aprovisionamiento, OpenShift  permite  entregar volúmenes desde una amplia gama de plataformas usando plugins. Esto garantiza que no importa donde se ejecute el contenedor (dentro del cluster) podrá acceder a su volumen de almacenamiento persistente. **Los volúmenes persistentes son conexiones  que apuntan a la capa de almacenamiento subyacente.** 
 
-La capa subyacente que mejor se acopla a OpenShift es Gluster. La literatura entorno al tema distingue 2 tipos de almacenamiento:
+La capa subyacente en este caso para  OpenShift es Gluster y la literatura entorno al tema distingue 2 tipos de almacenamiento:
 
 ## **Almacenamiento para contenedores**
 
