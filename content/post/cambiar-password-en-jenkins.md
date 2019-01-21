@@ -30,7 +30,9 @@ También dejo aqui el script para referencia:
 
 ## Explicación del script
 
-Es bastante sencillo pero igual me gustaría compartir a explicación de lo que hace el script, [que esta basado en esta respuesta en StackOverflow](https://stackoverflow.com/a/24013030) :
+Es bastante sencillo pero igual me gustaría compartir a explicación de lo que hace el script, [que esta basado en esta respuesta en StackOverflow](https://stackoverflow.com/a/24013030)
+
+### Establecer usuario y contraseña
 
     username="myusername"
     hash="$(echo -n 'thenewpass{s4lt}' | sha256sum | awk '{print $1;}')"
@@ -40,6 +42,8 @@ Se establecen 2 variables, la primera es "username"  y es el usuario al cual se 
 Para usar el script hay que sustituir el valor de la variable username por nuestro usuario.
 
 También hay que reemplazar la cadena  "thenewpass" por el la contraseña que vamos a establecer. Si no es reemplazada esa será la contraseña que se establezca.
+
+### Reemplazar la contraseña anterior con la nueva
 
     echo "Changing password for $username"
     echo "Password encrypted with SHA-256"
@@ -52,6 +56,8 @@ En la siguiente parte del script sencillamente se imprime en pantalla el usuario
 con la contraseña ya cifrada, este valor se reemplaza en el archivo :
 
     /var/lib/jenkins/users/$username/config.xml
+
+### Reiniciar Jenkins
 
 Finalmente se reinicia el servicio de Jenkins para que el cambio sea tomado en cuenta:
 
