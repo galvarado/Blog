@@ -1,7 +1,6 @@
 +++
 categories = ["devops"]
 date = "2019-01-17T00:00:00-06:00"
-draft = true
 metaAlignment = "center"
 thumbnailImage = "/uploads/automate_dio.jpg"
 thumbnailImagePosition = "top"
