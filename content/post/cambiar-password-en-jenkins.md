@@ -11,7 +11,7 @@ undefined = ""
 +++
 La intención de escribir en el blog es también formar una bitácora sobre algunos procedimientos que me parecen importantes compartir. Este es el caso del post de hoy, tuve la necesidad de cambiar el password de [Jenkins](https://jenkins.io/), un servidor de integración continua. No es un procedimiento que se pueda hacer como un usuario común, en la mayoría de los sistemas  existe un modo de recuperación de password que te envía un correo. En este caso no es así, para el procedimiento debes tener acceso al servidor dónde se encuentra instalado Jenkins.
 
-Como no es un procedimiento común y existen algunas alternativas me pareció buena idea hacer un script que haga el proceso de cambiar el password, este script lo guardé como un gist en Github, [lo comparto en este link](https://gist.github.com/galvarado/d6ee84fe738f641ad486491a7ef6099d.js)
+Como no es un procedimiento común y existen algunas alternativas me pareció buena idea hacer un script que haga el proceso de cambiar el password, este script lo guardé como un gist en Github, [lo comparto en este link](https://gist.github.com/galvarado/d6ee84fe738f641ad486491a7ef6099d)
 
 También dejo aqui el script para referencia:
 
@@ -37,7 +37,7 @@ Es bastante sencillo pero igual me gustaría compartir a explicación de lo que 
 
 Se establecen 2 variables, la primera es "username"  y es el usuario al cual se le hará el cambio de contraseña.  La segunda es  "hash" y contiene la contraseña ya cifrada con SHA-256.
 
-Para usar el scirpt hay que sustituir el valor de la variable username por nuestro usuario.
+Para usar el script hay que sustituir el valor de la variable username por nuestro usuario.
 
 También hay que reemplazar la cadena  "thenewpass" por el la contraseña que vamos a establecer. Si no es reemplazada esa será la contraseña que se establezca.
 
