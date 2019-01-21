@@ -37,7 +37,7 @@ Es bastante sencillo pero igual me gustaría compartir a explicación de lo que 
 
 Se establecen 2 variables, la primera es "username"  y es el usuario al cual se le hará el cambio de contraseña.  La segunda es  "hash" y contiene la contraseña ya cifrada con SHA-256.
 
-Para usar el scirpt hay que sustituir el valor de la variable username por nuestro usuario, al cual cambiaremos el password.
+Para usar el scirpt hay que sustituir el valor de la variable username por nuestro usuario.
 
 También hay que reemplazar la cadena  "thenewpass" por el la contraseña que vamos a establecer. Si no es reemplazada esa será la contraseña que se establezca.
 
