@@ -45,15 +45,15 @@ También hay que reemplazar la cadena  "thenewpass" por el la contraseña que va
     echo "Password encrypted with SHA-256"
     sed -i -E "s/(<passwordHash>.+)/<passwordHash>s4lt:$hash<\/passwordHash>/" /var/lib/jenkins/users/$username/config.xml
 
-En la siguiente parte del script sencillamente se imprime en pantalla el usuario que tendrá el cambio de contraseña y posteriormente se usa el comando sed para cambiar el valor de
+En la siguiente parte del script sencillamente se imprime en pantalla el usuario que tendrá el cambio de contraseña y posteriormente se usa el comando sed para cambiar el valor de:
 
      <passwordHash> 
 
-con la contraseña ya cifrada. Este valor se reemplaza en el archvo :
+con la contraseña ya cifrada, este valor se reemplaza en el archvo :
 
     /var/lib/jenkins/users/$username/config.xml
 
-Finalmente se reinicia el servicio de Jenkins para que el cambio sea tomado en cuenta.
+Finalmente se reinicia el servicio de Jenkins para que el cambio sea tomado en cuenta:
 
     echo "Replaced succesfully, restarting jenkins service..."
     service jenkins restart
