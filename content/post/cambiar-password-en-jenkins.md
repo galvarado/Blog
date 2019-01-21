@@ -28,9 +28,7 @@ También dejo aqui el script para referencia:
     echo "Jenkins restarted"
     service jenkins status
 
-## Explicación del script
-
-Es bastante sencillo pero igual me gustaría compartir a explicación de lo que hace el script, [que esta basado en esta respuesta en StackOverflow](https://stackoverflow.com/a/24013030)
+Es bastante sencillo pero igual me gustaría compartir a explicación de lo que hace el script  [que esta basado en esta respuesta en StackOverflow](https://stackoverflow.com/a/24013030)
 
 ### Establecer usuario y contraseña
 
