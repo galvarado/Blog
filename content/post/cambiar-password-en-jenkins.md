@@ -49,7 +49,7 @@ En la siguiente parte del script sencillamente se imprime en pantalla el usuario
 
      <passwordHash> 
 
-con la contraseña ya cifrada, este valor se reemplaza en el archvo :
+con la contraseña ya cifrada, este valor se reemplaza en el archivo :
 
     /var/lib/jenkins/users/$username/config.xml
 
@@ -61,6 +61,8 @@ Finalmente se reinicia el servicio de Jenkins para que el cambio sea tomado en c
     echo "Jenkins restarted"
     service jenkins status
 
-Un script sencillo pero si tuvieramos que realizar este procedimiento continuamente por ser parte del equipo de soporte entonces podríamos automatizarlo a partir de estos pasos y combinarlo con ansible para reliazarlo en multiples servidores. Esto finalmente es comenzar a realiazar tareas de DevOps. Si algun procedimiento se tiene que realizar más de 2 veces, entonces se debe automatizar.
+Un script sencillo pero si tuviéramos que realizar este procedimiento continuamente por ser parte del equipo de soporte entonces podríamos automatizarlo a partir de estos pasos y combinarlo con [ansible](https://www.ansible.com/) para realizarlo en múltiples servidores. 
+
+Esto finalmente es comenzar a realizar tareas de DevOps. Si algún procedimiento se tiene que realizar más de 2 veces, entonces se debe automatizar.
 
 ¿Que te parece?
