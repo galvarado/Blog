@@ -2,6 +2,6 @@
   path = themes/hugo-tranquilpeak-theme
   url = https://github.com/kakawait/hugo-tranquilpeak-theme.git
 
-  [submodule "mediumish-gohugo-theme"]
+[submodule "mediumish-gohugo-theme"]
   path = themes/mediumish-gohugo-theme
   url = https://github.com/lgaida/mediumish-gohugo-theme.git
