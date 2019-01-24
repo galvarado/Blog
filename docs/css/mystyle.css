@@ -1,0 +1,22 @@
+ .sidebar-profile .sidebar-profile-picture  {
+width: 250px !important;
+height: auto !important;
+border-radius: 1px !important;
+}
+
+#about #about-card #about-card-picture {
+width: 250px !important;
+height: auto !important;
+border-radius: 1px !important;
+}
+.sidebar-profile-name, .sidebar-profile-bio{
+}
+.sidebar-container {
+}
+
+#sidebar {
+
+}
+
+#sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
+}
