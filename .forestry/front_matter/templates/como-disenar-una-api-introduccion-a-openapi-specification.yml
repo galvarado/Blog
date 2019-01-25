@@ -18,6 +18,6 @@ fields:
   config:
     required: true
 - type: file
-  label: thumbnailImage
-  name: thumbnailImage
+  label: image
+  name: image
   default: ''
