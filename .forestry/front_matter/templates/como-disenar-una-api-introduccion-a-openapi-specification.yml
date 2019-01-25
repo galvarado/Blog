@@ -17,38 +17,7 @@ fields:
   default: ''
   config:
     required: true
-- name: categories
-  label: Categories
-  type: list
-  hidden: false
-  default:
-  - devops
-  config:
-    use_select: true
-    source:
-      type: simple
-    options:
-    - devops
-    - development
-    - cloud
-    - microservices
-    - arquitectura
-- name: thumbnailImagePosition
-  label: Thumbnailimageposition
-  type: text
-  hidden: false
-  default: top
-  config:
-    required: true
 - type: file
   label: thumbnailImage
   name: thumbnailImage
   default: ''
-- name: metaAlignment
-  label: Metaalignment
-  type: text
-  hidden: false
-  default: center
-  config:
-    required: true
-- type: text
