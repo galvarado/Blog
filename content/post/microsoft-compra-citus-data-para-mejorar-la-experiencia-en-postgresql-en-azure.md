@@ -14,6 +14,8 @@ Como mencionan en [zdnet](https://www.zdnet.com/article/microsoft-buys-citus-dat
 
 Esto viene a reafirmar el interés de Microsoft en el Open Source. Los servicios de datos de Microsoft Azure son un excelente ejemplo donde han invertido continuamente para ofrecer servicios de bases de datos, como BD relacionales open source totalmente administrados y basados en la versión de la comunidad, que abarcan MySQL, PostgreSQL y MariaDB. También han invertido en portar SQL Server a Linux, otro caso es  Azure Cosmos DB, base de datos NoSQL y quizá la más grande de todas, la adquisición de GitHub.
 
+Ya no es sorpresa que Microsoft invierta en Openshift Source, y definitivamente compras cómo estas ayudan a Microsoft a argumentar que admite tecnologías de código abierto particularmente en la nube, mientras continúa ganando dinero con el software propietario popular como Windows y Office. En el negocio de la nube, Microsoft quiere usar la apertura como una forma de hacer negocios forzados por la competencia de Google,  Amazon y otros.
+
 Después de investigar la nota, tuve la curiosidad de conocer y comparar las ofertas de los principales proveedores de nube publica en cuanto a servicios de base de datos.  Dejo a modo de referencia la siguiente imagen donde se pueden comparar los servicios de Google Cloud Platform, Amazon Web Services, Microsoft Azure e IBM Cloud.
 
 ![](/uploads/Screenshot-20190124200122-1898x845.png)
