@@ -1,6 +1,5 @@
 +++
 date = "2019-01-24T06:00:00+00:00"
-draft = true
 image = "/uploads/DxtNyCnXcAEAHP9.png"
 title = "Microsoft compra Citus Data para mejorar la experiencia en PostgreSQL en Azure"
 
