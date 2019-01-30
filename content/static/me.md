@@ -1,6 +1,8 @@
 # ¿Quién soy?
 
-Mi nombre es Guillermo Antonio Alvarado Mejía y vivo del software. Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en día soy CTO en <a href="sentinel.la">Sentinel.la<a>. Tengo 8 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 4 años enfocado en cloud, containers, devops e integración continua. Participo en la organización de los meetups de Ciencia de Datos y OpenStack en Ciudad de México.
+Mi nombre es Guillermo Antonio Alvarado Mejía y vivo del software. 
+
+Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en día soy CTO en <a href="sentinel.la">Sentinel.la<a>. Tengo 8 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 4 años enfocado en cloud, containers, devops e integración continua. Participo en la organización de los meetups de Ciencia de Datos y OpenStack en Ciudad de México.
 
 He tenido la suerte de haber sido invitado a hablar en varias conferencias a lo largo de los años. Si te gustaría que hable en tu conferencia u organización, comicate conmigo. También tengo experiencia como docente en México y Latinoamérica, he impartido cursos en Perú, Bolivia y Chile.	
 
