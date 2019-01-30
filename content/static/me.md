@@ -14,7 +14,7 @@ Tengo algunos retos personales ya que me gusta mucho viajar. Quiero visitar todo
 
 Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a> y hago bicicleta de montaña, una deporte dónde encuentro el placer de la lucha y del esfuerzo realizado para conseguir aquello que tantos consideran inútil o imposible, donde puedo cuidar mi cuerpo pero sobre todo mi mente y adeḿás conocer y ver paisajes increibles. 
 
-<center><img src="images/bike.png"></center>     
+<center><img src="images/bike.jpg"></center>     
 
 
 
