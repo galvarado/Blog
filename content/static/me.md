@@ -14,9 +14,9 @@ Tengo algunos retos personales ya que me gusta mucho viajar. Quiero visitar todo
 
 Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a> y hago bicicleta de montaña, una deporte dónde encuentro el placer de la lucha y del esfuerzo realizado para conseguir aquello que tantos consideran inútil o imposible, donde puedo cuidar mi cuerpo pero sobre todo mi mente y además conocer y ver paisajes increibles. 
 
-![](/images/bike.jpg)
+![](/images/bike.jpg#center)
 
-
+En la foto estoy a 3,360 metros sobre el nivel del mar en "La Coconetla" después de 4 horas subiendo en bicicleta. Es la parte más alta de la cañada de los Dinamos, un parque nacional y área natural protegida con una extensión de dos mil 429 hectáreas de bosque. Se encuentra en la delegación La Magdalena Contreras en la Ciudad de México.
 
 
 
