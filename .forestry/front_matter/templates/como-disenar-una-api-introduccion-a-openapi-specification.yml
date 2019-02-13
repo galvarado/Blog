@@ -22,4 +22,5 @@ fields:
   name: image
   default: ''
 pages:
+- content/post/qué-es-y-como-instalar-openwrt-para-mejorar-tu-wif.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
