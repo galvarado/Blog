@@ -27,7 +27,7 @@ fields:
   description: comments
   config:
     required: true
-  hidden: true
+  hidden: false
   default: 'true'
 pages:
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
