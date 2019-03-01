@@ -92,6 +92,6 @@ Lo más valioso será la operación y el día a día en la gestión de los recur
 
 ![](/uploads/Screenshot-20190228201058-1553x776.png)
 
-Como conclusiṕn, con mist.io se pueden organizar equipos y habilitar el aprovisionamiento de autoservicio para distintos equipos de desarrolllo, automatizar el aprovisionamiento y configuración de aplicaciones simples y complejas, ver costos y utilización en una vista y recibir alertas proactivas sobre máquinas subutilizadas.
+Como conclusiṕn, con mist.io se pueden organizar los recursos y habilitar el aprovisionamiento de autoservicio para distintos equipos de desarrolllo, automatizar procesos y llevar la gobernabilidad de la infraestructura, se puede realizar la configuración de aplicaciones simples y complejas, ver costos y utilización en una sola vista además de recibir alertas proactivas sobre máquinas subutilizadas.
 
 Si tienen alguna duda, no duden en dejarme un comentario aquí mismo o por mis redes sociales.
