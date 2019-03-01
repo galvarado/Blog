@@ -90,8 +90,6 @@ Esta es la vista del resumen general de la infraestructura con un vistazo de los
 
 Lo más valioso será la operación y el día a día en la gestión de los recursos de nube con los que se cuenta pero desde un punto centralizado, accediento rápidamente a la infraestructura:
 
-Me parece que es una gran opción para los equipos de TI en sus tareas diarias de gestión  multi-nube de manera eficiente optimizando las operaciones, estas son algunas de las opciones para realizar en una maquina virtual:
-
 ![](/uploads/Screenshot-20190228201058-1553x776.png)
 
 Como conclusiṕn, con mist.io se pueden organizar equipos y habilitar el aprovisionamiento de autoservicio para distintos equipos de desarrolllo, automatizar el aprovisionamiento y configuración de aplicaciones simples y complejas, ver costos y utilización en una vista y recibir alertas proactivas sobre máquinas subutilizadas.
