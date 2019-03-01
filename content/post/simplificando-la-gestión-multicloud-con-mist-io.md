@@ -62,6 +62,8 @@ La interfaz estará disponible en el puerto 80 en localhost.  DEspués del inici
 
 La documentación de la instalación se encuentra [en el repositorio de Github](https://github.com/mistio/mist-ce).
 
+## Gestión multicloud
+
 Una vez instalado, podemos agregar nuestras credenciales para conectar con los distintos proveedores.Las opciones para conectar con proveedores al día de hoy son las siguientes:
 
 ![](/uploads/Screenshot-20190228195723-887x513.png)
