@@ -21,6 +21,14 @@ fields:
   label: image
   name: image
   default: ''
+- type: text
+  name: comments
+  label: comments
+  description: comments
+  config:
+    required: true
+  hidden: true
+  default: 'true'
 pages:
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
