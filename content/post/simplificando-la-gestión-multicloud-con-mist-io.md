@@ -56,7 +56,7 @@ Una vez dentro del container, ejecutar:
 
     ./bin/adduser --admin admin@example.com
 
-La interfaz estará disponible en el puerto 80 en localhost.  DEspués del inicio se crea un archivo de configuración en ./settings/settings.py. Se puede editar este archivo para modificar la configuración. Cualquier cambio en ./settings/settings.py requiere un reinicio:
+La interfaz estará disponible en el puerto 80 en localhost.  DEspués del inicio se crea un archivo de configuración en _./settings/settings.py_. Se puede editar este archivo para modificar la configuración. Cualquier cambio en ._/settings/settings.py_ requiere un reinicio:
 
     docker-compose restart
 
