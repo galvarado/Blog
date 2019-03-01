@@ -1,6 +1,6 @@
 +++
 date = "2019-02-28T16:00:00+00:00"
-image = "/uploads/Is_OpenStack_a_Cloud_Management_Platform_1.jpg"
+image = "/uploads/CLOud management platform.png"
 title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
 +++
