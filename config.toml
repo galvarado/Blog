@@ -20,7 +20,7 @@ comments = true
   description = "Creador del blog"
 
 [params.index]
-  picture = "/images/profile.png"
+  picture = "/images/logo.png"
   title = "Hola Memo"
   subtitle = "I'm a unique placeholder. Working here and there!"
   mdtext = '''
