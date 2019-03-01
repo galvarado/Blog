@@ -7,7 +7,7 @@ copyright = "Guillermo Alvarado - Todos los derechos reservados"
 enableEmoji = false
 disqusShortname = "galvarado-com-mx"
 googleAnalytics = "UA-118969871-1"
-alertbar= false
+comments = true
 
 [params]
   logo = "/images/profile.png"
