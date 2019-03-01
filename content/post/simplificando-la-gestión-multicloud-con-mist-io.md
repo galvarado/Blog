@@ -1,7 +1,7 @@
 +++
-date = "2019-03-29T06:00:00+00:00"
+date = "2019-03-28T06:00:00+00:00"
 image = "/uploads/mistio.png"
-title = "Simplificando la gestión multicloud con Mist.io"
+title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
 +++
 Los modelos en la nube más que una moda son ya una realidad, han llegado al negocio y han cambiado la naturaleza de la entrega de servicios TI.  Con la oferta tan amplia que hoy existe  de proveedores de nube, la mayoria de las empresas han construido un ambiente multinube o  multicloud. Esto lo demuestran datos de informes recientes como el [_State of the cloud report_ de Rightscale.](https://www.rightscale.com/lp/state-of-the-cloud) En este estudio se afirma que “el porcentaje de compañías con una estrategia _multicloud_  ha crecido  hasta alcanzar el 85%”. Además, el estudio señala que de todas ellas un 58% apuesta por una estrategia híbrida.
