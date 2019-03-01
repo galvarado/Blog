@@ -38,3 +38,40 @@ Para probar mist.io existe 3 planes que se pueden elegir:
 ![](/uploads/mist.io_pricing-1.png)
 
 ## Instalación de Mist.io Community Edition
+
+Mist.io es  aplicación dividida en microservicios que son desplegados en contenedores docker. La forma más fácil de ejecutarlo es mediante el uso de docker-compose. Entonces, para ejecutarlo uno necesita instalar una versión reciente de docker y docker-compose.
+
+Para instalar siemplemente:
+
+    wget https://github.com/mistio/mist-ce/releases/download/v4.0.0/docker-compose.yml
+    docker-compose up -d
+
+Después de unos minutos (según la conexión) todos los contenedores se descargarán y se iniciarán en segundo plano.
+
+Para crear un usuario por primera vez:
+
+    docker-componer exec api sh
+
+Una vez dentro del container, ejecutar:
+
+./bin/adduser --admin admin@example.com
+
+La interfaz estará disponible en el puerto 80 en localhost.  DEspués del inicio se crea un archivo de configuración en ./settings/settings.py. Se puede editar este archivo para modificar la configuración. Cualquier cambio en ./settings/settings.py requiere un reinicio:
+
+    docker-compose restart
+
+La documentación de la instalación se encuentra [en el repositorio de Github](https://github.com/mistio/mist-ce).
+
+Una vez instalado, podemos agregar nuestras credenciales para conectar con los distintos proveedores.Las opciones para conectar con proveedores al día de hoy son las siguientes:
+
+![](/uploads/Screenshot-20190228195442-1886x890-1.png)
+
+ Yo agregué 2 cuentas de [Digital Ocean](https://www.digitalocean.com/) y 1 cuenta de [Google Cloud Platform](https://cloud.google.com/getting-started/?hl=es). Los procesos para añadir estos proveedores [se encuentran en la documentación oficial](https://docs.mist.io/article/19-adding-digital-ocean). 
+
+Esta es mi vista unificada con todas las Vms que tengo tanto en Digital Ocean como en Google Cloud Platform:
+
+![](/uploads/Captura de pantalla de 2019-02-28 16-57-11.png)
+
+Esta es la vista del resumen general de la infraestructura con un vistazo de los componentes que están agregados además e se puede apreciar el costo total de la infraestructura:
+
+![](/uploads/Screenshot-20190228195442-1886x890.png)
