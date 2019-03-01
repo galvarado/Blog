@@ -27,7 +27,7 @@ Otras características deseadas serían también  tener la capacidad de manejar 
 
 ## Mist.io
 
-Mist.io es una plataforma Opensource que simplifica la gestión de múltiples  nubes.  Proporciona una única interfaz de usuario y una API para la administración de infraestructura y aplicaciones en multiples nibes, genera un inventario, da  informes de costos y uso, creación de servidores hasta el monitoreo con  métricas de rendimiento y alertas además de disponer de opciones para realizar tareas de automatización.
+Mist.io es una plataforma Opensource que simplifica la gestión de múltiples  nubes.  Proporciona una única interfaz de usuario y una API para la administración de infraestructura y aplicaciones en multiples nubes, genera un inventario, da  informes de costos y uso, creación de servidores hasta el monitoreo con  métricas de rendimiento y alertas además de disponer de opciones para realizar tareas de automatización.
 
 Sin importar dónde se alojen los servidores: localmente, en una nube pública o privada, un hipervisor KVM o un motor Docker, Mist.io ofrece un panel de control unificado que reduce la fragmentación  y facilita la administración.
 
@@ -54,7 +54,7 @@ Para crear un usuario por primera vez:
 
 Una vez dentro del container, ejecutar:
 
-./bin/adduser --admin admin@example.com
+    ./bin/adduser --admin admin@example.com
 
 La interfaz estará disponible en el puerto 80 en localhost.  DEspués del inicio se crea un archivo de configuración en ./settings/settings.py. Se puede editar este archivo para modificar la configuración. Cualquier cambio en ./settings/settings.py requiere un reinicio:
 
