@@ -4,7 +4,7 @@ image = "/uploads/mistio.png"
 title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
 +++
-Los modelos en la nube más que una moda son ya una realidad, han llegado al negocio y han cambiado la naturaleza de la entrega de servicios TI.  Con la oferta tan amplia que hoy existe  de proveedores de nube, la mayoria de las empresas han construido un ambiente multinube o  multicloud. Esto lo demuestran datos de informes recientes como el [_State of the cloud report_ de Rightscale.](https://www.rightscale.com/lp/state-of-the-cloud) En este estudio se afirma que “el porcentaje de compañías con una estrategia _multicloud_  ha crecido  hasta alcanzar el 85%”. Además, el estudio señala que de todas ellas un 58% apuesta por una estrategia híbrida.
+Con la oferta tan amplia que hoy existe  de proveedores de nube, la mayoria de las empresas han construido un ambiente multinube o  multicloud. Esto lo demuestran datos de informes recientes como el [_State of the cloud report_ de Rightscale.](https://www.rightscale.com/lp/state-of-the-cloud) En este estudio se afirma que “el porcentaje de compañías con una estrategia _multicloud_  ha crecido  hasta alcanzar el 85%”. Además, el estudio señala que de todas ellas un 58% apuesta por una estrategia híbrida.
 
 Este promete ventajas económicas, velocidad, agilidad, flexibilidad, elasticidad infinita e innovación. ¿Cómo adaptarse para gestionar todo este abanico de infraestructura y servicios? Esto  presenta una gran complejidad en torno a la gestión y el cumplimiento, la gestión de recursos, los controles financieros y la planificación de capacidades.
 
@@ -18,20 +18,20 @@ Las plataformas y herramientas de gestión multicloud deben tener la capacidad d
 
 * **Aprovisionamiento y orquestación**
 * **Automatización**
-* **Seguridad y cumplimiento** 
+* **Seguridad y cumplimiento**
 * **Monitoreo y registro**
-* **Inventario** 
+* **Inventario**
 * **Manejo de costos**
 
 Otras características deseadas serían también  tener la capacidad de manejar las fallas de sistema automáticamente con capacidades tales como un mecanismo de notificación y  capacidades de recuperación y recuperación automática.
 
-## Mist.io 
+## Mist.io
 
-Mist.io es una plataforma Opensource que simplifica la gestión de múltiples  nubes.  Proporciona una única interfaz de usuario y una API para la administración de infraestructura y aplicaciones en multiples nibes, genera un inventario, da  informes de costos y uso, creación de servidores hasta el monitoreo con  métricas de rendimiento y alertas además de disponer de opciones para realizar tareas de automatización. 
+Mist.io es una plataforma Opensource que simplifica la gestión de múltiples  nubes.  Proporciona una única interfaz de usuario y una API para la administración de infraestructura y aplicaciones en multiples nibes, genera un inventario, da  informes de costos y uso, creación de servidores hasta el monitoreo con  métricas de rendimiento y alertas además de disponer de opciones para realizar tareas de automatización.
 
 Sin importar dónde se alojen los servidores: localmente, en una nube pública o privada, un hipervisor KVM o un motor Docker, Mist.io ofrece un panel de control unificado que reduce la fragmentación  y facilita la administración.
 
-Las características a detalle se pueden consultar en [el sitio web oficial de mist.io](https://mist.io/) pero a grandez rasgos cumple con los puntos antes descritos. Aunque hay muchas opciones en en mercado, elegí mist.io por que es opensource, la interfaz de usuario y la API se publican bajo una licencia de código abierto. Además cuenta versioes empresariales para instalación onsite o puede ser usado en la nube como un SaaS.
+Las características a detalle se pueden consultar en [el sitio web oficial de mist.io](https://mist.io/) pero a grandez rasgos cumple con los puntos antes descritos. Aunque hay muchas opciones en en mercado, elegí mist.io por que es opensource, la interfaz de usuario y la API se publican bajo una licencia de código abierto. Además cuenta versiones empresariales para instalación onsite o puede ser usado en la nube como un SaaS.
 
 Para probar mist.io existe 3 planes que se pueden elegir:
 
@@ -66,7 +66,7 @@ Una vez instalado, podemos agregar nuestras credenciales para conectar con los d
 
 ![](/uploads/Screenshot-20190228195723-887x513.png)
 
- Yo agregué 2 cuentas de [Digital Ocean](https://www.digitalocean.com/) y 1 cuenta de [Google Cloud Platform](https://cloud.google.com/getting-started/?hl=es). Los procesos para añadir estos proveedores [se encuentran en la documentación oficial](https://docs.mist.io/article/19-adding-digital-ocean). 
+Yo agregué 2 cuentas de [Digital Ocean](https://www.digitalocean.com/) y 1 cuenta de [Google Cloud Platform](https://cloud.google.com/getting-started/?hl=es). Los procesos para añadir estos proveedores [se encuentran en la documentación oficial](https://docs.mist.io/article/19-adding-digital-ocean).
 
 Una vez agregadas las credenciales, Mist.io ofrece vistas centralizadas y simplificadas de la infraestructura, pero más allá de mostrar información puedes realizara acciones de creación de maquinas virtuales, realizar una conexión por SSH,ejecutar scripts o tareas de manera recurrente como crons e incluso activar  reglas proactivas cuando se alcanzan umbrales.
 
@@ -78,8 +78,8 @@ La siguiente es la vista general de toda mi infraestructura de cómputo en todos
 
 ![](/uploads/Captura de pantalla de 2019-02-28 16-57-11.png)
 
-Podemos acceder a la misma información en cuanto a volúmenes de almacenamiento:  
-  
+Podemos acceder a la misma información en cuanto a volúmenes de almacenamiento:
+
 ![](/uploads/Screenshot-20190228200701-1900x679.png)
 
 Esta es la vista del resumen general de la infraestructura con un vistazo de los componentes que están agregados además  se puede apreciar el costo total de la infraestructura:
