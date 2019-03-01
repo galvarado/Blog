@@ -1,7 +1,6 @@
 +++
 date = "2019-03-29T06:00:00+00:00"
-draft = true
-image = ""
+image = "/uploads/mistio.png"
 title = "Simplificando la gestión multicloud con Mist.io"
 
 +++
