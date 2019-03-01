@@ -21,10 +21,3 @@ Me gusta la fotografía, tengo una cámara canon e intento ir  capturando moment
 <center>![](/images/bike.jpg)</center>
 
 En la foto estoy a 3,360 metros sobre el nivel del mar en "La Coconetla" después de 4 horas subiendo en bicicleta. Es la parte más alta de la cañada de los Dinamos, un parque nacional y área natural protegida con una extensión de dos mil 429 hectáreas de bosque. <a href="https://goo.gl/maps/rrpJRrY1rQA2">Se encuentra en la delegación La Magdalena Contreras en la Ciudad de México.</a>
-
-
-
-
-
-
-

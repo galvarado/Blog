@@ -8,6 +8,8 @@ enableEmoji = false
 disqusShortname = "galvarado-com-mx"
 googleAnalytics = "UA-118969871-1"
 comments = true
+mailchimp = "https://galvarado.us19.list-manage.com/subscribe/post?u=7ca0350f86d9576b40bfe7cee&amp;id=0649daac95"
+mailprotect = "b_7ca0350f86d9576b40bfe7cee_0649daac95"
 
 [params]
   logo = "/images/profile.png"
