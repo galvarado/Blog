@@ -10,7 +10,7 @@ Este promete ventajas económicas, velocidad, agilidad, flexibilidad, elasticida
 
 La mayoría de los equipos de TI hoy en día administran múltiples servidores en múltiples proveedores de servicios en de Nube, esto implica contraseñas múltiples, flujos de datos múltiples y múltiples proveedores para verificar.  ¿Cómo consolidar todo esto en un solo esfuerzo que simplifique esta gestión? Usando una plataforma de gestión multicloud o Cloud Management Platform (CMP)
 
-## ¿Qué es un Cloud Management Platform?
+## ¿Porqué usar un Cloud Management Platform?
 
 Básicamente, el objetivo de estas herramientas es facilitar a las empresas la gestión centralizada de cada uno de sus servidores _en la nube,_ independientemente de la plataforma donde estén desplegados estos servidores. La gestión multi-cloud es la evolución natural de las organizaciones de TI para afrontar el reto de la transformación digital.
 
@@ -64,14 +64,34 @@ La documentación de la instalación se encuentra [en el repositorio de Github](
 
 Una vez instalado, podemos agregar nuestras credenciales para conectar con los distintos proveedores.Las opciones para conectar con proveedores al día de hoy son las siguientes:
 
-![](/uploads/Screenshot-20190228195442-1886x890-1.png)
+![](/uploads/Screenshot-20190228195723-887x513.png)
 
  Yo agregué 2 cuentas de [Digital Ocean](https://www.digitalocean.com/) y 1 cuenta de [Google Cloud Platform](https://cloud.google.com/getting-started/?hl=es). Los procesos para añadir estos proveedores [se encuentran en la documentación oficial](https://docs.mist.io/article/19-adding-digital-ocean). 
 
-Esta es mi vista unificada con todas las Vms que tengo tanto en Digital Ocean como en Google Cloud Platform:
+Una vez agregadas las credenciales, Mist.io ofrece vistas centralizadas y simplificadas de la infraestructura, pero más allá de mostrar información puedes realizara acciones de creación de maquinas virtuales, realizar una conexión por SSH,ejecutar scripts o tareas de manera recurrente como crons e incluso activar  reglas proactivas cuando se alcanzan umbrales.
+
+Una vez agregadas las credenciales, el resumen de proveedores de nube se visualiza de la siguiente forma:
+
+![](/uploads/Screenshot-20190228200644-1912x694.png)
+
+La siguiente es la vista general de toda mi infraestructura de cómputo en todos los proveedores que agregué, donde se detalla el proveedor de nube, el tamaño de las VMS, sus direcciones IPs, el estado de ejecución y su tiempo de creación:
 
 ![](/uploads/Captura de pantalla de 2019-02-28 16-57-11.png)
 
-Esta es la vista del resumen general de la infraestructura con un vistazo de los componentes que están agregados además e se puede apreciar el costo total de la infraestructura:
+Podemos acceder a la misma información en cuanto a volúmenes de almacenamiento:  
+  
+![](/uploads/Screenshot-20190228200701-1900x679.png)
+
+Esta es la vista del resumen general de la infraestructura con un vistazo de los componentes que están agregados además  se puede apreciar el costo total de la infraestructura:
 
 ![](/uploads/Screenshot-20190228195442-1886x890.png)
+
+Lo más valioso será la operación y el día a día en la gestión de los recursos de nube con los que se cuenta pero desde un punto centralizado, accediento rápidamente a la infraestructura:
+
+Me parece que es una gran opción para los equipos de TI en sus tareas diarias de gestión  multi-nube de manera eficiente optimizando las operaciones, estas son algunas de las opciones para realizar en una maquina virtual:
+
+![](/uploads/Screenshot-20190228201058-1553x776.png)
+
+Como conclusiṕn, con mist.io se pueden organizar equipos y habilitar el aprovisionamiento de autoservicio para distintos equipos de desarrolllo, automatizar el aprovisionamiento y configuración de aplicaciones simples y complejas, ver costos y utilización en una vista y recibir alertas proactivas sobre máquinas subutilizadas.
+
+Si tienen alguna duda, no duden en dejarme un comentario aquí mismo o por mis redes sociales.
