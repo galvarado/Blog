@@ -1,5 +1,5 @@
 +++
-date = "2019-03-28T06:00:00+00:00"
+date = "2019-03-28T16:00:00+00:00"
 image = "/uploads/mistio.png"
 title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
