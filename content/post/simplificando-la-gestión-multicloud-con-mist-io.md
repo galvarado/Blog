@@ -1,6 +1,6 @@
 +++
 date = "2019-02-28T16:00:00+00:00"
-image = "/uploads/mistio.png"
+image = "/uploads/Screen-Shot-2018-01-20-at-15.38.35.png"
 title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
 +++
