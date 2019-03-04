@@ -1,12 +1,12 @@
 +++
-tags = ["microservices"]
+comments = true
 date = "2018-08-29T08:55:45-06:00"
-metaAlignment = "center"
 image = "/uploads/mesh.png"
+metaAlignment = "center"
+tags = ["microservices", "contenedores", "cdesarrolllo"]
 thumbnailImagePosition = "top"
 title = "Hablando de microservicios...¿Qué es Service Mesh?"
 undefined = ""
-comments=true
 
 +++
 Cómo toda arquitectura, los microservicios tienen muchas ventajas, pero tambien se introducen nuevos retos. Cuando se atomiza una aplicación en base a microservicios, una parte clave de nuestra solución depende de la comunicación vía red entre diversos componentes.
