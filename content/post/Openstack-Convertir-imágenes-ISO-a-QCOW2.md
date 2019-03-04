@@ -1,12 +1,12 @@
 +++
-tags = ["cloud"]
+comments = true
 date = "2018-09-19T10:09:00-06:00"
-metaAlignment = "center"
 image = "/uploads/cloud-computing-banner.jpg"
+metaAlignment = "center"
+tags = ["cloud", "openstack"]
 thumbnailImagePosition = "top"
 title = "OpenStack: Convertir imágenes ISO a QCOW2"
 undefined = ""
-comments=true
 
 +++
 En cualquier nube, una instancia (VM) es una máquina virtual alojada en la infraestructura de esta nube, estas instancias, necesitan de una imagen de sistema operativo para arrancar. Una imagen de máquina virtual es un archivo que contiene un disco virtual que tiene instalado un sistema operativo con el cual se puede arrancar. Por lo tanto, las instancias son copias en ejecución de esa imagen.
