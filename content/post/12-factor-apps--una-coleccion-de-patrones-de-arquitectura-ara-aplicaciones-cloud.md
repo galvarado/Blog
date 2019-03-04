@@ -1,12 +1,12 @@
 +++
-tags = ["arquitectura"]
+comments = true
 date = "2018-07-20T10:14:31-06:00"
-metaAlignment = "center"
 image = "/uploads/saas.jpg"
+metaAlignment = "center"
+tags = ["arquitectura", "mejores practicas"]
 thumbnailImagePosition = "top"
 title = "12 Factor apps: Una colección de patrones de arquitectura para aplicaciones cloud"
 undefined = ""
-comments=true
 
 +++
 “The twelve-factor app” es una metodología para construir aplicaciones. Lo podríamos ver como un conjunto de prácticas de desarrollo y arquitectura, que presta especial atención a las dinámicas del escalamiento y cubre los puntos fundamentales que debería cumplir el desarrollo de una aplicación preparada para ser distribuida como un servicio.
