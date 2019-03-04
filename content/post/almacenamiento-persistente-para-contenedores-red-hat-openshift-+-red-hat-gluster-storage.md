@@ -1,12 +1,12 @@
 +++
-tags = ["arquitectura"]
+comments = true
 date = "2018-11-30T10:00:00-06:00"
-metaAlignment = "center"
 image = "/uploads/container_storage.png"
+metaAlignment = "center"
+tags = ["arquitectura", "contenedores", "redhat"]
 thumbnailImagePosition = "top"
 title = "Almacenamiento persistente para contenedores: Red Hat OpenShift + Red Hat Gluster Storage"
 undefined = ""
-comments=true
 
 +++
 ![](/uploads/cns3-6-4.png)
