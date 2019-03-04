@@ -1,5 +1,5 @@
 +++
-categories = ["cloud"]
+tags = ["cloud"]
 date = "2018-09-19T10:09:00-06:00"
 metaAlignment = "center"
 image = "/uploads/cloud-computing-banner.jpg"

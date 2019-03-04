@@ -1,7 +1,7 @@
 ---
 title: "¿Cómo diseñar una API? Introducción a OpenAPI Specification"
 date: 2018-07-10 00:00:00 +0000
-categories:
+tags:
 - development
 - cloud
 autoThumbnailImage: false

@@ -1,7 +1,7 @@
 ---
 title: Hola mundo, otra vez
 date: 2018-05-10 00:00:00 +0000
-categories:
+tags:
 - cloud
 autoThumbnailImage: false
 thumbnailImagePosition: top

@@ -1,5 +1,5 @@
 +++
-categories = ["arquitectura"]
+tags = ["arquitectura"]
 date = "2018-11-30T10:00:00-06:00"
 metaAlignment = "center"
 image = "/uploads/container_storage.png"

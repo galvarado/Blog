@@ -1,7 +1,7 @@
 ---
 title: Cómo está construido este Blog
 date: 2018-05-11 00:00:00 +0000
-categories:
+tags:
 - arquitectura
 autoThumbnailImage: false
 thumbnailImagePosition: top

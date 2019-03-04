@@ -1,5 +1,5 @@
 +++
-categories = ["cloud"]
+tags = ["cloud"]
 date = "2018-11-06T08:05:48-06:00"
 metaAlignment = "center"
 image = "/uploads/cloud_platform_webinar_banner_v2-1.png"

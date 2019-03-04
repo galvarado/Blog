@@ -1,5 +1,5 @@
 +++
-categories = ["devops"]
+tags = ["devops"]
 date = "2018-08-10T09:00:00-06:00"
 metaAlignment = "center"
 image = "/uploads/devops_banner.png"

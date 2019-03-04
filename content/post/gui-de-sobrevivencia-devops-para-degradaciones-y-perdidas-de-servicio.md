@@ -1,5 +1,5 @@
 +++
-categories = ["devops"]
+tags = ["devops"]
 date = "2018-06-08T17:22:44-06:00"
 metaAlignment = "center"
 image = "/uploads/failure.jpg"

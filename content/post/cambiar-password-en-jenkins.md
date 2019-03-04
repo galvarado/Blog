@@ -1,5 +1,5 @@
 +++
-categories = ["devops"]
+tags = ["devops"]
 date = "2019-01-17T00:00:00-06:00"
 metaAlignment = "center"
 image = "/uploads/automate_dio.jpg"
