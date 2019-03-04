@@ -2,7 +2,7 @@
 comments = "true"
 date = "2019-02-28T16:00:00+00:00"
 image = "/uploads/cmp.jpg"
-tags = ["devops", "cloud", "architecture "]
+tags = ["devops", "cloud", "arquitectura"]
 title = "Instalación de Mist.io, una plataforma de gestión de nube híbrida "
 
 +++
