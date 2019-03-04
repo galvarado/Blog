@@ -3,6 +3,7 @@ title: 20 herramientas de línea de comandos imprescindibles para DevOps
 date: 2018-06-30 00:00:00 +0000
 tags:
 - devops
+- mejores practicas
 autoThumbnailImage: false
 thumbnailImagePosition: top
 image: "/uploads/devops.jpg"
