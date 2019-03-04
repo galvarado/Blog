@@ -2,6 +2,7 @@
 comments = "true"
 date = "2019-01-24T06:00:00+00:00"
 image = "/uploads/DxtNyCnXcAEAHP9-2.png"
+tags = ["azure", "microsoft", "posrgresql"]
 title = "Microsoft compra Citus Data para mejorar la experiencia de PostgreSQL en Azure"
 
 +++
