@@ -29,6 +29,21 @@ fields:
     required: true
   hidden: false
   default: 'true'
+- type: tag_list
+  name: tags
+  label: tags
+  description: tags
+  default:
+  - devops
+  - architecture
+  - cloud
+  - development
+  - best practices
+  - containers
+  - GCP
+  - azure
+  - aws
+  - CloudOps
 pages:
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
