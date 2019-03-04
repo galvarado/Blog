@@ -1,12 +1,12 @@
 +++
-tags = ["cloud"]
+comments = true
 date = "2018-11-06T08:05:48-06:00"
-metaAlignment = "center"
 image = "/uploads/cloud_platform_webinar_banner_v2-1.png"
+metaAlignment = "center"
+tags = ["cloud", "GCP", "GoogleCloud", "Google"]
 thumbnailImagePosition = "top"
 title = "Migrar una VM entre Centros de Datos en Google Cloud"
 undefined = ""
-comments=true
 
 +++
 Google Cloud está disponible en 17 regiones o centros de datos alrededor del mundo y a su vez, divididos cada uno en zonas, teniendo un total de 52 zonas. En este post explico como migrar una VM de un centro de datos de Google a otro. En mi caso de la  región US-Central que está en **Iowa**  hacia US-East que está en Carolina del Sur. Sin embargo el procedimiento funciona entre cualquier región.
