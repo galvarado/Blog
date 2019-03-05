@@ -36,7 +36,7 @@ Es un RDMBS en alta disponibilidad que básicamente ofrece MySQL y PostgreSQL mo
 
 #### Extra ¿Qué es OLTP?
 
-Procesamiento de transacciones en línea), se caracteriza por un gran número de transacciones cortas  (INSERTAR, ACTUALIZAR, BORRAR). El énfasis principal de los sistemas OLTP es en el procesamiento de consultas  rápidas pero no complejas, manteniendo la integridad de los datos en entornos de acceso múltiple.
+Procesamiento de transacciones en línea, se caracteriza por un gran número de transacciones cortas  (INSERTAR, ACTUALIZAR, BORRAR). El énfasis principal de los sistemas OLTP es en el procesamiento de consultas  rápidas pero no complejas, manteniendo la integridad de los datos en entornos de acceso múltiple.
 
 ## **Cloud Spanner**
 
