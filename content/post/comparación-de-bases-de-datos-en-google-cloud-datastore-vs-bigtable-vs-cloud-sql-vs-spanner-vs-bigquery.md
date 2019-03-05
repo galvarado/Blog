@@ -14,7 +14,7 @@ Base de datos NoSQL altamente escalable con modelo de datos de documento, transa
 
 **Casos de uso principales:**  Alta transaccionalidad,  aplicaciones existentes con datos de aplicación semiestructurados y datos jerárquicos, aplicaciones móviles y frameworks de desarrollo web.
 
-#### Extra: ¿Qué es ACID?
+#### Extra ¿Qué es ACID?
 
 ACID (Atomicidad, consistencia, aislamiento, durabilidad) es un conjunto de propiedades de transacciones de base de datos destinadas a garantizar la validez incluso en caso de errores. Una secuencia de operaciones de base de datos que satisface las propiedades de ACID (y estas pueden percibirse como una sola operación lógica en los datos) se llama una transacción. Por ejemplo, una transferencia de fondos de una cuenta bancaria a otra.
 
@@ -24,7 +24,7 @@ Base de datos NoSQL con modelo de datos widecolumn, de una sola región y altame
 
 **Casos de uso principales:** Aplicaciones que tienen una ingesta de datos frecuente, maneja  millones de operaciones por segundo. Gran volumen de datos en Industrias financiera, advertising, IoT. Sistemas de personalización y recomendaciones,  conjuntos de datos geoespaciales y gráficos.
 
-#### Extra: ¿Qué es un modelo widecolumn?
+#### Extra ¿Qué es un modelo widecolumn?
 
 Un almacén de columna ancha es un tipo de base de datos NoSQL que utiliza tablas, filas y columnas, pero a diferencia de una base de datos relacional, los nombres y el formato de las columnas pueden variar de una fila a otra en la misma tabla. Un almacén de columna ancha se puede interpretar como un almacén de valor-clave bidimensional. [Amazon DynamoDB](https://en.wikipedia.org/wiki/Amazon_DynamoDB "Amazon DynamoDB"), [Apache Accumulo](https://en.wikipedia.org/wiki/Apache_Accumulo "Apache Accumulo"), [Apache Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra "Apache Cassandra"), [Apache HBase](https://en.wikipedia.org/wiki/Apache_HBase "Apache HBase") y [Azure Tables](https://en.wikipedia.org/wiki/Microsoft_Azure#Storage_services "Microsoft Azure") son ejempos de otras bases de datos widecolumn
 
@@ -34,7 +34,7 @@ Es un RDMBS en alta disponibilidad que básicamente ofrece MySQL y PostgreSQL mo
 
 **Casos de uso principales:** Es mejor para aplicaciones OLTP web y las aplicaciones existentes CRM, ERP, etc.
 
-#### Extra: ¿Qué es OLTP?
+#### Extra ¿Qué es OLTP?
 
 Procesamiento de transacciones en línea), se caracteriza por un gran número de transacciones cortas  (INSERTAR, ACTUALIZAR, BORRAR). El énfasis principal de los sistemas OLTP es en el procesamiento de consultas  rápidas pero no complejas, manteniendo la integridad de los datos en entornos de acceso múltiple.
 
@@ -44,7 +44,7 @@ Un RDMBS también para aplicaciónes OLTP pero que necesiten una base de datos g
 
 **Casos de uso principales:** Aplicaciones OLTP distribuidas, como  catálogo de productos de retail, aplicaicones  SaaS y  juegos en línea.
 
-#### Extra: ¿Qué es un RDMBS?
+#### Extra ¿Qué es un RDMBS?
 
 Los sistemas de gestión de bases de datos relacionales (RDBMS) son compatibles con el modelo de datos relacional, orientado a tablas. El esquema de una tabla, se define por el nombre de la tabla y un número fijo de atributos con tipos de datos fijos. Un registro o entidad corresponde a una fila en la tabla y consta de los valores de cada atributo.
 
@@ -56,7 +56,7 @@ BigQuery es realmente para el tipo de consulta OLAP y escanea una gran cantidad 
 
 **Casos de uso principales:** elegir para exploración y procesamiento de macrodatos, línea, sistema de procesamiento con petabytes de escala, almacén de datos empresariales para análisis,  generación de informes de estadísticas de grandes volúmenes de datos- Bigdata, ciencia de datos y análisis avanzados.
 
-#### Extra: ¿Qué es OLAP?
+#### Extra ¿Qué es OLAP?
 
 Procesamiento analítico en línea, se caracteriza por un volumen relativamente bajo de transacciones. Las consultas son a menudo muy complejas e involucran agregaciones. Las aplicaciones OLAP son ampliamente utilizadas por las técnicas de Data Mining.
 
