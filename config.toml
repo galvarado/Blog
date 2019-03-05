@@ -4,7 +4,7 @@ title = "Guillermo Alvarado"
 theme = "mediumish-gohugo-theme"
 summaryLength = 30
 copyright = "Guillermo Alvarado - Todos los derechos reservados"
-enableEmoji = false
+enableEmoji = true
 disqusShortname = "galvarado-com-mx"
 googleAnalytics = "UA-118969871-1"
 comments = true
@@ -17,7 +17,7 @@ comments = true
 
 [params.author]
   name = "Guillermo Alvarado"
-  thumbnail = "/images/profile.png"
+  thumbnail = "images/profile.png"
   description = "Creador del blog"
 
 [params.index]
