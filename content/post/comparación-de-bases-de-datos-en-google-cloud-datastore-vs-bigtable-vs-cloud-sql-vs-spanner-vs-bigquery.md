@@ -2,7 +2,7 @@
 comments = "true"
 date = "2019-03-05T16:00:00+00:00"
 image = "/uploads/Google_Cloud_Databases.jpg"
-tags = ["architecture", "cloud", "GCP"]
+tags = ["architecture", "cloud"]
 title = "Comparación de Bases de Datos en Google Cloud: Datastore vs BigTable vs Cloud SQL vs Spanner vs BigQuery"
 
 +++
