@@ -20,7 +20,7 @@ ACID (Atomicidad, consistencia, aislamiento, durabilidad) es un conjunto de prop
 
 ## **Cloud Bigtable**
 
-Ba de datos NoSQL con modelo de datos widecolumn, de una sola región y altamente escalable con baja latencia y alto rendimiento. Profundamente integrado con el ecosistema de Hadoop, incluida la compatibilidad de su API con la de HBase. Es bueno para aplicaciones de procesamiento analítico/transaccional. La usan los servicios internos de Google como la Búsqueda de Google, Google Maps y Gmail. Escala a Petabytes.
+Base de datos NoSQL con modelo de datos widecolumn, de una sola región y altamente escalable con baja latencia y alto rendimiento. Profundamente integrado con el ecosistema de Hadoop, incluida la compatibilidad de su API con la de HBase. Es bueno para aplicaciones de procesamiento analítico/transaccional. La usan los servicios internos de Google como la Búsqueda de Google, Google Maps y Gmail. Escala a Petabytes.
 
 **Casos de uso principales:** Aplicaciones que tienen una ingesta de datos frecuente, maneja  millones de operaciones por segundo. Gran volumen de datos en Industrias financiera, advertising, IoT. Sistemas de personalización y recomendaciones,  conjuntos de datos geoespaciales y gráficos.
 
