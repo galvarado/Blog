@@ -10,9 +10,9 @@ Después de mucho tiempo, millones de dólares  inversión y clientes de referen
 
 ## **Cloud Datastore**
 
-Base de datos NoSQL altamente escalable con modelo de datos de documento, transacciones atómicas (pero no totalmente ACID), lenguaje de consulta tipo SQL y soporte para configuraciones  región/multirregión. Considerar si se necesita almacenar objetos estructurados o si necesita alta transaccionalidad. Escala a Terabytes. Solo tiene transacciones atómicas y duraderas (lo que significa que no hay consistencia ni aislamiento). A diferencia de BigTable, Datastore está optimizado para un conjunto de datos más pequeño.
+Base de datos NoSQL altamente escalable con modelo de datos de documento, transacciones atómicas (pero no totalmente ACID), lenguaje de consulta tipo SQL y soporte para configuraciones  región/multirregión. Escala a Terabytes. Solo tiene transacciones atómicas y duraderas (lo que significa que no hay consistencia ni aislamiento). A diferencia de BigTable, Datastore está optimizado para un conjunto de datos más pequeño.
 
-**Casos de uso principales:** Base de datos de aplicaciones existentes, aplicaciones móviles y frameworks de desarrollo web.
+**Casos de uso principales:**  Alta transaccionalidad,  aplicaciones existentes con datos de aplicación semiestructurados y datos jerárquicos, aplicaciones móviles y frameworks de desarrollo web.
 
 #### Extra: ¿Qué es ACID?
 
