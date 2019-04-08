@@ -6,13 +6,15 @@ tags = ["cloud", "best practices", "GCP", "CloudOps"]
 title = "Mis consejos para obtener la certificación de Professional Cloud Architect de Google Cloud "
 
 +++
-Las últimas semanas me preparé para rendir el examen y obtener la certificación como Professional Cloud Architect de Google Cloud Platform y me gustaría compartir el proceso que seguí, cómo me preparé y algunos consejos útiles para aquellos quienes desean obtener esta certificación. 
+Las últimas semanas me preparé para rendir el examen y obtener la certificación como Professional Cloud Architect de Google Cloud Platform y me gustaría compartir el proceso que seguí, cómo me preparé y algunos consejos útiles para aquellos quienes desean obtener esta certificación.
 
 Este es el certificado que se obtiene al pasar el examen de certificación:
 
 ![](/uploads/GoogleCloudCertificate.jpg)
 
-Cabe destacar que Google te recompensa con un articulo de merchandise de su tienda, puedes elegir entre un hoodie, una mochila o un 
+Cabe destacar que Google te recompensa con un articulo de su Certification Perks Webstore, esta tienda es para aquellos que participan en la capacitación de Google Cloud Platform y en los programas de certificación de Google Cloud. La tienda es accesible por invitación solamente. Puedes elegir entre un hoodie, un pullover o una mochila con el sello oficial de certificación.
+
+![](/uploads/Screenshot-20190408181516-1648x549.png)
 
 ## Porque obtener esta certificación
 
