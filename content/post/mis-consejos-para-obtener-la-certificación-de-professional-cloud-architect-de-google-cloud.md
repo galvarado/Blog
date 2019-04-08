@@ -12,10 +12,6 @@ Este es el certificado que se obtiene al pasar el examen de certificación:
 
 ![](/uploads/GoogleCloudCertificate.jpg)
 
-Cabe destacar que Google te recompensa con un articulo de su Certification Perks Webstore, esta tienda es para aquellos que participan en la capacitación de Google Cloud Platform y en los programas de certificación de Google Cloud. La tienda es accesible por invitación solamente. Puedes elegir entre un hoodie, un pullover o una mochila con el sello oficial de certificación.
-
-![](/uploads/Screenshot-20190408181516-1648x549.png)
-
 ## Porque obtener esta certificación
 
 blabla
@@ -35,3 +31,11 @@ blabla
 ## Tips and tricks
 
 blabla
+
+## Certification Perks 
+
+Cabe destacar que Google te recompensa con un articulo de su Certification Perks Webstore, esta tienda es para aquellos que participan en la capacitación de Google Cloud Platform y en los programas de certificación de Google Cloud. La tienda es accesible por invitación solamente, esta invitación te llegará despues de pasar el examen.  Puedes elegir entre un hoodie, un pullover o una mochila con el sello oficial de certificación...
+
+![](/uploads/Screenshot-20190408181516-1648x549.png)
+
+Si tienes una duda o comentario respecto a la certificación, si necesitas ayuda para prepararte, no dudes en contactarme =)
