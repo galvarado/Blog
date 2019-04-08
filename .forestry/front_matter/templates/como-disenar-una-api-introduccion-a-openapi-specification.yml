@@ -44,6 +44,7 @@ fields:
   - aws
   - CloudOps
 pages:
+- content/post/mis-consejos-para-obtener-la-certificación-de-professional-cloud-architect-de-google-cloud.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
