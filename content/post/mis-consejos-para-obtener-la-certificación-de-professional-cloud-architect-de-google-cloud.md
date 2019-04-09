@@ -16,15 +16,15 @@ Este es el certificado que se obtiene al pasar el examen de certificación:
 
 La primer pregunta es ¿Es un examen difícil? Para mi la respuesta es sí. Pero definitivamente no es imposible, quizá un 8/10 de dificultad. Creo que la principal diferencia con otros exámenes que he rendido es que Google espera que todos los arquitectos de soluciones tengan un buen conocimiento de practicas desarrollo. Esto podría no ser un problema para la mayoría de las personas, pero algunos se verán en aprietos en preguntas que les pidan analizar código Python que no tiene nada que ver con toda la plataforma de Google Cloud o en preguntas de mejores practicas de despliegue de software para actualizar aplicaciones mitigando riesgos en los updates y estrategias de rollback, también se asume conocimiento de estrategias como Blue-green deployments, A/B Testing,  Canary Releases e incluso algunas preguntas relacionadas con herramientas  cómo Jenkins o  Spinnaker.
 
-Pero esto es en realidad una ventaja ya que la certificación demuestra que gira completamente en torno al desempeño profesional del rol de Arquitecto de Nube, en lugar de solo demostrr que se conoce la plataforma en sí. Hay un valor significativo en esto porque puede representar mejor la capacidad en el mundo real, pero esto también lo hace mucho más difícil porque el alcance es casi ilimitado, muchas preguntas del examen no tienen nada que ver con Google.
+Pero esto es en realidad una ventaja ya que la certificación demuestra que gira completamente en torno al desempeño profesional del rol de Arquitecto de Nube, en lugar de solo demostrar que se conoce la plataforma en sí. Hay un valor significativo en esto porque puede representar mejor la capacidad en el mundo real, pero esto también lo hace mucho más difícil porque el alcance es casi ilimitado, muchas preguntas del examen no tienen nada que ver con Google.
 
 ## ¿Cómo prepararse?
 
-#### 1 . Tomar la especialización Architecting with Google Cloud Platform en Coursera 
+#### 1 . Tomar la especialización Architecting with Google Cloud Platform en Coursera
 
-Para la certificación tomé como capacitación un curso especializado en Coursera, mismo que venia recomendado por Google en los [detalles de la certificación.  
-  
-](https://cloud.google.com/certification/cloud-architect?hl=es)La especialización [Architecting with Google Cloud Platform](https://www.coursera.org/specializations/gcp-architecture?utm_source=googlecloud&utm_medium=institutions&utm_campaign=GoogleCloud_PCA_Architecting) en Coursera incluye los siguientes 6 cursos, he agregado una breve descripción del contenido  y los módulos que integran cada curso:
+Para la certificación tomé como capacitación un curso especializado en Coursera, mismo que venia recomendado por Google [en los detalles de la certificación](https://cloud.google.com/certification/cloud-architect?hl=es).
+
+La especialización [Architecting with Google Cloud Platform](https://www.coursera.org/specializations/gcp-architecture?utm_source=googlecloud&utm_medium=institutions&utm_campaign=GoogleCloud_PCA_Architecting) en Coursera incluye los siguientes 6 cursos, he agregado una breve descripción del contenido  y los módulos que integran cada curso:
 
 **1.1 Google Cloud Platform Fundamentals: Core Infrastructure**
 
@@ -102,15 +102,21 @@ Módulos:
 
 #### 2 . Realizar prácticas de laboratorio
 
-Para convertirte en un experto en la nube se necesita entrenamiento práctico. Una excelente manera de hacerlo es usar [Qwiklabs](https://www.qwiklabs.com). Lo bueno de comprar el curso de Coursera es que los laboratorios con Qwiklabs vienen ya incluidos sin costo. Qwiklabs te da credenciales temporales a Google Cloud Platform (y Amazon Web Services) para que puedas practicar con la realidad, sin simulaciones. 
+Para convertirte en un experto en la nube se necesita entrenamiento práctico. Una excelente manera de hacerlo es usar [Qwiklabs](https://www.qwiklabs.com). Lo bueno de comprar el curso de Coursera es que los laboratorios con Qwiklabs vienen ya incluidos sin costo. Qwiklabs te da credenciales temporales a Google Cloud Platform (y Amazon Web Services) para que puedas practicar con la realidad, sin simulaciones.
 
 #### 3 . Leer la documentación oficial de Google
 
 Te recomiendo que hagas una guia de repaso del curso por módulo o por tecnología y te remitas a la documentación oficial de cada producto para formar tus propias notas remarcando los detalles tenicos y negocio importantes de cada producto. Ningún curso incluye toda la documentación de cada producto, por lo que solamente tomar el curso no basta, tienes que leer la documentación oficial.
 
-#### 4 . Tomar el examen de prueba
+#### 4 . Evalua tu conociemiento
 
 Puedes tomar el examen de prueba que ofrece Google. El examen de práctica de Cloud Architect te permitirá familiarizarte con el tipo de preguntas que podrías encontrar. Puedes probar tus habilidades [siguiendo este enlance](El examen de práctica de Cloud Architect te permitirá familiarizarte con el tipo de preguntas que podrías encontrar ).
+
+También puedes probar con [las preguntas de práctica ](https://www.whizlabs.com/google-cloud-certified-professional-cloud-architect/) en Whizlabs, que son  bastante representativas, en lo personal me gustó mucho su enfoque en los casos de uso. 
+
+Como siempre, lee atentamente las preguntas, por lo general termina en eliminación con dos respuestas que están muy cerca y debes alguna de  ellas.
+
+Después de pasar por estas preguntas de práctica / prueba, sabía que necesitaba reforzar  en  algunos temas, así que mi guía creció aún más. 
 
 ## Tips and tricks
 
@@ -130,17 +136,17 @@ Te recomiendo que tu misión sea entender casi al 100% los siguientes puntos:
 * Gestionar implementaciones de arquitectura en la nube.
 * Asegurar la confiabilidad de soluciones y operaciones.
 
-Recuerda, el curso por sí sólo no es suficiente, Lo que si te entrega es una mayor visibilidad de lo que tiene la plataforma de GCP para ofrecer y lo que puedes hacer con ella, pero aun tienes  el trabajo de descubrir formas de aprovechar esos recursos,  conocer a detalle sus capacidades y poder crear soluciones tecnicas y de  negocio en escenarios reales.
+Recuerda, el curso por sí sólo no es suficiente, pero es un gran punto de partida, lo que si te entrega es una mayor visibilidad de lo que tiene la plataforma de GCP para ofrecer y lo que puedes hacer con ella, pero aun tienes  el trabajo de descubrir formas de aprovechar esos recursos,  conocer a detalle sus capacidades y poder crear soluciones tecnicas y de  negocio en escenarios reales.
 
 Después de haber pasado con éxito el examen, esta sería mi lista de detalles técnicos a repasar:
 
 * **La mayoría de las preguntas tienen las de una respuesta válida pero solo 1 respuesta que sigue las mejores prácticas de GCP.**
-* Managed instance groups están cubiertos en gran medida durante el examen. Comprender cómo funciona la división del tráfico con los grupos de instancias administradas y en Appengine. 
+* Managed instance groups están cubiertos en gran medida durante el examen. Comprender cómo funciona la división del tráfico con los grupos de instancias administradas y en Appengine.
 * Comprender como hacer implementaciones y actualizaciones continuas y en caso de cualquier problema o error, cómo depurar el mismo.
 * Google Compute Engine vs. Google App Engine
 * VM estándar vs VMs preemtibles
 * SSD local vs discos persistentes SSD
-* Recuross Globales vs Regionales vs De zona  
+* Recuross Globales vs Regionales vs De zona
 * Roles de IAM primitivos vs a roles de IAM predefinidos
 * App Engine Standard vs. App Engine Flex
 * Conocer cuando aplicar las distintas clases de Cloud Storage
@@ -154,11 +160,11 @@ Después de haber pasado con éxito el examen, esta sería mi lista de detalles 
 * Diferencias entre VPN interconnect y peering. Velocidades de cada uno. Conectar aplicaciones onpremise hacia VPC en GCP
 * Temas fuera de GCP: Jenkins, spinnaker, memcached, AB deployments, canary releases, stress tests.
 
-## Bonus: Certification Perks 
+Un gran sitio de tutoriales de muchos de estos temas: [https://cloud.google.com/docs/tutorials](https://cloud.google.com/docs/tutorials "https://cloud.google.com/docs/tutorials")
 
-Cabe destacar que Google te recompensa con un articulo de su Certification Perks Webstore, esta tienda es para aquellos que participan en la capacitación de Google Cloud Platform y en los programas de certificación de Google Cloud. La tienda es accesible por invitación solamente, esta invitación te llegará despues de pasar el examen.  Puedes elegir entre un hoodie, un pullover o una mochila con el sello oficial de certificación...
+## Bonus: Certification Perks
 
-Al pasar el exámen recibiras un código para entrar a la tienda [**Certification Perks Webstore **](https://shop.googlemerchandisestore.com) y podrás elegir un articulo totalmente gratis incluido el envío, el articulo contará con el badge oficial de la certificación =)
+Al pasar el exámen recibiras un código para entrar a la tienda [Certification Perks Webstore](https://shop.googlemerchandisestore.com) y podrás elegir un articulo totalmente gratis incluido el envío, el articulo contará con el badge oficial de la certificación,   puedes elegir entre un hoodie, un pullover o una mochila...=)
 
 ![](/uploads/Screenshot-20190408181516-1648x549.png)
 
