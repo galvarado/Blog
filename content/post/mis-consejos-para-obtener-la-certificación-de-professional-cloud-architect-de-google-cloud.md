@@ -159,8 +159,7 @@ Después de haber pasado con éxito el examen, esta sería mi lista de detalles 
 * Escalar aplicaciones en GKE y los nodos en si de GKE
 * Diferencias entre VPN interconnect y peering. Velocidades de cada uno. Conectar aplicaciones onpremise hacia VPC en GCP
 * Temas fuera de GCP: Jenkins, spinnaker, memcached, AB deployments, canary releases, stress tests.
-
-Un gran sitio de tutoriales de muchos de estos temas: [https://cloud.google.com/docs/tutorials](https://cloud.google.com/docs/tutorials "https://cloud.google.com/docs/tutorials")
+* [Un gran sitio de tutoriales de muchos de estos temas](https://cloud.google.com/docs/tutorials)
 
 ## Bonus: Certification Perks
 
