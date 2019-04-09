@@ -1,6 +1,7 @@
 +++
 comments = "true"
 date = "2019-04-08T05:00:00+00:00"
+draft = true
 image = "/uploads/gcpcertification.png"
 tags = ["cloud", "GCP"]
 title = "Mis consejos para obtener la certificación de Professional Cloud Architect de Google Cloud "
