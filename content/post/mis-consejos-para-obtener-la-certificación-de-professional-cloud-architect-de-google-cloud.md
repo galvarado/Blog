@@ -21,6 +21,8 @@ Pero esto es en realidad una ventaja ya que la certificación demuestra que gira
 
 ## ¿Cómo prepararse?
 
+Primero debo remarcar que yo decidí tomar esta ruta ya que los últimos 4 años me he enfocado en cloud, containers, devops e integración continua, tengo experiencia en ambientes de nube pública con AWS, DigitalOcean y el mismo GCP  y con nube privada con Openstack.  
+
 #### 1 . Tomar la especialización Architecting with Google Cloud Platform en Coursera
 
 Para la certificación tomé como capacitación un curso especializado en Coursera, mismo que venia recomendado por Google [en los detalles de la certificación](https://cloud.google.com/certification/cloud-architect?hl=es).
@@ -107,7 +109,7 @@ Para convertirte en un experto en la nube se necesita entrenamiento práctico. U
 
 #### 3 . Leer la documentación oficial de Google
 
-Te recomiendo que hagas una guia de repaso del curso por módulo o por tecnología y te remitas a la documentación oficial de cada producto para formar tus propias notas remarcando los detalles tenicos y negocio importantes de cada producto. Ningún curso incluye toda la documentación de cada producto, por lo que solamente tomar el curso no basta, tienes que leer la documentación oficial.
+Te recomiendo que hagas una guía de repaso del curso por módulo o por tecnología y te remitas a la documentación oficial de cada producto para formar tus propias notas remarcando los detalles técnicos y negocio importantes de cada producto. Ningún curso incluye toda la documentación de cada producto, por lo que solamente tomar el curso no basta, tienes que leer la documentación oficial.
 
 #### 4 . Evalua tu conocimiento
 
