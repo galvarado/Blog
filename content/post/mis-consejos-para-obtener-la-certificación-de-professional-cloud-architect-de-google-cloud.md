@@ -109,7 +109,7 @@ Para convertirte en un experto en la nube se necesita entrenamiento práctico. U
 
 Te recomiendo que hagas una guia de repaso del curso por módulo o por tecnología y te remitas a la documentación oficial de cada producto para formar tus propias notas remarcando los detalles tenicos y negocio importantes de cada producto. Ningún curso incluye toda la documentación de cada producto, por lo que solamente tomar el curso no basta, tienes que leer la documentación oficial.
 
-#### 4 . Evalua tu conociemiento
+#### 4 . Evalua tu conocimiento
 
 Puedes tomar el examen de prueba que ofrece Google. El examen de práctica de Cloud Architect te permitirá familiarizarte con el tipo de preguntas que podrías encontrar. Puedes probar tus habilidades [siguiendo este enlance](El examen de práctica de Cloud Architect te permitirá familiarizarte con el tipo de preguntas que podrías encontrar ).
 
@@ -155,7 +155,8 @@ Después de haber pasado con éxito el examen, esta sería mi lista de detalles 
 * Cómo auditar información y logs. Conocer a detallelas capacidades de  Stackdriver.
 * Conocer cuando aplica cada solución de balanceo de carga y su relación con GCE y GKE
 * Conocer as principales diferencias de las soluciones de bases de datos en GCP
-* Migrar información de clientes onpremise hacia GCP considerando velocidad, tamaño de la información GB, TB y tipos de información como archivos estático, VMs, logs y requerimientos de seguridad como cifrado etc. Conocer cuando aplica el appliance físico.
+* Migrar información de clientes onpremise hacia GCP considerando velocidad, tamaño de la información GB, TB y tipos de información como archivos estáticos, VMs, logs y requerimientos de seguridad como cifrado etc.
+* Conocer cuando aplica el appliance físico para transferencia de datos hacia GCP.
 * Dominar las reglas de firewall, tags y priority levels
 * Escalar aplicaciones en GKE y los nodos en si de GKE
 * Diferencias entre VPN interconnect y peering. Velocidades de cada uno. Conectar aplicaciones onpremise hacia VPC en GCP
