@@ -148,12 +148,12 @@ Después de haber pasado con éxito el examen, esta sería mi lista de detalles 
 * Google Compute Engine vs. Google App Engine
 * VM estándar vs VMs preemtibles
 * SSD local vs discos persistentes SSD
-* Recuross Globales vs Regionales vs De zona
+* Recursos Globales vs Regionales vs De zona
 * Roles de IAM primitivos vs a roles de IAM predefinidos
 * App Engine Standard vs. App Engine Flex
 * Conocer cuando aplicar las distintas clases de Cloud Storage
 * Conocer las herramietas en GCP para hacer limpieza de datos, flujos de procesamiento, exploración de datos, dataflow, dataprep, datalab, datastudio.
-* Cómo auditar información y logs. Conocer a detallelas capacidades de  Stackdriver.
+* Cómo auditar información y logs. Conocer a detalle las capacidades de  Stackdriver.
 * Conocer cuando aplica cada solución de balanceo de carga y su relación con GCE y GKE
 * Conocer as principales diferencias de las soluciones de bases de datos en GCP
 * Migrar información de clientes onpremise hacia GCP considerando velocidad, tamaño de la información GB, TB y tipos de información como archivos estáticos, VMs, logs y requerimientos de seguridad como cifrado etc.
