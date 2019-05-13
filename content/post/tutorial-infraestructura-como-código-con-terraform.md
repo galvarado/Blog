@@ -84,15 +84,15 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 
 ### 2. Instalación
 
-2\.1 Crear un directorio para los binarios de Terraform:
+#### 2.1 Crear un directorio para los binarios de Terraform:
 
     [root@zenbook Descargas]# mkdir /opt/terraform
 
-2\.2Mover el archivo descargado anteriormente al interior del directorio:
+#### 2.2 Mover el archivo descargado anteriormente al interior del directorio:
 
     [root@zenbook Descargas]# mv terraform_0.11.13_linux_amd64.zip /opt/terraform/
 
-2\.3Nos situamos en el directorio terraformy descomprimimos los binarios:
+#### 2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:
 
     [root@zenbook Descargas]# cd /opt/terraform/
 
@@ -102,7 +102,7 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 
       inflating: terraform
 
-2\.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):
+#### 2.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):
 
     [root@zenbook terraform]# export PATH="$PATH:/opt/terraform"
 
@@ -112,7 +112,7 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
     [root@zenbook ~]# source .bashrc
 
-2\.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:
+#### 2.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:
 
     [root@zenbook terraform]# terraform --version
 
