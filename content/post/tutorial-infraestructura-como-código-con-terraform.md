@@ -64,6 +64,60 @@ Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con un
 
 ## Instalación de Terraform
 
+Este tutorial sigue los pasos para de instalación para Linux - Fedora 29.
+
+###   
+1\. Descargar el paquete
+
+Descargar el paquete según la plataforma. El paquete debe descargarse desde [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html "https://www.terraform.io/downloads.html"). 
+
+Sistemas operativos compatibles con Terraform:
+
+* Linux: 32­bit | 64­bit | Arm
+* Windows: 32­bit | 64­bit
+* Mac OS X: 64­bit
+* FreeBSD: 32­bit | 64­bit | Arm
+* OpenBSD: 32­bit | 64­bit
+* Solaris: 64­bit
+
+Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linux 64­bit puesto que lo instalaremos en una maquina con Fedora 29.
+
+### 2. Instalación
+
+2\.1 Crear un directorio para los binarios de Terraform:
+
+    [root@zenbook Descargas]# mkdir /opt/terraform
+
+2\.2Mover el archivo descargado anteriormente al interior del directorio:
+
+    [root@zenbook Descargas]# mv terraform_0.11.13_linux_amd64.zip /opt/terraform/
+
+2\.3Nos situamos en el directorio terraformy descomprimimos los binarios:
+
+    [root@zenbook Descargas]# cd /opt/terraform/
+
+    [root@zenbook terraform]# unzip terraform_0.11.13_linux_amd64.zip 
+
+    Archive:  terraform_0.11.13_linux_amd64.zip
+
+      inflating: terraform
+
+2\.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):
+
+    [root@zenbook terraform]# export PATH="$PATH:/opt/terraform"
+
+Para hacer persistente el cambio y que el binario de terraform sea reconocido despues de esta sesión la terminar debemos agregarlo en `**\~/.profile**` **o** `**\~/.bashrc**`:
+
+    [root@zenbook ~]# echo PATH="$PATH:/opt/terraform" >>  ~/.bashrc
+
+    [root@zenbook ~]# source .bashrc
+
+2\.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:
+
+    [root@zenbook terraform]# terraform --version
+
+    Terraform v0.11.13
+
 Referencias:
 
 *  [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
