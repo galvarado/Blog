@@ -106,7 +106,7 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 
     [root@zenbook terraform]# export PATH="$PATH:/opt/terraform"
 
-Para hacer persistente el cambio y que el binario de terraform sea reconocido despues de esta sesión la terminar debemos agregarlo en `**\~/.profile**` **o** `**\~/.bashrc**`:
+Para hacer persistente el cambio y que el binario de terraform sea reconocido despues de esta sesión la terminar debemos agregarlo en \~/.profile o \~/.bashrc:
 
     [root@zenbook ~]# echo PATH="$PATH:/opt/terraform" >>  ~/.bashrc
 
