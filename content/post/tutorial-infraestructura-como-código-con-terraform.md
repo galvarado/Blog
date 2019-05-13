@@ -3,7 +3,7 @@ comments = "true"
 date = "2019-05-09T15:00:00+00:00"
 image = "/uploads/Terraform.png"
 tags = ["devops", "cloud", "CloudOps"]
-title = "Tutorial: Infraestructura como código con Terraform (parte 1)"
+title = "Tutorial: Infraestructura como código con Terraform"
 
 +++
 Esta ocasión quiero hablar sobre qué es la Infraestructura como código y cómo empezar a usarla con Terraform. **Terraform** es un software de código libre que permite a partir de un lenguaje de alto nivel crear el plan de construcción de una infraestructura compleja, esto sería Infrastructura como código (Infrastructure as Code).
