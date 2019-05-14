@@ -232,6 +232,78 @@ La inicialización del proveedor es una de las acciones de **terraform init.** A
 
 Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actua, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
+## Crear una base de datos de MySQL con Terraform
+
+Como ejemplo en este tutorial crearemos una base de datos de MySQL. 
+
+### 1. Crear archivo de configuración
+
+    provider "mysql" {
+
+      endpoint = "localhost:3306"
+
+      username = "root"
+
+      password = "Pb5c2.<:-Gf7vc4M"
+
+    }
+
+    # Crear base de datos
+
+    resource "mysql_database" "proyecto" {
+
+      name = "proyecto"
+
+    }
+
+    # Crear usuario
+
+    resource "mysql_user" "demo" {
+
+      user     = "demo"
+
+      host     = "localhost"
+
+      password = "Pb5c2.<:-Gf7vc5M"
+
+    }
+
+### 2. Inicializar el proveedor
+
+    [root@zenbook mysql]# terraform init
+
+![](/uploads/terraform_init.png)
+
+### 3. Ejecutar el plan
+
+    [root@zenbook mysql]# terraform plan
+
+![](/uploads/terraform_plan.png)
+
+Con esto nos aseguramos que configuraciones se vana realizar antes de verdaderamente aplicarlas, es un double check para asegurarnos.
+
+### 4. Aplicar los cambios
+
+    [root@zenbook mysql]# terraform aply
+
+![](/uploads/terraform_aply.png)
+
+Después de aplicar los cambios podemos ver un resumen de los recursos se agregaron o cambiaron.
+
+### 5. Hacer una actualización
+
+En un escenario real quizá necesitemos actualizar el password constantemente, por tanto para realizar esta actualización cambié el password del usuario demo, para aplicar este cambio en la base de datos realizaré los comandos plan y aply:
+
+![](/uploads/terraform_plan2.png)
+
+Como podemos ver terraform conoce que la acción es un cambio de password. Ahora aplicamos el cambio:
+
+![](/uploads/terraform_aply2.png)
+
+Con esto conocemos ahora como interactual con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes. En los próximos articulos detallaré como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública. 
+
+Si te pareció útil, por favor comparte =)
+
 Referencias:
 
 *  [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
