@@ -225,6 +225,14 @@ Configuración para conectar a AWS como proveedor:
       region     = "us-east-1"
     }
 
+### Inicialización
+
+Cada vez que se agrega un nuevo proveedor a la configuración, ya sea explícitamente a través de un bloque de proveedores o agregando un recurso de ese proveedor, es necesario inicializar ese proveedor antes de usarlo. La inicialización descarga e instala el plugin del proveedor y lo prepara para su uso.
+
+La inicialización del proveedor es una de las acciones de **terraform init.** Al ejecutar este comando se descargará e inicializará cualquier proveedor que aún no esté inicializado.
+
+Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actua, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
+
 Referencias:
 
 *  [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
