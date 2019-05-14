@@ -120,7 +120,7 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
 ## Primeros pasos con Terraform
 
-### Archivos de configuración
+### 1. Archivos de configuración
 
 Terraform utiliza archivos de texto para describir la infraestructura y establecer variables. El lenguaje de los ficheros de configuración de Terraform se llama HashiCorp Configuration Language (HCL). Los ficheros se deberán crear con la extensión “.tf”.
 
@@ -172,7 +172,7 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
     }
 
-### Proveedores de Terraform
+### 2. Proveedores de Terraform
 
 Terraform se utiliza para crear, administrar y actualizar recursos de infraestructura como máquinas físicas, máquinas virtuales, routers , contenedores y más. Casi cualquier tipo de infraestructura puede representarse como un recurso en Terraform.
 
@@ -225,7 +225,7 @@ Configuración para conectar a AWS como proveedor:
       region     = "us-east-1"
     }
 
-### Inicialización
+### 3. Inicialización
 
 Cada vez que se agrega un nuevo proveedor a la configuración, ya sea explícitamente a través de un bloque de proveedores o agregando un recurso de ese proveedor, es necesario inicializar ese proveedor antes de usarlo. La inicialización descarga e instala el plugin del proveedor y lo prepara para su uso.
 
