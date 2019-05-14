@@ -66,7 +66,7 @@ Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con un
 
 Este tutorial sigue los pasos para de instalación para Linux - Fedora 29.
 
-### 1. Descargar el paquete
+**1. Descargar el paquete**
 
 Descargar el paquete según la plataforma. El paquete debe descargarse desde [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html "https://www.terraform.io/downloads.html"). 
 
@@ -81,17 +81,17 @@ Sistemas operativos compatibles con Terraform:
 
 Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linux 64­bit puesto que lo instalaremos en una maquina con Fedora 29.
 
-### 2. Instalación
+**2. Instalación**
 
-#### 2.1 Crear un directorio para los binarios de Terraform:
+**2.1 Crear un directorio para los binarios de Terraform:**
 
     [root@zenbook Descargas]# mkdir /opt/terraform
 
-#### 2.2 Mover el archivo descargado anteriormente al interior del directorio:
+**2.2 Mover el archivo descargado anteriormente al interior del directorio:**
 
     [root@zenbook Descargas]# mv terraform_0.11.13_linux_amd64.zip /opt/terraform/
 
-#### 2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:
+**2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:**
 
     [root@zenbook Descargas]# cd /opt/terraform/
 
@@ -101,7 +101,7 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 
       inflating: terraform
 
-#### 2.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):
+**2.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):**
 
     [root@zenbook terraform]# export PATH="$PATH:/opt/terraform"
 
@@ -111,7 +111,7 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
     [root@zenbook ~]# source .bashrc
 
-#### 2.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:
+**2.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:**
 
     [root@zenbook terraform]# terraform --version
 
@@ -121,7 +121,7 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
 Antes de ejecutar un ejemplo es necesario conocer algunos conceptos de terraform:
 
-### 1. Archivos de configuración
+**1. Archivos de configuración**
 
 Terraform utiliza archivos de texto para describir la infraestructura y establecer variables. El lenguaje de los ficheros de configuración de Terraform se llama HashiCorp Configuration Language (HCL). Los ficheros se deberán crear con la extensión “.tf”.
 
@@ -173,7 +173,7 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
     }
 
-### 2. Proveedores de Terraform
+**2. Proveedores de Terraform**
 
 Terraform se utiliza para crear, administrar y actualizar recursos de infraestructura como máquinas físicas, máquinas virtuales, routers , contenedores y más. Casi cualquier tipo de infraestructura puede representarse como un recurso en Terraform.
 
@@ -226,7 +226,7 @@ Configuración para conectar a AWS como proveedor:
       region     = "us-east-1"
     }
 
-### 3. Inicialización
+**3. Inicialización**
 
 Cada vez que se agrega un nuevo proveedor a la configuración, ya sea explícitamente a través de un bloque de proveedores o agregando un recurso de ese proveedor, es necesario inicializar ese proveedor antes de usarlo. La inicialización descarga e instala el plugin del proveedor y lo prepara para su uso.
 
@@ -234,11 +234,11 @@ La inicialización del proveedor es una de las acciones de **terraform init.** A
 
 Los proveedores descargados por t**erraform init** solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
-## Crear una base de datos de MySQL con Terraform
+## Ejemplo: Crear una base de datos de MySQL con Terraform
 
 Como ejemplo en este tutorial crearemos una base de datos de MySQL. 
 
-### 1. Crear archivo de configuración
+**1. Crear archivo de configuración**
 
     provider "mysql" {
 
@@ -270,13 +270,13 @@ Como ejemplo en este tutorial crearemos una base de datos de MySQL.
 
     }
 
-### 2. Inicializar el proveedor
+**2. Inicializar el proveedor**
 
     [root@zenbook mysql]# terraform init
 
 ![](/uploads/terraform_init.png)
 
-### 3. Ejecutar el plan
+**3. Ejecutar el plan**
 
     [root@zenbook mysql]# terraform plan
 
@@ -284,7 +284,7 @@ Como ejemplo en este tutorial crearemos una base de datos de MySQL.
 
 Con esto nos aseguramos que configuraciones se vana realizar antes de verdaderamente aplicarlas, es un double check para asegurarnos.
 
-### 4. Aplicar los cambios
+4\. Aplicar los cambios
 
     [root@zenbook mysql]# terraform aply
 
@@ -292,7 +292,7 @@ Con esto nos aseguramos que configuraciones se vana realizar antes de verdaderam
 
 Después de aplicar los cambios podemos ver un resumen de los recursos se agregaron o cambiaron.
 
-### 5. Hacer una actualización
+**5. Hacer una actualización**
 
 En un escenario real quizá necesitemos actualizar el password constantemente, por tanto para realizar esta actualización cambié el password del usuario demo, para aplicar este cambio en la base de datos realizaré los comandos plan y aply:
 
