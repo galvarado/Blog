@@ -119,6 +119,8 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
 ## Primeros pasos con Terraform
 
+Antes de ejecutar un ejemplo es necesario conocer algunos conceptos de terraform:
+
 ### 1. Archivos de configuración
 
 Terraform utiliza archivos de texto para describir la infraestructura y establecer variables. El lenguaje de los ficheros de configuración de Terraform se llama HashiCorp Configuration Language (HCL). Los ficheros se deberán crear con la extensión “.tf”.
