@@ -230,7 +230,7 @@ Cada vez que se agrega un nuevo proveedor a la configuración, ya sea explícita
 
 La inicialización del proveedor es una de las acciones de **terraform init.** Al ejecutar este comando se descargará e inicializará cualquier proveedor que aún no esté inicializado.
 
-Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actua, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
+Los proveedores descargados por t**erraform init** solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
 ## Crear una base de datos de MySQL con Terraform
 
