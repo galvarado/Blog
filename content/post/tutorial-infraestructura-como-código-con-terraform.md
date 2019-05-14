@@ -66,8 +66,7 @@ Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con un
 
 Este tutorial sigue los pasos para de instalación para Linux - Fedora 29.
 
-###   
-1\. Descargar el paquete
+### 1. Descargar el paquete
 
 Descargar el paquete según la plataforma. El paquete debe descargarse desde [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html "https://www.terraform.io/downloads.html"). 
 
