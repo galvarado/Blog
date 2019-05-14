@@ -118,6 +118,113 @@ Para hacer persistente el cambio y que el binario de terraform sea reconocido de
 
     Terraform v0.11.13
 
+## Primeros pasos con Terraform
+
+### Archivos de configuración
+
+Terraform utiliza archivos de texto para describir la infraestructura y establecer variables. El lenguaje de los ficheros de configuración de Terraform se llama HashiCorp Configuration Language (HCL). Los ficheros se deberán crear con la extensión “.tf”.
+
+El formato de los archivos de configuración puede estar en dos formatos: formato Terraform y JSON. El formato de Terraform es más legible, admite comentarios y es el formato generalmente recomendado para la mayoría de los archivos de Terraform. El formato JSON está destinado a las máquinas para crear, modificar y actualizar, pero los operadores de Terraform también pueden hacerlo si lo prefiere. El formato Terraform termina en .tf y el formato JSON termina en .tf.json.
+
+Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para crear una máquina virtual:
+
+    [root@zenbook terraform-example]# cat openstack-example.tf 
+
+    # Configure the OpenStack Provider
+
+    provider "openstack" {
+
+      user_name   = "admin"
+
+      tenant_name = "admin"
+
+      password    = "w3h58h3ooq"
+
+      auth_url    = "http://controller01:5000/v3"
+
+      region      = "RegionOne"
+
+    }
+
+    # Create a RHEL server
+
+    resource "openstack_compute_instance_v2" "basic" {
+
+      name            = "vm_from_terraform"
+
+      image_id        = "765887bd-2635-4c2e-9feb-248a1b7707ea"
+
+      flavor_id       = "c98478b4-2d58-42f6-940e-15bdea5aa74f"
+
+      
+
+      metadata = {
+
+        this = "that"
+
+      }
+
+      network {
+
+        name = "Openshift_Network"
+
+      }
+
+    }
+
+### Proveedores de Terraform
+
+Terraform se utiliza para crear, administrar y actualizar recursos de infraestructura como máquinas físicas, máquinas virtuales, routers , contenedores y más. Casi cualquier tipo de infraestructura puede representarse como un recurso en Terraform.
+
+Un proveedor es responsable de comprender las interacciones de  API entre terraform y la plataforma proveedora de los recursos y crear los recursos. 
+
+Los proveedores generalmente son IaaS, por ejemplo:
+
+* AWS
+* GCP
+* Microsoft Azure
+* OpenStack
+* Digital Ocean
+
+Proveedores de PaaS: 
+
+* Heroku
+* Nutanix
+* Rancher
+* Kubernetes (No es completamente un PaaS)
+
+Servicios  SaaS:
+
+* Terraform Enterprise
+*  DNSimple
+* CloudFlare
+* Bitbucket
+* Datadog
+
+La lista completa de proveedores se encuentra en la documentación oficial: [https://www.terraform.io/docs/providers/index.html](https://www.terraform.io/docs/providers/index.html "https://www.terraform.io/docs/providers/index.html") 
+
+La mayoría de los proveedores requieren algún tipo de configuración para proporcionar información de autenticación, URLs, etc. Cuando se requiere una configuración explícita, se utiliza un bloque de proveedor dentro de la configuración, como se ilustra a continuación:
+
+Configuración para conectar a OpenStack como proveedor:
+
+    # Configure the OpenStack Provider
+    provider "openstack" {
+      user_name   = "admin"
+      tenant_name = "admin"
+      password    = "pwd"
+      auth_url    = "http://myauthurl:5000/3"
+      region      = "RegionOne"
+    }
+
+Configuración para conectar a AWS como proveedor:
+
+    # Configure the AWS Provider
+    provider "aws" {
+      access_key = "${var.aws_access_key}"
+      secret_key = "${var.aws_secret_key}"
+      region     = "us-east-1"
+    }
+
 Referencias:
 
 *  [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
