@@ -302,7 +302,9 @@ Como podemos ver terraform conoce que la acción es un cambio de password. Ahora
 
 ![](/uploads/terraform_aply2.png)
 
-Con esto conocemos ahora como interactual con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes. En los próximos articulos detallaré como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública. 
+Con esto conocemos ahora como interactual con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes.
+
+ En los próximos articulos hablaré de  como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública. 
 
 Si te pareció útil, por favor comparte =)
 
