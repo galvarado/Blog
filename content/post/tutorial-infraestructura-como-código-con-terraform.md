@@ -8,7 +8,16 @@ title = "Tutorial: Infraestructura como código con Terraform"
 +++
 Esta ocasión quiero hablar sobre qué es la Infraestructura como código y cómo empezar a usarla con Terraform. **Terraform** es un software de código libre que permite a partir de un lenguaje de alto nivel crear el plan de construcción de una infraestructura compleja, esto sería Infrastructura como código (Infrastructure as Code).
 
-## ¿Que es Infrastructura cómo código?
+Los puntos que cubre esta guía son:
+
+1. ¿Qué es infraestructura cómo código?
+2. Gestión de configuración vs orquestación
+3. Introducción a Terraform
+4. Instalación de Terraform
+5. Primeros pasos con Terraform
+6. Ejemplo: Crear una base de datos de MySQL con Terraform
+
+## ¿Qué es Infrastructura cómo código?
 
 Infraestructura como código hace referencia a la  práctica de utilizar scripts para configurar la infraestructura de una aplicación como máquinas virtuales, en lugar de configurar estas máquinas de forma manual.
 
