@@ -105,7 +105,7 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 
     [root@zenbook terraform]# export PATH="$PATH:/opt/terraform"
 
-Para hacer persistente el cambio y que el binario de terraform sea reconocido despues de esta sesión la terminar debemos agregarlo en \~/.profile o \~/.bashrc:
+Para hacer persistente el cambio y que el binario de terraform sea reconocido después de esta sesión la terminar debemos agregarlo en \~/.profile o \~/.bashrc:
 
     [root@zenbook ~]# echo PATH="$PATH:/opt/terraform" >>  ~/.bashrc
 
@@ -139,7 +139,7 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
       tenant_name = "admin"
 
-      password    = "w3h58h3ooq"
+      password    = "somestrongpass"
 
       auth_url    = "http://controller01:5000/v3"
 
@@ -153,9 +153,9 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
       name            = "vm_from_terraform"
 
-      image_id        = "765887bd-2635-4c2e-9feb-248a1b7707ea"
+      image_id        = "567887bd-2635-4c2e-9feb-248a1b770745"
 
-      flavor_id       = "c98478b4-2d58-42f6-940e-15bdea5aa74f"
+      flavor_id       = "i78478b4-2d58-42f6-940e-15bdea5a7849"
 
       
 
@@ -167,7 +167,7 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
       network {
 
-        name = "Openshift_Network"
+        name = "Some_Network"
 
       }
 
