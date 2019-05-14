@@ -16,6 +16,7 @@ Los puntos que cubre esta guía son:
 4. Instalación de Terraform
 5. Primeros pasos con Terraform
 6. Ejemplo: Crear una base de datos de MySQL con Terraform
+7. Día 2: Actualizar la configuración de la base de datos
 
 ## ¿Qué es Infrastructura cómo código?
 
@@ -300,6 +301,8 @@ Con esto nos aseguramos que configuraciones se vana realizar antes de verdaderam
 ![](/uploads/terraform_aply.png)
 
 Después de aplicar los cambios podemos ver un resumen de los recursos se agregaron o cambiaron.
+
+## Día 2: actualizar la configuración de la base de datos
 
 **5. Hacer una actualización**
 
