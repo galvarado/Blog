@@ -24,7 +24,7 @@ Infraestructura como código hace referencia a la  práctica de utilizar scripts
 
 La infraestructura como código permite a las máquinas virtuales gestionarse de manera programada, lo que elimina la necesidad de realizar configuraciones manuales (y actualizaciones) de componentes individuales. Esto es una  construcción de infraestructura más consistente y de mayor calidad con mejores capacidades de administración, maximizando la eficiencia y evitando el error humano.
 
- El resultado es una infraestructura  muy elástica, escalable y replicable gracias a la  capacidad de modificar, configurar y apagar cientos de máquinas en cuestión de minutos con solo presionar un botón.
+El resultado es una infraestructura  muy elástica, escalable y replicable gracias a la  capacidad de modificar, configurar y apagar cientos de máquinas en cuestión de minutos con solo presionar un botón.
 
 Las mejores prácticas de DevOps, incluido el control de versiones, las pruebas  y el monitoreo continuo, se aplican al código que gobierna la creación y administración de la infraestructura. **Básicamente, la infraestructura es tratada de la misma manera que cualquier otro código.**
 
@@ -32,11 +32,11 @@ Los equipos ahora  pueden implementar o actualizar una infraestructura formada p
 
 ## Gestión de configuración vs orquestación
 
-Establecido lo que es la infrastructura cómo código, queda una importante aclaración que hacer ¿Entonces cual es la diferencia de usar Ansible o Chef para gestionar la configuración? 
+Establecido lo que es la infrastructura cómo código, queda una importante aclaración que hacer ¿Entonces cual es la diferencia de usar Ansible o Chef para gestionar la configuración?
 
-Chef, Puppet, Ansible y SaltStack son herramientas de "gestión de configuración" lo que significa que están diseñadas para instalar y administrar software en **servidores** **existentes**.  
+Chef, Puppet, Ansible y SaltStack son herramientas de "gestión de configuración" lo que significa que están diseñadas para instalar y administrar software en **servidores** **existentes**.
 
-Terraform, CloudFormation, OpenStack Heat y otros, son "herramientas de orquestación" lo que significa que están diseñadas para aprovisionar los servidores, dejando el trabajo de configurar esos servidores para otras herramientas. 
+Terraform, CloudFormation, OpenStack Heat y otros, son "herramientas de orquestación" lo que significa que están diseñadas para aprovisionar los servidores, dejando el trabajo de configurar esos servidores para otras herramientas.
 
 Estas dos categorías no se excluyen, ya que la mayoría de las herramientas de gestión de configuración pueden realizar cierto grado de aprovisionamiento y la mayoría de las herramientas de orquestación pueden realizar cierto grado de gestión de configuración. Pero el enfoque en la gestión de la configuración o la orquestación significa que algunas de las herramientas se adaptarán mejor a ciertos tipos de tareas.
 
@@ -68,7 +68,7 @@ Terraform tiene un paso de "planificación" donde genera un plan de ejecución. 
 
 Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
 
-**Automatización de cambios** 
+**Automatización de cambios**
 
 Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con una mínima interacción humana. Con el plan de ejecución y el gráfico de recursos mencionados anteriormente, se sabe exactamente qué cambiará Terraform y en qué orden, evitando muchos posibles errores humanos.
 
@@ -78,7 +78,7 @@ Este tutorial sigue los pasos para de instalación para Linux - Fedora 29.
 
 **1. Descargar el paquete**
 
-Descargar el paquete según la plataforma. El paquete debe descargarse desde [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html "https://www.terraform.io/downloads.html"). 
+Descargar el paquete según la plataforma. El paquete debe descargarse desde [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html "https://www.terraform.io/downloads.html").
 
 Sistemas operativos compatibles con Terraform:
 
@@ -104,11 +104,11 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 **2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:**
 
     [root@zenbook Descargas]# cd /opt/terraform/
-
+    
     [root@zenbook terraform]# unzip terraform_0.11.13_linux_amd64.zip 
-
+    
     Archive:  terraform_0.11.13_linux_amd64.zip
-
+    
       inflating: terraform
 
 **2.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):**
@@ -118,13 +118,13 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 Para hacer persistente el cambio y que el binario de terraform sea reconocido después de esta sesión la terminar debemos agregarlo en \~/.profile o \~/.bashrc:
 
     [root@zenbook ~]# echo PATH="$PATH:/opt/terraform" >>  ~/.bashrc
-
+    
     [root@zenbook ~]# source .bashrc
 
 **2.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:**
 
     [root@zenbook terraform]# terraform --version
-
+    
     Terraform v0.11.13
 
 ## Primeros pasos con Terraform
@@ -140,54 +140,54 @@ El formato de los archivos de configuración puede estar en dos formatos: format
 Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para crear una máquina virtual:
 
     [root@zenbook terraform-example]# cat openstack-example.tf 
-
+    
     # Configure the OpenStack Provider
-
+    
     provider "openstack" {
-
+    
       user_name   = "admin"
-
+    
       tenant_name = "admin"
-
+    
       password    = "somestrongpass"
-
+    
       auth_url    = "http://controller01:5000/v3"
-
+    
       region      = "RegionOne"
-
+    
     }
-
+    
     # Create a RHEL server
-
+    
     resource "openstack_compute_instance_v2" "basic" {
-
+    
       name            = "vm_from_terraform"
-
+    
       image_id        = "567887bd-2635-4c2e-9feb-248a1b770745"
-
+    
       flavor_id       = "i78478b4-2d58-42f6-940e-15bdea5a7849"
-
+    
       
-
+    
       metadata = {
-
+    
         this = "that"
-
+    
       }
-
+    
       network {
-
+    
         name = "Some_Network"
-
+    
       }
-
+    
     }
 
 **2. Proveedores de Terraform**
 
 Terraform se utiliza para crear, administrar y actualizar recursos de infraestructura como máquinas físicas, máquinas virtuales, routers , contenedores y más. Casi cualquier tipo de infraestructura puede representarse como un recurso en Terraform.
 
-Un proveedor es responsable de comprender las interacciones de  API entre terraform y la plataforma proveedora de los recursos y crear los recursos. 
+Un proveedor es responsable de comprender las interacciones de  API entre terraform y la plataforma proveedora de los recursos y crear los recursos.
 
 Los proveedores generalmente son IaaS, por ejemplo:
 
@@ -197,7 +197,7 @@ Los proveedores generalmente son IaaS, por ejemplo:
 * OpenStack
 * Digital Ocean
 
-Proveedores de PaaS: 
+Proveedores de PaaS:
 
 * Heroku
 * Nutanix
@@ -207,12 +207,12 @@ Proveedores de PaaS:
 Servicios  SaaS:
 
 * Terraform Enterprise
-*  DNSimple
+* DNSimple
 * CloudFlare
 * Bitbucket
 * Datadog
 
-La lista completa de proveedores se encuentra en la documentación oficial: [https://www.terraform.io/docs/providers/index.html](https://www.terraform.io/docs/providers/index.html "https://www.terraform.io/docs/providers/index.html") 
+La lista completa de proveedores se encuentra en la documentación oficial: [https://www.terraform.io/docs/providers/index.html](https://www.terraform.io/docs/providers/index.html "https://www.terraform.io/docs/providers/index.html")
 
 La mayoría de los proveedores requieren algún tipo de configuración para proporcionar información de autenticación, URLs, etc. Cuando se requiere una configuración explícita, se utiliza un bloque de proveedor dentro de la configuración, como se ilustra a continuación:
 
@@ -246,38 +246,40 @@ Los proveedores descargados por t**erraform init** solo se instalan para el dire
 
 ## Ejemplo: Crear una base de datos de MySQL con Terraform
 
-Como ejemplo en este tutorial crearemos una base de datos de MySQL. 
+Como ejemplo en este tutorial crearemos una base de datos de MySQL.
+
+El código del ejemplo está en el siguiente repositorio de Github: [https://github.com/galvarado/terraform-examples](https://github.com/galvarado/terraform-examples "https://github.com/galvarado/terraform-examples")
 
 **1. Crear archivo de configuración**
 
     provider "mysql" {
-
+    
       endpoint = "localhost:3306"
-
+    
       username = "root"
-
+    
       password = "Pb5c2.<:-Gf7vc4M"
-
+    
     }
-
+    
     # Crear base de datos
-
+    
     resource "mysql_database" "proyecto" {
-
+    
       name = "proyecto"
-
+    
     }
-
+    
     # Crear usuario
-
+    
     resource "mysql_user" "demo" {
-
+    
       user     = "demo"
-
+    
       host     = "localhost"
-
+    
       password = "Pb5c2.<:-Gf7vc5M"
-
+    
     }
 
 **2. Inicializar el proveedor**
@@ -316,12 +318,12 @@ Como podemos ver terraform conoce que la acción es un cambio de password. Ahora
 
 Con esto conocemos ahora como interactual con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes.
 
- En los próximos articulos hablaré de  como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública. 
+En los próximos articulos hablaré de  como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública.
 
 Si te pareció útil, por favor comparte =)
 
 Referencias:
 
-*  [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
+* [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
 * [https://www.terraform.io/intro/index.html](https://www.terraform.io/intro/index.html "https://www.terraform.io/intro/index.html")
 * [https://learn.hashicorp.com/terraform/getting-started/install](https://learn.hashicorp.com/terraform/getting-started/install "https://learn.hashicorp.com/terraform/getting-started/install")
