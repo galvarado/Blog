@@ -294,7 +294,7 @@ Como ejemplo en este tutorial crearemos una base de datos de MySQL.
 
 Con esto nos aseguramos que configuraciones se vana realizar antes de verdaderamente aplicarlas, es un double check para asegurarnos.
 
-4\. Aplicar los cambios
+**4. Aplicar los cambios**
 
     [root@zenbook mysql]# terraform aply
 
