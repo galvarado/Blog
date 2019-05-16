@@ -56,21 +56,13 @@ La infraestructura que Terraform puede administrar incluye componentes de bajo n
 
 Las principales características de Terraform son:
 
-**Infraestructura como código**
+**Infraestructura como código:**La infraestructura se describe utilizando una sintaxis de alto nivel. Esto permite que un blueprint sea versionado y tratado como lo haría con cualquier otro código. Estos archivos que describen la infraestructura pueden ser compartidos y reutilizados.
 
-La infraestructura se describe utilizando una sintaxis de alto nivel. Esto permite que un blueprint sea versionado y tratado como lo haría con cualquier otro código. Estos archivos que describen la infraestructura pueden ser compartidos y reutilizados.
+**Planes de Ejecución:**Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto  permite evitar sorpresas.
 
-**Planes de Ejecución**
+**Gráfico de recursos:**Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
 
-Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto  permite evitar sorpresas.
-
-**Gráfico de recursos**
-
-Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
-
-**Automatización de cambios**
-
-Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con una mínima interacción humana. Con el plan de ejecución y el gráfico de recursos mencionados anteriormente, se sabe exactamente qué cambiará Terraform y en qué orden, evitando muchos posibles errores humanos.
+**Automatización de cambios:**Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con una mínima interacción humana. Con el plan de ejecución y el gráfico de recursos mencionados anteriormente, se sabe exactamente qué cambiará Terraform y en qué orden, evitando muchos posibles errores humanos.
 
 ## Instalación de Terraform
 
@@ -222,6 +214,7 @@ La inicialización del proveedor es una de las acciones de **terraform init.** A
 Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
 ## Ejemplo: Crear una base de datos de MySQL con Terraform
+
 <p align="center">
 ![](/uploads/mysql_PNG9.png)
 </p>
