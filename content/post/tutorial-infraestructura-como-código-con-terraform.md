@@ -234,7 +234,7 @@ El código del ejemplo está en el siguiente repositorio de Github: [https://git
 
 **1. Crear archivo de configuración**
 
-El arhivo de configuración define el proveedor, en este caso MySQL y contiene los datos para poder conectar al motor de base de datos y crear los recursos. También se definen los recursos a crear que serían una base de datos llamada "some_db_name"  y un usuario para la misma, con el password de autenticac_ón_
+El arhivo de configuración define el proveedor, en este caso MySQL y contiene los datos para poder conectar al motor de base de datos y crear los recursos. También se definen los recursos a crear que serían una base de datos llamada "some_db_name"  y un usuario para la misma con su password.
 
 mysql-example.tf:
 
