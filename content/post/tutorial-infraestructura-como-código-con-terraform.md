@@ -18,7 +18,7 @@ Los puntos que cubre esta guía son:
 6. Ejemplo: Crear una base de datos de MySQL con Terraform
 7. Día 2: Actualizar la configuración de la base de datos
 
-## ¿Qué es Infrastructura cómo código?
+## ¿Qué es Infraestructura cómo código?
 
 Infraestructura como código hace referencia a la  práctica de utilizar scripts para configurar la infraestructura de una aplicación como máquinas virtuales, en lugar de configurar estas máquinas de forma manual.
 
