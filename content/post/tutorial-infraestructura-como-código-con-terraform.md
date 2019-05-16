@@ -216,11 +216,9 @@ Los proveedores descargados por terraform init solo se instalan para el director
 ## Crear una base de datos de MySQL con Terraform
 
 <p align="center">
-![](/uploads/mysql_PNG9.png)
-</p>
-Como ejemplo en este tutorial crearemos una base de datos de MySQL.
+![](/uploads/mysql_PNG9.png) </p>
 
-El código del ejemplo está en el siguiente repositorio de Github: [https://github.com/galvarado/terraform-examples](https://github.com/galvarado/terraform-examples "https://github.com/galvarado/terraform-examples")
+ Como ejemplo en este tutorial crearemos una base de datos de MySQL. El código del ejemplo está en el siguiente repositorio de Github: [https://github.com/galvarado/terraform-examples](https://github.com/galvarado/terraform-examples "https://github.com/galvarado/terraform-examples")
 
 **1. Crear archivo de configuración**
 
