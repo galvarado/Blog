@@ -32,7 +32,9 @@ Los equipos ahora  pueden implementar o actualizar una infraestructura formada p
 
 ## Gestión de configuración vs orquestación
 
-Establecido lo que es la infrastructura cómo código, queda una importante aclaración que hacer ¿Entonces cual es la diferencia de usar Ansible o Chef para gestionar la configuración?
+Establecido lo que es la infraestructura cómo código, queda una importante aclaración que hacer ¿Entonces cual es la diferencia de usar Ansible o Chef para gestionar la configuración?
+
+![](/uploads/illo-action-01-1k.png)
 
 Chef, Puppet, Ansible y SaltStack son herramientas de "gestión de configuración" lo que significa que están diseñadas para instalar y administrar software en **servidores** **existentes**.
 
@@ -104,11 +106,8 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 **2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:**
 
     [root@zenbook Descargas]# cd /opt/terraform/
-    
     [root@zenbook terraform]# unzip terraform_0.11.13_linux_amd64.zip 
-    
     Archive:  terraform_0.11.13_linux_amd64.zip
-    
       inflating: terraform
 
 **2.4 Exportamos las variables de entorno para añadir el directorio de Terraform al PATH del sistema (variable $PATH):**
@@ -118,13 +117,11 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 Para hacer persistente el cambio y que el binario de terraform sea reconocido después de esta sesión la terminar debemos agregarlo en \~/.profile o \~/.bashrc:
 
     [root@zenbook ~]# echo PATH="$PATH:/opt/terraform" >>  ~/.bashrc
-    
     [root@zenbook ~]# source .bashrc
 
 **2.5 Por último comprobamos que se ha instalado bien ejecutando el comando siguiente:**
 
     [root@zenbook terraform]# terraform --version
-    
     Terraform v0.11.13
 
 ## Primeros pasos con Terraform
@@ -224,9 +221,11 @@ Cada vez que se agrega un nuevo proveedor a la configuración, ya sea explícita
 
 La inicialización del proveedor es una de las acciones de **terraform init.** Al ejecutar este comando se descargará e inicializará cualquier proveedor que aún no esté inicializado.
 
-Los proveedores descargados por t**erraform init** solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
+Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
 ## Ejemplo: Crear una base de datos de MySQL con Terraform
+
+![](/uploads/mysql_PNG9.png)
 
 Como ejemplo en este tutorial crearemos una base de datos de MySQL.
 
