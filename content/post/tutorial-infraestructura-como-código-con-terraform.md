@@ -292,7 +292,7 @@ Como podemos ver terraform conoce que la acción es un cambio de password. Ahora
 
 ![](/uploads/terraform_aply2.png)
 
-Con esto conocemos ahora como interactuar con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes.
+Con esto conocemos ahora como interactuar con Terraform para realizar despliegue recursos y actualizaciones sobre recursos existentes.
 
 En los próximos artículos hablaré de  como desplegar la arquitectura de una aplicación aplicación "3 tier layered" en un proveedor de nube pública.
 
