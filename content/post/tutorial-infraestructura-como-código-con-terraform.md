@@ -142,45 +142,27 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
     [root@zenbook terraform-example]# cat openstack-example.tf 
     
     # Configure the OpenStack Provider
-    
     provider "openstack" {
-    
       user_name   = "admin"
-    
       tenant_name = "admin"
-    
       password    = "somestrongpass"
-    
       auth_url    = "http://controller01:5000/v3"
-    
       region      = "RegionOne"
-    
     }
     
     # Create a RHEL server
-    
     resource "openstack_compute_instance_v2" "basic" {
-    
       name            = "vm_from_terraform"
-    
       image_id        = "567887bd-2635-4c2e-9feb-248a1b770745"
-    
       flavor_id       = "i78478b4-2d58-42f6-940e-15bdea5a7849"
     
-      
-    
       metadata = {
-    
         this = "that"
-    
       }
     
       network {
-    
         name = "Some_Network"
-    
       }
-    
     }
 
 **2. Proveedores de Terraform**
@@ -252,37 +234,31 @@ El código del ejemplo está en el siguiente repositorio de Github: [https://git
 
 **1. Crear archivo de configuración**
 
+El arhivo de configuración define el proveedor, en este caso MySQL y contiene los datos para poder conectar al motor de base de datos y crear los recursos. También se definen los recursos a crear que serían una base de datos llamada "some_db_name"  y un usuario para la misma, con el password de autenticac_ón_
+
+mysql-example.tf:
+
     provider "mysql" {
-    
-      endpoint = "localhost:3306"
-    
-      username = "root"
-    
-      password = "Pb5c2.<:-Gf7vc4M"
-    
+      endpoint = "localhost:3306"  # MySQL Endpoint
+      username = "root"   # Some existing ser with privileges
+      password = "Pb5c2.<:-Gf7vc4M"  # User pass
     }
     
     # Crear base de datos
-    
-    resource "mysql_database" "proyecto" {
-    
-      name = "proyecto"
-    
+    resource "mysql_database" "some_db" {
+      name = "some_db_name"  #Database to be created
     }
     
     # Crear usuario
-    
     resource "mysql_user" "demo" {
-    
-      user     = "demo"
-    
-      host     = "localhost"
-    
-      password = "Pb5c2.<:-Gf7vc5M"
-    
+      user     = "demo"  # User to be created
+      host     = "localhost"  #host where database will be created
+      password = "Xd5c2.<:-Gf7vc5M"    # Some strong pass for demo user
     }
 
 **2. Inicializar el proveedor**
+
+Dentro del directorio que contiene el archivo mysql-example.tf:
 
     [root@zenbook mysql]# terraform init
 
@@ -316,9 +292,9 @@ Como podemos ver terraform conoce que la acción es un cambio de password. Ahora
 
 ![](/uploads/terraform_aply2.png)
 
-Con esto conocemos ahora como interactual con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes.
+Con esto conocemos ahora como interactuar con Terraform para realizar despliegue de configuraciones y actualizaciones sobre recursos existentes.
 
-En los próximos articulos hablaré de  como desplegar la arquitectura de una aplicación aplicacion "3 tier layered" en un proveedor de nube pública.
+En los próximos artículos hablaré de  como desplegar la arquitectura de una aplicación aplicación "3 tier layered" en un proveedor de nube pública.
 
 Si te pareció útil, por favor comparte =)
 
