@@ -34,8 +34,6 @@ Los equipos ahora  pueden implementar o actualizar una infraestructura formada p
 
 Establecido lo que es la infraestructura cómo código, queda una importante aclaración que hacer ¿Entonces cual es la diferencia de usar Ansible o Chef para gestionar la configuración?
 
-![](/uploads/illo-action-01-1k.png)
-
 Chef, Puppet, Ansible y SaltStack son herramientas de "gestión de configuración" lo que significa que están diseñadas para instalar y administrar software en **servidores** **existentes**.
 
 Terraform, CloudFormation, OpenStack Heat y otros, son "herramientas de orquestación" lo que significa que están diseñadas para aprovisionar los servidores, dejando el trabajo de configurar esos servidores para otras herramientas.
@@ -224,9 +222,9 @@ La inicialización del proveedor es una de las acciones de **terraform init.** A
 Los proveedores descargados por terraform init solo se instalan para el directorio de trabajo actual, otros directorios de trabajo pueden tener sus propias versiones de proveedor instaladas.
 
 ## Ejemplo: Crear una base de datos de MySQL con Terraform
-
+<p align="center">
 ![](/uploads/mysql_PNG9.png)
-
+</p>
 Como ejemplo en este tutorial crearemos una base de datos de MySQL.
 
 El código del ejemplo está en el siguiente repositorio de Github: [https://github.com/galvarado/terraform-examples](https://github.com/galvarado/terraform-examples "https://github.com/galvarado/terraform-examples")
