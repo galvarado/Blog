@@ -16,6 +16,12 @@ Mientras  que usando Terraform iniciaremos desde cero la infraestructura, con An
 
 El código en el que se basa este tutorial está disponible en [está disponible en este repositorio de Github](https://github.com/galvarado/terraform-ansible-DO-deploy-wordpress).  Será necesario para comprender lo que estaremos revisando. Primero mostraré lo necesario para ejecutar el código por cuenta propia para ver en acción a Terraform y a Ansible trabajando juntos. Posteriormente explicaré todo el código para entender todo lo que sucede debajo y cómo se logra.
 
+La máquina virtual donde que se creará  tiene los siguientes recursos:
+
+* Tamaño: s-1vcpu-1gb
+* Región: nyc1
+* Sistema operativo: centos-7-x64
+
 **1.Clonar el repositorio de github:**
 
     git clone git@github.com:galvarado/terraform-ansible-DO-deploy-wordpress.git
@@ -91,9 +97,18 @@ Para desplegar el blog solo tenemos que ejecutar los siguientes comandos:
 
 Una vez finalizada la ejecución de los playbooks, podremos acceder a nuestro blog en la dirección/IP que se muestra como output de ansible:
 
+![](/uploads/Screenshot-20190520132957-1156x242.png)  
+En mi caso el host creado para wordpress está en la IP 104.248.226.237, por tanto al dirigirme a http://104.248.226.237 encuentro el blog recién instalado:
+
+![](/uploads/Screenshot-20190520133138-1178x768.png)
+
 ## Paso a paso
 
-Podemos notar la siguiente estructura de los directorios:
+¿Que sucedió por debajo para poder crear la infraestructura e instalar Wordpress totalmente de una manera automatizada?
+
+Este es el resumen de las tareas ejecutadas:
+
+Ahora la explicación del código, podemos notar la siguiente estructura de los directorios:
 
     playbooks/
 
