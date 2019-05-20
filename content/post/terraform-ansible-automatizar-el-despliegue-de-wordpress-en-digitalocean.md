@@ -238,13 +238,186 @@ Los roles se crean ejecutando el siguiente comando:
 
 **Playbook  install_wordpress**
 
+    - hosts: all
+      gather_facts: False
+      
+      
+      # This test or install Python 2.7 onto all the target servers (which is an Ansible dependency) 
+      # and then it goes on to assigning 4 roles to the hosts.
+    
+      tasks:
+      - name: install python 2
+        raw: test -e /usr/bin/python || (yum update && yum install -y python)
+    
+    - hosts: all
+    
+      roles:
+        - server
+        - php
+        - mysql
+        - wordpress
+
+El playbook principal define la lista de hosts dónde se ejecutará el playbook, como pasamos en el comando la IP del servidor creado por terraform con la opción" -i " al indicar todos los hosts ansible lo ejecutará en la IP que se pasó como argumento.
+
+El playbook también contiene la tarea de verificar que está instalado python 2, posteriormente ejecuta las tareas de los roles definidos y siguiendo el orden secuencial.
+
+Dentro del directorio de cada rol, en _/tasks/main.yml_ se encuentran las tareas del rol y en n /defaults/main.yml se encuentran las variables que usa ese rol:
+
 **Rol "server"**
+
+    ---
+    # tasks file for server
+    - name: Update yum cache
+      yum: update_cache=yes
+      become: yes
+    
+    
+    - name: Download and install MySQL Community Repo
+      yum:
+        name: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
+        state: present
+    
+    - name: Install MySQL Server
+      yum:
+        name: mysql-server
+        state: present
+    
+    - name: Install remi repo
+      yum:
+        name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+        state: present
+    
+    - name: Enable remi-php72
+      command: yum-config-manager --enable remi-php72
+    
+    - name: Update yum
+      yum: update_cache=yes
+    
+    
+    - name: Install Apache and PHP 
+      yum: name={{ item }} state=present
+      become: yes
+      with_items:
+        - epel-release
+        - yum-utils
+        - httpd
+        - php
+        - php72
+        - php72-php-fpm
+        - php72-php-mysqlnd
+        - MySQL-python
+
+Este es el primer rol que se ejecuta y tiene como función actualizar el cache de yum e instalar repositorios y paquetes para la configuración.
 
 **Rol "php"**
 
+    ---
+    # tasks file for php
+    - name: Install php extensions
+      yum: name={{ item }} state=present
+      become: yes
+      with_items:
+        - php-common
+        - php-mysql
+        - php-gd
+        - php-xml
+        - php-mbstring
+        - php-mcrypt
+
+Posteriormente usamos el rol php para instalar algunas extensiónes necesarias para wordpress y msyql.
+
 **Rol "mysql"**
 
+    ---
+    - name: Start MySQL Server and enable it
+      service: name=mysqld state=started enabled=yes
+    
+    - name: Remove Test database if it exist.
+      mysql_db: name=test state=absent
+    
+    - name: Remove All Anonymous User Accounts
+      mysql_user: name=” host_all=yes state=absent
+    
+    - name: Create mysql database
+      mysql_db: name={{ wp_mysql_db }} state=present
+      become: yes
+    
+    - name: Create mysql user
+      mysql_user: 
+        name={{ wp_mysql_user }} 
+        password={{ wp_mysql_password }} 
+        priv=*.*:ALL
+    
+      become: yes  
+
+Este rol inicia mysql y lo habilita como servicio. También remueve la base de datos de test y las cuentas anónimas. Por último crea la base de datos de wordpress y el usuario. Es importante destacar que está tomando como valores para esto las variables definidas en /defaults/main.yml 
+
 **Rol "wordpress"**
+
+    ---
+    - name: Download WordPress
+      get_url: 
+        url=https://wordpress.org/latest.tar.gz 
+        dest=/tmp/wordpress.tar.gz
+        validate_certs=no
+    
+    - name: Extract WordPress
+      unarchive: src=/tmp/wordpress.tar.gz dest=/var/www/ copy=no
+      become: yes
+    
+    - name: Update default Apache site
+      become: yes
+      replace: 
+        path: "/etc/httpd/conf/httpd.conf"
+        replace: "DocumentRoot \"/var/www/wordpress\""
+        regexp: "DocumentRoot \"/var/www/html\""
+    
+    - name: Update default document root
+      become: yes
+      replace: 
+        path: "/etc/httpd/conf/httpd.conf"
+        replace: "<Directory \"/var/www/wordpress\">"
+        regexp: "<Directory \"/var/www/html\">"
+    
+      notify:
+        - restart apache
+    
+    - name: Copy sample config file
+      command: cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php creates=/var/www/wordpress/wp-config.php
+      become: yes
+    
+    - name: Update WordPress config file
+      replace:
+        path: "/var/www/wordpress/wp-config.php"
+        replace : "{{ item.line }}"
+        regexp: "{{ item.regexp }}"
+    
+      with_items:
+        - {'regexp': "define\\( 'DB_NAME', '*.*' \\);", 'line': "define('DB_NAME', '{{wp_mysql_db}}');"}        
+        - {'regexp': "define\\( 'DB_USER', '*.*' \\);", 'line': "define('DB_USER', '{{wp_mysql_user}}');"}        
+        - {'regexp': "define\\( 'DB_PASSWORD', '*.*' \\);", 'line': "define('DB_PASSWORD', '{{wp_mysql_password}}');"}
+      become: yes
+    
+    
+    - name: Download wp-cli
+      get_url:
+        url="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
+        dest="/usr/local/bin/wp"
+        force_basic_auth=yes
+        mode=0755
+    
+    - name: test if wp-cli is correctly installed
+      command: wp --info
+    
+    - name: Finish wordpress setup
+      command: wp core install --path=/var/www/wordpress --url=http://{{ ansible_eth0.ipv4.address }} --title="{{ wp_site_title }}" --admin_user={{ wp_site_user}} --admin_password={{ wp_site_password }} --admin_email={{ wp_site_email }}
+    
+    
+
+  
+Este es el rol más complejo, descarga e instala wordpress. Configura los archivos de apache para servir el sitio y el archivo de configuración de wordpress para conectar a la base de datos recién creada en el rol de MySQL. 
+
+Finalmente mediante wp-cli realiza los últimos pasos de configuración para instalar wordpress vía linea de comandos y no mediante la URL /wp_config.php.
 
 Con esto tenemos un ejemplo mucho más robusto de las capacidades de terraform y como agregando Ansible a la jugada hemos creado la automatización suficiente para crear infraestructura e instalar aplicaciones.
 
