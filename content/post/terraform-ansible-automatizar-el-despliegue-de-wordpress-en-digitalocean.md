@@ -138,7 +138,7 @@ Ansible:
 * Finish wordpress setup via wp-cli
 * Restart apache
 
- Podemos notar la siguiente estructura de los directorios:
+En el repositorio podemos notar la siguiente estructura de los directorios:
 
     playbooks/
     digitalocean.tf 
@@ -146,7 +146,9 @@ Ansible:
     README.md 
     .gitignore
 
-El archivo digitalocean.tf contiene la configuración de Terraform para crear la máquina virtual que será host de wordpress:
+El flujo que sigue terraform es crear la máquina virtual y una vez lista, ejecutar el playbook de ansible que instala wordpress.
+
+El archivo **digitalocean.tf** contiene la configuración de Terraform para crear la máquina virtual:
 
     variable "do_token" {}
     variable "ssh_key_private" {}
@@ -179,18 +181,81 @@ El archivo digitalocean.tf contiene la configuración de Terraform para crear la
             }
         }
     
-        # Execute ansible playbooks using local-exec 
-        provisioner "local-exec" {
-            environment {
-                PUBLIC_IP                 = "${self.ipv4_address}"
-                PRIVATE_IP                = "${self.ipv4_address_private}"
-                ANSIBLE_HOST_KEY_CHECKING = "False" 
-            }
+       
+
+La primer parte del archivo define las varibales a usar y configura el privisioner de Digital Ocean. Posteriormente se define el recurso a crear, en este caso es un máquina virtual. Aquí se definen las características de la máquina virtual:
+
+    # Create a web server
+
+    resource "digitalocean_droplet" "myblog" {
+
+        image  = "centos-7-x64"
+
+        name   = "myblog"
+
+        region = "nyc1"
+
+        size   = "s-1vcpu-1gb"
+
+        monitoring = "true"
+
+        ssh_keys = ["1632017"]
+
     
-            working_dir = "playbooks/"
-            command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
+
+Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host.
+
+    provisioner "remote-exec" {
+
+            inline = [
+
+              "yum install python -y",
+
+            ]
+
+             connection {
+
+                host        = "${self.ipv4_address}"
+
+                type        = "ssh"
+
+                user        = "root"
+
+                private_key = "${file("~/.ssh/id_rsa")}"
+
+            }
+
         }
+
+Se usa el provisioner "local-exec" para ejecutar el playbook de ansible.
+
+    # Execute ansible playbooks using local-exec 
+
+        provisioner "local-exec" {
+
+            environment {
+
+                PUBLIC_IP                 = "${self.ipv4_address}"
+
+                PRIVATE_IP                = "${self.ipv4_address_private}"
+
+                ANSIBLE_HOST_KEY_CHECKING = "False" 
+
+            }
+
+            working_dir = "playbooks/"
+
+            command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
+
+        }
+
     }
+
+en la sección environment se establecen algunas variables de entrono. El comando que ejecuta ansible es:
+
+    command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
+
+Se ejecuta el playbook "wordpress_playbook.yml" y se pasa como  argumento la IP del host creado y la llave para conectarnos vía ssh.
 
 Dentro del directorio "playbooks" se encuentran los archivos de ansible que realizan la instalación de wordpress. Usé roles de ansible para modularizar la configuración. Los roles son una característica robusta de Ansible que facilita la reutilización,  los roles son el mecanismo principal para dividir un playbook en varios archivos. Esto simplifica la escritura de playbooks complejos. La división del playbook permite dividir lógicamente los componentes volviendolo.
 
