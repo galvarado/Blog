@@ -44,12 +44,39 @@ En la ruta raíz del código, crear un archivo con nombre _terraform.tfvars_ y c
 
 * do_token :deberá tener el token creado en el paso previo.
 * ssh_key_private: la ruta de la llave privada que será usada para acceder al servidor en Digital Ocean.
+* droplet_ssh_key_id:El id de la llave en DigitalOcean que se usará para conectar a la máquina virtual
+* droplet_name: El nombre del droplet en DigitalOcean
+* droplet_size: El tamaño del droplet  a usar
+* droplet_region: La región dónde se desplegará el droplet
+
+Para obtener los valores de la región, la llave ssh,, el nombre de la imágen y el tamaño de la máquina virtual instalé el cliente de linea de comandos de Digital Ocean.
+
+Para listar todas las llaves ssh disponibles de la cuenta:
+
+    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute ssh-key list
+
+Para listar todas las imágenes de sistema operativo disponibles:
+
+    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute  image list --public  
+
+Para listar todas las regiones:
+
+    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute  region list
+
+Para listar todos los tamañosde maquina virtual disponibles:
+
+    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute  size list
 
 **terraform.tfvars**
 
     do_token = "123bc07c22f942ceccbdc010ff18025db0199bd6f916953c90b974d95caa7439"
-    
     ssh_key_private = "~/.ssh/id_rsa"
+    droplet_ssh_key_id = "2632015"
+    droplet_name = "MyBlog"
+    droplet_size = "s-1vcpu-1gb"
+    droplet_region = "nyc1"
+
+Nota: tanto la ruta de la llave así como el id de la llave en digital ocean deben hacer referencia a la misma llave.
 
 **4. Configuración de Wordpress (opcional)**
 
@@ -185,12 +212,6 @@ La primer parte del archivo define las varibales a usar y configura el privision
         size   = "s-1vcpu-1gb"
         monitoring = "true"
         ssh_keys = ["3632015"]
-
-Para obtener los valores de la región, el nommbre de la imágen y el tamaño de la máquina virtual instalé el cliente de linea de comandos de Digital Ocean.
-
-Por ejemplo, para listar todas las imágenes de sistema operativo disponibles:
-
-    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute  image list --public  
 
 Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host:
 
@@ -433,7 +454,6 @@ Si te pareció interesante, ayúdame compartiendo =)
 
 Referencias:
 
-* [https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/](https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/ "https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/")
 * [https://jite.eu/2018/7/16/terraform-and-ansible/](https://jite.eu/2018/7/16/terraform-and-ansible/ "https://jite.eu/2018/7/16/terraform-and-ansible/")
 * [http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/](http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/ "http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/")
 * [https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/](https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/ "https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/")
