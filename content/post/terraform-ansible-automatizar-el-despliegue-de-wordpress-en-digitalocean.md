@@ -6,7 +6,7 @@ tags = ["devops", "cloud", "best practices", "terraform"]
 title = " Terraform + Ansible: Automatizar el despliegue de WordPress en DigitalOcean"
 
 +++
-Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Por tanto, se creará la infraestructura en Digital Ocean con Terraform y luego usaremos Ansible para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
+Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Por tanto, se creará la infraestructura en Digital Ocean con Terraform usando CentOS como sistema operativo  y luego usaremos Ansible para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
 
 Ansible y Terraform son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos, mientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos etc.
 
@@ -14,11 +14,13 @@ Ansible y Terraform son soluciones complementarias, cada una tiene un rol en la 
 
 El código en el que se basa este tutorial  [está disponible en este repositorio de Github](https://github.com/galvarado/terraform-ansible-DO-deploy-wordpress).  Será necesario para comprender lo que estaremos revisando. Primero mostraré lo necesario para ejecutar el código por cuenta propia para ver en acción a Terraform y a Ansible trabajando juntos. Posteriormente explicaré todo el código para entender todo lo que sucede debajo y cómo se logra.
 
-La máquina virtual donde que se creará  tiene los siguientes recursos:
+Elegí usar DigitalOcean porque es una opción bastante asequible para realizar despliegues en nube pública. La máquina virtual donde que se creará  tiene los siguientes recursos.
 
 * Tamaño: s-1vcpu-1gb
 * Región: nyc1
 * Sistema operativo: centos-7-x64
+
+ El tamaño de la máquina virtual es de 1GB de Memoria RAM  y 1 vCPU con costo de $5 USD al mes. La región elegida es Nueva York 1.
 
 **1.Clonar el repositorio de github:**
 
@@ -91,7 +93,7 @@ En mi caso el host creado para wordpress está en la IP 104.248.226.237, por tan
 
 ![](/uploads/Screenshot-20190520133138-1178x768.png)
 
-## Paso a paso
+## Explicación paso a paso
 
 ¿Que sucedió por debajo para poder crear la infraestructura e instalar Wordpress totalmente de una manera automatizada?
 
@@ -183,6 +185,12 @@ La primer parte del archivo define las varibales a usar y configura el privision
         size   = "s-1vcpu-1gb"
         monitoring = "true"
         ssh_keys = ["3632015"]
+
+Para obtener los valores de la región, el nommbre de la imágen y el tamaño de la máquina virtual instalé el cliente de linea de comandos de Digital Ocean.
+
+Por ejemplo, para listar todas las imágenes de sistema operativo disponibles:
+
+    [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ doctl  -t [TOKEN] compute  image list --public  
 
 Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host:
 
