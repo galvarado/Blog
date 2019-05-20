@@ -146,6 +146,8 @@ En el repositorio podemos notar la siguiente estructura de los directorios:
     README.md 
     .gitignore
 
+## Terraform
+
 El flujo que sigue terraform es crear la máquina virtual y una vez lista, ejecutar el playbook de ansible que instala wordpress.
 
 El archivo **digitalocean.tf** contiene la configuración de Terraform para crear la máquina virtual:
@@ -203,7 +205,7 @@ La primer parte del archivo define las varibales a usar y configura el privision
 
     
 
-Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host.
+Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host:
 
     provisioner "remote-exec" {
 
@@ -227,7 +229,7 @@ Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instala
 
         }
 
-Se usa el provisioner "local-exec" para ejecutar el playbook de ansible.
+Se usa el provisioner "local-exec" para ejecutar el playbook de ansible:
 
     # Execute ansible playbooks using local-exec 
 
@@ -251,11 +253,13 @@ Se usa el provisioner "local-exec" para ejecutar el playbook de ansible.
 
     }
 
-en la sección environment se establecen algunas variables de entrono. El comando que ejecuta ansible es:
+En la sección environment se establecen algunas variables de entrono. Se ejecuta el playbook "wordpress_playbook.yml" y se pasa como  argumento la IP del host creado y la llave para conectarnos vía ssh. El comando que ejecuta ansible es:
 
     command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
 
-Se ejecuta el playbook "wordpress_playbook.yml" y se pasa como  argumento la IP del host creado y la llave para conectarnos vía ssh.
+Esto es todo lo que hace Terraform, ahora revisemos lo que hace Ansible.
+
+## Ansible
 
 Dentro del directorio "playbooks" se encuentran los archivos de ansible que realizan la instalación de wordpress. Usé roles de ansible para modularizar la configuración. Los roles son una característica robusta de Ansible que facilita la reutilización,  los roles son el mecanismo principal para dividir un playbook en varios archivos. Esto simplifica la escritura de playbooks complejos. La división del playbook permite dividir lógicamente los componentes volviendolo.
 
