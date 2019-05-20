@@ -56,13 +56,9 @@ Aunque no es necesario para ejecutar el código, opcionalmente se pueden cambiar
 _playbooks/roles/mysql/defaults/main.yml_ contiene las siguientes variables que se pueden modificar:
 
     ---
-    
     # defaults file for mysql
-    
     wp_mysql_db: wordpress
-    
     wp_mysql_user: wordpress
-    
     wp_mysql_password: randompassword
 
 Si no se modifican estos valores, serán los datos que se usarán para crear la base de datos de wordpress en MySQL y también serán los valores que se usarán en el archivo wp_config.php mientras ansible configura el sitio.
@@ -70,15 +66,10 @@ Si no se modifican estos valores, serán los datos que se usarán para crear la 
 _playbooks/roles/wordpress/defaults/main.yml_ contiene las siguientes variables que se pueden modificar:
 
     ---
-    
     # defaults file for wordpress
-    
     wp_site_title: New blog
-    
     wp_site_user: superadmin
-    
     wp_site_password: strongpasshere
-    
     wp_site_email: some_email@example.com
 
 Si no se modifican estos valores, serán los datos que necesitarás para entrar a Wordpress como usuario administrador.
@@ -90,7 +81,6 @@ SI no cuentas con Terraform instalado, en este enlance están los pasos para ins
 Para desplegar el blog solo tenemos que ejecutar los siguientes comandos:
 
     [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ terraform plan
-    
     [galvarado@zenbook terraform-ansible-DO-deploy-wordpress]$ terraform apply
 
 Una vez finalizada la ejecución de los playbooks, podremos acceder a nuestro blog en la dirección/IP que se muestra como output de ansible:
@@ -128,7 +118,7 @@ Ansible:
 * Create mysql database
 * Create mysql user
 * Download WordPress
-* Extract WordPress 
+* Extract WordPress
 * Update default Apache site
 * Update default document root
 * Copy sample config file
@@ -182,75 +172,45 @@ El archivo **digitalocean.tf** contiene la configuración de Terraform para crea
                 private_key = "${file("~/.ssh/id_rsa")}"
             }
         }
-    
-       
 
 La primer parte del archivo define las varibales a usar y configura el privisioner de Digital Ocean. Posteriormente se define el recurso a crear, en este caso es un máquina virtual. Aquí se definen las características de la máquina virtual:
 
     # Create a web server
-
     resource "digitalocean_droplet" "myblog" {
-
         image  = "centos-7-x64"
-
         name   = "myblog"
-
         region = "nyc1"
-
         size   = "s-1vcpu-1gb"
-
         monitoring = "true"
-
-        ssh_keys = ["1632017"]
-
-    
+        ssh_keys = ["3632015"]
 
 Se usa el provisioner "remote-exec" para conectarnos de manera remota  e instalar python, este es requisito para poder utilizar ansible en ese host:
 
     provisioner "remote-exec" {
-
             inline = [
-
               "yum install python -y",
-
             ]
-
              connection {
-
                 host        = "${self.ipv4_address}"
-
                 type        = "ssh"
-
                 user        = "root"
-
                 private_key = "${file("~/.ssh/id_rsa")}"
-
             }
-
+    
         }
 
 Se usa el provisioner "local-exec" para ejecutar el playbook de ansible:
 
     # Execute ansible playbooks using local-exec 
-
         provisioner "local-exec" {
-
             environment {
-
                 PUBLIC_IP                 = "${self.ipv4_address}"
-
                 PRIVATE_IP                = "${self.ipv4_address_private}"
-
                 ANSIBLE_HOST_KEY_CHECKING = "False" 
-
             }
-
             working_dir = "playbooks/"
-
             command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
-
         }
-
     }
 
 En la sección environment se establecen algunas variables de entrono. Se ejecuta el playbook "wordpress_playbook.yml" y se pasa como  argumento la IP del host creado y la llave para conectarnos vía ssh. El comando que ejecuta ansible es:
@@ -272,7 +232,7 @@ Básicamente, cada rol está limitado a una funcionalidad particular o un result
 
 Por lo regular un role corresponde a un host diferente, pero en este caso el mismo host tendrá todos los roles. Por ejemplo, el rol de wordpress contiene las tareas necesarias para instalar wordpress.
 
-Los roles se crean ejecutando el siguiente comando: 
+Los roles se crean ejecutando el siguiente comando:
 
     $ ansible-galaxy init [ROLE]
 
@@ -286,14 +246,14 @@ Los roles se crean ejecutando el siguiente comando:
 
 **Rol "wordpress"**
 
-Con esto tenemos un ejemplo mucho más robusto de las capacidades de terraform y como agregando Ansible a la jugada hemos creado la automatización suficiente para crear infraestructura e instalar aplicaciones. 
+Con esto tenemos un ejemplo mucho más robusto de las capacidades de terraform y como agregando Ansible a la jugada hemos creado la automatización suficiente para crear infraestructura e instalar aplicaciones.
 
 Si te pareció interesante, ayúdame compartiendo =)
 
 Referencias:
 
 * [https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/](https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/ "https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/")
-*  [https://jite.eu/2018/7/16/terraform-and-ansible/](https://jite.eu/2018/7/16/terraform-and-ansible/ "https://jite.eu/2018/7/16/terraform-and-ansible/")
-*  [http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/](http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/ "http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/")
-*  [https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/](https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/ "https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/")
-*  [https://github.com/tlezotte/ansible-wp-cli](https://github.com/tlezotte/ansible-wp-cli "https://github.com/tlezotte/ansible-wp-cli")
+* [https://jite.eu/2018/7/16/terraform-and-ansible/](https://jite.eu/2018/7/16/terraform-and-ansible/ "https://jite.eu/2018/7/16/terraform-and-ansible/")
+* [http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/](http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/ "http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/")
+* [https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/](https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/ "https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/")
+* [https://github.com/tlezotte/ansible-wp-cli](https://github.com/tlezotte/ansible-wp-cli "https://github.com/tlezotte/ansible-wp-cli")
