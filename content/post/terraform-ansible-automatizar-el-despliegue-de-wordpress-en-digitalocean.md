@@ -8,9 +8,7 @@ title = " Terraform + Ansible: Automatizar el despliegue de WordPress en Digital
 +++
 Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Por tanto, se creará la infraestructura en Digital Ocean con Terraform y luego usaremos Ansible para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
 
-Ansible y Terraform son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos. Terraform proporciona la gestión del ciclo de vida de la infraestructura, mientras que Ansible  ayuda a aprovisionar y configurar aplicaciones.
-
-Mientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos etc.
+Ansible y Terraform son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos, mientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos etc.
 
 ## Desplegar Wordpress en Digital Ocean
 
@@ -53,7 +51,7 @@ En la ruta raíz del código, crear un archivo con nombre _terraform.tfvars_ y c
 
 **4. Configuración de Wordpress (opcional)**
 
-Aunque no es necesario para ejecutar el código, opcionalmente se pueden cambiar los valores definidos para la base de datos de MySQL que se usará con wordpress aí como los valores de configuración de wordpress:
+Aunque no es necesario para ejecutar el código, opcionalmente se pueden cambiar los valores definidos para la base de datos de MySQL que se usará con wordpress así como los valores de configuración de wordpress:
 
 _playbooks/roles/mysql/defaults/main.yml_ contiene las siguientes variables que se pueden modificar:
 
