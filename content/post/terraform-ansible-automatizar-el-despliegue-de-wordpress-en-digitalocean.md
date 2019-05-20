@@ -261,7 +261,7 @@ Esto es todo lo que hace Terraform, ahora revisemos lo que hace Ansible.
 
 ## Ansible
 
-Dentro del directorio "playbooks" se encuentran los archivos de ansible que realizan la instalación de wordpress. Usé roles de ansible para modularizar la configuración. Los roles son una característica robusta de Ansible que facilita la reutilización,  los roles son el mecanismo principal para dividir un playbook en varios archivos. Esto simplifica la escritura de playbooks complejos. La división del playbook permite dividir lógicamente los componentes volviendolo.
+Dentro del directorio "playbooks" se encuentran los archivos de ansible que realizan la instalación de wordpress. Usé roles de ansible para modularizar la configuración. Los roles son una característica robusta de Ansible que facilita la reutilización, los roles son el mecanismo principal para dividir un playbook en varios archivos, la división del playbook permite dividir lógicamente los componentes volviendolo reutilizable.
 
 Básicamente, cada rol está limitado a una funcionalidad particular o un resultado deseado, entonces el rol contiene todos los pasos necesarios para llegar a ese resultado. Para el ejemplo de wordpress cree 4 roles:
 
@@ -276,16 +276,24 @@ Los roles se crean ejecutando el siguiente comando:
 
     $ ansible-galaxy init [ROLE]
 
-Ansible playbooks : [https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/](https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/ "https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/")
+**Playbook  install_wordpress**
 
-Ejecutar ansible desde terraform: [https://jite.eu/2018/7/16/terraform-and-ansible/](https://jite.eu/2018/7/16/terraform-and-ansible/ "https://jite.eu/2018/7/16/terraform-and-ansible/")
+**Rol "server"**
 
-MySQL: [http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/](http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/ "http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/")
+**Rol "php"**
 
-PHP: [https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/](https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/ "https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/")
+**Rol "mysql"**
 
-WOrdpress CLI: [https://github.com/tlezotte/ansible-wp-cli](https://github.com/tlezotte/ansible-wp-cli "https://github.com/tlezotte/ansible-wp-cli")
+**Rol "wordpress"**
 
-[https://wp-cli.org/es/](https://wp-cli.org/es/ "https://wp-cli.org/es/")
+Con esto tenemos un ejemplo mucho más robusto de las capacidades de terraform y como agregando Ansible a la jugada hemos creado la automatización suficiente para crear infraestructura e instalar aplicaciones. 
 
-[https://medium.com/@beBrllnt/from-30-minutes-to-10-seconds-automating-wordpress-setup-5ff7526942c0](https://medium.com/@beBrllnt/from-30-minutes-to-10-seconds-automating-wordpress-setup-5ff7526942c0 "https://medium.com/@beBrllnt/from-30-minutes-to-10-seconds-automating-wordpress-setup-5ff7526942c0")
+Si te pareció interesante, ayúdame compartiendo =)
+
+Referencias:
+
+* [https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/](https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/ "https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/")
+*  [https://jite.eu/2018/7/16/terraform-and-ansible/](https://jite.eu/2018/7/16/terraform-and-ansible/ "https://jite.eu/2018/7/16/terraform-and-ansible/")
+*  [http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/](http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/ "http://www.wiivil.com/installing-mysql-on-centos-7-server-using-ansible/")
+*  [https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/](https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/ "https://www.cyberciti.biz/faq/how-to-install-php-7-2-on-centos-7-rhel-7/")
+*  [https://github.com/tlezotte/ansible-wp-cli](https://github.com/tlezotte/ansible-wp-cli "https://github.com/tlezotte/ansible-wp-cli")
