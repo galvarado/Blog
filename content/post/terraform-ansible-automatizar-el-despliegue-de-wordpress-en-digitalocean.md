@@ -157,7 +157,7 @@ El archivo **digitalocean.tf** contiene la configuración de Terraform para crea
         region = "nyc1"
         size   = "s-1vcpu-1gb"
         monitoring = "true"
-        ssh_keys = ["1632017"]
+        ssh_keys = ["3632015"]
     
         # Install python on the droplet using remote-exec to execute ansible playbooks to configure the services
         provisioner "remote-exec" {
