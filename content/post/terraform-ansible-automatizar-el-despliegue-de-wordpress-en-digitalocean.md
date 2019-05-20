@@ -95,7 +95,8 @@ Para desplegar el blog solo tenemos que ejecutar los siguientes comandos:
 
 Una vez finalizada la ejecución de los playbooks, podremos acceder a nuestro blog en la dirección/IP que se muestra como output de ansible:
 
-![](/uploads/Screenshot-20190520132957-1156x242.png)  
+![](/uploads/Screenshot-20190520132957-1156x242.png)
+
 En mi caso el host creado para wordpress está en la IP 104.248.226.237, por tanto al dirigirme a http://104.248.226.237 encuentro el blog recién instalado:
 
 ![](/uploads/Screenshot-20190520133138-1178x768.png)
@@ -106,17 +107,105 @@ En mi caso el host creado para wordpress está en la IP 104.248.226.237, por tan
 
 Este es el resumen de las tareas ejecutadas:
 
-Ahora la explicación del código, podemos notar la siguiente estructura de los directorios:
+Terraform:
+
+* Create Digitral Ocean droplet
+
+Ansible:
+
+* Install python 2
+* Update yum cache
+* Download and install MySQL Community Repo
+* Install MySQL Server
+* Install remi repo
+* Enable remi-php72
+* Update yum
+* Install Apache and PHP
+* Install php extensions
+* Start MySQL Server and enable it
+* Remove Test database if it exists
+* Remove All Anonymous User Accounts
+* Create mysql database
+* Create mysql user
+* Download WordPress
+* Extract WordPress 
+* Update default Apache site
+* Update default document root
+* Copy sample config file
+* Update WordPress config file
+* Download wp-cli
+* Test if wp-cli is correctly installed
+* Finish wordpress setup via wp-cli
+* Restart apache
+
+ Podemos notar la siguiente estructura de los directorios:
 
     playbooks/
-    
-    digitalocean.tf  
-    
+    digitalocean.tf 
     LICENSE 
-    
     README.md 
-    
     .gitignore
+
+El archivo digitalocean.tf contiene la configuración de Terraform para crear la máquina virtual que será host de wordpress:
+
+    variable "do_token" {}
+    variable "ssh_key_private" {}
+    
+    # Configure the DigitalOcean Provider
+    provider "digitalocean" {
+        token = "${var.do_token}"
+    }
+    
+    # Create a web server
+    resource "digitalocean_droplet" "myblog" {
+        image  = "centos-7-x64"
+        name   = "myblog"
+        region = "nyc1"
+        size   = "s-1vcpu-1gb"
+        monitoring = "true"
+        ssh_keys = ["1632017"]
+    
+        # Install python on the droplet using remote-exec to execute ansible playbooks to configure the services
+        provisioner "remote-exec" {
+            inline = [
+              "yum install python -y",
+            ]
+    
+             connection {
+                host        = "${self.ipv4_address}"
+                type        = "ssh"
+                user        = "root"
+                private_key = "${file("~/.ssh/id_rsa")}"
+            }
+        }
+    
+        # Execute ansible playbooks using local-exec 
+        provisioner "local-exec" {
+            environment {
+                PUBLIC_IP                 = "${self.ipv4_address}"
+                PRIVATE_IP                = "${self.ipv4_address_private}"
+                ANSIBLE_HOST_KEY_CHECKING = "False" 
+            }
+    
+            working_dir = "playbooks/"
+            command     = "ansible-playbook -u root --private-key ${var.ssh_key_private} -i ${self.ipv4_address}, wordpress_playbook.yml "
+        }
+    }
+
+Dentro del directorio "playbooks" se encuentran los archivos de ansible que realizan la instalación de wordpress. Usé roles de ansible para modularizar la configuración. Los roles son una característica robusta de Ansible que facilita la reutilización,  los roles son el mecanismo principal para dividir un playbook en varios archivos. Esto simplifica la escritura de playbooks complejos. La división del playbook permite dividir lógicamente los componentes volviendolo.
+
+Básicamente, cada rol está limitado a una funcionalidad particular o un resultado deseado, entonces el rol contiene todos los pasos necesarios para llegar a ese resultado. Para el ejemplo de wordpress cree 4 roles:
+
+* server
+* php
+* mysql
+* wordpress
+
+Por lo regular un role corresponde a un host diferente, pero en este caso el mismo host tendrá todos los roles. Por ejemplo, el rol de wordpress contiene las tareas necesarias para instalar wordpress.
+
+Los roles se crean ejecutando el siguiente comando: 
+
+    $ ansible-galaxy init [ROLE]
 
 Ansible playbooks : [https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/](https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/ "https://dotlayer.com/how-to-use-an-ansible-playbook-to-install-wordpress/")
 
