@@ -6,9 +6,9 @@ tags = ["devops", "cloud", "best practices", "terraform"]
 title = " Terraform + Ansible: Automatizar el despliegue de WordPress en DigitalOcean"
 
 +++
-Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Por tanto, se creará la infraestructura en Digital Ocean con Terraform usando CentOS como sistema operativo  y luego usaremos Ansible para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
+Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Estas son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos.
 
-Ansible y Terraform son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos, mientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos etc.
+Mmientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos est para para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
 
 ## Desplegar Wordpress en Digital Ocean
 
@@ -40,7 +40,7 @@ Asignamos un nombre para reconocerlo y copiamos el token, usaremos el valor copi
 
 **3. Crear archivo de variables para configuración**
 
-En la ruta raíz del código, crear un archivo con nombre _terraform.tfvars_ y colocar las siguientes 2 variables:
+En la ruta raíz del código, crear un archivo con nombre _terraform.tfvars_ y colocar las siguientes  variables:
 
 * do_token :deberá tener el token creado en el paso previo.
 * ssh_key_private: la ruta de la llave privada que será usada para acceder al servidor en Digital Ocean.
