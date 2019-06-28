@@ -8,7 +8,7 @@ title = " Terraform + Ansible: Automatizar el despliegue de WordPress en Digital
 +++
 Este tutorial es la segunda parte de la entrada anterior: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).  En esta ocasión,  veremos un ejemplo que tiene como objetivo  automatizar todo el despliegue de una aplicación con terraform y veremos cómo podemos usar en conjunto RedHat Ansible para automatizar la configuración de la aplicación. Estas son soluciones complementarias, cada una tiene un rol en la gestión de aplicaciones y entornos.
 
-Mmientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos est para para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
+Mientras  que usando Terraform iniciaremos desde cero la infraestructura, con Ansible resolveremos la instalación de aplicaciones y las configuraciones como copiar archivos, cambiar rutas y permisos, iniciar servicios y habilitarlos esto para para instalar WordPress, PHP, Apache2 y MySQL como base de datos en los recursos de infraestructura creados en Terraform.
 
 ## Desplegar Wordpress en Digital Ocean
 
@@ -20,7 +20,7 @@ Elegí usar DigitalOcean porque es una opción bastante asequible para realizar 
 * Región: nyc1
 * Sistema operativo: centos-7-x64
 
- El tamaño de la máquina virtual es de 1GB de Memoria RAM  y 1 vCPU con costo de $5 USD al mes. La región elegida es Nueva York 1.
+El tamaño de la máquina virtual es de 1GB de Memoria RAM  y 1 vCPU con costo de $5 USD al mes. La región elegida es Nueva York 1.
 
 **1.Clonar el repositorio de github:**
 
@@ -379,7 +379,7 @@ Posteriormente usamos el rol php para instalar algunas extensiónes necesarias p
     
       become: yes  
 
-Este rol inicia mysql y lo habilita como servicio. También remueve la base de datos de test y las cuentas anónimas. Por último crea la base de datos de wordpress y el usuario. Es importante destacar que está tomando como valores para esto las variables definidas en /defaults/main.yml 
+Este rol inicia mysql y lo habilita como servicio. También remueve la base de datos de test y las cuentas anónimas. Por último crea la base de datos de wordpress y el usuario. Es importante destacar que está tomando como valores para esto las variables definidas en /defaults/main.yml
 
 **Rol "wordpress"**
 
@@ -440,11 +440,8 @@ Este rol inicia mysql y lo habilita como servicio. También remueve la base de d
     
     - name: Finish wordpress setup
       command: wp core install --path=/var/www/wordpress --url=http://{{ ansible_eth0.ipv4.address }} --title="{{ wp_site_title }}" --admin_user={{ wp_site_user}} --admin_password={{ wp_site_password }} --admin_email={{ wp_site_email }}
-    
-    
 
-  
-Este es el rol más complejo, descarga e instala wordpress. Configura los archivos de apache para servir el sitio y el archivo de configuración de wordpress para conectar a la base de datos recién creada en el rol de MySQL. 
+Este es el rol más complejo, descarga e instala wordpress. Configura los archivos de apache para servir el sitio y el archivo de configuración de wordpress para conectar a la base de datos recién creada en el rol de MySQL.
 
 Finalmente mediante wp-cli realiza los últimos pasos de configuración para instalar wordpress vía linea de comandos y no mediante la URL /wp_config.php.
 
