@@ -49,7 +49,7 @@ En la ruta raíz del código, crear un archivo con nombre _terraform.tfvars_ y c
 * droplet_size: El tamaño del droplet  a usar
 * droplet_region: La región dónde se desplegará el droplet
 
-Para obtener los valores de la región, la llave ssh,, el nombre de la imágen y el tamaño de la máquina virtual instalé el cliente de linea de comandos de Digital Ocean.
+Para obtener los valores de la región, la llave ssh, el nombre de la imágen y el tamaño de la máquina virtual instalé el cliente de linea de comandos de Digital Ocean.
 
 Para listar todas las llaves ssh disponibles de la cuenta:
 
