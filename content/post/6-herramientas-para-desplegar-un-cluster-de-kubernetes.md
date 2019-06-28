@@ -65,7 +65,27 @@ Una vez instalado snap, instalamos microk8s:
 
 ## Herramientas para desplegar Kubernetes para producción
 
-[https://github.com/kubernetes/kops](https://github.com/kubernetes/kops "https://github.com/kubernetes/kops")
+#### 3. kops
+
+Kops, abreviatura de Kubernetes Operations, es un conjunto de herramientas para instalar, operar y eliminar  clusters de Kubernetes en la nube. kops [es un proyecto oficial de Kubernetes ](https://github.com/kubernetes/kops).  
+
+Las plataformas con las que es compatible es AWS, Google Cloud Platform, OpenStack, DigitalOCean y VMware vSphere en alpha, algunas otras plataformas están planeadas a futuro.
+
+La mayor ventaja de kops es que hay muchas posibilidades de que se convierta en un método de instalación predeterminado en el futuro. Las características principales de la herramienta incluyen:
+
+* Creación automatizada de infraestructura y despliegue de clusteres.
+* Soporte para características nativas de proveedores de nube.
+* Soporte para actualizaciones y actualizaciones.
+
+¿Cuando elegir Kops ?Kops está más estrechamente integrado con características únicas de las nubes que soporta, por lo que es la mejor opción si se usará una de estas plataformas de nube pública.
+
+Una nota importante: kops usa kubeadm  que revisaremos más adelante.
+
+Ahora los tutoriales, para[ instalar un cluster Kubernetes en AWS.](https://github.com/kubernetes/kops/blob/master/docs/aws.md) Para instalar un clúster [Kubernetes en GCE,](https://github.com/kubernetes/kops/blob/master/docs/tutorial/gce.md) y ara instalar un cluster [Kubernetes en DigitalOcean.](https://github.com/kubernetes/kops/blob/master/docs/tutorial/digitalocean.md)
+
+#### 4. Kubespray
+
+#### 5. Kubeadm
 
 [https://github.com/kubernetes-sigs/kubespray](https://github.com/kubernetes-sigs/kubespray "https://github.com/kubernetes-sigs/kubespray")
 
@@ -73,4 +93,8 @@ Una vez instalado snap, instalamos microk8s:
 
 ## Realizar una instalación "Self hosting" de  Kubernetes
 
+#### 6.Bootkube
+
 [https://github.com/kubernetes-incubator/bootkube](https://github.com/kubernetes-incubator/bootkube "https://github.com/kubernetes-incubator/bootkube")
+
+[https://tasdikrahman.me/2019/04/04/self-hosting-highly-available-kubernetes-cluster-aws-google-cloud-azure/](https://tasdikrahman.me/2019/04/04/self-hosting-highly-available-kubernetes-cluster-aws-google-cloud-azure/ "https://tasdikrahman.me/2019/04/04/self-hosting-highly-available-kubernetes-cluster-aws-google-cloud-azure/")
