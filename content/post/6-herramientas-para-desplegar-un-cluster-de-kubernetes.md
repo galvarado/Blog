@@ -69,7 +69,7 @@ Una vez instalado snap, instalamos microk8s:
 
 Kubeadm es una herramienta que nos ayuda a iniciar clusters de Kubernetes siguiendo las mejores prácticas en la infraestructura existente. Su  principal ventaja es la capacidad de lanzar grupos de Kubernetes mínimos viables en cualquier lugar, es decir, realiza las acciones necesarias para que un cluster  sea mínimamente viable y funcione de manera fácil para el usuario.  Kubeadm automatiza bastantes pasos difíciles en la implementación de un clúster Kubernetes, incluida la emisión y coordinación de los certificados de seguridad de cada nodo, así como los permisos necesarios para el control de acceso basado en roles (RBAC).  
 
-Kubeadm no puede proveer la infraestructura  y tampoco incluye instalación de addons y la configuración de red. Kubeadm se  pretende que sea un componente compositivo de herramientas de nivel superior.
+Kubeadm no puede proveer la infraestructura  y tampoco incluye instalación de addons y la configuración de red. **Kubeadm se  pretende que sea un componente compositivo de herramientas de nivel superior, es decir, se espera que se construyan herramientas de nivel superior y más personalizadas sobre kubeadm, e idealmente  usen kubeadm como la base de todas las implementaciones.**
 
 Esta parece ser una buena opción para las instalaciones en baremetal de Kubernetes o como complemento a cualquier otra herramienta complementaria en una configuración manual.
 
@@ -78,13 +78,6 @@ Según los documentos oficiales, kubeadm se puede utilizar en los siguientes esc
 * Para probar Kubernetes por primera vez.
 * Implementar un clúster  minimo para probar una aplicación
 * Para ser explotado como un bloque de construcción en otros sistemas complejos
-
-Comandos de Kubeadm comunes:
-
-* **kubeadm init** para iniciar el nodo inicial del control plane de Kubernetes.
-* **kubeadm** **join** usa para arrancar un nodo worker de Kubernetes o un nodo de control plane adicional  y unirlo al clúster.
-* **kubeadm upgrade** para actualizar un clúster Kubernetes a una versión más nueva.
-* **kubeadm reset** para revertir cualquier cambio realizado en un host por kubeadm init o kubeadm join.
 
 Más detalles [se encuentran aquí](https://kubernetes.io/blog/2017/01/stronger-foundation-for-creating-and-managing-kubernetes-clusters/) y puedes seguir [este tutorial para instalar k8s con kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
 
@@ -109,8 +102,6 @@ Ahora los tutoriales, para[ instalar un cluster Kubernetes en AWS.](https://gith
 #### 5. Kubespray
 
 [https://github.com/kubernetes-sigs/kubespray](https://github.com/kubernetes-sigs/kubespray "https://github.com/kubernetes-sigs/kubespray")
-
-[https://github.com/kubernetes/kubeadm](https://github.com/kubernetes/kubeadm "https://github.com/kubernetes/kubeadm")
 
 ## Realizar una instalación "Self hosting" de  Kubernetes
 
