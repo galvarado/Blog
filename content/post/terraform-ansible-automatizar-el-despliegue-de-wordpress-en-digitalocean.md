@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = "2019-05-16T05:00:00+00:00"
+date = "2019-06-27T17:00:00+00:00"
 image = "/uploads/terraformansibledigitalocean.png"
 tags = ["devops", "cloud", "best practices", "terraform"]
 title = " Terraform + Ansible: Automatizar el despliegue de WordPress en DigitalOcean"
