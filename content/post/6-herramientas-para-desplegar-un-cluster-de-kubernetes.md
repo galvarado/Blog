@@ -65,27 +65,48 @@ Una vez instalado snap, instalamos microk8s:
 
 ## Herramientas para desplegar Kubernetes para producción
 
-#### 3. kops
+#### 3. Kubeadm
 
-Kops, abreviatura de Kubernetes Operations, es un conjunto de herramientas para instalar, operar y eliminar  clusters de Kubernetes en la nube. kops [es un proyecto oficial de Kubernetes ](https://github.com/kubernetes/kops).  
+Kubeadm es una herramienta que nos ayuda a iniciar clusters de Kubernetes siguiendo las mejores prácticas en la infraestructura existente. Su  principal ventaja es la capacidad de lanzar grupos de Kubernetes mínimos viables en cualquier lugar, es decir, realiza las acciones necesarias para que un cluster  sea mínimamente viable y funcione de manera fácil para el usuario.  Kubeadm automatiza bastantes pasos difíciles en la implementación de un clúster Kubernetes, incluida la emisión y coordinación de los certificados de seguridad de cada nodo, así como los permisos necesarios para el control de acceso basado en roles (RBAC).  
+
+Kubeadm no puede proveer la infraestructura  y tampoco incluye instalación de addons y la configuración de red. Kubeadm se  pretende que sea un componente compositivo de herramientas de nivel superior.
+
+Esta parece ser una buena opción para las instalaciones en baremetal de Kubernetes o como complemento a cualquier otra herramienta complementaria en una configuración manual.
+
+Según los documentos oficiales, kubeadm se puede utilizar en los siguientes escenarios:
+
+* Para probar Kubernetes por primera vez.
+* Implementar un clúster  minimo para probar una aplicación
+* Para ser explotado como un bloque de construcción en otros sistemas complejos
+
+Comandos de Kubeadm comunes:
+
+* **kubeadm init** para iniciar el nodo inicial del control plane de Kubernetes.
+* **kubeadm** **join** usa para arrancar un nodo worker de Kubernetes o un nodo de control plane adicional  y unirlo al clúster.
+* **kubeadm upgrade** para actualizar un clúster Kubernetes a una versión más nueva.
+* **kubeadm reset** para revertir cualquier cambio realizado en un host por kubeadm init o kubeadm join.
+
+Más detalles [se encuentran aquí](https://kubernetes.io/blog/2017/01/stronger-foundation-for-creating-and-managing-kubernetes-clusters/) y puedes seguir [este tutorial para instalar k8s con kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
+
+#### 4. Kops
+
+Kops, abreviatura de Kubernetes Operations, es un conjunto de herramientas para instalar, operar y eliminar  clusters de Kubernetes en plataformas de nube. Kops [es un proyecto oficial de Kubernetes](https://github.com/kubernetes/kops).  
 
 Las plataformas con las que es compatible es AWS, Google Cloud Platform, OpenStack, DigitalOCean y VMware vSphere en alpha, algunas otras plataformas están planeadas a futuro.
 
 La mayor ventaja de kops es que hay muchas posibilidades de que se convierta en un método de instalación predeterminado en el futuro. Las características principales de la herramienta incluyen:
 
-* Creación automatizada de infraestructura y despliegue de clusteres.
+* Creación automatizada de infraestructura y despliegue de clusters.
 * Soporte para características nativas de proveedores de nube.
 * Soporte para actualizaciones y actualizaciones.
 
-¿Cuando elegir Kops ?Kops está más estrechamente integrado con características únicas de las nubes que soporta, por lo que es la mejor opción si se usará una de estas plataformas de nube pública.
+**¿Cuando elegir Kops ?** Kops está más estrechamente integrado con características únicas de las nubes que soporta, por lo que es la mejor opción si se usará una de estas plataformas de nube pública.
 
-Una nota importante: kops usa kubeadm  que revisaremos más adelante.
+Una nota importante: kops usa kubeadm, pero no hay necesidad de elegir entre kops y kubeadm,  kubeadm está destinado a ser un componente básico que cualquier herramienta de instalación pueda aprovechar, en lugar de que cada instalador construya la misma funcionalidad de bajo nivel.  Además, kubeadmn no está pensado principalmente para usuarios finales, a menos que desee crear su propia herramienta de instalación.
 
 Ahora los tutoriales, para[ instalar un cluster Kubernetes en AWS.](https://github.com/kubernetes/kops/blob/master/docs/aws.md) Para instalar un clúster [Kubernetes en GCE,](https://github.com/kubernetes/kops/blob/master/docs/tutorial/gce.md) y ara instalar un cluster [Kubernetes en DigitalOcean.](https://github.com/kubernetes/kops/blob/master/docs/tutorial/digitalocean.md)
 
-#### 4. Kubespray
-
-#### 5. Kubeadm
+#### 5. Kubespray
 
 [https://github.com/kubernetes-sigs/kubespray](https://github.com/kubernetes-sigs/kubespray "https://github.com/kubernetes-sigs/kubespray")
 
