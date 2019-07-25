@@ -44,6 +44,7 @@ fields:
   - aws
   - CloudOps
 pages:
+- content/post/taurus-una-herramienta-devops-pra-automatizar-pruebas-de-rendimiento.md
 - content/post/primeros-pasos-en-integración-y-despliegue-continuo-con-circle-ci.md
 - content/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes.md
 - content/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean.md
