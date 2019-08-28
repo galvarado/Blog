@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = "2019-07-12T05:00:00+00:00"
-draft = true
 image = "/uploads/6toolsk8s.png"
 tags = ["devops", "cloud", "containers", "kubernetes"]
 title = "6  herramientas para desplegar un cluster de kubernetes"
