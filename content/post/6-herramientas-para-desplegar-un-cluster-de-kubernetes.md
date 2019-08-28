@@ -106,11 +106,11 @@ Kubespray es una herramienta para desplegar kubernetes  basada en ansible. Enton
 
 Para usar Kubespray  entonces es necesario instalar ansible y cumplir algunos requisitos como son configurar el acceso con llave ssh en todos los nodos que formaran el cluster de modo que ansible pueda conectarse a los servidores  y escribir un inventario donde colocamos los roles de los servidores.
 
-**¿ Cuando elegir Kubespray?** A diferencia de Kops que realiza el aprovisionamientoy es el  responsable del ciclo de vida completo del cluster, desde el aprovisionamiento de la infraestructura hasta la actualización y la eliminación, Kubespray necesita de nodos existentes para la instalación, pero no es una ventaja o desventaja, simplemente es una diferencia que nos da más flexibilidad. Por tanto es mejor idea usar kubespray si  vas a desplegar Kubernetes pero no quieres depender de una plataforma de nube o si vas a desplegar kubernetes  en una nube privada o en una nube no soportada por Kops. 
+**¿ Cuando elegir Kubespray?** A diferencia de Kops que realiza el aprovisionamiento y es el  responsable del ciclo de vida completo del cluster, desde el aprovisionamiento de la infraestructura hasta la actualización y la eliminación, Kubespray necesita de nodos existentes para la instalación, pero no es una ventaja o desventaja, simplemente es una diferencia que nos da más flexibilidad. Por tanto es mejor idea usar kubespray si  vas a desplegar Kubernetes pero no quieres depender de una plataforma de nube o si vas a desplegar kubernetes  en una nube privada o en una nube no soportada por Kops.
 
 Esto no quiere decir que no puedas usar Kubespray en GCP, AWS, Azure, etc, solo significa debes proveer la infraestructura en un instalación en estas plataformas peor  por lo mismo hace que se tenga menos dependencia de la plataforma de nube. **Kubespray es una combinación equilibrada de flexibilidad y facilidad de uso.**
 
- Definitivamente es la mejor opción para las personas familiarizadas con Ansible y para quién desea ejecutar un cluster de Kubernetes en múltiples plataformas. [Este es el tutorial oficial de kubespray ](https://kubernetes.io/docs/setup/production-environment/tools/kubespray/)
+Definitivamente es la mejor opción para las personas familiarizadas con Ansible y para quién desea ejecutar un cluster de Kubernetes en múltiples plataformas. [Este es el tutorial oficial de kubespray ](https://kubernetes.io/docs/setup/production-environment/tools/kubespray/)
 
 ## Realizar una instalación "Self hosting" de  Kubernetes
 
@@ -118,20 +118,48 @@ Esto no quiere decir que no puedas usar Kubespray en GCP, AWS, Azure, etc, solo 
 
 Primero que nada, ¿Qué es una  instalación self-hosting de kubernetes?
 
-Es una instalación donde todos los componentes requeridos y opcionales de un cluster de Kubernetes  se instalan encima de Kubernetes. 
+Es una instalación donde todos los componentes requeridos y opcionales de un cluster de Kubernetes  se instalan encima de Kubernetes.
 
-En pocas palabras,  una instalación convencional de Kubernetes ejecutalos  componentes del plano de control como servicios de systemd en el host. Es fácil de entender ya que se gestiona como cualquier otro sistema, pero en la práctica es bastante estático lo que lo hace difícil de reconfigurar. 
+En pocas palabras,  una instalación convencional de Kubernetes ejecutalos  componentes del plano de control como servicios de systemd en el host. Es fácil de entender ya que se gestiona como cualquier otro sistema, pero en la práctica es bastante estático lo que lo hace difícil de reconfigurar.
 
-En un Kubernetes Self hosting  se ejecutan los componentes del plano de control como pods.  La configuración de los hosts se vuelve mucho más mínima. Esto favorece la realización de actualizaciones continuas a través de Kubernetes. 
+En un Kubernetes Self hosting  se ejecutan los componentes del plano de control como pods.  La configuración de los hosts se vuelve mucho más mínima. Esto favorece la realización de actualizaciones continuas a través de Kubernetes.
 
- Un ejemplo claro de una instalación así es el propio [OpenShift de Red Hat](https://www.openshift.com/), que es un PaaS construido con Kubernetes debajo.
+Un ejemplo claro de una instalación así es el propio [OpenShift de Red Hat](https://www.openshift.com/), que es un PaaS construido con Kubernetes debajo.
 
 Bootkube entonces  proporciona un plano de control de Kubernetes temporal que le dice a un kubelet que ejecute todos los componentes necesarios para ejecutar un plano de control de Kubernetes. Cuando se inicie, bootkube desplegará un plano de control de Kubernetes temporal (api-server, planificador, controlador-administrador), que opera el tiempo suficiente para arrancar un  plan de control de reemplazo propio.
 
-Bootkube solo se usa para la instalación inicial, al final del  proceso, el bootkube se puede apagar y el sistema kubelet se coordinará, para permitir que el kubelet auto-alojado se haga cargo del ciclo de vida y la administración de Los componentes del plano de control. 
+Bootkube solo se usa para la instalación inicial, al final del  proceso, el bootkube se puede apagar y el sistema kubelet se coordinará, para permitir que el kubelet auto-alojado se haga cargo del ciclo de vida y la administración de Los componentes del plano de control.
 
 ¿**Cuando usar Bootkube?**  Definitivamente la opción de Bootkube y debería ser utilizada por alguien con conocimientos avanzados en kubernetes. Bootkube[ es un proyecto en incubación](https://github.com/kubernetes-incubator) de kubernetes.
 
 Recomiendo [este articulo](https://tasdikrahman.me/2019/04/04/self-hosting-highly-available-kubernetes-cluster-aws-google-cloud-azure/) para profundizar y el [repositorio oficial](https://github.com/kubernetes-incubator/bootkube) contien  tutoriales y guias  para realizar una instalación con bootkube.
 
-Como pueden ver hay varias alternativas para la instalación de kubernetes, todas con ventajas y desventajas.  Si te parece útil, por favor comparte =)
+Como pueden ver hay varias alternativas para la instalación de kubernetes, todas con ventajas y desventajas.  
+
+## TL;DR
+
+#### 1. Minikube
+
+Se implementa en una Máquina virtual por ejemplo, Virtualbox, en nuestro  entorno local,. Excelente para desarrollo y pruebas. **N**O Recomendado para ambientes de producción.
+
+#### 2. Microk8s
+
+Este se ejecuta completamente en nuestra laptop, todos los servicios de Kubernetes  ejecutan de forma nativa . Excelente para desarrollo y pruebas**.** NO Recomendado para ambientes de producción.
+
+#### 3. Kubeadm
+
+Su  principal ventaja es la capacidad de lanzar grupos de Kubernetes mínimos viables en cualquier lugar. La mejor opció para aprender a implementar K8s. Recomendado para ambientes de producción.
+
+#### 4. Kops
+
+Creación automatizada de infraestructura y despliegue de clusters. La mejor opción para desplegar un cluster k8s en una nube pública. Recomendado para ambientes de producción.
+
+#### 5. Kubespray
+
+Playbooks de Ansible,  es mejor idea usar kubespray si  vas a desplegar Kubernetes pero no quieres depender de una plataforma de nube o si vas a desplegar kubernetes  en una nube privada o en una nube no soportada por Kops. Recomendado para ambientes de producción.
+
+#### 6.Bootkube
+
+Un K8s que implementa un k8s (suena raro pero es buena idea) definitivamente la opción que debería ser utilizada por alguien con conocimientos avanzados en kubernetes. Recomendado para ambientes de producción, aunque sigue como proyecto en incubación.
+
+Si te parece útil,  por favor comparte =)
