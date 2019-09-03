@@ -2,7 +2,7 @@
 comments = "true"
 date = "2019-09-06T05:00:00+00:00"
 draft = true
-image = "/uploads/INTRODUCCIÓN.png"
+image = "/uploads/INTRODUCCIÓN (1).png"
 tags = ["devops", "architecture", "cloud", "CloudOps"]
 title = "Introducción a Elastic Stack"
 
@@ -13,13 +13,13 @@ Estoy trabajando con Elastic Stack de nuevo, hace unos años que no implementaba
 
 Todo comenzćo con el ELK Stack, acrónimo de tres proyectos de código abierto: Elasticsearch, Logstash y Kibana. El Elastic Stack es la  evolución del ELK Stack.
 
-Shay Banon creó el precursor de Elasticsearch, llamado Compass, en 2004 Después lanzó la primera versión de Elasticsearch en febrero de 2010. 
+Shay Banon creó el precursor de Elasticsearch, llamado Compass, en 2004 Después lanzó la primera versión de Elasticsearch en febrero de 2010.
 
 Elastic NV se fundó en 2012 para proporcionar servicios y productos comerciales en torno a Elasticsearch y software relacionado.
 
-En marzo de 2015, la compañía Elasticsearch cambió su nombre a Elastic. 
+En marzo de 2015, la compañía Elasticsearch cambió su nombre a Elastic.
 
-En junio de 2018, Elastic solicitó una oferta pública inicial con una valoración estimada de entre 1,5 y 3 mil millones de dólares.  El 5 de octubre de 2018, Elastic cotizaba en la Bolsa de Nueva York. 
+En junio de 2018, Elastic solicitó una oferta pública inicial con una valoración estimada de entre 1,5 y 3 mil millones de dólares.  El 5 de octubre de 2018, Elastic cotizaba en la Bolsa de Nueva York.
 
 Entonces, el Elastic Stack es la  evolución del ELK Stack original, los mismos proyectos de código abierto, solo que mejor integrados con 2 nuevos proyectos: Beats y X-pack.
 
@@ -33,13 +33,13 @@ Beats es la plataforma para transportar datos dentro del stack. Los Beats son un
 
 **Filebeat:**  Ingestar archivos de registro (logs)
 
-**Metricbeat:**  Métricas de sistema, como CPU, RAM, Disco y muchos modulo disponibles cómo Docker, NGINX, 
+**Metricbeat:**  Métricas de sistema, como CPU, RAM, Disco y muchos modulo disponibles cómo Docker, NGINX,
 
 **Heartbeat:**  Un protocolo de latido (heart) generalmente se usa para  monitorear la disponibilidad de un recurso. Puede realizar "pings por ICMP, TCP y HTTP.
 
-**Packetbeat:**  Decodifica protocolos de red, correlaciona peticiones con respuetas, incluidos: ICMP, DNS HTTP, AMQP y de otras aplicaciones como MySQL, Memcached, MongoDB, RPC. 
+**Packetbeat:**  Decodifica protocolos de red, correlaciona peticiones con respuetas, incluidos: ICMP, DNS HTTP, AMQP y de otras aplicaciones como MySQL, Memcached, MongoDB, RPC.
 
-**Winlogbeat:**Registros de eventos de Windows
+\**Winlogbeat:**Registros de eventos de Windows
 
 **Auditbeat:** Datos de auditoria, se integra con  el modulo del kernel de Linux audit framework. También para monitorear en tiempo real la  la integridad de archivos, usando hashes.
 
@@ -77,7 +77,7 @@ Un documento se ve así:
         "country": "Mexico",
     }
 
-**Query DSL:** Elasticsearch proporciona un  lenguaje DSL completo basado en JSON para definir consultas. 
+**Query DSL:** Elasticsearch proporciona un  lenguaje DSL completo basado en JSON para definir consultas.
 
 Una consulta sobre el documento anterior se vería así:
 
@@ -99,7 +99,7 @@ Es una aplicación web construida con Node.js para buscar, visualizar e interact
 
 Las distintas secciones que forman Kibana:
 
-* **Discover**: Nos permite interactuar con la información almacenada. Podemos filtrar y buscar registros en un intervalo de tiempo determinado para visualizar documentos. Podemos  almacenar las consultas para volver a usarlas en otras ocasiones. 
+* **Discover**: Nos permite interactuar con la información almacenada. Podemos filtrar y buscar registros en un intervalo de tiempo determinado para visualizar documentos. Podemos  almacenar las consultas para volver a usarlas en otras ocasiones.
 * **Visualize**: Aquí se pueden crear, modificar y ver propias visualizaciones  personalizadas para usarse en un dashboard.
 * **Dashboard**: Pantalla donde se pueden crear, modificar y ver  propios cuadros de mando personalizados basados en visualizaciones y búsquedas. Para tener una vista rápida de distintas maneras de organizar la información.
 * **Dev Tools:**  UI para interactuar con la API Rest de Elastic Search.
@@ -108,7 +108,7 @@ Las distintas secciones que forman Kibana:
 
 Es un módulo premium, recientemente liberaron  el código bajo su propia licencia y este contiene modulos de:
 
- **Seguridad**: Posibilidad de manejar usuarios y roles, integración con LDAP y SAML. Cifrado de la comunicación con SSL/TSL.
+**Seguridad**: Posibilidad de manejar usuarios y roles, integración con LDAP y SAML. Cifrado de la comunicación con SSL/TSL.
 
 **Alertas:** alertas sobre cambios en los datos. Básicamente si lo puedes buscar, lo puedes alertar. Vía email, slack, pagerdumy Hipchat y cualquier webhook.
 
@@ -116,7 +116,7 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 
 **Reportes:** Generar, programar, compartir documentos, visualizaciones o dashboards enteros.  Posibilidad de disparar el envío de  reportes basados en reglas.
 
-**Graph - Análisis de gráficos:** Existen posibles relaciones entre los documentos de  Elastic Stack: enlaces entre personas, lugares, preferencias, productos, lo que sea. Graph ofrece un enfoque orientado a las relaciones que  permite explorar las conexiones en los datos 
+**Graph - Análisis de gráficos:** Existen posibles relaciones entre los documentos de  Elastic Stack: enlaces entre personas, lugares, preferencias, productos, lo que sea. Graph ofrece un enfoque orientado a las relaciones que  permite explorar las conexiones en los datos
 
 **Machine learning:** Ejecutar tareas de machine learning en los datos para visualizar y prevenir ar anomalías.
 
