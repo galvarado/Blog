@@ -33,3 +33,9 @@ _Imagen tomada del sitio oficial de Harbor_
 * Firma y validación de contenido multiempresa
 * Replicación de imagen entre instancias
 * Helm Chart management
+
+### Arquitectura 
+
+![](/uploads/Captura realizada el 2019-09-18 17.31.10.png)
+
+### Instalación en GCP
