@@ -42,7 +42,7 @@ Agrega las funcionalidades generalmente requeridas por una empresa, como segurid
 
 Además, se integra con Clair, que escanea las imágenes de  contenedores en busca de vulnerabilidades de seguridad. Juntas, estas herramientas brindan una seguridad  incomparable.
 
-### Clair
+### Red Hat Clair
 
 [Clair es un proyecto de código abierto ](https://github.com/coreos/clair)para el análisis estático de vulnerabilidades en contenedores de aplicaciones.
 
