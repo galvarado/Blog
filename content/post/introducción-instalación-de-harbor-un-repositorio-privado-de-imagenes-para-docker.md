@@ -21,3 +21,15 @@ Ficha técnica:
 * Proyecto en incubación por la CNCF:  [https://www.cncf.io/project/harbor/](https://www.cncf.io/project/harbor/ "https://www.cncf.io/project/harbor/")
 * Sitio web:  [https://goharbor.io/](https://goharbor.io/ "https://goharbor.io/")
 * Repositorio: [https://github.com/goharbor/harbor](https://github.com/goharbor/harbor "https://github.com/goharbor/harbor")
+
+### Características de Harbor
+
+![](/uploads/Captura realizada el 2019-09-18 17.27.25.png)
+
+_Imagen tomada del sitio oficial de Harbor_
+
+* Integración de identidad y control de acceso basado en roles.
+* Análisis de seguridad y vulnerabilidad.
+* Firma y validación de contenido multiempresa
+* Replicación de imagen entre instancias
+* Helm Chart management
