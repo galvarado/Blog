@@ -36,9 +36,9 @@ Agrega las funcionalidades generalmente requeridas por una empresa, como segurid
 
 * Integración de identidad y control de acceso basado en roles.
 * Análisis de seguridad y vulnerabilidad.
-* Firma y validación de contenido multiempresa
+* Firma y validación de contenido multitenant
 * Replicación de imagen entre instancias
-* Helm Chart management
+* Gestión de Helm Charts
 
 Además, se integra con Clair, que escanea las imágenes de  contenedores en busca de vulnerabilidades de seguridad. Juntas, estas herramientas brindan una seguridad  incomparable.
 
