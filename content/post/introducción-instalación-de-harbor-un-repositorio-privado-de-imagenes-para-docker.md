@@ -20,7 +20,7 @@ La solución consiste en registros de contenedores confiables  como Harbor.
 
 Harbor es un registro nativo de nube confiable que almacena, firma y escanea contenido. La misión es proporcionar a los entornos nativos de la nube la capacidad de administrar y servir imágenes con confianza.
 
-Agrega las funcionalidades generalmente requeridas por una empresa, como seguridad, identidad y administración.  Harbor admite la configuración de múltiples registros y replicación de  imágenes  entre ellos. Además, Harbor ofrece características de seguridad avanzadas, como la gestión de usuarios, el control de acceso y la auditoria de actividades.
+Agrega las funcionalidades generalmente requeridas por una empresa, como seguridad, identidad y administración.  Harbor admite la configuración de múltiples registros y replicación de  imágenes  entre ellos. Igual ofrece características de seguridad avanzadas, como la gestión de usuarios, el control de acceso y la auditoria de actividades.
 
 ### Ficha técnica
 
