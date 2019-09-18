@@ -16,7 +16,7 @@ Ficha técnica:
 
 * Creado por VMware en 2014, adoptado por usuarios de todo el mundo
 * Liberado como código abierto (Licencia Apache 2.0)
-*  Registro de contenedores y  Helm charts.
+* Registro de contenedores y  Helm charts.
 * Enfoque: almacena, firma y escanea contenido
 * Proyecto en incubación por la CNCF:  [https://www.cncf.io/project/harbor/](https://www.cncf.io/project/harbor/ "https://www.cncf.io/project/harbor/")
 * Sitio web:  [https://goharbor.io/](https://goharbor.io/ "https://goharbor.io/")
@@ -34,8 +34,8 @@ _Imagen tomada del sitio oficial de Harbor_
 * Replicación de imagen entre instancias
 * Helm Chart management
 
-### Arquitectura 
+### Arquitectura
 
-![](/uploads/Captura realizada el 2019-09-18 17.31.10.png)
+![](/uploads/Captura realizada el 2019-09-18 17.31.10-1.png)
 
 ### Instalación en GCP
