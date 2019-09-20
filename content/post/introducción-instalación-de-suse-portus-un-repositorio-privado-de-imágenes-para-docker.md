@@ -3,7 +3,7 @@ comments = "true"
 date = "2019-09-20T16:00:00+00:00"
 image = "/uploads/portus.png"
 tags = ["cloud", "containers"]
-title = "Introducción + Instalación de SuSE Portus, un repositorio privado de imágenes para Docker "
+title = "Introducción + Instalación de SUSE Portus, un repositorio privado de imágenes para Docker "
 
 +++
 Si tu o tu empresa están buscando un Docker Registry privado con características de seguridad avanzadas y tener la capacidad de instalarlo de manera  local, te va a encantar Portus. Pues  no solo obtienes una solución sólida para almacenar las imágenes, sino que también obtienes la capacidad (instalando en conjunto  Clair) de escanear tus imágenes en busca de vulnerabilidades.
