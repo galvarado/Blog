@@ -36,7 +36,7 @@ Portus es un servicio de código abierto que proporciona autenticación/ autoriz
 * Registro de contenedores 
 * Enfoque: almacena, firma y escanea contenido
 * Sitio web: [http://port.us.org/](http://port.us.org/ "http://port.us.org/")
-* Repositorio: [https://github.com/goharbor/harbor](https://github.com/goharbor/harbor "https://github.com/goharbor/harbor")
+* Repositorio:[https://github.com/SUSE/Portus](https://github.com/SUSE/Portus "https://github.com/SUSE/Portus")
 
 #### Características de Portus
 
