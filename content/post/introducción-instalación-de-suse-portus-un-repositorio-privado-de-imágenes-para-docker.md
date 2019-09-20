@@ -297,54 +297,85 @@ En mi caso:
 
 ![](/uploads/Captura realizada el 2019-09-20 13.27.35.png)
 
-Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host. Pero podríamos agregar más registros.
+Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host. 
 
 **![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)  
   
   
-Crear una imagen custom y subirla a portus**
+Subir una imagen portus**
+
+Para fines prácticos voy a descargar una imagen existente, pero podríamos contrsuir una imagen desde un Dockerfile también.
 
 Nos logueamos al nuevo registro desde nuestra consola:
 
     $ docker login registry.galvarado.com.mx
 
-Creamos una imagen custom a partir de un Dockerfile. El contenido del Dockerfile para crear una imagen apartir de Alpine e instalar nginx:
+Descargamos la imagen oficial de MySQL de DockerHub
 
-    FROM alpine:latest
-    # Installs packages.
-    RUN apk add --no-cache nginx ca-certificates openssl openssl-dev pcre-dev
-    RUN adduser -D -u 1000 -g 'www' www
-    RUN mkdir /etc/nginx/ssl/ && chown -R www:www /etc/nginx/ssl/
-    RUN chown -R www:www /var/lib/nginx
-    RUN chown -R www:www /var/www/localhost/htdocs
-    RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
-    ADD configs/nginx/nginx.conf /etc/nginx/nginx.conf
-    ADD configs/nginx/proxy_params /etc/nginx/proxy_params
-    RUN openssl req -x509 -nodes -subj '/CN=localhost/O=My Company Name LTD./C=US' -days 2048 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx-selfsigned.key -out /etc/nginx/ssl/nginx-selfsigned.crt
-    # Cleans trash.
-    RUN  rm -rf /var/lib/apt/lists/* && \
-         rm -rf /var/cache/apk/* && \
-         rm -rf /var/www/localhost/htdocs/*
+    $ docker pull mysql
+    Using default tag: latest
+    latest: Pulling from library/mysql
+    8f91359f1fff: Pull complete 
+    6bbb1c853362: Pull complete 
+    e6e554c0af6f: Pull complete 
+    f391c1a77330: Pull complete 
+    414a8a88eabc: Pull complete 
+    fee78658f4dd: Pull complete 
+    9568f6bff01b: Pull complete 
+    5a026d8bbe50: Pull complete 
+    07f193b54ae1: Pull complete 
+    1e404375a275: Pull complete 
+    b81b2ef0e430: Pull complete 
+    2f499f36bd40: Pull complete 
+    Digest: sha256:6d95fa56e008425121e24d2c01b76ebbf51ca1df0bafb1edbe1a46937f4a149d
+    Status: Downloaded newer image for mysql:latest
+    docker.io/library/mysql:latest
     
-    # Creates /temp_configs_dir for using.
-    RUN mkdir /temp_configs_dir && chmod -R +x /temp_configs_dir && cd /temp_configs_dir
-    # Fixes permissions to nginx tmp
-    RUN chmod -R +x /var/lib/nginx/tmp
-    
-    # Set ups temp directory.
-    WORKDIR /var/www/localhost/htdocs
-    VOLUME ["/var/www/localhost/htdocs"]
-    COPY docker-entrypoint.sh /usr/local/bin/
-    RUN  chmod +x /usr/local/bin/docker-entrypoint.sh
-    ENTRYPOINT ["docker-entrypoint.sh"]
-    EXPOSE 80
 
-Construimos la imagen:
+Tageamos la imagen que descargamos y  la subimos a nuestro flamante repositorio privado y seguro:
 
-    $ docker build -t galvarado/nginx:1.0 .
+**$ docker tag \[IMAGE\] \[REGISTRY\]/\[NAMESPACE\]/\[IMAGE:TAG\]**
 
-Y la subimos a nuestro flamante repositorio privado y seguro:
+    $ docker tag mysql:latest  registry.galvarado.com.mx/galvarado/mysql:latest
+
+    $ docker push registry.galvarado.com.mx/galvarado/mysql:latest
+
+    1cfb4d403fde: Pushed 
+
+    e47b5971b1f1: Pushed 
+
+    9ac6573d19b0: Pushed 
+
+    3cd5c95dfa08: Pushed 
+
+    05f26d9a462a: Pushed 
+
+    9e88946b01ba: Pushed 
+
+    7acae26d323c: Pushed 
+
+    9a341d74c9b2: Pushed 
+
+    5547ac6d39e8: Pushed 
+
+    683d7a4130fe: Pushed 
+
+    7288a4c980c6: Pushed 
+
+    e9dc98463cd6: Pushed 
+
+    latest: digest: sha256:2e4114bdc9dd797549f6df0cffb5f6cb6354bef9d96223a5935b6b17aea03840 size: 2828
 
 Así se ve en portus:
+
+![](/uploads/Captura realizada el 2019-09-20 14.42.07.png)
+
+Podemos observar la parte del análisis de vulnerabilidades de Clair claramente, detecta varias vulnerabilididades, al ver el detalle observamos:
+
+![](/uploads/Captura realizada el 2019-09-20 14.42.24.png)
+
+Lo que resta es subir más imagenes y crear más usuarios para ser usado por el resto de la organización. 
+
+¿Que te parece? Tu propio Registro de imagenes, sencillo de instalar, protegido con SSL y autenticación e integrado Clair para escanear las imagenes en búsqueda de vulnerabilidaddes.
 
 Si te es útil por favor comparte :)
