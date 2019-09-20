@@ -310,33 +310,19 @@ Tageamos la imagen que descargamos y  la subimos a nuestro flamante repositorio 
 **$ docker tag \[IMAGE\] \[REGISTRY\]/\[NAMESPACE\]/\[IMAGE:TAG\]**
 
     $ docker tag mysql:latest  registry.galvarado.com.mx/galvarado/mysql:latest
-    
     $ docker push registry.galvarado.com.mx/galvarado/mysql:latest
-    
     1cfb4d403fde: Pushed 
-    
     e47b5971b1f1: Pushed 
-    
     9ac6573d19b0: Pushed 
-    
     3cd5c95dfa08: Pushed 
-    
     05f26d9a462a: Pushed 
-    
     9e88946b01ba: Pushed 
-    
     7acae26d323c: Pushed 
-    
     9a341d74c9b2: Pushed 
-    
     5547ac6d39e8: Pushed 
-    
     683d7a4130fe: Pushed 
-    
     7288a4c980c6: Pushed 
-    
     e9dc98463cd6: Pushed 
-    
     latest: digest: sha256:2e4114bdc9dd797549f6df0cffb5f6cb6354bef9d96223a5935b6b17aea03840 size: 2828
 
 Así se ve en portus:
