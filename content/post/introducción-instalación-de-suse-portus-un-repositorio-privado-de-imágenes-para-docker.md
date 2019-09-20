@@ -331,7 +331,7 @@ Así se ve en portus:
 
 ![](/uploads/Captura realizada el 2019-09-20 14.42.07.png)
 
-Podemos observar la parte del análisis de vulnerabilidades de Clair claramente, detecta varias vulnerabilididades, al ver el detalle observamos:
+Podemos observar la parte del análisis de vulnerabilidades de Clair claramente, detecta varias vulnerabilidades, al ver el detalle observamos:
 
 ![](/uploads/Captura realizada el 2019-09-20 14.42.24.png)
 
