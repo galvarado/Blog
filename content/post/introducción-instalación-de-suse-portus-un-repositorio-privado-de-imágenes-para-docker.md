@@ -64,7 +64,9 @@ Cuando Portus se instala en un entorno sin conexión a Internet, Clair no puede 
 
 El siguiente procediemiento despliega Portus en un ambiente basado en contenedores, usaré un host CentOS 7.6 pero no hay dependencia del sistema operativo, el requisito es ejecutar Docker.
 
-En mi caso desplegué un droplet en DigitalOcean con 2 vCPUs y 2 GB RAM. Agregué en mi DNS un record A a la IP pública que me asignó DO para que resolviera hacia registry.galvarado.com.mx
+En mi caso desplegué un droplet en DigitalOcean con 2 vCPUs y 2 GB RAM. 
+
+Agregué en mi DNS un record A a la IP pública que me asignó DO para que resolviera hacia registry.galvarado.com.mx ya que usaremos un certificado SSL generado por Certbot y es necesario definir un FQDN para el host pues el certificado está ligado a el
 
 **Instalar Docker**
 
@@ -120,10 +122,108 @@ Actualizar los paquetes de python (Para un funcionamiento correcto de docker-com
 
 Para verificar la instalación
 
- $ docker-compose version
+    $ docker-compose version
     docker-compose version 1.24.1, build 4667896
     docker-py version: 3.7.3
     CPython version: 2.7.5
     OpenSSL version: OpenSSL 1.0.2k-fips  26 Jan 2017
-    
- dfd
+
+**Clonar el repositorio de Portus**
+
+Instalar git:
+
+    $ sudo yum install git
+
+Clonar el repo:
+
+    git clone https://github.com/SUSE/Portus.git
+
+Usaremos el template que incluye la configuración de SSL y Clair
+
+    /Portus/examples/compose/docker-compose.clair-ssl.yml
+
+Editar el archivo  `.env`  en `/Portus/examples/compose/.env`
+
+    MACHINE_FQDN=zxc.zxc.net
+    SECRET_KEY_BASE=b494a25faa8d22e430e843e220e424e10ac84d2ce0e64231f5b636d21251eb6d267adb042ad5884cbff0f3891bcf911bdf8abb3ce719849ccda9a4889249e5c2
+    PORTUS_PASSWORD=12341234
+    DATABASE_PASSWORD=portus
+
+**Certificado SSL**
+
+Usaremos Certbot para generar el certificado y el webserver será nginx
+
+ Instalamos los paquetes requeridos
+
+    $ sudo yum install httpd mod_ssl python-certbot-nginx
+
+Para verificar
+
+    $ certbot --version
+    certbot 0.37.2
+
+  
+Ahora para generar el certificado SSL:
+
+    sudo certbot
+
+Respondemos a todas las perguntas. Aqui es donde es necesario contar con el FQDN definido. Si no lo has definido, edita /etc/hostname y colocalo. En mi caso es registry.galvarado.com.mx:
+
+    $ sudo certbot certonly --nginx
+
+    Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+    Plugins selected: Authenticator nginx, Installer nginx
+
+    No names were found in your configuration files. Please enter in your domain
+
+    name(s) (comma and/or space separated)  (Enter 'c' to cancel): registry.galvarado.com.mx                
+
+    Obtaining a new certificate
+
+    Performing the following challenges:
+
+    http-01 challenge for registry.galvarado.com.mx
+
+    nginx: [error] invalid PID number "" in "/run/nginx.pid"
+
+    Waiting for verification...
+
+    Cleaning up challenges
+
+    IMPORTANT NOTES:
+
+     - Congratulations! Your certificate and chain have been saved at:
+
+       /etc/letsencrypt/live/registry.galvarado.com.mx/fullchain.pem
+
+       Your key file has been saved at:
+
+       /etc/letsencrypt/live/registry.galvarado.com.mx/privkey.pem
+
+       Your cert will expire on 2019-12-19. To obtain a new or tweaked
+
+       version of this certificate in the future, simply run certbot
+
+       again. To non-interactively renew *all* of your certificates, run
+
+       "certbot renew"
+
+     - If you like Certbot, please consider supporting our work by:
+
+       Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+
+       Donating to EFF:                    https://eff.org/donate-le
+
+Los archivos se deben genetar el la siguiente ruta:
+
+    cd /etc/letsencrypt/live/registry.galvarado.com.mx/
+
+    $  ls
+
+    cert.pem  chain.pem  fullchain.pem  privkey.pem  README
+
+Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.pem` del certificado y de la llave y renombrarlo como  `**portus:**`
+
+    $ cp /etc/letsencrypt/live/registry.galvarado.com.mx/fullchain.pem ~/Portus/examples/compose/secrets/portus.crt
+    $ cp /etc/letsencrypt/live/registry.galvarado.com.mx/privkey.pem ~/Portus/examples/compose/secrets/portus.ke
