@@ -33,10 +33,9 @@ Portus es un servicio de código abierto que proporciona autenticación/ autoriz
 
 * Creado por SuSE, adoptado por usuarios de todo el mundo
 * Liberado como código abierto (Licencia Apache 2.0)
-* Registro de contenedores y  Helm charts.
+* Registro de contenedores 
 * Enfoque: almacena, firma y escanea contenido
-* Proyecto en incubación por la CNCF:  [https://www.cncf.io/project/harbor/](https://www.cncf.io/project/harbor/ "https://www.cncf.io/project/harbor/")
-* Sitio web:  [https://goharbor.io/](https://goharbor.io/ "https://goharbor.io/")
+* Sitio web: [http://port.us.org/](http://port.us.org/ "http://port.us.org/")
 * Repositorio: [https://github.com/goharbor/harbor](https://github.com/goharbor/harbor "https://github.com/goharbor/harbor")
 
 #### Características de Portus
