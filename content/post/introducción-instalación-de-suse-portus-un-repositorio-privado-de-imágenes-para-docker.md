@@ -2,7 +2,7 @@
 comments = "true"
 date = "2019-09-20T15:00:00+00:00"
 image = "/uploads/portus.png"
-tags = ["devops", "architecture", "cloud", "development", "best practices", "containers", "GCP", "azure", "aws", "CloudOps"]
+tags = ["cloud", "containers"]
 title = "Introducción + Instalación de SuSE Portus, un repositorio privado de imágenes para Docker "
 
 +++
