@@ -299,12 +299,49 @@ En mi caso:
 
 Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host. Pero podríamos agregar más registros.
 
-![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)  
+**![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)  
   
   
+Crear una imagen custom y subirla a portus**
+
 Nos logueamos al nuevo registro desde nuestra consola:
 
-Creamos una imagen custom:
+    $ docker login registry.galvarado.com.mx
+
+Creamos una imagen custom a partir de un Dockerfile. El contenido del Dockerfile para crear una imagen apartir de Alpine e instalar nginx:
+
+    FROM alpine:latest
+    # Installs packages.
+    RUN apk add --no-cache nginx ca-certificates openssl openssl-dev pcre-dev
+    RUN adduser -D -u 1000 -g 'www' www
+    RUN mkdir /etc/nginx/ssl/ && chown -R www:www /etc/nginx/ssl/
+    RUN chown -R www:www /var/lib/nginx
+    RUN chown -R www:www /var/www/localhost/htdocs
+    RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
+    ADD configs/nginx/nginx.conf /etc/nginx/nginx.conf
+    ADD configs/nginx/proxy_params /etc/nginx/proxy_params
+    RUN openssl req -x509 -nodes -subj '/CN=localhost/O=My Company Name LTD./C=US' -days 2048 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx-selfsigned.key -out /etc/nginx/ssl/nginx-selfsigned.crt
+    # Cleans trash.
+    RUN  rm -rf /var/lib/apt/lists/* && \
+         rm -rf /var/cache/apk/* && \
+         rm -rf /var/www/localhost/htdocs/*
+    
+    # Creates /temp_configs_dir for using.
+    RUN mkdir /temp_configs_dir && chmod -R +x /temp_configs_dir && cd /temp_configs_dir
+    # Fixes permissions to nginx tmp
+    RUN chmod -R +x /var/lib/nginx/tmp
+    
+    # Set ups temp directory.
+    WORKDIR /var/www/localhost/htdocs
+    VOLUME ["/var/www/localhost/htdocs"]
+    COPY docker-entrypoint.sh /usr/local/bin/
+    RUN  chmod +x /usr/local/bin/docker-entrypoint.sh
+    ENTRYPOINT ["docker-entrypoint.sh"]
+    EXPOSE 80
+
+Construimos la imagen:
+
+    $ docker build -t galvarado/nginx:1.0 .
 
 Y la subimos a nuestro flamante repositorio privado y seguro:
 
