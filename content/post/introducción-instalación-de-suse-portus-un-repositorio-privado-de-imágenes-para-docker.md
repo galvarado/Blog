@@ -10,7 +10,7 @@ Si tu o tu empresa están buscando un Docker Registry privado con característic
 
 ### ¿Qué es Docker Registry?
 
-Cuando trabajamos con Docker,  debemos decidir dónde almacenaremos las imágenes  de los contenedores. Docker Registry es una aplicación que gestiona el almacenamiento y la entrega de imágenes de contenedores Docker. 
+Cuando trabajamos con Docker,  debemos decidir dónde almacenaremos las imágenes  de los contenedores. Docker Registry es una aplicación que gestiona el almacenamiento y la entrega de imágenes de contenedores Docker.
 
 Docker  tiene un registro público gratuito, Docker Hub, que puede alojar nuestras imágenes  personalizadas, pero hay situaciones en las que no deseamos que nuestras imagen estén disponibles públicamente. Las imágenes generalmente contienen todo el código necesario para ejecutar una aplicación, por lo que es preferible utilizar un registro privado cuando se utiliza software propietario.
 
@@ -21,8 +21,6 @@ Si necesitamos restringir el acceso a nuestras imágenes de Docker, hay 3 opcion
 2\.Ejecutar una instancia local del registro de Docker, con es posible evitar por completo el uso de Docker Hub.  Esta opción  tiene dos limitaciones principales:
 
 * Carece de cualquier forma de autenticación. Eso significa que todos los que tengan acceso al Registro de Docker pueden insertar y extraer imágenes. Eso también incluye la posibilidad de sobrescribir imágenes ya existentes.
-
-
 * No hay forma de ver qué imágenes se han enviado al Registro de Docker. Debemos tomar notas manualmente de lo que se almacena dentro de él. Tampoco hay funcionalidad de búsqueda, lo que dificulta la colaboración. Estas limitaciones se resuelven instalando un registro de terceros.
 
 3\.Ejecutar un registro de Docker de terceros, que contenga características de seguridad avanzadas. Esto último es Portus
@@ -63,3 +61,80 @@ Los datos de vulnerabilidades se importan continuamente desde un conjunto conoci
 Cuando Portus se instala en un entorno sin conexión a Internet, Clair no puede obtener datos de las bases de datos de vulnerabilidades públicas. En estos escenarios, el administrador  debe actualizar manualmente la base de datos de Clair.
 
 ### Instalación de Portus
+
+El siguiente procediemiento despliega Portus en un ambiente basado en contenedores, usaré un host CentOS 7.6 pero no hay dependencia del sistema operativo, el requisito es ejecutar Docker.
+
+En mi caso desplegué un droplet en DigitalOcean con 2 vCPUs y 2 GB RAM. Agregué en mi DNS un record A a la IP pública que me asignó DO para que resolviera hacia registry.galvarado.com.mx
+
+**Instalar Docker**
+
+Configurar  el repositorio de docker-ce:
+
+    $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+Instalar docker-ce:
+
+    $ sudo yum install docker-ce
+
+Agregar nuestro usuarioal grupo de docker:
+
+    $ sudo usermod -aG docker $(whoami)
+
+Habilitar docker para que inicie automaticamente en el arranque del sistema:
+
+    $ sudo systemctl enable docker.service
+
+Finalmente iniciar el servicio de Docker:
+
+    $ sudo systemctl start docker.service
+
+Para verificar:
+
+    $ docker version
+
+    Client: Docker Engine - Community
+
+     Version:           19.03.2
+
+     API version:       1.40
+
+     Go version:        go1.12.8
+
+     Git commit:        6a30dfc
+
+     Built:             Thu Aug 29 05:28:55 2019
+
+     OS/Arch:           linux/amd64
+
+     Experimental:      false
+
+**Instalar docker-compose**
+
+  
+Instalar epel
+
+    $ sudo yum install epel-release
+
+Instalar python-pip
+
+    $ sudo yum install -y python-pip
+
+Instalar Docker Compose:
+
+    $ sudo pip install docker-compose
+
+Actualizar los paquetes de python (Para un funcionamiento correcto de docker-compose)
+
+    $ sudo yum upgrade python*
+
+Para verificar la instalación:
+
+    $ docker-compose version
+
+    docker-compose version 1.24.1, build 4667896
+
+    docker-py version: 3.7.3
+
+    CPython version: 2.7.5
+
+    OpenSSL version: OpenSSL 1.0.2k-fips  26 Jan 2017
