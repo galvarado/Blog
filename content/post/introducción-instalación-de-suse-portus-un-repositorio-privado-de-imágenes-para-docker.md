@@ -104,21 +104,13 @@ Para verificar:
 
 **Instalar docker-compose**
 
-Instalar epel
+Descargamos el binario par ala ultima versión estable
 
-    $ sudo yum install epel-release
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
 
-Instalar python-pip
+Aplicamos permisos
 
-    $ sudo yum install -y python-pip
-
-Instalar Docker Compose:
-
-    $ sudo pip install docker-compose
-
-Actualizar los paquetes de python (Para un funcionamiento correcto de docker-compose)
-
-    $ sudo yum upgrade python*
+    $ sudo chmod +x /usr/local/bin/docker-compose
 
 Para verificar la instalación
 
@@ -227,3 +219,42 @@ Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.
 
     $ cp /etc/letsencrypt/live/registry.galvarado.com.mx/fullchain.pem ~/Portus/examples/compose/secrets/portus.crt
     $ cp /etc/letsencrypt/live/registry.galvarado.com.mx/privkey.pem ~/Portus/examples/compose/secrets/portus.ke
+
+**Iniciar Portus**
+
+  
+Levantamos los contendedores con docker-compose
+
+    $ docker-compose -f docker-compose.clair-ssl.yml up -d
+
+    compose_db_1 is up-to-date
+
+    Starting compose_postgres_1 ... 
+
+    compose_portus_1 is up-to-date
+
+    compose_registry_1 is up-to-date
+
+    Starting compose_postgres_1 ... done
+
+    Starting compose_nginx_1    ... done
+
+    compose_clair_1 is up-to-date
+
+    [root@registry compose]# docker-compose ps
+
+            Name                      Command               State                       Ports                     
+
+    --------------------------------------------------------------------------------------------------------------
+
+    compose_background_1   /init                            Up      3000/tcp                                      
+
+    compose_db_1           /docker-entrypoint.sh mysq ...   Up      3306/tcp                                      
+
+    compose_nginx_1        nginx -g daemon off;             Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp      
+
+    compose_portus_1       /init                            Up      0.0.0.0:3000->3000/tcp                        
+
+    compose_registry_1     /entrypoint.sh /bin/sh /et ...   Up      0.0.0.0:5000->5000/tcp, 0.0.0.0:5001->5001/tcp
+
+    
