@@ -224,55 +224,33 @@ Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.
 Levantamos los contendedores con docker-compose
 
     $ docker-compose -f docker-compose.clair-ssl.yml up -d
-    
     compose_db_1 is up-to-date
-    
     Starting compose_postgres_1 ... 
-    
     compose_portus_1 is up-to-date
-    
     compose_registry_1 is up-to-date
-    
     Starting compose_postgres_1 ... done
-    
     Starting compose_nginx_1    ... done
-    
     compose_clair_1 is up-to-date
-    
     [root@registry compose]# docker-compose ps
-    
             Name                      Command               State                       Ports                     
-    
     --------------------------------------------------------------------------------------------------------------
     
     compose_background_1   /init                            Up      3000/tcp                                      
-    
     compose_db_1           /docker-entrypoint.sh mysq ...   Up      3306/tcp                                      
-    
     compose_nginx_1        nginx -g daemon off;             Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp      
-    
     compose_portus_1       /init                            Up      0.0.0.0:3000->3000/tcp                        
-    
     compose_registry_1     /entrypoint.sh /bin/sh /et ...   Up      0.0.0.0:5000->5000/tcp, 0.0.0.0:5001->5001/tcp
 
 Podemos ver los 7 contenedores que se inician con la plantilla de compose:
 
     docker ps
-    
     CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
-    
     b6d9001bdd95        nginx:alpine                  "nginx -g 'daemon of…"   20 minutes ago      Up 7 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   compose_nginx_1
-    
     5acb65949a91        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       3000/tcp                                   compose_background_1
-    
     5b0b81bf509b        registry:2.6                  "/entrypoint.sh /bin…"   20 minutes ago      Up 12 minutes       0.0.0.0:5000-5001->5000-5001/tcp           compose_registry_1
-    
     cb7ae5bf37a4        quay.io/coreos/clair:v2.0.1   "/clair -config /cla…"   20 minutes ago      Up 7 minutes        0.0.0.0:6060-6061->6060-6061/tcp           compose_clair_1
-    
     13c97afc2290        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       0.0.0.0:3000->3000/tcp                     compose_portus_1
-    
     36de8d5fdc72        mariadb:10.0.23               "/docker-entrypoint.…"   20 minutes ago      Up 12 minutes       3306/tcp                                   compose_db_1
-    
     b4c55545626a        postgres:10-alpine            "docker-entrypoint.s…"   20 minutes ago      Up 7 minutes        5432/tcp                                   compose_postgres_1
 
 * 1 contenedor de nginx,
