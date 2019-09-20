@@ -91,26 +91,17 @@ Finalmente iniciar el servicio de Docker:
 Para verificar:
 
     $ docker version
-
     Client: Docker Engine - Community
-
      Version:           19.03.2
-
      API version:       1.40
-
      Go version:        go1.12.8
-
      Git commit:        6a30dfc
-
      Built:             Thu Aug 29 05:28:55 2019
-
      OS/Arch:           linux/amd64
-
      Experimental:      false
 
 **Instalar docker-compose**
 
-  
 Instalar epel
 
     $ sudo yum install epel-release
@@ -127,14 +118,12 @@ Actualizar los paquetes de python (Para un funcionamiento correcto de docker-com
 
     $ sudo yum upgrade python*
 
-Para verificar la instalación:
+Para verificar la instalación
 
-    $ docker-compose version
-
+ $ docker-compose version
     docker-compose version 1.24.1, build 4667896
-
     docker-py version: 3.7.3
-
     CPython version: 2.7.5
-
     OpenSSL version: OpenSSL 1.0.2k-fips  26 Jan 2017
+    
+ dfd
