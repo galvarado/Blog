@@ -257,4 +257,57 @@ Levantamos los contendedores con docker-compose
 
     compose_registry_1     /entrypoint.sh /bin/sh /et ...   Up      0.0.0.0:5000->5000/tcp, 0.0.0.0:5001->5001/tcp
 
-    
+ 
+
+Podemos ver los 7 contenedores que se inician con la plantilla de compose:
+
+    docker ps
+
+    CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
+
+    b6d9001bdd95        nginx:alpine                  "nginx -g 'daemon of…"   20 minutes ago      Up 7 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   compose_nginx_1
+
+    5acb65949a91        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       3000/tcp                                   compose_background_1
+
+    5b0b81bf509b        registry:2.6                  "/entrypoint.sh /bin…"   20 minutes ago      Up 12 minutes       0.0.0.0:5000-5001->5000-5001/tcp           compose_registry_1
+
+    cb7ae5bf37a4        quay.io/coreos/clair:v2.0.1   "/clair -config /cla…"   20 minutes ago      Up 7 minutes        0.0.0.0:6060-6061->6060-6061/tcp           compose_clair_1
+
+    13c97afc2290        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       0.0.0.0:3000->3000/tcp                     compose_portus_1
+
+    36de8d5fdc72        mariadb:10.0.23               "/docker-entrypoint.…"   20 minutes ago      Up 12 minutes       3306/tcp                                   compose_db_1
+
+    b4c55545626a        postgres:10-alpine            "docker-entrypoint.s…"   20 minutes ago      Up 7 minutes        5432/tcp                                   compose_postgres_1
+
+* 1 contenedor de nginx,
+* 1 contenedor Portus
+* 1 contenedor Portus background 
+* 1 contenedor para el docker-registry, 
+* 1  contenedor para BD en postgreSQL 
+* 1 contenedor para BD en  MariaDB, 
+* 1 contenedor para el  servicio de vulnerabilidades de Clair
+
+**Acceder a Portus**
+
+Vamos ala dirección del servidor donde iniciamos los servicios, en mi caso cree un record DNS como mencionaba para utilizar el FQDN. Si no creas un record en el DNS puedes modificar el archivo /etc/hosts de tu computadra para que la resolución sea local, pero el navegador solo podrá acceder por el FDQN debido al certificado SSL.
+
+En mi caso:
+
+[https://registry.galvarado.com.mx/](https://registry.galvarado.com.mx/ "https://registry.galvarado.com.mx/")
+
+![](/uploads/Captura realizada el 2019-09-20 13.27.35.png)
+
+Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host. Pero podríamos agregar más registros.
+
+![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)  
+  
+  
+Nos logueamos al nuevo registro desde nuestra consola:
+
+Creamos una imagen custom:
+
+Y la subimos a nuestro flamante repositorio privado y seguro:
+
+Así se ve en portus:
+
+Si te es útil por favor comparte :)
