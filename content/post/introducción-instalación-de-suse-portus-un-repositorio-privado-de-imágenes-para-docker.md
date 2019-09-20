@@ -160,57 +160,33 @@ Ahora para generar el certificado SSL:
 Respondemos a todas las perguntas. Aqui es donde es necesario contar con el FQDN definido. Si no lo has definido, edita /etc/hostname y colocalo. En mi caso es registry.galvarado.com.mx:
 
     $ sudo certbot certonly --nginx
-    
     Saving debug log to /var/log/letsencrypt/letsencrypt.log
-    
     Plugins selected: Authenticator nginx, Installer nginx
-    
     No names were found in your configuration files. Please enter in your domain
-    
     name(s) (comma and/or space separated)  (Enter 'c' to cancel): registry.galvarado.com.mx                
-    
     Obtaining a new certificate
-    
     Performing the following challenges:
-    
     http-01 challenge for registry.galvarado.com.mx
-    
     nginx: [error] invalid PID number "" in "/run/nginx.pid"
-    
     Waiting for verification...
-    
     Cleaning up challenges
-    
     IMPORTANT NOTES:
-    
      - Congratulations! Your certificate and chain have been saved at:
-    
        /etc/letsencrypt/live/registry.galvarado.com.mx/fullchain.pem
-    
        Your key file has been saved at:
-    
        /etc/letsencrypt/live/registry.galvarado.com.mx/privkey.pem
-    
        Your cert will expire on 2019-12-19. To obtain a new or tweaked
-    
        version of this certificate in the future, simply run certbot
-    
        again. To non-interactively renew *all* of your certificates, run
-    
        "certbot renew"
-    
      - If you like Certbot, please consider supporting our work by:
-    
        Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
-    
        Donating to EFF:                    https://eff.org/donate-le
 
 Los archivos se deben genetar el la siguiente ruta:
 
     cd /etc/letsencrypt/live/registry.galvarado.com.mx/
-    
     $  ls
-    
     cert.pem  chain.pem  fullchain.pem  privkey.pem  README
 
 Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.pem` del certificado y de la llave y renombrarlo como  `**portus:**`
