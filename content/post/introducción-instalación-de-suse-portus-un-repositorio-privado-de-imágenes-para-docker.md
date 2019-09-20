@@ -64,7 +64,7 @@ Cuando Portus se instala en un entorno sin conexión a Internet, Clair no puede 
 
 El siguiente procediemiento despliega Portus en un ambiente basado en contenedores, usaré un host CentOS 7.6 pero no hay dependencia del sistema operativo, el requisito es ejecutar Docker.
 
-En mi caso desplegué un droplet en DigitalOcean con 2 vCPUs y 2 GB RAM. 
+En mi caso desplegué un droplet en DigitalOcean con 2 vCPUs y 2 GB RAM.
 
 Agregué en mi DNS un record A a la IP pública que me asignó DO para que resolviera hacia registry.galvarado.com.mx ya que usaremos un certificado SSL generado por Certbot y es necesario definir un FQDN para el host pues el certificado está ligado a el
 
@@ -145,7 +145,7 @@ Editar el archivo  `.env`  en `/Portus/examples/compose/.env`
 
 Usaremos Certbot para generar el certificado y el webserver será nginx
 
- Instalamos los paquetes requeridos
+Instalamos los paquetes requeridos
 
     $ sudo yum install httpd mod_ssl python-certbot-nginx
 
@@ -154,7 +154,6 @@ Para verificar
     $ certbot --version
     certbot 0.37.2
 
-  
 Ahora para generar el certificado SSL:
 
     sudo certbot
@@ -162,57 +161,57 @@ Ahora para generar el certificado SSL:
 Respondemos a todas las perguntas. Aqui es donde es necesario contar con el FQDN definido. Si no lo has definido, edita /etc/hostname y colocalo. En mi caso es registry.galvarado.com.mx:
 
     $ sudo certbot certonly --nginx
-
+    
     Saving debug log to /var/log/letsencrypt/letsencrypt.log
-
+    
     Plugins selected: Authenticator nginx, Installer nginx
-
+    
     No names were found in your configuration files. Please enter in your domain
-
+    
     name(s) (comma and/or space separated)  (Enter 'c' to cancel): registry.galvarado.com.mx                
-
+    
     Obtaining a new certificate
-
+    
     Performing the following challenges:
-
+    
     http-01 challenge for registry.galvarado.com.mx
-
+    
     nginx: [error] invalid PID number "" in "/run/nginx.pid"
-
+    
     Waiting for verification...
-
+    
     Cleaning up challenges
-
+    
     IMPORTANT NOTES:
-
+    
      - Congratulations! Your certificate and chain have been saved at:
-
+    
        /etc/letsencrypt/live/registry.galvarado.com.mx/fullchain.pem
-
+    
        Your key file has been saved at:
-
+    
        /etc/letsencrypt/live/registry.galvarado.com.mx/privkey.pem
-
+    
        Your cert will expire on 2019-12-19. To obtain a new or tweaked
-
+    
        version of this certificate in the future, simply run certbot
-
+    
        again. To non-interactively renew *all* of your certificates, run
-
+    
        "certbot renew"
-
+    
      - If you like Certbot, please consider supporting our work by:
-
+    
        Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
-
+    
        Donating to EFF:                    https://eff.org/donate-le
 
 Los archivos se deben genetar el la siguiente ruta:
 
     cd /etc/letsencrypt/live/registry.galvarado.com.mx/
-
+    
     $  ls
-
+    
     cert.pem  chain.pem  fullchain.pem  privkey.pem  README
 
 Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.pem` del certificado y de la llave y renombrarlo como  `**portus:**`
@@ -222,69 +221,66 @@ Después de generar el certificado, lo agregamos a Portus. Copiar el archivo  `.
 
 **Iniciar Portus**
 
-  
 Levantamos los contendedores con docker-compose
 
     $ docker-compose -f docker-compose.clair-ssl.yml up -d
-
+    
     compose_db_1 is up-to-date
-
+    
     Starting compose_postgres_1 ... 
-
+    
     compose_portus_1 is up-to-date
-
+    
     compose_registry_1 is up-to-date
-
+    
     Starting compose_postgres_1 ... done
-
+    
     Starting compose_nginx_1    ... done
-
+    
     compose_clair_1 is up-to-date
-
+    
     [root@registry compose]# docker-compose ps
-
+    
             Name                      Command               State                       Ports                     
-
+    
     --------------------------------------------------------------------------------------------------------------
-
+    
     compose_background_1   /init                            Up      3000/tcp                                      
-
+    
     compose_db_1           /docker-entrypoint.sh mysq ...   Up      3306/tcp                                      
-
+    
     compose_nginx_1        nginx -g daemon off;             Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp      
-
+    
     compose_portus_1       /init                            Up      0.0.0.0:3000->3000/tcp                        
-
+    
     compose_registry_1     /entrypoint.sh /bin/sh /et ...   Up      0.0.0.0:5000->5000/tcp, 0.0.0.0:5001->5001/tcp
-
- 
 
 Podemos ver los 7 contenedores que se inician con la plantilla de compose:
 
     docker ps
-
+    
     CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS                                      NAMES
-
+    
     b6d9001bdd95        nginx:alpine                  "nginx -g 'daemon of…"   20 minutes ago      Up 7 minutes        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp   compose_nginx_1
-
+    
     5acb65949a91        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       3000/tcp                                   compose_background_1
-
+    
     5b0b81bf509b        registry:2.6                  "/entrypoint.sh /bin…"   20 minutes ago      Up 12 minutes       0.0.0.0:5000-5001->5000-5001/tcp           compose_registry_1
-
+    
     cb7ae5bf37a4        quay.io/coreos/clair:v2.0.1   "/clair -config /cla…"   20 minutes ago      Up 7 minutes        0.0.0.0:6060-6061->6060-6061/tcp           compose_clair_1
-
+    
     13c97afc2290        opensuse/portus:head          "/init"                  20 minutes ago      Up 12 minutes       0.0.0.0:3000->3000/tcp                     compose_portus_1
-
+    
     36de8d5fdc72        mariadb:10.0.23               "/docker-entrypoint.…"   20 minutes ago      Up 12 minutes       3306/tcp                                   compose_db_1
-
+    
     b4c55545626a        postgres:10-alpine            "docker-entrypoint.s…"   20 minutes ago      Up 7 minutes        5432/tcp                                   compose_postgres_1
 
 * 1 contenedor de nginx,
 * 1 contenedor Portus
-* 1 contenedor Portus background 
-* 1 contenedor para el docker-registry, 
-* 1  contenedor para BD en postgreSQL 
-* 1 contenedor para BD en  MariaDB, 
+* 1 contenedor Portus background
+* 1 contenedor para el docker-registry,
+* 1  contenedor para BD en postgreSQL
+* 1 contenedor para BD en  MariaDB,
 * 1 contenedor para el  servicio de vulnerabilidades de Clair
 
 **Acceder a Portus**
@@ -297,12 +293,12 @@ En mi caso:
 
 ![](/uploads/Captura realizada el 2019-09-20 13.27.35.png)
 
-Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host. 
+Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host.
 
-**![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)  
   
-  
-Subir una imagen portus**
+![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)
+
+**Subir una imagen a portus**
 
 Para fines prácticos voy a descargar una imagen existente, pero podríamos contrsuir una imagen desde un Dockerfile también.
 
@@ -330,40 +326,39 @@ Descargamos la imagen oficial de MySQL de DockerHub
     Digest: sha256:6d95fa56e008425121e24d2c01b76ebbf51ca1df0bafb1edbe1a46937f4a149d
     Status: Downloaded newer image for mysql:latest
     docker.io/library/mysql:latest
-    
 
 Tageamos la imagen que descargamos y  la subimos a nuestro flamante repositorio privado y seguro:
 
 **$ docker tag \[IMAGE\] \[REGISTRY\]/\[NAMESPACE\]/\[IMAGE:TAG\]**
 
     $ docker tag mysql:latest  registry.galvarado.com.mx/galvarado/mysql:latest
-
+    
     $ docker push registry.galvarado.com.mx/galvarado/mysql:latest
-
+    
     1cfb4d403fde: Pushed 
-
+    
     e47b5971b1f1: Pushed 
-
+    
     9ac6573d19b0: Pushed 
-
+    
     3cd5c95dfa08: Pushed 
-
+    
     05f26d9a462a: Pushed 
-
+    
     9e88946b01ba: Pushed 
-
+    
     7acae26d323c: Pushed 
-
+    
     9a341d74c9b2: Pushed 
-
+    
     5547ac6d39e8: Pushed 
-
+    
     683d7a4130fe: Pushed 
-
+    
     7288a4c980c6: Pushed 
-
+    
     e9dc98463cd6: Pushed 
-
+    
     latest: digest: sha256:2e4114bdc9dd797549f6df0cffb5f6cb6354bef9d96223a5935b6b17aea03840 size: 2828
 
 Así se ve en portus:
@@ -374,7 +369,7 @@ Podemos observar la parte del análisis de vulnerabilidades de Clair claramente,
 
 ![](/uploads/Captura realizada el 2019-09-20 14.42.24.png)
 
-Lo que resta es subir más imagenes y crear más usuarios para ser usado por el resto de la organización. 
+Lo que resta es subir más imagenes y crear más usuarios para ser usado por el resto de la organización.
 
 ¿Que te parece? Tu propio Registro de imagenes, sencillo de instalar, protegido con SSL y autenticación e integrado Clair para escanear las imagenes en búsqueda de vulnerabilidaddes.
 
