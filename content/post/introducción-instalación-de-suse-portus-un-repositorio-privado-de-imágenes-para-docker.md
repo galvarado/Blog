@@ -305,9 +305,11 @@ Descargamos la imagen oficial de MySQL de DockerHub
     Status: Downloaded newer image for mysql:latest
     docker.io/library/mysql:latest
 
-Tageamos la imagen que descargamos y  la subimos a nuestro flamante repositorio privado y seguro:
+Tageamos la imagen que descargamos y  la subimos a nuestro flamante repositorio privado y seguro. Para Taggear la imagen usamos el comando docker tag como se muestra a continuación:
 
-**$ docker tag \[IMAGE\] \[REGISTRY\]/\[NAMESPACE\]/\[IMAGE:TAG\]**
+    $ docker tag [IMAGE] [REGISTRY]/[NAMESPACE]/[IMAGE:TAG]
+
+En mi caso:
 
     $ docker tag mysql:latest  registry.galvarado.com.mx/galvarado/mysql:latest
     $ docker push registry.galvarado.com.mx/galvarado/mysql:latest
