@@ -1,0 +1,29 @@
+    {{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 error"> 
+                <div class="mainheading">
+                    <h1 class="posttitle">{{ .Title }}</h1> 
+                </div>
+                <div class="article-post">
+                    Oops! Esto no es lo que buscabas<br>
+                    El código HTTP 404 No encontrado es un código que se trata de un enlace roto, defectuoso o que ya no existe y que, por lo tanto, no es posible navegar por él.<br><br>
+
+
+                    Click <a href="/">aquí</a> para volver al inicio.                
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+{{ define "footer"}}
+{{ end }}
