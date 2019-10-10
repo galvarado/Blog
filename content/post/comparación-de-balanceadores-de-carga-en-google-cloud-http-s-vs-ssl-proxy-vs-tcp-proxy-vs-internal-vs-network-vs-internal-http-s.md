@@ -84,16 +84,10 @@ _Nota: Aunque HTTP(S) es tráfico TCP, si nuestras aplicaciones usan esta comuni
 * Proporciona equilibrio de carga global para solicitudes HTTP (S) destinado a las VMs.
 * Admite direcciones IPv4 e IPv6 para el tráfico del cliente.
 *  Utiliza grupos de instancias para dirigir el trafico a las instancias.
-* 
 
-Las solicitudes HTTP se pueden equilibrar en función de los puertos:
+Las solicitudes HTTP se pueden equilibrar en función de los puertos 80 y 8080
 
-*  80
-* 8080
-
-Las solicitudes HTTPS se pueden equilibrar en el puerto de carga:
-
-*  443
+Las solicitudes HTTPS se pueden equilibrar en el puerto  443
 
 Podemos configurar reglas de URL para enrutar algunas URL a un conjunto de instancias y enrutar otras URL a otras instancias.
 
