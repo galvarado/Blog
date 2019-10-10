@@ -22,11 +22,9 @@ Si un solo servidor deja de funcionar, el balanceador de carga redirige el tráf
 
 Estos Realizan las siguientes funciones:
 
-● Distribuye solicitudes de los clientes de manera eficiente en varios servidores.
-
-● Asegura alta disponibilidad y confiabilidad enviando solicitudes solo a servidores que están en línea
-
-● Brinda la flexibilidad de agregar o restar servidores según lo exija la demanda
+* Distribuye solicitudes de los clientes de manera eficiente en varios servidores.
+* Asegura alta disponibilidad y confiabilidad enviando solicitudes solo a servidores que están en línea
+* Brinda la flexibilidad de agregar o restar servidores según lo exija la demanda
 
 ## ¿Cómo elegir el Cloud Load Balancer correcto?
 
