@@ -1,6 +1,7 @@
 +++
 comments = "true"
 date = "2019-09-27T15:00:00+00:00"
+draft = true
 image = "/uploads/Harbor1.png"
 tags = ["architecture", "cloud", "containers", "GCP"]
 title = "Introducción + Instalación de Harbor, un repositorio privado de imágenes para Docker "
