@@ -1,6 +1,7 @@
 +++
 comments = "true"
 date = "2019-10-09T05:00:00+00:00"
+draft = true
 image = "/uploads/GoogleCloudLoadBalancers.png"
 tags = ["architecture", "cloud", "GCP"]
 title = "Comparación de Balanceadores de carga en Google Cloud: HTTP(s) vs SSL Proxy vs TCP Proxy vs Internal vs Network vs Internal HTTP(S)"
