@@ -3,7 +3,7 @@ comments = "true"
 date = "2019-10-09T05:00:00+00:00"
 image = "/uploads/GoogleCloudLoadBalancers.png"
 tags = ["architecture", "cloud", "GCP"]
-title = "Comparación de Balanceadores de carga en Google Cloud: HTTP(s) vs SSL Proxy vs TCP Proxy vs Internal vs Network vs Internal HTTP(S)"
+title = "Comparación de Balanceadores de carga en Google Cloud: Global HTTP(s) vs SSL Proxy vs TCP Proxy vs Internal TCP/UDP vs Internal HTTP(S)"
 
 +++
 En Google Cloud Platform contamos hoy en día con 6 diferentes balanceadores de carga disponibles para cada caso o situación. En este post describiré las características y diferencias entre ellos así como una guía de apoyo para saber elegir el que mejor se adapta a nuestras necesidades de arquitectura.
