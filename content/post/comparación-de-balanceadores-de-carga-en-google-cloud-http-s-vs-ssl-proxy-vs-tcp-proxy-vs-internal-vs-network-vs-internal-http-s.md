@@ -79,7 +79,7 @@ _Nota: Aunque HTTP(S) es tráfico TCP, si nuestras aplicaciones usan esta comuni
 
 ## Tipos de Cloud Balancers en GCP
 
-### HTTP(S) load balancing
+### Global HTTP(S) load balancing
 
 * Proporciona balanceo de **carga global para tráfico exerno,** para solicitudes HTTP (S) destinado a las VMs.
 * Admite direcciones IPv4 e IPv6 para el tráfico del cliente.
