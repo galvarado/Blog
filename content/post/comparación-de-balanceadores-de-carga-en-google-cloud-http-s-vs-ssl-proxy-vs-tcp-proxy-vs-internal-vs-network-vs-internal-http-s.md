@@ -164,11 +164,11 @@ Podemos utilizar este balanceador TCP / UDP interno junto con otros balanceadore
 
 El balanceador de carga interno HTTP (S) es **regional y no global.**  Destinado para **tráfico interno.** Se ubica  en la de capa 7 y  está basado en proxy. Permite ejecutar y escalar  servicios detrás de una dirección IP de a privada que solo es accesible en la región donde está el balanceador, enla red VPC.
 
-Podemos usar este balanceador en conjunto con otros en una aplicación tradicionales de 3 niveles (3 tier):
+Podemos usar este balanceador en conjunto con otros en una aplicación tradicional de 3 niveles (3 tier):
 
-* Nivel web: el tráfico ingresa desde Internet y se balancea mediante  HTTP (S) global y externo.
-* Nivel de aplicación: el nivel de aplicación se escala utilizando el balanceador de carga HTTP (S) interno regional.
-* Nivel de base de datos: el nivel de base de datos se escala utilizando el balanceador de carga TCP / UDP interno.
+* _Nivel web_: el tráfico ingresa desde Internet y se balancea mediante  HTTP (S) global y externo.
+* _Nivel de aplicación_: el nivel de aplicación se escala utilizando el balanceador de carga HTTP (S) interno regional.
+* _Nivel de base de datos_: el nivel de base de datos se escala utilizando el balanceador de carga TCP / UDP interno.
 
 [https://cloud.google.com/load-balancing/docs/l7-internal/](https://cloud.google.com/load-balancing/docs/l7-internal/ "https://cloud.google.com/load-balancing/docs/l7-internal/")
 
