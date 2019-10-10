@@ -66,7 +66,7 @@ Ejemplos:
 * Domain Name System (DNS)
 * Voice over IP (VoIP)
 
-**TCP**: casi cualquier cosa donde tenga que obtener todos los datos transmitidos:
+**TCP**: casi cualquier cosa donde tenga que obtener todos los datos transmitidos
 
 Ejemplos
 
