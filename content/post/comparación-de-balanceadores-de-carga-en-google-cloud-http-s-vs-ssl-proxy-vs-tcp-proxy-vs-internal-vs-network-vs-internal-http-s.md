@@ -118,9 +118,7 @@ El equilibrio de carga de proxy SSL para Google Cloud se puede usar para otros p
 
 [https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/ "https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/")
 
-###   
-  
-TCP Proxy
+### TCP Proxy
 
 * **Destinado a tráfico no HTTP y sin SSL.**
 * Permite usar una sola dirección IP para todos los usuarios en todo el mundo
@@ -130,8 +128,7 @@ Realiza el balanceo de carga **global para tráfico externo** . Admite direccion
 
 [https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy "https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/tcp-proxy")
 
-###   
-Network Load Balancer
+### Network Load Balancer
 
 El balanceador de carga de red es un balanceador de carga **regional y no proxy**. Se puede usar usar para **tráfico externo o interno** y se usa para la carga de los siguientes tipos de tráfico:
 
@@ -149,17 +146,15 @@ Utilizamos este balanceador de carga en las siguientes circunstancias:
 * Se deben reenviar los paquetes originales, es decir sin proxy.
 * Contamos con una configuración existente que utiliza un balanceador de carga de paso y deseamos migrarla sin cambios.
 
-Nota: la autogestión de los certificados SSL del balanceador se debe realizar ya que los certificados SSL administrados por Google solo están disponibles para HTTPS y SSL Proxy 
+Nota: la autogestión de los certificados SSL del balanceador se debe realizar ya que los certificados SSL administrados por Google solo están disponibles para HTTPS y SSL Proxy
 
 [https://cloud.google.com/compute/docs/load-balancing/network/](https://cloud.google.com/compute/docs/load-balancing/network/ "https://cloud.google.com/compute/docs/load-balancing/network/")
 
-###   
-  
-Internal TCP/UDP 
+### Internal TCP/UDP
 
 El balanceador de carga TCP / UDP **interno** es regional y permite ejecutar y escalar  servicios detrás de una dirección IP da privada que solo es accesible  entre las instancias de la misma región donde está el balanceador, en la red VPC utilizando una **dirección IP privada (RFC 1918).**
 
-El alcance de este balanceador interno es **regional, no global.** Esto significa que no puede abarcar varias regiones. Dentro de una sola región,da servicio a todas las zonas. 
+El alcance de este balanceador interno es **regional, no global.** Esto significa que no puede abarcar varias regiones. Dentro de una sola región,da servicio a todas las zonas.
 
 Podemos utilizar este balanceador TCP / UDP interno junto con otros balanceadores de carga, como HTTP (S) donde al nivel web utilizamos el balanceador externo, que luego depende de los servicios detrás del balanceador  interno.
 
@@ -172,8 +167,6 @@ El balanceador de carga interno HTTP (S) es **regional y no global.**  Destinado
 Podemos usar este balanceador en conjunto con otros en una aplicación tradicionales de 3 niveles (3 tier):
 
 * Nivel web: el tráfico ingresa desde Internet y se balancea mediante  HTTP (S) global y externo.
-
-
 * Nivel de aplicación: el nivel de aplicación se escala utilizando el balanceador de carga HTTP (S) interno regional.
 * Nivel de base de datos: el nivel de base de datos se escala utilizando el balanceador de carga TCP / UDP interno.
 
