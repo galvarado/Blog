@@ -34,7 +34,7 @@ Existen 6 soluciones disponibles, cree una tabla de resumen basada en la documen
 
 ![](/uploads/LoadbalancersTable.png)
 
-Para decidir cual Balanceador de carga se adapta mejor a nuestra implementación de debemos responder a los siguientes aspectos:
+Para decidir cual Balanceador de carga se adapta mejor a nuestra implementación  debemos responder a los siguientes cuestionamientos:
 
 * ¿Necesito balanceo de carga global o regional?
 * ¿El tráfico es externo o  interno?
