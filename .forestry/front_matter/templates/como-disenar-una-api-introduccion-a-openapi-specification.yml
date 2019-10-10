@@ -44,8 +44,8 @@ fields:
   - aws
   - CloudOps
 pages:
-- content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
 - content/post/comparación-de-balanceadores-de-carga-en-google-cloud-http-s-vs-ssl-proxy-vs-tcp-proxy-vs-internal-vs-network-vs-internal-http-s.md
+- content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
