@@ -28,7 +28,7 @@ Estos Realizan las siguientes funciones:
 
 ● Brinda la flexibilidad de agregar o restar servidores según lo exija la demanda
 
-## Cloud Load Balancers en GCP
+## ¿Cómo elegir el Cloud Load Balancer correcto?
 
 Existen 6 soluciones disponibles, cree una tabla de resumen basada en la documentación oficial de GCP para poder contrastar cada solución:
 
