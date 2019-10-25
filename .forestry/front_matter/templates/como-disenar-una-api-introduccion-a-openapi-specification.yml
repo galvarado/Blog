@@ -56,6 +56,7 @@ pages:
 - content/post/introducción-a-elastic-stack.md
 - content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
+- content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
 - content/post/mis-consejos-para-obtener-la-certificación-de-professional-cloud-architect-de-google-cloud.md
 - content/post/tutorial-infraestructura-como-código-con-terraform.md
