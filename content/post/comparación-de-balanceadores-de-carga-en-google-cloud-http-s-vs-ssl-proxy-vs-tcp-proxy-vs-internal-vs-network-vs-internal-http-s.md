@@ -81,7 +81,7 @@ _Nota: Aunque HTTP(S) es tráfico TCP, si nuestras aplicaciones usan esta comuni
 
 ### Global HTTP(S) load balancing
 
-* Proporciona balanceo de **carga global para tráfico exerno,** para solicitudes HTTP (S) destinado a las VMs.
+* Proporciona balanceo de **carga global para tráfico externo** para solicitudes HTTP (S) destinado a las VMs.
 * Admite direcciones IPv4 e IPv6 para el tráfico del cliente.
 * Utiliza grupos de instancias para dirigir el trafico a las instancias.
 
