@@ -40,7 +40,6 @@ Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea d
 * 5 GB de almacenamiento en disco persistente por usuario, montado como su $ HOME
 * Google Cloud SDK y otras herramientas preinstaladas
 
-  
 Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectado, ya estamos autenticados y el proyecto está configurado en la variable PROJECT_ID. Se debería ver algo simiar a esto:
 
 ![](/uploads/Captura realizada el 2019-10-25 14.16.11.png)
@@ -58,11 +57,9 @@ Para ver el nombre de la cuenta activa ejecutamos:
 Ejemplo:
 
     Credentialed Accounts
-
+    
     ACTIVE            ACCOUNT
-
     *             guillermoalvarado89@gmail.com
-
     To set the active account, run: $ gcloud config set account `ACCOUNT`
 
 Podemos listar el ID del proyecto con el siguiente comando:
@@ -87,4 +84,6 @@ Ejecutamos el comando:
 
 Salida:
 
-    Updated property [compute/zone].
+    Updated property [compute/zone]
+
+#### 2. Desplegar el cluster
