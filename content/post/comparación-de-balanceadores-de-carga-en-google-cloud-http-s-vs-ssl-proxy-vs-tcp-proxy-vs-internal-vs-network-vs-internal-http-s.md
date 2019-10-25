@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = "2019-10-25T05:00:00+00:00"
+date = "2019-10-25T13:00:00+00:00"
 image = "/uploads/GoogleCloudLoadBalancers.png"
 tags = ["architecture", "cloud", "GCP"]
 title = "Comparación de Balanceadores de carga en Google Cloud: Global HTTP(s) vs SSL Proxy vs TCP Proxy vs Networl load balancer vs Internal TCP/UDP vs Internal HTTP(S)"
