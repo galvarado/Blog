@@ -75,7 +75,7 @@ Para más información, consultar la [documentación oficial de gcloud.](https:/
 
 ## Despliegue de clúster GKE paso a paso
 
-Una vez que tenemos acceso a la linea de comandos, podemos comenzar a crear el clúster. Los pasos a seguir son realmente sencillos:
+Una vez realizados los pasos anteriores podemos comenzar a crear el clúster. Los pasos a seguir son realmente sencillos:
 
 #### 1. Designar una zona de cómputo por default
 
