@@ -220,9 +220,7 @@ Cuando se  solicite, escribimos Y para confirmar.  Eliminar el clúster puede ll
     Deleting cluster awesome-cluster...done.
     Deleted [https://container.googleapis.com/v1/projects/gketutorial-257019/zones/us-central1-a/clusters/awesome-cluster].
 
-Borramos los recursos ya que este laboratorio usa VMs reales. Es importante mencionar que el costo de estas VMs se facturarán mientras estén ejecutandose.
-
-NO OLVIDES ELIMINAR LOS RECURSOS PARA NO GENERAR COSTOS EXTRA.
+Borramos los recursos ya que este laboratorio usa VMs reales. Es importante mencionar que el costo de estas VMs se facturarán mientras estén ejecutandose. **NO OLVIDES ELIMINAR LOS RECURSOS PARA NO GENERAR COSTOS EXTRA.**
 
 ¡Listo!  Acabas de implementar una aplicación en contenedores en Kubernetes Engine. Si tienes dudas o comentarios, no dudes en dejarme por aquí tus opiniones [o por mis redes sociales](https://galvarado.com.mx/static/me/).
 
