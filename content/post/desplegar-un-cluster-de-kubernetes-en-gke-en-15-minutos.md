@@ -1,9 +1,8 @@
 +++
 comments = "true"
-date = 2019-11-07T13:00:00Z
-draft = true
+date = 2019-11-08T13:00:00Z
 image = "/uploads/Kubernetes Google Cloud.png"
-tags = ["devops", "cloud", "containers", "GCP"]
+tags = ["devops", "cloud", "containers", "GCP", "kubernetes"]
 title = "Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
 +++
@@ -52,7 +51,7 @@ gcloud es la herramienta de línea de comandos para Google Cloud Platform. Viene
 
 Para ver el nombre de la cuenta activa ejecutamos:
 
-    gcloud auth list
+    $ gcloud auth list
 
 Ejemplo:
 
@@ -64,7 +63,7 @@ Ejemplo:
 
 Podemos listar el ID del proyecto con el siguiente comando:
 
-    gcloud config list project
+    $ gcloud config list project
 
 Ejemplo:
 
@@ -80,10 +79,22 @@ Estableceremos la zona y región donde desplegaremos el cluster en us-centrral1-
 
 Ejecutamos el comando:
 
-    gcloud config set compute/zone us-central1-a
+    $ gcloud config set compute/zone us-central1-a
 
 Salida:
 
     Updated property [compute/zone]
 
 #### 2. Desplegar el cluster
+
+Un clúster consta de al menos un nodo master maestray varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
+
+Para crear un clúster, ejecutamos el siguiente comando, reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a ysar  para el clúster (por ejemplo, awesome-luster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
+
+    $ gcloud container clusters create [CLUSTER-NAME]
+
+Puede llevar varios minutos terminar de crear el clúster. Poco después, deberíamos recibir una salida similar:
+
+    NAME                             LOCATION            NODE_VERSION  NUM_NODES  STATUS
+
+    awesome-cluster         us-central1-a             1.10.9-gke.5                      3          RUNNING
