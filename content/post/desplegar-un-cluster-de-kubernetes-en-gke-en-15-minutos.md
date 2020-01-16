@@ -77,7 +77,7 @@ Para más información, consultar la [documentación oficial de gcloud.](https:/
 
 Una vez que tenemos acceso a la linea de comandos, podemos comenzar a crear el clúster. Los pasos a seguir son realmente sencillos:
 
-#### 1. Designar una zona de cómputo default
+#### 1. Designar una zona de cómputo por default
 
 Estableceremos la zona y región donde desplegaremos el cluster en us-centrral1-a. Podemos consultar [la lista completa de zonas y regiones](https://cloud.google.com/about/locations/?hl=es-419) en GCP.
 
