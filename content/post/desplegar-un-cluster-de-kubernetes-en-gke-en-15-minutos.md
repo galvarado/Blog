@@ -108,6 +108,10 @@ Puede llevar varios minutos terminar de crear el clúster. Poco después, deber�
     NAME               LOCATION            NODE_VERSION     NUM_NODES      STATUS
     awesome-cluster   us-central1-a         1.10.9-gke.5        3          RUNNING
 
+Si vamos al panel de Compute Engine, veremos las VMs que se crearon. Estás son los hosts del cluster de K8s.
+
+![](/uploads/Captura realizada el 2020-01-16 15.17.23.png)
+
 NOTA: Es posible que el acceso a la API para ejecutar este comando no está habilitado. En tal caso recibiremos un ERROR similar a este:
 
     ERROR: (gcloud.container.clusters.create) ResponseError: code=403, message=Google Compute Engine: Access Not Configured. Compute Engine API has not been used in project 272718626493 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=272718626493 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
@@ -124,7 +128,7 @@ Si es la primera vez que usas Googe Cloud también deberás crear una cuenta de 
 
 #### 3. Autenticarse en  el clúster
 
-Después de crear el clúster, necesita obtener credenciales de autenticación para interactuar con el. Para autenticarnos,  ejecuteremos el siguiente comando:
+Después de crear el clúster, necesita obtener credenciales de autenticación para interactuar con el. Para autenticarnos,  ejecutaremos el siguiente comando:
 
     $ gcloud container clusters get-credentials [CLUSTER-NAME]
 
@@ -133,3 +137,17 @@ Reemplazando \[CLUSTER-NAME\] con el nombre del  clúster:
     $ gcloud container clusters get-credentials awesome-cluster
 
 Deberíamos recibir una salida similar:
+
+    Fetching cluster endpoint and auth data.
+
+    kubeconfig entry generated for awesome-cluster.
+
+#### 4. Implementar una aplicación en el clúster
+
+Ahora podemos implementar una aplicación basada en contenedores. Para este laboratorio, ejecutaremos la aplicación hello-app en el clúster.  El motor de Kubernetes utiliza  objetos de Kubernetes para crear y administrar los recursos de su clúster. Kubernetes proporciona el objeto de "Deployment" para implementar aplicaciones. Otros  objetos como el de "Service" definen reglas para acceder a la aplicación desde Internet.  
+
+Ejecuteamos el  siguiente comando de  [kubectl](https://kubernetes.io/es/docs/tasks/tools/install-kubectl/)  para crear la aplicación  a partir de la imagen  hello-app.
+
+NOTA: En este punto es necesario estar familiarizado con los conceptos de Kubernetes.
+
+    kubectl run hello-server --image=gcr.io/google-samples/hello-app:1.0 --port 8080
