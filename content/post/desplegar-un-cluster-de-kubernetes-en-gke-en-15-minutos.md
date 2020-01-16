@@ -49,7 +49,7 @@ Desde esta ventana ejecutaremos todos los comandos.
 
 **gcloud**
 
-gcloud es la herramienta de línea de comandos para Google Cloud Platform. Viene preinstalado en Cloud Shell. A continuacion una serie de comandos de ejemplo que debemos ejecutar:
+gcloud es la herramienta que usaremos para desplegar. Esta es la línea de comandos para Google Cloud Platform. Viene preinstalado en Cloud Shell. A continuacion una serie de comandos de ejemplo que debemos ejecutar:
 
 Para ver el nombre de la cuenta activa ejecutamos:
 
