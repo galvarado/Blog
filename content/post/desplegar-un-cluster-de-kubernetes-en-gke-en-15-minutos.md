@@ -160,7 +160,7 @@ En este comando:
 
 _--port:_ Especifica el puerto que expone el contenedor. En este caso expondremos el puerto 8080
 
-_--image:_  Especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registry, en este caso  gcr.io/google-samples/hello-app:1.0 indica la versión de imagen específica que se debe extraer. Si no se especifica una versión, se utiliza la última versión. Si tienes curiosidad por la imagen la puedes consultar aquí: [https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app](https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app "https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app")
+_--image:_  Especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registry, en este caso  gcr.io/google-samples/hello-app:1.0 indica  la imagen y la versión  específica que se debe extraer. Si no se especificamos una versión, se utiliza la última versión. Si tienes curiosidad por la imagen la puedes consultar aquí: [https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app](https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app "https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app")
 
 ![](/uploads/Captura realizada el 2020-01-16 15.37.57.png)
 
