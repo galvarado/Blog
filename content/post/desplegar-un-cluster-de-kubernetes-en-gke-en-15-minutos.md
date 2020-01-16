@@ -39,7 +39,7 @@ Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea d
 * 5 GB de almacenamiento en disco persistente por usuario, montado como su $ HOME
 * Google Cloud SDK y otras herramientas preinstaladas
 
-Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectado, ya estamos autenticados y el proyecto está configurado en la variable PROJECT_ID. Se debería ver algo simiar a esto:
+Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectados, ya estamos autenticados y el proyecto está configurado en la variable PROJECT_ID. Se debería ver algo simiar a esto:
 
 ![](/uploads/Captura realizada el 2019-10-25 14.16.11.png)
 
