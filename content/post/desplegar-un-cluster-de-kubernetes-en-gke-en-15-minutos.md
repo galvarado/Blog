@@ -154,7 +154,7 @@ Debemos obtener una salida similar a esta:
 
     deployment.apps/hello-server created
 
-Este comando de Kubernetes crea un objeto "Deployment" que representa a la aplicación hello-app. 
+Este comando de Kubernetes crea un objeto "Deployment" que representa a la aplicación hello-app.
 
 En este comando:
 
@@ -180,8 +180,9 @@ Si vamos a los recursos de red en el panel de GCP, podemos ver el balanceador re
 
 Estas son algunas de las bondades de GKE, puedes crear balanceadores de carga y hosts de Kubernetes con un par de comandos, gracias a la integración de K8s  con Google Cloud.
 
-####   
-5\. Acceder a la aplicación
+#### 
+
+#### 5. Acceder a la aplicación
 
 La aplicación está lista. Inspeccionamos el servicio para acceder a él:
 
@@ -192,7 +193,7 @@ Salida:
     NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
     hello-server   LoadBalancer   10.15.249.250   34.70.181.160   8080:32396/TCP   2m18s
 
-NOTA: puede llevar unos 2 minutos  generar la dirección IP externa. Ejecuteamos el comando anterior nuevamente si la columna EXTERNAL-IP está en estado pendiente".
+NOTA: puede llevar unos 2 minutos  generar la dirección IP externa. Ejecuteamos el comando anterior nuevamente si la columna EXTERNAL-IP está en estado "pendiente".
 
 De la salida de este comando, copiamos la dirección IP externa del Servicio de la columna IP EXTERNA.
 
@@ -206,8 +207,8 @@ En mi caso:
 
 La página debe parecerse a lo siguiente:
 
-#### ![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)  
-  
+#### ![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)
+
 6\. Eliminar los recursos
 
 Ejecutamos lo siguiente para eliminar el clúster:
