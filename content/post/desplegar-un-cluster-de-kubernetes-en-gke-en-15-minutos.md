@@ -209,7 +209,7 @@ La página debe parecerse a lo siguiente:
 
 #### ![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)
 
-6\. Eliminar los recursos
+#### 6. Eliminar los recursos
 
 Ejecutamos lo siguiente para eliminar el clúster:
 
