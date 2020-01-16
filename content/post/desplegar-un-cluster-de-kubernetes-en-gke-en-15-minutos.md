@@ -79,7 +79,7 @@ Una vez realizados los pasos anteriores podemos comenzar a crear el clúster. Lo
 
 #### 1. Designar una zona de cómputo por default
 
-Estableceremos la zona y región donde desplegaremos el clúster en us-centrral1-a. Podemos consultar [la lista completa de zonas y regiones](https://cloud.google.com/about/locations/?hl=es-419) en GCP.
+Estableceremos la zona y región donde desplegaremos el clúster en **us-centrral1-a**. Podemos consultar [la lista completa de zonas y regiones](https://cloud.google.com/about/locations/?hl=es-419) en GCP.
 
 Ejecutamos el comando:
 
@@ -91,7 +91,7 @@ Salida:
 
 #### 2. Desplegar el clúster
 
-Un clúster consta de al menos un nodo master maestray varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
+Un clúster consta de al menos un nodo master maestra y varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
 
 Para crear un clúster, ejecutamos el siguiente comando:
 
