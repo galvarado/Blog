@@ -219,4 +219,6 @@ Cuando se  solicite, escribimos Y para confirmar.  Eliminar el clúster puede ll
 
 ¡Acabas de implementar una aplicación en contenedores en Kubernetes Engine!
 
-Si tienes dudas o comentarios, no dudes en dejarme por aquí tus opiniones [o por mis redes sociales](https://galvarado.com.mx/static/me/). Si te fue de utilidad por favor comparte =)
+Si tienes dudas o comentarios, no dudes en dejarme por aquí tus opiniones [o por mis redes sociales](https://galvarado.com.mx/static/me/).
+
+ Si te fue de utilidad por favor comparte =)
