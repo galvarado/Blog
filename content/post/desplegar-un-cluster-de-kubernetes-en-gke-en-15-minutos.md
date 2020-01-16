@@ -93,9 +93,13 @@ Salida:
 
 Un clúster consta de al menos un nodo master maestray varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
 
-Para crear un clúster, ejecutamos el siguiente comando, reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster (por ejemplo, awesome-luster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
+Para crear un clúster, ejecutamos el siguiente comando:
 
     $ gcloud container clusters create [CLUSTER-NAME]
+
+Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster (por ejemplo, awesome-luster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
+
+    $ gcloud container clusters create awesome-cluster
 
 Puede llevar varios minutos terminar de crear el clúster. Poco después, deberíamos recibir una salida similar:
 
