@@ -24,7 +24,7 @@ Algunas de estas ventajas son:
 
 ## Preparar el despliegue de GKE
 
-Para comenzar el despliegue accederemos a la consola de GCP en [https://console.cloud.google.com](https://console.cloud.google.com "https://console.cloud.google.com")
+Para comenzar el despliegue accederemos a la consola de GCP en [https://console.cloud.google.com]()
 
 En la esquina superior derecha buscaremos el ícono para activar Cloud Shell.
 
@@ -100,8 +100,36 @@ Para crear un clúster, ejecutamos el siguiente comando:
 Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster (por ejemplo, awesome-luster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
 
     $ gcloud container clusters create awesome-cluster
+    Creating cluster awesome-cluster in us-central1-a... Cluster is being deployed...⠹
+    
 
 Puede llevar varios minutos terminar de crear el clúster. Poco después, deberíamos recibir una salida similar:
 
     NAME               LOCATION            NODE_VERSION     NUM_NODES      STATUS
     awesome-cluster   us-central1-a         1.10.9-gke.5        3          RUNNING
+
+NOTA: Es posible que el acceso a la API para ejecutar este comando no está habilitado. En tal caso recibiremos un ERROR similar a este:
+
+    ERROR: (gcloud.container.clusters.create) ResponseError: code=403, message=Google Compute Engine: Access Not Configured. Compute Engine API has not been used in project 272718626493 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=272718626493 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+
+Basta con seguir el link que nos muestra el error. Desde ahí habilitaremos el acceso a la API de Compute. Damos click  en el botón Habiitar API y Servicios:
+
+![](/uploads/GKEhabilitarAPI.png)
+
+En el cuadro de busqueda filtraremos por "Compute" y habilitaremos el acceso:
+
+![](/uploads/Captura realizada el 2020-01-16 15.02.49.png)
+
+Si es la primera vez que usas Googe Cloud también deberás crear una cuenta de facturación. El cuadro de dialogo aparecerá en tal caso y basta con llenar el formulario.
+
+#### 3. Autenticarse en  el clúster
+
+Después de crear el clúster, necesita obtener credenciales de autenticación para interactuar con el. Para autenticarnos,  ejecuteremos el siguiente comando:
+
+    $ gcloud container clusters get-credentials [CLUSTER-NAME]
+
+Reemplazando \[CLUSTER-NAME\] con el nombre del  clúster:
+
+    $ gcloud container clusters get-credentials awesome-cluster
+
+Deberíamos recibir una salida similar:
