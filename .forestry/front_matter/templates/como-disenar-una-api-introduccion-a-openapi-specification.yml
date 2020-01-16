@@ -44,19 +44,19 @@ fields:
   - aws
   - CloudOps
 pages:
-- content/post/introducción-instalación-de-suse-portus-un-repositorio-privado-de-imágenes-para-docker.md
-- content/post/explicándole-a-mi-mamá-qué-es-el-internet-y-como-funciona.md
-- content/post/primeros-pasos-en-integración-y-despliegue-continuo-con-circle-ci.md
+- content/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes.md
 - content/post/comparación-de-balanceadores-de-carga-en-google-cloud-http-s-vs-ssl-proxy-vs-tcp-proxy-vs-internal-vs-network-vs-internal-http-s.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
-- content/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes.md
+- content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
+- content/post/explicándole-a-mi-mamá-qué-es-el-internet-y-como-funciona.md
 - content/post/guía-practica-para-planear-y-ejecutar-la-migración-de-aplicaciones-a-la-nube.md
-- content/post/taurus-una-herramienta-devops-pra-automatizar-pruebas-de-rendimiento.md
-- content/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean.md
 - content/post/introducción-a-elastic-stack.md
 - content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
-- content/post/simplificando-la-gestión-multicloud-con-mist-io.md
-- content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
+- content/post/introducción-instalación-de-suse-portus-un-repositorio-privado-de-imágenes-para-docker.md
 - content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
 - content/post/mis-consejos-para-obtener-la-certificación-de-professional-cloud-architect-de-google-cloud.md
+- content/post/primeros-pasos-en-integración-y-despliegue-continuo-con-circle-ci.md
+- content/post/simplificando-la-gestión-multicloud-con-mist-io.md
+- content/post/taurus-una-herramienta-devops-pra-automatizar-pruebas-de-rendimiento.md
+- content/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean.md
 - content/post/tutorial-infraestructura-como-código-con-terraform.md
