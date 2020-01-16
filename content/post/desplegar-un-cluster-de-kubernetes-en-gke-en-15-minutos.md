@@ -151,3 +151,48 @@ Ejecuteamos el  siguiente comando de  [kubectl](https://kubernetes.io/es/docs/ta
 NOTA: En este punto es necesario estar familiarizado con los conceptos de Kubernetes.
 
     kubectl run hello-server --image=gcr.io/google-samples/hello-app:1.0 --port 8080
+
+Debemos obtener una salida similar a esta:
+
+    deployment.apps/hello-server created
+
+Este comando de Kubernetes crea un objeto "Deployment" que representa a la aplicación hello-app.  En este comando:
+
+* --image:  especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registry. gcr.io/google-samples/hello-app:1.0 indica la versión de imagen específica que se debe extraer. Si no se especifica una versión, se utiliza la última versión.
+* --port especifica el puerto que expone el contenedor.
+
+Ahora crearemos un objetivo tipo "Service" de Kubernetes, que es un recurso que  permite exponer la aplicación al tráfico externo. Al pasar type = "LoadBalancer" se crea un balanceador de carga de Compute Engine para la aplicación.
+
+Ejecutamos el siguiente comando de kubectl :
+
+    kubectl expose deployment hello-server --type="LoadBalancer"
+
+Salida:
+
+    service/hello-server exposed
+
+La aplicación está lista. Inspeccionamos el servicio para acceder a él:
+
+kubectl get service hello-server
+
+Salida:
+
+    NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
+
+    hello-server   LoadBalancer   10.15.249.250   34.70.181.160   8080:32396/TCP   2m18s
+
+NOTA: puede llevar un minuto generar la dirección IP externa. Ejecuteamos el comando anterior nuevamente si la columna EXTERNAL-IP está en estado pendiente". 
+
+De la salida de este comando, copiamos la dirección IP externa del Servicio de la columna IP EXTERNA.
+
+Vamos a la aplicación desde el navegador web utilizando la dirección IP externa con el puerto expuesto:
+
+http: // \[IP EXTERNA\]: 8080
+
+En mi caso:
+
+[http://34.70.181.160:8080/](http://34.70.181.160:8080/)
+
+La página debe parecerse a lo siguiente:
+
+![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)
