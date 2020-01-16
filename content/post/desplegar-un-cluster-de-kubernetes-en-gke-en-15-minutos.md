@@ -138,7 +138,6 @@ Reemplazando \[CLUSTER-NAME\] con el nombre del  clúster:
 Deberíamos recibir una salida similar:
 
     Fetching cluster endpoint and auth data.
-    
     kubeconfig entry generated for awesome-cluster.
 
 #### 4. Implementar una aplicación en el clúster
