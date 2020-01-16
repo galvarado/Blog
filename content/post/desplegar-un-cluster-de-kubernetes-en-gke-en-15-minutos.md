@@ -6,11 +6,11 @@ tags = ["devops", "cloud", "containers", "GCP", "kubernetes"]
 title = "Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
 +++
-Google Kubernetes Engine (GKE) proporciona un entorno administrado para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google. Cuando creamos un  entorno de  Kubernetes Engine este se forma de varias máquinas de instancias de Google Compute Engine.  En este post crearemos un cluster de k8s administrado en GKE e implementaremos una aplicación de prueba accediendo a ella en nuestro navegador.
+Google Kubernetes Engine (GKE) proporciona un entorno administrado para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google. Cuando creamos un  entorno de  Kubernetes Engine este se forma de varias máquinas de instancias de Google Compute Engine.  En este post crearemos un clúster de k8s administrado en GKE e implementaremos una aplicación de prueba accediendo a ella en nuestro navegador.
 
 ## Kubernetes en Google Cloud Platform
 
-GKE utiliza las instancias de Google Compute Engine como [nodos del clúster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes) y cada una se factura según los [precios de Compute Engine](https://cloud.google.com/compute/pricing). Las máquinas  las crea GKE  automáticamente cuando creamos un cluster. El precio que pagaremos será el tiempo que tengamos encendidas estas máquinas. No hay ninǵun otro costo asociado.
+GKE utiliza las instancias de Google Compute Engine como [nodos del clúster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes) y cada una se factura según los [precios de Compute Engine](https://cloud.google.com/compute/pricing). Las máquinas  las crea GKE  automáticamente cuando creamos un clúster. El precio que pagaremos será el tiempo que tengamos encendidas estas máquinas. No hay ninǵun otro costo asociado.
 
 Cuando ejecutamos un clúster de Kubernetes Engine,  obtenemos  funciones avanzadas para la administración del clúster que ofrece Google Cloud Platform y que no obtenemos si desplegamos el cluster por nuestra cuenta por ejemplo instalando manualmente k8s en instancias de GCE.
 
@@ -73,13 +73,13 @@ Ejemplo:
 
 Para más información, consultar la [documentación oficial de gcloud.](https://cloud.google.com/sdk/gcloud/)
 
-## Despliegue de cluster GKE paso a pa
+## Despliegue de clúster GKE paso a pa
 
 Una vez que tenemos acceso a la linea de comandos, podemos comenzar a crear el clúster. Los pasos a seguir son realmente sencillos:
 
 #### 1. Designar una zona de cómputo por default
 
-Estableceremos la zona y región donde desplegaremos el cluster en us-centrral1-a. Podemos consultar [la lista completa de zonas y regiones](https://cloud.google.com/about/locations/?hl=es-419) en GCP.
+Estableceremos la zona y región donde desplegaremos el clúster en us-centrral1-a. Podemos consultar [la lista completa de zonas y regiones](https://cloud.google.com/about/locations/?hl=es-419) en GCP.
 
 Ejecutamos el comando:
 
@@ -89,7 +89,7 @@ Salida:
 
     Updated property [compute/zone]
 
-#### 2. Desplegar el cluster
+#### 2. Desplegar el clúster
 
 Un clúster consta de al menos un nodo master maestray varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
 
