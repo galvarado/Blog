@@ -39,7 +39,7 @@ Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea d
 * 5 GB de almacenamiento en disco persistente por usuario, montado como su $ HOME
 * Google Cloud SDK y otras herramientas preinstaladas
 
-Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectados, ya estamos autenticados y el proyecto está configurado en la variable PROJECT_ID. 
+Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectados, ya estamos autenticados y el proyecto está configurado en la variable PROJECT_ID.
 
 Se debería ver algo simiar a esto:
 
@@ -103,6 +103,5 @@ Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster
 
 Puede llevar varios minutos terminar de crear el clúster. Poco después, deberíamos recibir una salida similar:
 
-    NAME                             LOCATION            NODE_VERSION  NUM_NODES  STATUS
-    
-    awesome-cluster         us-central1-a             1.10.9-gke.5                      3          RUNNING
+    NAME               LOCATION            NODE_VERSION     NUM_NODES      STATUS
+    awesome-cluster   us-central1-a         1.10.9-gke.5        3          RUNNING
