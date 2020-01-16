@@ -32,7 +32,9 @@ En la esquina superior derecha buscaremos el ícono para activar Cloud Shell.
 
 **¿Qué es Cloud Shell?**
 
-Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea de comandos directamente desde el navegador. Para administrar fácilmente los proyectos y recursos sin tener que instalar  el [SDK de Google Cloud](https://cloud.google.com/sdk/) ni otras herramientas. Cloud Shell proporciona:
+Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea de comandos directamente desde el navegador. 
+
+Para administrar fácilmente los proyectos y recursos sin tener que instalar  el [SDK de Google Cloud](https://cloud.google.com/sdk/) ni otras herramientas. Cloud Shell proporciona:
 
 * Una instancia de máquina virtual de Compute Engine temporal que ejecuta un Sistema operativo Linux basado en Debian
 * Acceso de línea de comandos a la instancia desde un navegador web utilizando ventanas de terminal en la consola de la plataforma en la nube
