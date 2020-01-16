@@ -1,8 +1,8 @@
 +++
 comments = "true"
-date = "2019-11-07T13:00:00+00:00"
+date = 2019-11-07T13:00:00Z
 draft = true
-image = ""
+image = "/uploads/Kubernetes Google Cloud.png"
 tags = ["devops", "cloud", "containers", "GCP"]
 title = "Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
