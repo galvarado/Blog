@@ -101,7 +101,6 @@ Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster
 
     $ gcloud container clusters create awesome-cluster
     Creating cluster awesome-cluster in us-central1-a... Cluster is being deployed...⠹
-    
 
 Puede llevar varios minutos terminar de crear el clúster. Poco después, deberíamos recibir una salida similar:
 
@@ -139,12 +138,12 @@ Reemplazando \[CLUSTER-NAME\] con el nombre del  clúster:
 Deberíamos recibir una salida similar:
 
     Fetching cluster endpoint and auth data.
-
+    
     kubeconfig entry generated for awesome-cluster.
 
 #### 4. Implementar una aplicación en el clúster
 
-Ahora podemos implementar una aplicación basada en contenedores. Para este laboratorio, ejecutaremos la aplicación hello-app en el clúster.  El motor de Kubernetes utiliza  objetos de Kubernetes para crear y administrar los recursos de su clúster. Kubernetes proporciona el objeto de "Deployment" para implementar aplicaciones. Otros  objetos como el de "Service" definen reglas para acceder a la aplicación desde Internet.  
+Ahora podemos implementar una aplicación basada en contenedores. Para este laboratorio, ejecutaremos la aplicación hello-app en el clúster.  El motor de Kubernetes utiliza  objetos de Kubernetes para crear y administrar los recursos de su clúster. Kubernetes proporciona el objeto de "Deployment" para implementar aplicaciones. Otros  objetos como el de "Service" definen reglas para acceder a la aplicación desde Internet.
 
 Ejecuteamos el  siguiente comando de  [kubectl](https://kubernetes.io/es/docs/tasks/tools/install-kubectl/)  para crear la aplicación  a partir de la imagen  hello-app.
 
@@ -156,10 +155,15 @@ Debemos obtener una salida similar a esta:
 
     deployment.apps/hello-server created
 
-Este comando de Kubernetes crea un objeto "Deployment" que representa a la aplicación hello-app.  En este comando:
+Este comando de Kubernetes crea un objeto "Deployment" que representa a la aplicación hello-app. 
 
-* --image:  especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registry. gcr.io/google-samples/hello-app:1.0 indica la versión de imagen específica que se debe extraer. Si no se especifica una versión, se utiliza la última versión.
-* --port especifica el puerto que expone el contenedor.
+En este comando:
+
+_--port:_ Especifica el puerto que expone el contenedor. En este caso expondremos el puerto 8080
+
+_--image:_  Especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registr, en este caso  gcr.io/google-samples/hello-app:1.0 indica la versión de imagen específica que se debe extraer. Si no se especifica una versión, se utiliza la última versión. Si tienes curiosidad por la imagen la puedes consultar aquí: [https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app](https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app "https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app")
+
+![](/uploads/Captura realizada el 2020-01-16 15.37.57.png)
 
 Ahora crearemos un objetivo tipo "Service" de Kubernetes, que es un recurso que  permite exponer la aplicación al tráfico externo. Al pasar type = "LoadBalancer" se crea un balanceador de carga de Compute Engine para la aplicación.
 
@@ -171,17 +175,25 @@ Salida:
 
     service/hello-server exposed
 
+Si vamos a los recursos de red en el panel de GCP, podemos ver el balanceador recién creado:
+
+![](/uploads/Captura realizada el 2020-01-16 15.31.05.png)
+
+Estas son algunas de las bondades de GKE, puedes crear balanceadores de carga y hosts de Kubernetes con un par de comandos, gracias a la integración de K8s  con Google Cloud.
+
+####   
+5\. Acceder a la aplicación
+
 La aplicación está lista. Inspeccionamos el servicio para acceder a él:
 
-kubectl get service hello-server
+    kubectl get service hello-server
 
 Salida:
 
     NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
-
     hello-server   LoadBalancer   10.15.249.250   34.70.181.160   8080:32396/TCP   2m18s
 
-NOTA: puede llevar un minuto generar la dirección IP externa. Ejecuteamos el comando anterior nuevamente si la columna EXTERNAL-IP está en estado pendiente". 
+NOTA: puede llevar unos 2 minutos  generar la dirección IP externa. Ejecuteamos el comando anterior nuevamente si la columna EXTERNAL-IP está en estado pendiente".
 
 De la salida de este comando, copiamos la dirección IP externa del Servicio de la columna IP EXTERNA.
 
@@ -195,4 +207,16 @@ En mi caso:
 
 La página debe parecerse a lo siguiente:
 
-![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)
+#### ![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)  
+  
+6\. Eliminar los recursos
+
+Ejecutamos lo siguiente para eliminar el clúster:
+
+    gcloud container clusters delete [CLUSTER-NAME]
+
+Cuando se  solicite, escribimos Y para confirmar.  Eliminar el clúster puede llevar unos minutos.
+
+¡Acabas de implementar una aplicación en contenedores en Kubernetes Engine!
+
+Si tienes dudas o comentarios, no dudes en dejarme por aquí tus opiniones [o por mis redes sociales](https://galvarado.com.mx/static/me/). Si te fue de utilidad por favor comparte =)
