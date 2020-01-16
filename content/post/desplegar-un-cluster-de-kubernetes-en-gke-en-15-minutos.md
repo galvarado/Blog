@@ -73,7 +73,9 @@ Ejemplo:
 
 Para más información, consultar la [documentación oficial de gcloud.](https://cloud.google.com/sdk/gcloud/)
 
-## Despliegue de cluster GKE paso a paso
+## Despliegue de cluster GKE paso a pa
+
+Una vez que tenemos acceso a la linea de comandos, podemos comenzar a crear el clúster. Los pasos a seguir son realmente sencillos:
 
 #### 1. Designar una zona de cómputo default
 
