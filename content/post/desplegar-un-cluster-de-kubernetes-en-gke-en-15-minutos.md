@@ -24,7 +24,7 @@ Algunas de estas ventajas son:
 
 ## Preparar el despliegue de GKE
 
-Para comenzar el despliegue accederemos a la consola de GCP en [https://console.cloud.google.com]()
+Para comenzar el despliegue accederemos a la consola de GCP en [https://console.cloud.google.com](https://console.cloud.google.com "https://console.cloud.google.com")
 
 En la esquina superior derecha buscaremos el ícono para activar Cloud Shell.
 
