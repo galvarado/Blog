@@ -6,7 +6,9 @@ tags = ["devops", "cloud", "containers", "GCP", "kubernetes"]
 title = "Tutorial: Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
 +++
-En este tutorial de Kubernetes me enfoqué en usar  Google Kubernetes Engine (GKE) que proporciona un entorno  para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google de una manera muy, muy sencilla. Cuando creamos un  entorno de  Kubernetes Engine este se forma de varias máquinas de instancias de Google Compute Engine.  En este post crearemos un clúster de k8s administrado en GKE e implementaremos una aplicación de prueba accediendo a ella en nuestro navegador.
+En este tutorial de Kubernetes me enfoqué en usar  Google Kubernetes Engine (GKE) que proporciona un entorno  para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google de una manera muy, muy sencilla. 
+
+Cuando creamos un  entorno de  Kubernetes Engine este se forma de varias máquinas de instancias de Google Compute Engine, en esta ocasión crearemos un clúster de k8s administrado en GKE e implementaremos una aplicación de prueba accediendo a ella en nuestro navegador.
 
 Antes de entrar de lleno a   Google Kubernetes Engine: Si deseas conocer otras herramientas para instalar Kubernetes en otros entornos te recomiendo consultar el post[ 6 herramientas para desplegar un cluster de kubernetes](https://galvarado.com.mx/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes/). Encontrarás  opciones para  entornos de locale,s de desarrollo y otras nubes como AWS, Azure o Digital Ocean.
 
