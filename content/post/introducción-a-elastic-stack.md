@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = "2019-09-06T05:00:00+00:00"
+date = 2019-09-06T05:00:00Z
 draft = true
 image = "/uploads/INTRODUCCIÓN (1).png"
 tags = ["devops", "architecture", "cloud", "CloudOps"]
@@ -119,7 +119,5 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 **Graph - Análisis de gráficos:** Existen posibles relaciones entre los documentos de  Elastic Stack: enlaces entre personas, lugares, preferencias, productos, lo que sea. Graph ofrece un enfoque orientado a las relaciones que  permite explorar las conexiones en los datos
 
 **Machine learning:** Ejecutar tareas de machine learning en los datos para visualizar y prevenir ar anomalías.
-
-Por ahora esta solo fue una introducción básica a los distintos componentes. En la siguiente entrada hablaré de algunas arquitecturas recomendadas para desplegar un Elastic Stack así como de casos de uso para la plataforma.
 
 Si te fue útil, por favor comparte =)
