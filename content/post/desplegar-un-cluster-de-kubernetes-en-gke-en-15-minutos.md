@@ -6,7 +6,7 @@ tags = ["devops", "cloud", "containers", "GCP", "kubernetes"]
 title = "Tutorial: Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
 +++
-En este tutorial de Kubernetes me enfoqué en usar  Google Kubernetes Engine (GKE) que proporciona un entorno  para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google de una manera muy, muy sencilla. 
+En este tutorial de Kubernetes me enfoqué en usar  Google Kubernetes Engine (GKE) que proporciona un entorno  para implementar, administrar y escalar  aplicaciones en contenedores utilizando la infraestructura de Google de una manera muy, muy sencilla.
 
 Cuando creamos un  entorno de  Kubernetes Engine este se forma de varias máquinas de instancias de Google Compute Engine, en esta ocasión crearemos un clúster de k8s administrado en GKE e implementaremos una aplicación de prueba accediendo a ella en nuestro navegador.
 
@@ -36,7 +36,7 @@ En la esquina superior derecha buscaremos el ícono para activar Cloud Shell.
 
 **¿Qué es Cloud Shell?**
 
-Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea de comandos directamente desde el navegador. 
+Google Cloud Shell  ofrece acceso a los recursos en la nube mediante la línea de comandos directamente desde el navegador.
 
 Para administrar fácilmente los proyectos y recursos sin tener que instalar  el [SDK de Google Cloud](https://cloud.google.com/sdk/) ni otras herramientas. Cloud Shell proporciona:
 
@@ -97,7 +97,7 @@ Salida:
 
 #### 2. Desplegar el clúster
 
-Un clúster consta de al menos un nodo master maestra y varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
+Un clúster consta de al menos un nodo master  y varios  nodos workers. Los nodos son instancias de máquina virtual (VM) de Compute Engine que ejecutan los procesos de Kubernetes necesarios.
 
 Para crear un clúster, ejecutamos el siguiente comando:
 
@@ -230,4 +230,4 @@ Borramos los recursos ya que este laboratorio usa VMs reales. Es importante menc
 
 ¡Listo!  Acabas de implementar una aplicación en contenedores en Kubernetes Engine. Si tienes dudas o comentarios, no dudes en dejarme por aquí tus opiniones [o por mis redes sociales](https://galvarado.com.mx/static/me/).
 
-Si te fue de utilidad por favor comparte =) 
+Si te fue de utilidad por favor comparte =)
