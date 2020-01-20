@@ -103,7 +103,7 @@ Para crear un clúster, ejecutamos el siguiente comando:
 
     $ gcloud container clusters create [CLUSTER-NAME]
 
-Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster (por ejemplo, awesome-luster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
+Reemplazando \[CLUSTER-NAME\] con el nombre que vayamos a usar  para el clúster (por ejemplo, awesome-cluster). Los nombres de clúster deben comenzar con una letra, terminar con un carácter alfanumérico y no pueden tener más de 40 caracteres.
 
     $ gcloud container clusters create awesome-cluster
     Creating cluster awesome-cluster in us-central1-a... Cluster is being deployed...⠹
