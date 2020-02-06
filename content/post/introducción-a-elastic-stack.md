@@ -1,7 +1,7 @@
 +++
 comments = "true"
 date = 2020-02-05T06:00:00Z
-image = "/uploads/INTRODUCCIÓN (1).png"
+image = "/uploads/elasticsearch.png"
 tags = ["devops", "cloud", "elastcisearch", "kibana", "logstash"]
 title = "Introducción a Elastic Stack"
 
