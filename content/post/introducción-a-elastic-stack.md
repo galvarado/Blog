@@ -10,13 +10,11 @@ Estoy trabajando con Elastic Stack de nuevo, hace unos años que no implementaba
 
 ## Breve Historia de Elastic
 
-Todo comenzćo con el ELK Stack, acrónimo de tres proyectos de código abierto: Elasticsearch, Logstash y Kibana. El Elastic Stack es la  evolución del ELK Stack.
+Todo comenzó con el ELK Stack, acrónimo de tres proyectos de código abierto: Elasticsearch, Logstash y Kibana. El Elastic Stack es la  evolución del ELK Stack.
 
-Shay Banon creó el precursor de Elasticsearch, llamado Compass, en 2004 Después lanzó la primera versión de Elasticsearch en febrero de 2010.
+Shay Banon creó el precursor de Elasticsearch, llamado Compass, en 2004. Después lanzó la primera versión de Elasticsearch en febrero de 2010.
 
-Elastic NV se fundó en 2012 para proporcionar servicios y productos comerciales en torno a Elasticsearch y software relacionado.
-
-En marzo de 2015, la compañía Elasticsearch cambió su nombre a Elastic.
+Elastic NV se fundó en 2012 para proporcionar servicios y productos comerciales en torno a Elasticsearch y software relacionado. En marzo de 2015, la compañía Elasticsearch cambió su nombre a Elastic.
 
 En junio de 2018, Elastic solicitó una oferta pública inicial con una valoración estimada de entre 1,5 y 3 mil millones de dólares.  El 5 de octubre de 2018, Elastic cotizaba en la Bolsa de Nueva York.
 
@@ -32,27 +30,27 @@ Beats es la plataforma para transportar datos dentro del stack. Los Beats son un
 
 **Filebeat:**  Ingestar archivos de registro (logs)
 
-**Metricbeat:**  Métricas de sistema, como CPU, RAM, Disco y muchos modulo disponibles cómo Docker, NGINX,
+**Metricbeat:**  Métricas de sistema, como CPU, RAM, Disco y muchos modulo disponibles cómo Docker, NGINX, etc.
 
-**Heartbeat:**  Un protocolo de latido (heart) generalmente se usa para  monitorear la disponibilidad de un recurso. Puede realizar "pings por ICMP, TCP y HTTP.
+**Heartbeat:**  Un protocolo de latido (heart) generalmente se usa para  monitorear la disponibilidad de un recurso. Puede realizar "pings" por ICMP, TCP y HTTP.
 
-**Packetbeat:**  Decodifica protocolos de red, correlaciona peticiones con respuetas, incluidos: ICMP, DNS HTTP, AMQP y de otras aplicaciones como MySQL, Memcached, MongoDB, RPC.
+**Packetbeat:**  Decodifica protocolos de red, correlaciona peticiones con respuetas,  los protocolos incluidos son ICMP, DNS HTTP, AMQP y de otras aplicaciones como MySQL, Memcached, MongoDB, RPC.
 
-\**Winlogbeat:**Registros de eventos de Windows
+**Winlogbeat:** Registros de eventos (logs) de Windows.
 
-**Auditbeat:** Datos de auditoria, se integra con  el modulo del kernel de Linux audit framework. También para monitorear en tiempo real la  la integridad de archivos, usando hashes.
+**Auditbeat:** Datos de auditoria, se integra con  el modulo del kernel de _Linux audit_ . También monitorea en tiempo real l  la integridad de archivos, usando hashes.
 
-**Functionbeat:**  Para implementarse como dunción en una plataforma  FaaS, para recopilar, enviar y monitorear datos de  servicios en la nube.
+**Functionbeat:**  Para implementarse como función en una plataforma FaaS, con el objetivo de recopilar, monitorear y enviar datos de servicios en la nube.
 
 ### Logstash
 
-Logstash  es un motor de procesamiento y recopilación de datos basado en plugins.  El objetivo principal de  Logstash es crear  pipelines de procesamiento de datos. Este ingiere datos de una multitud de fuentes simultáneamente, los transforma y envía de forma dinámica  sin importar  su formato o complejidad hacia un repositorio determinado, la mayoría de las veces ese repositorio es Elastic Search.
+Logstash  es  un _pipeline de procesamiento de datos._  Es un motor de procesamiento y recopilación de datos basado en plugins, suobjetivo principal es crear  pipelines de procesamiento de datos. Logstssh ingiere datos de una multitud de fuentes simultáneamente, los transforma y formatea para  enviarlos de forma dinámica  hacia un repositorio determinado, la mayoría de las veces ese repositorio es Elastic Search.
 
-A medida que los datos van de la fuente al repositorio, los  filtros de Logstash analizan cada evento,  identifican los campos por nombre para construir una estructura y los transforman para converger en un formato común para poder realizar un análisis más poderoso.
+A medida que los datos van de la fuente al repositorio, los  filtros de Logstash analizan cada evento,  identifican los campos por nombre para construir una estructura y los transforman para tener en un formato común para poder realizar un análisis más poderoso.
 
 ### Elastic Search
 
-Es el corazón del Elastic Stack, es un motor de búsqueda y análisis. Es altamente distribuible y fácilmente escalable. Es accesible a través de una extensa  API. El objetivo es realizar  búsquedas extremadamente rápidas que respalden nuestras aplicaciones. Elastic Search se puede considerar una Base de Datos NOSQL.
+Es el corazón del Elastic Stack, es  un servidor de búsqueda basado en [Lucene](https://es.wikipedia.org/wiki/Lucene "Lucene"). Provee un [motor de búsqueda](https://es.wikipedia.org/wiki/Motor_de_b%C3%BAsqueda "Motor de búsqueda") de texto  y es altamente distribuible y fácilmente escalable. Es accesible a través de una extensa  API. El objetivo es realizar  búsquedas extremadamente rápidas que respalden nuestras aplicaciones. Elastic Search se puede considerar una Base de Datos NoSQL.
 
 Para comprender mejor Elasticsearch y su uso defino los los principales términos que se deben comprender:
 
@@ -84,13 +82,13 @@ Una consulta sobre el documento anterior se vería así:
       "query": { "match": { "firstname": "Guillermo" } }
     }
 
-**Nodo:** Un nodo es un servidor único que forma parte de un clúster, almacena nuestros datos y participa en las capacidades de indexación y búsqueda del clúster. Al igual que un clúster, un nodo se identifica con un nombre que, de manera predetermin
+**Nodo:** Un nodo es un servidor  que forma parte de un clúster, este almacena nuestros datos y participa en las capacidades de indexación y búsqueda del clúster. Al igual que un clúster, un nodo se identifica con un nombre.
 
-**Cluster:** Es una colección de uno o más nodos que en conjunto contiene todos los datos y proporciona capacidades de indexación y búsqueda . Puede haber N nodos en el mismo clúster. lasticsearch funciona como un entorno distribuido: con la replicación entre clústers, un clúster secundario puede entrar en acción como una copia de seguridad.
+**Cluster:** Es una colección de uno o más nodos que en conjunto contiene todos los datos donde buscamos  Puede haber N nodos en el mismo clúster. Elasticsearch funciona como un entorno distribuido con la replicación entre nodos.
 
-**Fragmentos (Shards) y réplicas:** Elasticsearch proporciona la capacidad de subdividir el índice en varias piezas llamadas fragmentos. Cuando se crea un índice, se puede definir la cantidad de fragmentos que se desea. Cada fragmento es en sí mismo un "índice" totalmente funcional e independiente que se puede alojar en cualquier nodo del clúster.
+**Fragmentos (Shards) y réplicas:** Elasticsearch proporciona la capacidad de subdividir el índice en varias piezas llamadas fragmentos o shards. Cuando se crea un índice, se puede definir la cantidad de fragmentos que se desea. Cada fragmento es en sí mismo un "índice" totalmente funcional e independiente que se puede almacenar en cualquier nodo del clúster.
 
-Los fragmentos son importantes porque permiten dividir horizontalmente el volumen de datos, potencialmente para realizar operaciones de paralelización en entonos de múltiples nodos, aumentando así el rendimiento. Los fragmentos también se pueden usar al hacer múltiples copias del índice en fragmentos de réplicas.
+Los fragmentos son importantes porque permiten dividir horizontalmente el volumen de datos, potencialmente para realizar operaciones de paralelización aumentando así el rendimiento.Ños índices se puedan dividir en fragmentos y cada uno tener cero o más réplicas.
 
 ### Kibana
 
@@ -109,7 +107,7 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 
 **Seguridad**: Posibilidad de manejar usuarios y roles, integración con LDAP y SAML. Cifrado de la comunicación con SSL/TSL.
 
-**Alertas:** alertas sobre cambios en los datos. Básicamente si lo puedes buscar, lo puedes alertar. Vía email, slack, pagerdumy Hipchat y cualquier webhook.
+**Alertas:** alertas sobre cambios en los datos. Básicamente si lo puedes buscar, lo puedes alertar. Vía Email, Slack, Pagerduty, Hipchat y cualquier webhook.
 
 **Monitoreo**: Monitorear el rendimiento así como el uso de los componentes  de Elastic Search,KIbana y Logstash.
 
@@ -118,6 +116,20 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 **Graph - Análisis de gráficos:** Existen posibles relaciones entre los documentos de  Elastic Stack: enlaces entre personas, lugares, preferencias, productos, lo que sea. Graph ofrece un enfoque orientado a las relaciones que  permite explorar las conexiones en los datos
 
 **Machine learning:** Ejecutar tareas de machine learning en los datos para visualizar y prevenir ar anomalías.
+
+## Casos de uso
+
+### 1. Logs
+
+Para cualquiera que esté familiarizado con Elasticsearch, este no debería ser una sorpresa. El ecosistema creado alrededor de Elasticsearch lo ha convertido en una de las soluciones de centralización de logs más fáciles de implementar y escalar. Desde Beats, hasta Logstash, Elasticsearch  ofrece muchas opciones para capturar datos donde sea que estén e indexarlos. A partir de ahí, herramientas como Kibana  brindan la capacidad de crear paneles y análisis completos.
+
+### 2. Búsqueda de texto completo
+
+La búsqueda de texto completo es una forma más avanzada de buscar en una base de datos. La búsqueda de texto completo encuentra rápidamente todas las instancias de un término (palabra) en una tabla sin tener que escanear filas y sin tener que saber en qué columna se almacena un término.  ElasticSearch funciona como un índice de texto y  almacena información posicional para todos los términos encontrados en las columnas en las que crea el índice de texto. Usar un índice de texto es más rápido que usar un índice regular para encontrar filas que contengan un valor dado. Esto lo podemos encontrar en sitios donde podemos buscar una palabra concreta en todo el sitio.
+
+### 3. Datos y métricas del eventos
+
+ElasticSearch  funciona  en datos de series de  tiempo como métricas y eventos de aplicaciones. Esta es otra área donde el  ecosistema de Beats permite capturar fácilmente datos de aplicaciones comunes. Independientemente de las tecnologías que se utilicen para contruir las aplicaciones, existe una gran posibilidad de que Elasticsearch tenga los componentes para tomar métricas y eventos de forma inmediata .
 
 En próximas entradas veremos como instalar y configurar un Elastic stack completo.
 
