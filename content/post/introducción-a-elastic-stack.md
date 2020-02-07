@@ -117,7 +117,21 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 
 **Machine learning:** Ejecutar tareas de machine learning en los datos para visualizar y prevenir ar anomalías.
 
-## Casos de uso
+## ¿Para que usar Elastic Stack?
+
+La velocidad y escalabilidad de Elasticsearch y su capacidad de indexar muchos tipos de contenido significan que puede usarse para una variedad de casos de uso:
+
+* Búsqueda de aplicaciones
+* Búsqueda de sitio web
+* Búsqueda Empresarial
+* Logging y analíticas de log
+* Métricas de infraestructura y monitoreo de contenedores
+* Monitoreo de rendimiento de aplicaciones
+* Análisis y visualización de datos geoespaciales
+* Analítica de Seguridad
+* Analítica de Negocios
+
+A continuación 3 casos que personalmente he trabajado con esta tecnología:
 
 ### 1. Logs
 
