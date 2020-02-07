@@ -119,6 +119,20 @@ Es un módulo premium, recientemente liberaron  el código bajo su propia licenc
 
 ## Casos de uso
 
+La velocidad y escalabilidad de Elasticsearch y su capacidad de indexar muchos tipos de contenido significan que puede usarse para una variedad de casos de uso:
+
+* Búsqueda de aplicaciones
+* Búsqueda de sitio web
+* Búsqueda Empresarial
+* Logging
+* Métricas de infraestructura y monitoreo de contenedores
+* Monitoreo de rendimiento de aplicaciones
+* Análisis y visualización de datos geoespaciales
+* Analítica de Seguridad
+* Analítica de Negocios
+
+A continuación los 3 casos que personalmente he desarrollado con esta tecnología:
+
 ### 1. Logs
 
 Para cualquiera que esté familiarizado con Elasticsearch, este no debería ser una sorpresa. El ecosistema creado alrededor de Elasticsearch lo ha convertido en una de las soluciones de centralización de logs más fáciles de implementar y escalar. Desde Beats, hasta Logstash, Elasticsearch  ofrece muchas opciones para capturar datos donde sea que estén e indexarlos. A partir de ahí, herramientas como Kibana  brindan la capacidad de crear paneles y análisis completos.
