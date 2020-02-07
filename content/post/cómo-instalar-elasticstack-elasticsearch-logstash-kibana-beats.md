@@ -6,7 +6,7 @@ tags = ["devops", "architecture", "elasticsearch"]
 title = "Cómo Instalar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
 
 +++
-El objetivo de este tutorial es instalar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil al para identificar problemas en los servidores o aplicaciones, ya que nose permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
+El objetivo de este tutorial es instalar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil al para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
 
 Los componentes que instalaremos son:
 
@@ -17,4 +17,30 @@ Los componentes que instalaremos son:
 
 Para una introducción a todos los componentes y casos de uso de Elasicsearch,[ puedes ver este post](https://galvarado.com.mx/post/introducci%C3%B3n-a-elastic-stack/).
 
-Este es el flujo de los datos que buscamos:
+## Flujo de datos
+
+Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras aplicaciones para ser centralizados usando el Elastic Stack:
+
+![](/uploads/ELKFLow.png)
+
+1. **Beats** obtiene los logs de las aplicaciones y los envía a Logstash.
+2. **Logstash** recibe los datos, los transforma y los almacena en Elasticsearch.
+3. **Elasticsearch** indexa los datos, este es el repositorio donde se almacenarán logs logs.
+4. **Kibana** accede a Elasticsearch para realizan consultas y analisis.
+
+## Prerequisitos
+
+La versión que instalaremos será la 7.5 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad. Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
+
+* 3 Máquinas virtuales como Elasticsearch Master Nodes
+* 3 Máquinas virtuales como Elasticsearch Data Nodes
+* 1 Máquina virtual para Logstash
+* 1 Máquina virtual para Kibana
+
+Todas las Máquinas virtuales que usaré tienen 2GB RAM y 2 CPUs. Los requerimientos de CPU, Memoria y Disco dependen de cada caso de uso. Una referencia [se puede encontrar aquí](https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html).
+
+La instalación se realizará usando el Sistema Operativo CentOS versión 8.
+
+_Nota: Esta instalación está pensada en un entorno de producción. Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
+
+## Instalación Elasticsearch
