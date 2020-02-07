@@ -25,7 +25,7 @@ Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras ap
 
 1. **Beats** obtiene los logs de las aplicaciones y los envía a Logstash.
 2. **Logstash** recibe los datos, los transforma y los almacena en Elasticsearch.
-3. **Elasticsearch** indexa los datos, este es el repositorio donde se almacenarán logs logs.
+3. **Elasticsearch** indexa los datos, este es el repositorio donde se almacenarán los logs.
 4. **Kibana** accede a Elasticsearch para realizan consultas y analisis.
 
 ## Prerequisitos
