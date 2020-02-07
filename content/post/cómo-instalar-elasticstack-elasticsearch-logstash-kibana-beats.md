@@ -15,7 +15,7 @@ Los componentes que instalaremos son:
 * [Kibana](https://www.elastic.co/products/kibana): Interfaz web para buscar en los logs y crear gráficas  y  dashboards.
 * [Beats](https://www.elastic.co/products/beats): Agentes que transportan los datos, en este caso los archivos de logs hacia logstash para su procesamiento y posterior almacenamiento.
 
-Para una introducción a todos los componentes y casos de uso de Elasicsearch [ puedes ver este post](https://galvarado.com.mx/post/introducci%C3%B3n-a-elastic-stack/).
+Para una introducción a todos los componentes y casos de uso de Elasicsearch [puedes ver este post](https://galvarado.com.mx/post/introducci%C3%B3n-a-elastic-stack/).
 
 ## Flujo de datos
 
