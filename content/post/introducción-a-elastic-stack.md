@@ -44,7 +44,7 @@ Beats es la plataforma para transportar datos dentro del stack. Los Beats son un
 
 ### Logstash
 
-Logstash es una pipeline de procesamiento de datos open source y que te permite ingestar datos de múltiples fuentes simultáneamente y enriquecerlos y transformarlos antes de que se indexen en Elasticsearch. Se usa para agregar y procesar datos y enviarlos a su repositorio final, la mayoría de las veces Elasticsearch. 
+Logstash es una pipeline de procesamiento de datos open source y que te permite ingestar datos de múltiples fuentes simultáneamente y enriquecerlos y transformarlos antes de que se indexen en Elasticsearch. Se usa para agregar y procesar datos y enviarlos a su repositorio final, la mayoría de las veces Elasticsearch.
 
 A medida que los datos van de la fuente al repositorio, los  filtros de Logstash analizan cada evento,  identifican los campos por nombre para construir una estructura y los transforman para tener en un formato común para poder realizar un análisis más poderoso.
 
@@ -130,6 +130,12 @@ La búsqueda de texto completo es una forma más avanzada de buscar en una base 
 ### 3. Datos y métricas del eventos
 
 ElasticSearch  funciona  en datos de series de  tiempo como métricas y eventos de aplicaciones. Esta es otra área donde el  ecosistema de Beats permite capturar fácilmente datos de aplicaciones comunes. Independientemente de las tecnologías que se utilicen para construir las aplicaciones, existe una gran posibilidad de que Elasticsearch tenga los componentes para tomar métricas y eventos de forma inmediata .
+
+## ¿Es Elasticsearch gratis?
+
+Sí, las características open source de Elasticsearch son gratis para usar con la licencia Apache 2. Las características adicionales están disponibles con una licencia Elastic, y las suscripciones de  paga brindan acceso a soporte y a características avanzadas como las que brinda X-Pack incluidas alertas y machine learning.
+
+La [**distribución oficial de Elasticsearch**](https://www.elastic.co/es/downloads/elasticsearch) está disponible en la página web de Elastic.
 
 En próximas entradas veremos como instalar y configurar un ElasticStack completo.
 
