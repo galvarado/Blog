@@ -131,6 +131,6 @@ La búsqueda de texto completo es una forma más avanzada de buscar en una base 
 
 ElasticSearch  funciona  en datos de series de  tiempo como métricas y eventos de aplicaciones. Esta es otra área donde el  ecosistema de Beats permite capturar fácilmente datos de aplicaciones comunes. Independientemente de las tecnologías que se utilicen para contruir las aplicaciones, existe una gran posibilidad de que Elasticsearch tenga los componentes para tomar métricas y eventos de forma inmediata .
 
-En próximas entradas veremos como instalar y configurar un Elastic stack completo.
+En próximas entradas veremos como instalar y configurar un ElasticStack completo.
 
 Si te fue útil, por favor comparte =)
