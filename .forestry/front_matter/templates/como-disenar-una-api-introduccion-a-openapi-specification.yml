@@ -53,7 +53,6 @@ pages:
 - content/post/introducción-a-elastic-stack.md
 - content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
 - content/post/introducción-instalación-de-suse-portus-un-repositorio-privado-de-imágenes-para-docker.md
-- content/post/microsoft-compra-citus-data-para-mejorar-la-experiencia-en-postgresql-en-azure.md
 - content/post/mis-consejos-para-obtener-la-certificación-de-professional-cloud-architect-de-google-cloud.md
 - content/post/primeros-pasos-en-integración-y-despliegue-continuo-con-circle-ci.md
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
