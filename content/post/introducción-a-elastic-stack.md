@@ -26,7 +26,7 @@ Entonces, el Elastic Stack es la  evolución del ELK Stack original, los mismos 
 
 ### Beats
 
-Beats es la plataforma para transportar datos dentro del stack. Los Beats son un conjunto de Data Shippers que entregan datos directamente a ElasticSearch y/o Logstash y que por tanto actúan como agentes. Al momento de escribir este artículo existían los siguientes agentes en la página  oficial:
+Beats es la plataforma para transportar datos dentro del stack. Los Beats son un conjunto de Data Shippers que entregan datos directamente a Elasticsearch y/o Logstash y que por tanto actúan como agentes. Al momento de escribir este artículo existían los siguientes agentes en la página  oficial:
 
 **Filebeat:**  Ingestar archivos de registro (logs)
 
@@ -48,7 +48,7 @@ Logstash es una pipeline de procesamiento de datos open source y que te permite 
 
 A medida que los datos van de la fuente al repositorio, los  filtros de Logstash analizan cada evento,  identifican los campos por nombre para construir una estructura y los transforman para tener en un formato común para poder realizar un análisis más poderoso.
 
-### Elastic Search
+### Elasticsearch
 
 Es el corazón del Elastic Stack, es  un servidor de búsqueda basado en [Lucene](https://es.wikipedia.org/wiki/Lucene "Lucene"). Provee un [motor de búsqueda](https://es.wikipedia.org/wiki/Motor_de_b%C3%BAsqueda "Motor de búsqueda") de texto  y es altamente distribuible y fácilmente escalable. Es accesible a través de una extensa  API. El objetivo es realizar  búsquedas extremadamente rápidas que respalden nuestras aplicaciones. Elastic Search se puede considerar una Base de Datos NoSQL.
 
@@ -139,11 +139,11 @@ Para cualquiera que esté familiarizado con Elasticsearch, este no debería ser 
 
 ### 2. Búsqueda de texto completo
 
-La búsqueda de texto completo es una forma más avanzada de buscar en una base de datos. La búsqueda de texto completo encuentra rápidamente todas las instancias de un término (palabra) en una tabla sin tener que escanear filas y sin tener que saber en qué columna se almacena un término.  ElasticSearch funciona como un índice de texto y  almacena información posicional para todos los términos encontrados en las columnas en las que crea el índice de texto. Usar un índice de texto es más rápido que usar un índice regular para encontrar filas que contengan un valor dado. Esto lo podemos encontrar en sitios donde podemos buscar una palabra concreta en todo el sitio.
+La búsqueda de texto completo es una forma más avanzada de buscar en una base de datos. La búsqueda de texto completo encuentra rápidamente todas las instancias de un término (palabra) en una tabla sin tener que escanear filas y sin tener que saber en qué columna se almacena un término.  Elasticsearch funciona como un índice de texto y  almacena información posicional para todos los términos encontrados en las columnas en las que crea el índice de texto. Usar un índice de texto es más rápido que usar un índice regular para encontrar filas que contengan un valor dado. Esto lo podemos encontrar en sitios donde podemos buscar una palabra concreta en todo el sitio.
 
 ### 3. Datos y métricas del eventos
 
-ElasticSearch  funciona  en datos de series de  tiempo como métricas y eventos de aplicaciones. Esta es otra área donde el  ecosistema de Beats permite capturar fácilmente datos de aplicaciones comunes. Independientemente de las tecnologías que se utilicen para construir las aplicaciones, existe una gran posibilidad de que Elasticsearch tenga los componentes para tomar métricas y eventos de forma inmediata .
+Elasticsearch  funciona  en datos de series de  tiempo como métricas y eventos de aplicaciones. Esta es otra área donde el  ecosistema de Beats permite capturar fácilmente datos de aplicaciones comunes. Independientemente de las tecnologías que se utilicen para construir las aplicaciones, existe una gran posibilidad de que Elasticsearch tenga los componentes para tomar métricas y eventos de forma inmediata .
 
 ## ¿Es Elasticsearch gratis?
 
