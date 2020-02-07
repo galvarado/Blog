@@ -6,7 +6,7 @@ tags = ["devops", "architecture", "elasticsearch"]
 title = "Cómo Instalar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
 
 +++
-El objetivo de este tutorial es instalar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil al para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
+El objetivo de este tutorial es instalar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil  para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
 
 Los componentes que instalaremos son:
 
