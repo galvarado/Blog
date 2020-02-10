@@ -44,11 +44,26 @@ La instalación se realizará usando el Sistema Operativo CentOS versión 8.
 
 _Nota: Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
 
+## Instalar Java 8
+
+En todos las máquinas virtuales instalamos Java 8:
+
+    $yum update
+
+    $ yum install java-1.8.0-openjdk
+
+    $ java -version
+
+    openjdk version "1.8.0_232"
+
+    OpenJDK Runtime Environment (build 1.8.0_232-b09)
+
+    OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)
+
 ## Instalación Elasticsearch
 
-Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elstic o utilizar el repositorio RPM. Para la instalación con  RPM:
+Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elastic o utilizar el repositorio RPM. Para la instalación mediante YUM utilizando el RPM:
 
-  
 1\. Importar la clave PGP de Elasticsearch:
 
     $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -56,19 +71,12 @@ Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elsti
 2\. Crear un archivo llamado elasticsearch.repo en el directorio /etc/yum.repos.d/:
 
     [elasticsearch]
-
     name=Elasticsearch repository for 7.x packages
-
     baseurl=https://artifacts.elastic.co/packages/7.x/yum
-
     gpgcheck=1
-
     gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
     enabled=0
-
     autorefresh=1
-
     type=rpm-md
 
 3\. Instalar con yum
