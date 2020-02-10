@@ -133,6 +133,8 @@ Salida esperada:
 
 ## Instalación Kibana
 
+## Instalación Beats
+
 ## Configuración de Pipeline en Logstash
 
-## Instalación Beats
+## Visualización de logs en Kibana
