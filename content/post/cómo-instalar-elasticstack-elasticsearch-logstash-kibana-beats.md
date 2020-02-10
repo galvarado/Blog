@@ -44,7 +44,7 @@ La instalación se realizará usando el Sistema Operativo CentOS versión 8.
 
 _Nota: Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
 
-## Instalar Java 8
+## Prerequisito - Instalar Java 8
 
 En todos las máquinas virtuales instalamos Java 8 pues es un requisito:
 
@@ -132,10 +132,56 @@ Salida esperada:
 
 ## Instalación Logstash
 
+Para la instalación mediante YUM utilizando el RPM:
+
+1\. Importar la clave PGP de Elasticsearch:
+
+    $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+2\. Crear un archivo llamado logstash.repo en el directorio /etc/yum.repos.d/:
+
+    [logstash-7.x]
+    name=Elastic repository for 7.x packages
+    baseurl=https://artifacts.elastic.co/packages/7.x/yum
+    gpgcheck=1
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    autorefresh=1
+    type=rpm-md                                                                                                                                                                                           
+
+3\. Instalar con yum
+
+    $ sudo yum install --enablerepo=logstash logstash
+
+### Configuración Logstash
+
 ## Instalación Kibana
+
+Para la instalación mediante YUM utilizando el RPM:
+
+1\. Importar la clave PGP de Elasticsearch:
+
+    $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+2\. Crear un archivo llamado logstash.repo en el directorio /etc/yum.repos.d/:
+
+    [kibana-7.x]
+    name=Kibana repository for 7.x packages
+    baseurl=https://artifacts.elastic.co/packages/7.x/yum
+    gpgcheck=1
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    autorefresh=1
+    type=rpm-md                                                                                                                                                                                                
+
+3\. Instalar con yum
+
+    $ sudo yum install --enablerepo=kibana kibana
+
+### Configuración Kibana
 
 ## Instalación Beats
 
-## Configuración de Pipeline en Logstash
+## Configuración de Pipelines en Logstash
 
 ## Visualización de logs en Kibana
