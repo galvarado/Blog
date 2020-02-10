@@ -84,21 +84,14 @@ Repetimos los pasos anteriores para todos los nodos de Elasticsearch, tanto los 
 
 La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
 
-cluster.name:
-
-node.name:
-
-node.master:
-
-node.data:
-
-network.host:
-
-http.port:
-
-discover.seed_hosts:
-
-cluster.initial_maste__nodes_
+* cluster.name: Nombre del cluster
+* node.name: Nombre del nodo
+* node.master: True o False, para determinar si un nodo es master node o es data node
+* node.data: True o False, para determinar si un nodo es master node o es data node
+* network.host: IP del nodo
+* http.port: Puerto donde se habilita Elasticsearch, default 9200
+* discover.seed_hosts: Lista de IPs de todos los nodos que forman el cluster
+* cluster.initial_master_nodes: Lista de hostnames de los nodos master  del cluster
 
 Por ejemplo en mi caso:
 
@@ -123,12 +116,10 @@ Iniciamos elasticsearch:
     ● elasticsearch.service - Elasticsearch
        Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: disabled)
        Active: active (running) since vie 2020-02-07 12:07:47 CST; 2 days ago
-    
 
 Comprobamos que el servicio quedó habilitado:
 
     $ systemctl list-unit-files --state=enabled | grep elastic
-
     elasticsearch.service                      enabled
 
 Para comprobar, hacemos una petición a la API de Elasticsearch:
