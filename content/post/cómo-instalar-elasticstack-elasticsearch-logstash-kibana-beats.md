@@ -46,18 +46,13 @@ _Nota: Para laboratorios todos los componentes se pueden instalar en la misma m�
 
 ## Instalar Java 8
 
-En todos las máquinas virtuales instalamos Java 8:
+En todos las máquinas virtuales instalamos Java 8 pues es un requisito:
 
-    $yum update
-
+    $ yum update
     $ yum install java-1.8.0-openjdk
-
     $ java -version
-
     openjdk version "1.8.0_232"
-
     OpenJDK Runtime Environment (build 1.8.0_232-b09)
-
     OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)
 
 ## Instalación Elasticsearch
