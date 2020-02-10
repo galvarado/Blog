@@ -7,7 +7,7 @@ tags = ["devops", "architecture", "elasticsearch"]
 title = "Cómo instalar y configurar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
 
 +++
-El objetivo de este tutorial es instalar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil  para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
+El objetivo de este tutorial es instalar y configurar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil  para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
 
 Los componentes que instalaremos son:
 
@@ -31,17 +31,46 @@ Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras ap
 
 ## Prerequisitos
 
-La versión que instalaremos será la 7.5 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad. Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
+La versión que instalaremos será la 7.5 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad, 3 nodos master y 3 nodos de datos (datanodes). Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
 
 * 3 Máquinas virtuales como Elasticsearch Master Nodes
 * 3 Máquinas virtuales como Elasticsearch Data Nodes
 * 1 Máquina virtual para Logstash
 * 1 Máquina virtual para Kibana
 
-Todas las Máquinas virtuales que usaré tienen 2GB RAM y 2 CPUs. Los requerimientos de CPU, Memoria y Disco dependen de cada caso de uso. Una referencia [se puede encontrar aquí](https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html).
+Todas las Máquinas virtuales que usaré tienen 2GB RAM y 2 CPUs. Los requerimientos de CPU, Memoria y Disco dependen de cada caso de uso, el dimensionamiento de RAM y CPU que elegí es para un laboratorio. Una referencia para producción  [se puede encontrar aquí](https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html).
 
 La instalación se realizará usando el Sistema Operativo CentOS versión 8.
 
-_Nota: Esta instalación está pensada en un entorno de producción. Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
+_Nota: Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
 
 ## Instalación Elasticsearch
+
+Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elstic o utilizar el repositorio RPM. Para la instalación con  RPM:
+
+  
+1\. Importar la clave PGP de Elasticsearch:
+
+    $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+2\. Crear un archivo llamado elasticsearch.repo en el directorio /etc/yum.repos.d/:
+
+    [elasticsearch]
+
+    name=Elasticsearch repository for 7.x packages
+
+    baseurl=https://artifacts.elastic.co/packages/7.x/yum
+
+    gpgcheck=1
+
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+    enabled=0
+
+    autorefresh=1
+
+    type=rpm-md
+
+3\. Instalar con yum
+
+    $ sudo yum install --enablerepo=elasticsearch elasticsearch
