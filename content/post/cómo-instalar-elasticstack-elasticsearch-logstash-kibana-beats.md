@@ -104,12 +104,14 @@ Por ejemplo en mi caso:
     discovery.seed_hosts: [""]
     cluster.initial_master_nodes: ["master01", "master02", "master03"]
 
-Una ves configurados todos los nodos del cluster, levantamos el servicio en cada uno. Habilitados el servicio para encienda automáticamente cuando el SO inicie:
+_Nota: Distinguir entre las opciones node.master y node.data para designar el rol correcto para cada nodo. En este ejemplo tenemos 3 master nodes y 3 data nodes._
+
+Una ves configurados todos los nodos del cluster, levantamos el servicio en cada uno. Primero habilitados el servicio para encienda automáticamente cuando el SO inicie:
 
     $ systemctl daemon-reload
     $ systemctl enable elasticsearch.service
 
-Iniciamos elasticsearch:
+Ahora, iniciamos elasticsearch:
 
     $ sudo systemctl start elasticsearch.service
     # sudo systemctl status elasticsearch.service
@@ -122,8 +124,16 @@ Comprobamos que el servicio quedó habilitado:
     $ systemctl list-unit-files --state=enabled | grep elastic
     elasticsearch.service                      enabled
 
-Para comprobar, hacemos una petición a la API de Elasticsearch:
+Para comprobar que el cluster inició correctamente, hacemos una petición a la API de Elasticsearch:
 
     $ curl http://localhost:9200
 
 Salida esperada:
+
+## Instalación Logstash
+
+## Instalación Kibana
+
+## Configuración de Pipeline en Logstash
+
+## Instalación Beats
