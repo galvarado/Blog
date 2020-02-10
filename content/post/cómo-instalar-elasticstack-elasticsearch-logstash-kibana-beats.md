@@ -77,3 +77,27 @@ Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elast
 3\. Instalar con yum
 
     $ sudo yum install --enablerepo=elasticsearch elasticsearch
+
+### Configuración Elasticsearch
+
+Repetimos los pasos anteriores para todos los nodos de Elasticsearch, tanto los nodos master como los nodos de datos (datanodes).
+
+La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
+
+    cluster.name: elasticsearchcluster
+
+    node.name: vas03v01elkmaster01
+
+    node.master: true
+
+    node.data: false
+
+    network.host: 10.32.237.208
+
+    http.port: 9200
+
+    discovery.seed_hosts: ["10.32.237.208", "10.32.237.209", "10.32.237.210", "10.32.237.211", "10.32.237.212", "10.32.237.213"]
+
+    cluster.initial_master_nodes: ["vas03v01elkmaster01", "vas03v01elkmaster02", "vas03v01elkmaster03"]
+
+    
