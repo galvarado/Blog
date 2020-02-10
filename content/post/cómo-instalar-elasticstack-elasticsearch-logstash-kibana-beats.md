@@ -84,20 +84,55 @@ Repetimos los pasos anteriores para todos los nodos de Elasticsearch, tanto los 
 
 La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
 
+cluster.name:
+
+node.name:
+
+node.master:
+
+node.data:
+
+network.host:
+
+http.port:
+
+discover.seed_hosts:
+
+cluster.initial_maste__nodes_
+
+Por ejemplo en mi caso:
+
     cluster.name: elasticsearchcluster
-
-    node.name: vas03v01elkmaster01
-
+    node.name: master01
     node.master: true
-
     node.data: false
-
-    network.host: 10.32.237.208
-
+    network.host: 
     http.port: 9200
+    discovery.seed_hosts: [""]
+    cluster.initial_master_nodes: ["master01", "master02", "master03"]
 
-    discovery.seed_hosts: ["10.32.237.208", "10.32.237.209", "10.32.237.210", "10.32.237.211", "10.32.237.212", "10.32.237.213"]
+Una ves configurados todos los nodos del cluster, levantamos el servicio en cada uno. Habilitados el servicio para encienda automáticamente cuando el SO inicie:
 
-    cluster.initial_master_nodes: ["vas03v01elkmaster01", "vas03v01elkmaster02", "vas03v01elkmaster03"]
+    $ systemctl daemon-reload
+    $ systemctl enable elasticsearch.service
 
+Iniciamos elasticsearch:
+
+    $ sudo systemctl start elasticsearch.service
+    # sudo systemctl status elasticsearch.service
+    ● elasticsearch.service - Elasticsearch
+       Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: disabled)
+       Active: active (running) since vie 2020-02-07 12:07:47 CST; 2 days ago
     
+
+Comprobamos que el servicio quedó habilitado:
+
+    $ systemctl list-unit-files --state=enabled | grep elastic
+
+    elasticsearch.service                      enabled
+
+Para comprobar, hacemos una petición a la API de Elasticsearch:
+
+    $ curl http://localhost:9200
+
+Salida esperada:
