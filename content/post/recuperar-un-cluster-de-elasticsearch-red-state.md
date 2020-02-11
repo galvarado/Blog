@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-02-09T06:00:00Z
-draft = true
 image = "/uploads/troubleshootingELK.png"
 tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch en Red State "
@@ -9,9 +8,13 @@ title = "Recuperar un cluster de Elasticsearch en Red State "
 +++
 El estado de salud de un clúster de Elasticsearch es: verde, amarillo o rojo. El estado deseable siempre será verde y en caso de que sea amarillo o rojo debemos realizar algunas tareas. En esta ocasión quiero compartir como solucionar este tipo de problemas.
 
-En el nivel de shard, un estado rojo indica que el shard  no está asignado en el clúster, amarillo significa que el shard primario está asignado pero las réplicas no, y el verde significa que todos los shards están asignados. 
+El estado del nivel de un índice está determinado por el peor estado del shard. El estado del todo clúster está determinado por el peor estado de los índices. Por lo tanto si un shard está en estado rojo (red state), todo el cluster tendrá este estado. Independientemente de que otros indices estén con estado green.
 
-El estado del nivel de un índice está determinado por el peor estado del shard. El estado del todo clúster está determinado por el peor estado de los índices. Por lo tanto si un shard está en estado rojo (red state), todo el cluster tendrá este estado.
+Los estados son posibles son:
+
+* Verde: Todos los shards están asignados.
+* Amarillo: odos los fragmentos primarios están asignados, pero uno o más fragmentos de réplica no están asignados. Si falla un nodo en el clúster, algunos datos podrían no estar disponibles hasta que se repare ese nodo.
+* Rojo: Uno o más fragmentos primarios no están asignados, por lo que algunos datos no están disponibles.
 
 Para conocer la salud del cluster hacemos uso de la [API de Health](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html), haciendo una petición a uno de los nodos master:
 
@@ -46,7 +49,7 @@ Para conocer la salud del cluster hacemos uso de la [API de Health](https://www.
       }
     }
 
-Esta petición nos muestra algunas metricas interesantes.
+Esta petición nos muestra algunas metricas interesantes ademas del estado. como el numero de shards y de replicas así como sus estados.
 
 ## Recuperar un cluster
 
@@ -161,5 +164,24 @@ Listamos los indices:
 Y ya todos muestran el estado en green, lo que significa que todo está bien.
 
 De esta manera podemos recuperar un cluster de Elasticsearch de una falla masiva incluso si perdemos información de algún nodo.
+
+## Escalabilidad y resiliencia: shards y replicas
+
+**¿Qué es la fragmentación?** Elasticsearch es extremadamente escalable debido a su arquitectura distribuida. Una de las razones por las cuales  logra esto es la fragmentación.  ¿Por qué es necesario?  Supongamos que tenemos un índice que contiene muchos documentos, con un total de 1 terabyte de datos. Si tenemos dos nodos en el clúster, cada uno con 512 gigabytes disponibles para almacenar datos, el índice completo no cabrá en ninguno de los nodos, por lo que es necesario dividir los datos del índice de alguna manera, o de lo contrario estaríamos sin espacio en disco.  
+  
+En escenarios como este donde el tamaño de un índice excede los límites de hardware de un solo nodo se resuelve dividiendo el índice en piezas más pequeñas llamadas fragmentos o shards. Por lo tanto, un fragmento contendrá un subconjunto de datos de un índice. Cuando un índice está fragmentado, un documento dado dentro de ese índice solo se almacenará dentro de uno de los fragmentos.
+
+Hay dos razones principales por las que la fragmentación es importante, y la primera es que nos permite dividir y, por lo tanto, escalar volúmenes de datos. La otra razón por la que el fragmentación es importante es que las operaciones se pueden distribuir entre múltiples nodos y, por lo tanto, paralelizarse. Esto da como resultado un mayor rendimiento, ya que varias máquinas pueden trabajar potencialmente en la misma consulta. 
+
+**¿Qué es la replicación?** Ahora bien, teniendo clara la fragmentación tenemos que considerar la replicación. Cuantos más nodos  agregamos, mayor será el riesgo de que alguno deje de funcionar. Ahí es donde entra en juego la replicación.
+
+Elasticsearch admite de forma nativa la replicación de sus fragmentos (shards), lo que significa que los fragmentos se copian.  
+
+La replicación tiene dos propósitos, el principal es proporcionar alta disponibilidad en caso de que los nodos o fragmentos fallen. Para que la replicación sea  efectiva s los fragmentos de réplica nunca se asignan a los mismos nodos que los fragmentos primarios. El otro propósito de la replicación, o quizás un beneficio secundario, es un mayor rendimiento para las consultas de búsqueda. Este es el caso porque las búsquedas se pueden ejecutar en todas las réplicas en paralelo, lo que significa que las réplicas son en realidad parte de las capacidades de búsqueda del clúster. 
+
+Referencias:
+
+* [https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch](https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch "https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch")
+* [https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html "https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html")
 
 Si te resulta útil, por favor comparte =)
