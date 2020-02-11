@@ -2,9 +2,9 @@
 comments = "true"
 date = 2020-02-09T06:00:00Z
 draft = true
-image = ""
+image = "/uploads/troubleshootingELK.png"
 tags = ["cloud", "elasticsearch", "troubleshooting"]
-title = "Recuperar un cluster de Elasticsearch - Red State "
+title = "Recuperar un cluster de Elasticsearch en Red State "
 
 +++
 Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y me  como diagnosticar y recuperarse de este problema.
