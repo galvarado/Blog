@@ -126,7 +126,9 @@ Modifiqué los archivos de configuración de red para restaurar la IP anterior y
 
 Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une al clúster y podemos leer en los logs:
 
-    Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
+    Caused by: java.lang.IllegalArgumentException: can't add node {data02}
+    found existing node {data01} with the same id but is a different node
+    instance
 
 Elasticsearch detecta que dps  nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de _/var/lib/elasticsearch_ en el nodo clon.
 
