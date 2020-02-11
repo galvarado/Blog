@@ -1,7 +1,6 @@
 +++
 comments = "true"
-date = 2020-02-24T06:00:00Z
-draft = true
+date = 2020-02-09T06:00:00Z
 image = ""
 tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch - Red State "
