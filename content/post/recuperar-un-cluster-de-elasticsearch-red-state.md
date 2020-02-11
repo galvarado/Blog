@@ -7,8 +7,14 @@ tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch en Red State "
 
 +++
-    Para conocer la salud del cluster hacemos uso de la API de Health
-    
+El estado de salud de un clúster de Elasticsearch es: verde, amarillo o rojo. El estado deseable siempre será verde y en caso de que sea amarillo o rojo debemos realizar algunas tareas. En esta ocasión quiero compartir como solucionar este tipo de problemas.
+
+En el nivel de shard, un estado rojo indica que el shard  no está asignado en el clúster, amarillo significa que el shard primario está asignado pero las réplicas no, y el verde significa que todos los shards están asignados. 
+
+El estado del nivel de un índice está determinado por el peor estado del shard. El estado del todo clúster está determinado por el peor estado de los índices. Por lo tanto si un shard está en estado rojo (red state), todo el cluster tendrá este estado.
+
+Para conocer la salud del cluster hacemos uso de la [API de Health](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html), haciendo una petición a uno de los nodos master:
+
     curl -X GET "192.168.100.08:9200/_cluster/health?level=indices&pretty" 
     {
       "cluster_name" : "elkcluster",
@@ -40,13 +46,15 @@ title = "Recuperar un cluster de Elasticsearch en Red State "
       }
     }
 
+Esta petición nos muestra algunas metricas interesantes.
+
 ## Recuperar un cluster
 
-Pueden existir múltiples razones para que la salud de un cluster no esté ok (green).
+Recientemente me ocurrió que  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  entonces quiero compartir como diagnosticar y recuperarse de este problema.
 
-Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y me  como diagnosticar y recuperarse de este problema.
+Pueden existir múltiples razones para que la salud de un cluster no esté ok (green). Las más comunes es un reinicio de algún nodo del clster que no volvió correctamente o algún fallo en el sistema de archivos que impide leer los datos de los indices.
 
-Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. 1 de los datanodes no se pudo recuperar. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
+Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. Uno de los datanodes no se pudo recuperar, es decir se perdió la información que estaba almacenada en él. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
 
 Listar los indices:
 
@@ -94,7 +102,7 @@ Listamos los nodos:
     QvF3 10.32.237.210 9300 master03
     lqGv 10.32.237.209 9300 vmaster02
 
-Podemos observar que solo están los masternodes. Vamos a encender los servidores datanode e iniciamos el servicio de elasticsearch:
+Podemos observar que solo están los masternodes. Vamos a encender los servidores datanode que fallaron e iniciamos el servicio de elasticsearch:
 
     systemctl start elasticsearch
     Starting elasticsearch (via systemctl):                    [  OK  ]
@@ -111,13 +119,13 @@ Listamos los nodos:
 
 En este caso el nodo data02 no se pudo recuperar.  Se restauró este nodo desde el volumen del data01. Por lo tanto tenía la misma información.
 
-Modifiqué los archivos de configuración de red para restaurar la IP anterior y también realicé las modificaciones pertinentes en  /etc/elasticsearch/elasticsearch.yml para colocar la IP y el nombre original del nodo data02.
+Modifiqué los archivos de configuración de red para restaurar la IP anterior y también realicé las modificaciones pertinentes en  _/etc/elasticsearch/elasticsearch.yml_ para colocar la IP y el nombre original del nodo data02.
 
 Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une al clúster y podemos leer en los logs:
 
     Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
 
-Elasticsearch detecta que 2 nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de /var/lib/elasticsearch en el nodo clon.
+Elasticsearch detecta que dps  nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de _/var/lib/elasticsearch_ en el nodo clon.
 
 En este caso en el nodo data02:
 
