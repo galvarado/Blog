@@ -15,7 +15,7 @@ Listar los indices:
 
 Consultamos la API de Elasticsearch en alguno de los nodos master:
 
-    [root@vas03v01director ~]# curl -X GET "192.168.100.08:9200/_cat/indices"
+    $ curl -X GET "192.168.100.08:9200/_cat/indices"
     red open nginx_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
     red open mysql_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
     red open app_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
@@ -65,23 +65,61 @@ Podemos observar que solo están los masternodes. Vamos a encender los servidore
 Listamos los nodos:
 
     curl -X GET "192.168.100.08:9200/_cat/nodes?v&h=id,ip,port,n"
-
     id   ip            port n
+    B_tU 192.168.100.208 9300 master01
+    QvF3 192.168.100.210 9300 master03
+    QBcJ 192.168.100.213 9300 data03
+    lqGv 192.168.100.209 9300 master02
+    Ltba 192.168.100.211 9300 data01
 
-    B_tU 10.32.237.208 9300 master01
-
-    QvF3 10.32.237.210 9300 master03
-
-    QBcJ 10.32.237.213 9300 data03
-
-    lqGv 10.32.237.209 9300 master02
-
-    Ltba 10.32.237.211 9300 data01
-
-En este caso el nodo data02 no se pudo recuperar.  Restauré este nodo desde el volumen del data01. Por lo tanto tenía la misma información. 
+En este caso el nodo data02 no se pudo recuperar.  Se restauró este nodo desde el volumen del data01. Por lo tanto tenía la misma información.
 
 Modifiqué los archivos de configuración de red para restaurar la IP anterior y también realicé las modificaciones pertinentes en  /etc/elasticsearch/elasticsearch.yml para colocar la IP y el nombre original del nodo data02.
 
-Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une al cluster y podemos leer en los logs:
+Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une al clúster y podemos leer en los logs:
 
-Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
+    Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
+
+Elasticsearch detecta que 2 nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01.
+
+Para solucionar esto, se debe eliminar el contenido de /var/lib/elasticsearch en el nodo clon.
+
+    $  pwd
+
+    /var/lib/elasticsearch
+
+    $  rm -rf *
+
+    $ service elasticsearch restart
+
+    Restarting elasticsearch (via systemctl):                  [  OK  ]
+
+Listamos los nodos:
+
+    $ curl -X GET "192.168.100.08:9200/_cat/nodes?v&h=id,ip,port,n"
+    id   ip            port n
+    cR4P 192.168.100.212 9300 data02
+    B_tU 192.168.100.208 9300 master01
+    QvF3 192.168.100.210 9300 master03
+    QBcJ 192.168.100.213 9300 data03
+    lqGv 192.168.100.209 9300 master02
+    Ltba 192.168.100.211 9300 data01
+
+  
+Y ya podemos ver el nodo data02 en el cluster.
+
+Listamos los indices:
+
+    $ curl -X GET "192.168.100.08:9200/_cat/indices"
+
+    red open nginx_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+
+    red open mysql_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+
+    red open app_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+
+    red open .kibana_task_manager_1   oOEtt0lfQHuEmCbyCI-89Q 1 0    
+
+    red open .apm-agent-configuration S7nw9JjOTb-otrVd1b1Yyw 1 0    
+
+    red open .kibana_1                HKRmItRhSF2PWhBwWCdztQ 1 0
