@@ -167,21 +167,31 @@ De esta manera podemos recuperar un cluster de Elasticsearch de una falla masiva
 
 ## Escalabilidad y resiliencia: shards y replicas
 
-**¿Qué es la fragmentación?** Elasticsearch es extremadamente escalable debido a su arquitectura distribuida. Una de las razones por las cuales  logra esto es la fragmentación.  ¿Por qué es necesario?  Supongamos que tenemos un índice que contiene muchos documentos, con un total de 1 terabyte de datos. Si tenemos dos nodos en el clúster, cada uno con 512 gigabytes disponibles para almacenar datos, el índice completo no cabrá en ninguno de los nodos, por lo que es necesario dividir los datos del índice de alguna manera, o de lo contrario estaríamos sin espacio en disco.  
-  
+Me gustaría mencionar dos concepros que debemos tener claros para terminos de alta disponibildiad.
+
+**¿Qué es la fragmentación?** Elasticsearch es extremadamente escalable debido a su arquitectura distribuida. Una de las razones por las cuales  logra esto es la fragmentación.  ¿Por qué es necesario?  Supongamos que tenemos un índice que contiene muchos documentos, con un total de 1 terabyte de datos. Si tenemos dos nodos en el clúster, cada uno con 512 gigabytes disponibles para almacenar datos, el índice completo no cabrá en ninguno de los nodos, por lo que es necesario dividir los datos del índice de alguna manera, o de lo contrario estaríamos sin espacio en disco.
+
 En escenarios como este donde el tamaño de un índice excede los límites de hardware de un solo nodo se resuelve dividiendo el índice en piezas más pequeñas llamadas fragmentos o shards. Por lo tanto, un fragmento contendrá un subconjunto de datos de un índice. Cuando un índice está fragmentado, un documento dado dentro de ese índice solo se almacenará dentro de uno de los fragmentos.
 
-Hay dos razones principales por las que la fragmentación es importante, y la primera es que nos permite dividir y, por lo tanto, escalar volúmenes de datos. La otra razón por la que el fragmentación es importante es que las operaciones se pueden distribuir entre múltiples nodos y, por lo tanto, paralelizarse. Esto da como resultado un mayor rendimiento, ya que varias máquinas pueden trabajar potencialmente en la misma consulta. 
+Hay dos razones principales por las que la fragmentación es importante, y la primera es que nos permite dividir y, por lo tanto, escalar volúmenes de datos. La otra razón por la que el fragmentación es importante es que las operaciones se pueden distribuir entre múltiples nodos y, por lo tanto, paralelizarse. Esto da como resultado un mayor rendimiento, ya que varias máquinas pueden trabajar potencialmente en la misma consulta.
 
 **¿Qué es la replicación?** Ahora bien, teniendo clara la fragmentación tenemos que considerar la replicación. Cuantos más nodos  agregamos, mayor será el riesgo de que alguno deje de funcionar. Ahí es donde entra en juego la replicación.
 
-Elasticsearch admite de forma nativa la replicación de sus fragmentos (shards), lo que significa que los fragmentos se copian.  
+Elasticsearch admite de forma nativa la replicación de sus fragmentos (shards), lo que significa que los fragmentos se copian.
 
-La replicación tiene dos propósitos, el principal es proporcionar alta disponibilidad en caso de que los nodos o fragmentos fallen. Para que la replicación sea  efectiva s los fragmentos de réplica nunca se asignan a los mismos nodos que los fragmentos primarios. El otro propósito de la replicación, o quizás un beneficio secundario, es un mayor rendimiento para las consultas de búsqueda. Este es el caso porque las búsquedas se pueden ejecutar en todas las réplicas en paralelo, lo que significa que las réplicas son en realidad parte de las capacidades de búsqueda del clúster. 
+La replicación tiene dos propósitos, el principal es proporcionar alta disponibilidad en caso de que los nodos o fragmentos fallen.  Para que la replicación sea  efectiva s los fragmentos de réplica nunca se asignan a los mismos nodos que los fragmentos primarios. El otro propósito de la replicación, o quizás un beneficio secundario, es un mayor rendimiento para las consultas de búsqueda. Este es el caso porque las búsquedas se pueden ejecutar en todas las réplicas en paralelo, lo que significa que las réplicas son en realidad parte de las capacidades de búsqueda del clúster.
+
+**¿Entonces?** En el caso anterior que vimos, todos los indices tenian asigandos solo el shard primario y no había replicas. Para mejorar la disponibilidad y resiliencia vamos a crear  3 shards para que se distribuyan una en cada nodo, pues contamos con 3 datanodes y además crearemos una 1 réplica para tener los datos duplicados. En caso de perder un nodo, habrá otro nodo que pueda responder a las consutas con los datos necesarios gracias a la replicación.
+
+La configuración quedaría así:
+
+![](/uploads/elasticsearch_shards_replicas.png)
 
 Referencias:
 
-* [https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch](https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch "https://codingexplained.com/coding/elasticsearch/understanding-sharding-in-elasticsearch")
+* [https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html "https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html")
 * [https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html "https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html")
+* [https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index](https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index "https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index")
+* [https://www.siscale.com/elasticsearch-shard-optimization/](https://www.siscale.com/elasticsearch-shard-optimization/ "https://www.siscale.com/elasticsearch-shard-optimization/")
 
 Si te resulta útil, por favor comparte =)
