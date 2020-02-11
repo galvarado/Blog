@@ -1,12 +1,13 @@
 +++
 comments = "true"
 date = 2020-02-09T06:00:00Z
+draft = true
 image = ""
 tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch - Red State "
 
 +++
-Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y en esta ocasión explico como diagnosticar y recuperarse de este problema.
+Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y me  como diagnosticar y recuperarse de este problema.
 
 Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. 1 de los datanodes no se pudo recuperar. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
 
