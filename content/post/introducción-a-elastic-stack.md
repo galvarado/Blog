@@ -19,8 +19,9 @@ Elastic NV se fundó en 2012 para proporcionar servicios y productos comerciales
 En junio de 2018, Elastic solicitó una oferta pública inicial con una valoración estimada de entre 1,5 y 3 mil millones de dólares.  El 5 de octubre de 2018, Elastic cotizaba en la Bolsa de Nueva York.
 
 Entonces, el Elastic Stack es la  evolución del ELK Stack original, los mismos proyectos de código abierto, solo que mejor integrados con 2 nuevos proyectos: Beats y X-pack.
-
+<center>
 ![Elastic stack](/uploads/Elastic.png "Elastic stack")
+</center>
 
 ## Componentes de Elastic Stack
 
