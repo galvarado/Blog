@@ -195,11 +195,11 @@ La configuración quedaría así:
 
 ![](/uploads/elasticsearch_shards_replicas.png)
 
+Si te resulta útil, por favor comparte =)
+
 Referencias:
 
 * [https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html "https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html")
 * [https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html "https://www.elastic.co/guide/en/elasticsearch/reference/current/scalability.html")
 * [https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index](https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index "https://qbox.io/blog/optimizing-elasticsearch-how-many-shards-per-index")
 * [https://www.siscale.com/elasticsearch-shard-optimization/](https://www.siscale.com/elasticsearch-shard-optimization/ "https://www.siscale.com/elasticsearch-shard-optimization/")
-
-Si te resulta útil, por favor comparte =)
