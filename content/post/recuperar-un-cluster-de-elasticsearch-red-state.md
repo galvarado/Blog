@@ -1,6 +1,7 @@
 +++
 comments = "true"
 date = 2020-02-09T06:00:00Z
+draft = true
 image = "/uploads/troubleshootingELK.png"
 tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch en Red State "
