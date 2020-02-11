@@ -21,8 +21,9 @@ Para una introducción a todos los componentes y casos de uso de Elasicsearch [p
 ## Flujo de datos
 
 Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras aplicaciones para ser centralizados usando el Elastic Stack:
-
+<center>
 ![](/uploads/ELKdataflow.png)
+</center>
 
 1. **Beats** obtiene los logs de las aplicaciones y los envía a Logstash.
 2. **Logstash** recibe los datos, los transforma y los almacena en Elasticsearch.
