@@ -7,6 +7,271 @@ tags = ["cloud", "elasticsearch", "troubleshooting"]
 title = "Recuperar un cluster de Elasticsearch en Red State "
 
 +++
+
+    curl -X GET "192.168.100.08:9200/_cluster/health?level=indices&pretty" 
+
+{
+
+  "cluster_name" : "vas03v01elkcluster",
+
+  "status" : "green",
+
+  "timed_out" : false,
+
+  "number_of_nodes" : 6,
+
+  "number_of_data_nodes" : 3,
+
+  "active_primary_shards" : 11,
+
+  "active_shards" : 22,
+
+  "relocating_shards" : 0,
+
+  "initializing_shards" : 0,
+
+  "unassigned_shards" : 0,
+
+  "delayed_unassigned_shards" : 0,
+
+  "number_of_pending_tasks" : 0,
+
+  "number_of_in_flight_fetch" : 0,
+
+  "task_max_waiting_in_queue_millis" : 0,
+
+  "active_shards_percent_as_number" : 100.0,
+
+  "indices" : {
+
+    "heat_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "cinder_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "glance_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "ceph_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    ".kibana_task_manager_1" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    ".apm-agent-configuration" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "keystone_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "nova_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "horizon_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    ".kibana_1" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    },
+
+    "neutron_rhosp_index" : {
+
+      "status" : "green",
+
+      "number_of_shards" : 1,
+
+      "number_of_replicas" : 1,
+
+      "active_primary_shards" : 1,
+
+      "active_shards" : 2,
+
+      "relocating_shards" : 0,
+
+      "initializing_shards" : 0,
+
+      "unassigned_shards" : 0
+
+    }
+
+  }
+
+}
+
+## Recuperar un cluster
+
+Pueden existir múltiples razones para que la salud de un cluster no esté ok (green).
+
 Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y me  como diagnosticar y recuperarse de este problema.
 
 Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. 1 de los datanodes no se pudo recuperar. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
