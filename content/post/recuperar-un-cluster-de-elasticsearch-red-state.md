@@ -13,7 +13,7 @@ El estado del nivel de un índice está determinado por el peor estado del shard
 Los estados son posibles son:
 
 * Verde: Todos los shards están asignados.
-* Amarillo: odos los fragmentos primarios están asignados, pero uno o más fragmentos de réplica no están asignados. Si falla un nodo en el clúster, algunos datos podrían no estar disponibles hasta que se repare ese nodo.
+* Amarillo: todos los fragmentos primarios están asignados, pero uno o más fragmentos de réplica no están asignados. Si falla un nodo en el clúster, algunos datos podrían no estar disponibles hasta que se repare ese nodo.
 * Rojo: Uno o más fragmentos primarios no están asignados, por lo que algunos datos no están disponibles.
 
 Para conocer la salud del cluster hacemos uso de la [API de Health](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html), haciendo una petición a uno de los nodos master:
@@ -55,7 +55,7 @@ Esta petición nos muestra algunas metricas interesantes ademas del estado. como
 
 Recientemente me ocurrió que  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  entonces quiero compartir como diagnosticar y recuperarse de este problema.
 
-Pueden existir múltiples razones para que la salud de un cluster no esté ok (green). Las más comunes es un reinicio de algún nodo del clster que no volvió correctamente o algún fallo en el sistema de archivos que impide leer los datos de los indices.
+Pueden existir múltiples razones para que la salud de un cluster no esté ok (green). Las más comunes es un reinicio de algún nodo que no volvió correctamente o algún fallo en el sistema de archivos que impide leer los datos de los indices.
 
 Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. Uno de los datanodes no se pudo recuperar, es decir se perdió la información que estaba almacenada en él. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
 
@@ -130,7 +130,7 @@ Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une 
     found existing node {data01} with the same id but is a different node
     instance
 
-Elasticsearch detecta que dps  nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de _/var/lib/elasticsearch_ en el nodo clon.
+Elasticsearch detecta que dos  nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de _/var/lib/elasticsearch_ en el nodo clon.
 
 En este caso en el nodo data02:
 
