@@ -9,11 +9,13 @@ title = "Recuperar un cluster de Elasticsearch - Red State "
 +++
 Recientemente  los datanodes de un cluster de Elaticsearch tuvieron una falla inesperada. Esto llevó a que el cluster estuviera en un estado erróneo  y en esta ocasión explico como diagnosticar y recuperarse de este problema.
 
-Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
+Como mencionaba, los 3 data nodes que forman el cluster fallaron repentinamente, estos nodos son los que almacenan la información de los indices. 1 de los datanodes no se pudo recuperar. Para diagnosticar y recuperar los indices  realicé el siguiente procedimiento:
 
 Listar los indices:
 
-    [root@vas03v01director ~]# curl -X GET "10.32.237.208:9200/_cat/indices"
+Consultamos la API de Elasticsearch en alguno de los nodos master:
+
+    [root@vas03v01director ~]# curl -X GET "192.168.100.08:9200/_cat/indices"
     red open nginx_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
     red open mysql_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
     red open app_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
@@ -25,7 +27,7 @@ Podemos ver que los indices están en estado **red**.
 
 Mediante [la API de allocation](https://www.elastic.co/guide/en/elasticsearch/reference/6.6/cluster-allocation-explain.html), obtener el allocation status del cluster:
 
-    [root@vas03v01director ~]# curl -X GET "10.32.237.208:9200/_cluster/allocation/explain?pretty=true"
+    [root@vas03v01director ~]# curl -X GET "192.168.100.08:9200/_cluster/allocation/explain?pretty=true"
     {
       "index" : "nginx_index",
       "shard" : 0,
@@ -47,18 +49,39 @@ Podemos observar varios puntos:
 * La explicación en "allocate_explanation" nos dice: "No se puede asignar porque existía una copia anterior del shard  primario pero ya no se puede encontrar en los nodos de clúster"
 * Esto sucedió debido a que el nodo tenía el shard  primario salió del clúster durante el reinicio.
 
-Listamos los nodos para conocer su ID:
+Listamos los nodos:
 
-    $  curl -X GET "10.32.237.208:9200/_cat/nodes?v&h=id,ip,port,n"
+    $  curl -X GET "192.168.100.08:9200/_cat/nodes?v&h=id,ip,port,n"
     id   ip            port n
-    B_tU 10.32.237.208 9300 vas03v01elkmaster01
-    QvF3 10.32.237.210 9300 vas03v01elkmaster03
-    lqGv 10.32.237.209 9300 vas03v01elkmaster02
+    B_tU 10.32.237.208 9300 master01
+    QvF3 10.32.237.210 9300 master03
+    lqGv 10.32.237.209 9300 vmaster02
 
 Podemos observar que solo están los masternodes. Vamos a encender los servidores datanode e iniciamos el servicio de elasticsearch:
 
     systemctl start elasticsearch
-
     Starting elasticsearch (via systemctl):                    [  OK  ]
 
-La ID que se menciona en node_left \[\] en el comando anterior ya no existe porque era el ID del servidor que se reinició y este  cambia después de cada reinicio.
+Listamos los nodos:
+
+    curl -X GET "192.168.100.08:9200/_cat/nodes?v&h=id,ip,port,n"
+
+    id   ip            port n
+
+    B_tU 10.32.237.208 9300 master01
+
+    QvF3 10.32.237.210 9300 master03
+
+    QBcJ 10.32.237.213 9300 data03
+
+    lqGv 10.32.237.209 9300 master02
+
+    Ltba 10.32.237.211 9300 data01
+
+En este caso el nodo data02 no se pudo recuperar.  Restauré este nodo desde el volumen del data01. Por lo tanto tenía la misma información. 
+
+Modifiqué los archivos de configuración de red para restaurar la IP anterior y también realicé las modificaciones pertinentes en  /etc/elasticsearch/elasticsearch.yml para colocar la IP y el nombre original del nodo data02.
+
+Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une al cluster y podemos leer en los logs:
+
+Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
