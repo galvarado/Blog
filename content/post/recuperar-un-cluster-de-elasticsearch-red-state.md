@@ -80,18 +80,14 @@ Al iniciar el servicio de elasticsearch, el servicio levanta ok, pero no se une 
 
     Caused by: java.lang.IllegalArgumentException: can't add node {data02} found existing node {data01} with the same id but is a different node instance
 
-Elasticsearch detecta que 2 nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01.
+Elasticsearch detecta que 2 nodos tienen el mismo ID. Pues el datanode02 es una copia del datanode01. Para solucionar esto, se debe eliminar el contenido de /var/lib/elasticsearch en el nodo clon.
 
-Para solucionar esto, se debe eliminar el contenido de /var/lib/elasticsearch en el nodo clon.
+En este caso en el nodo data02:
 
     $  pwd
-
     /var/lib/elasticsearch
-
     $  rm -rf *
-
     $ service elasticsearch restart
-
     Restarting elasticsearch (via systemctl):                  [  OK  ]
 
 Listamos los nodos:
@@ -105,21 +101,20 @@ Listamos los nodos:
     lqGv 192.168.100.209 9300 master02
     Ltba 192.168.100.211 9300 data01
 
-  
 Y ya podemos ver el nodo data02 en el cluster.
 
 Listamos los indices:
 
     $ curl -X GET "192.168.100.08:9200/_cat/indices"
+    green open nginx_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+    green open mysql_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+    green open app_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+    green open .kibana_task_manager_1   oOEtt0lfQHuEmCbyCI-89Q 1 0    
+    green open .apm-agent-configuration S7nw9JjOTb-otrVd1b1Yyw 1 0    
+    green open .kibana_1                HKRmItRhSF2PWhBwWCdztQ 1 0
 
-    red open nginx_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+Y ya todos muestran el estado en green, lo que significa que todo está bien.
 
-    red open mysql_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
+De esta manera podemos recuperar un cluster de Elasticsearch de una falla masiva incluso si perdemos información de algún nodo.
 
-    red open app_index               T-n9kSkGQ6qGJeyzGKLrdQ 1 1    
-
-    red open .kibana_task_manager_1   oOEtt0lfQHuEmCbyCI-89Q 1 0    
-
-    red open .apm-agent-configuration S7nw9JjOTb-otrVd1b1Yyw 1 0    
-
-    red open .kibana_1                HKRmItRhSF2PWhBwWCdztQ 1 0
+Si te resulta útil, por favor comparte =)
