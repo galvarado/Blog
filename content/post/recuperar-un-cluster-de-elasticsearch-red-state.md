@@ -192,8 +192,9 @@ La replicación tiene dos propósitos, el principal es proporcionar alta disponi
  En caso de perder un nodo, habrá otro nodo que pueda responder a las consutas con los datos necesarios gracias a la replicación.
 
 La configuración quedaría así:
-
+<center>
 ![](/uploads/elasticsearch_shards_replicas.png)
+</center>
 
 Si te resulta útil, por favor comparte =)
 
