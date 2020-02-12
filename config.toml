@@ -11,7 +11,7 @@ comments = true
 
 [params]
   logo = "/images/profile.png"
-  description ="Bienvenido a mi blog personal. Aquí encontrarás las experiencias de un desarrollador que migró al mundo de la infraestructura y que quiere compartir lo que va aprendiendo. Escribo de mi experiencia en Cloud, Containers, , DevOps, Entrega continua, Microservicios, Desarrollo, etc... "
+  description ="Bienvenido a mi blog personal. Aquí encontrarás las experiencias de un desarrollador que migró al mundo de la infraestructura. Escribo de mi experiencia en Cloud, Containers, , DevOps, Entrega continua, Microservicios, Desarrollo, etc... "
   mailchimp = "https://galvarado.us19.list-manage.com/subscribe/post?u=7ca0350f86d9576b40bfe7cee&amp;id=0649daac95"
   mailprotect = "b_7ca0350f86d9576b40bfe7cee_0649daac95"
 
