@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = "2019-05-14T15:00:00+00:00"
+date = 2019-05-14T15:00:00Z
 image = "/uploads/Terraform.png"
 tags = ["devops", "cloud", "terraform "]
 title = "Tutorial: Infraestructura como código con Terraform"
@@ -56,13 +56,13 @@ La infraestructura que Terraform puede administrar incluye componentes de bajo n
 
 Las principales características de Terraform son:
 
-**Infraestructura como código:**La infraestructura se describe utilizando una sintaxis de alto nivel. Esto permite que un blueprint sea versionado y tratado como lo haría con cualquier otro código. Estos archivos que describen la infraestructura pueden ser compartidos y reutilizados.
+\**Infraestructura como código:**La infraestructura se describe utilizando una sintaxis de alto nivel. Esto permite que un blueprint sea versionado y tratado como lo haría con cualquier otro código. Estos archivos que describen la infraestructura pueden ser compartidos y reutilizados.
 
-**Planes de Ejecución:**Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto  permite evitar sorpresas.
+\**Planes de Ejecución:**Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto  permite evitar sorpresas.
 
-**Gráfico de recursos:**Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
+\**Gráfico de recursos:**Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
 
-**Automatización de cambios:**Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con una mínima interacción humana. Con el plan de ejecución y el gráfico de recursos mencionados anteriormente, se sabe exactamente qué cambiará Terraform y en qué orden, evitando muchos posibles errores humanos.
+\**Automatización de cambios:**Los conjuntos de cambios complejos se pueden aplicar a su infraestructura con una mínima interacción humana. Con el plan de ejecución y el gráfico de recursos mencionados anteriormente, se sabe exactamente qué cambiará Terraform y en qué orden, evitando muchos posibles errores humanos.
 
 ## Instalación de Terraform
 
@@ -283,9 +283,9 @@ Como podemos ver terraform conoce que la acción es un cambio de password. Ahora
 
 Con esto conocemos ahora como interactuar con Terraform para realizar despliegue recursos y actualizaciones sobre recursos existentes.
 
-En los próximos artículos hablaré de  como desplegar la arquitectura de una aplicación aplicación "3 tier layered" en un proveedor de nube pública.
-
 Si te pareció útil, por favor comparte =)
+
+[PARTE II: Automatizar todo el despliegue de una aplicación con terraform y  automatizar la configuración de la aplicación con Ansible](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
 
 Referencias:
 
