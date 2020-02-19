@@ -433,6 +433,10 @@ Una vez creado, podemos ir a la sección "Discover", ahí elegimos el índice y 
 
 Si inspeccionamos uno de los registros podemos ver todos los campos:
 
+Si necesitamos agregar información podemos realizarlo en el pipeline en la sección de filter. En este ejemplo estamos guardando la información unicamente con los campos que logstash agrega por default. [Más información de transformación con logstash la encuentras aquí](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html)
+
+Si te fue útil, por favor comparte =)
+
 | --- | --- |
 | @timestamp | Feb 19, 2020 @ 22:47:56.255 |
 |  | @version | 1 |
