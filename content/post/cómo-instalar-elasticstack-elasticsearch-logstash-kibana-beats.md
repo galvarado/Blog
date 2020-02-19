@@ -354,7 +354,6 @@ Ahora, iniciamos kibana:Ahora, iniciamos filebeat:
     ● filebeat.service - Filebeat sends log files to Logstash or directly to Elasticsearch.
        Loaded: loaded (/usr/lib/systemd/system/filebeat.service; disabled; vendor preset: disabled)
        Active: active (running) since Wed 2020-02-19 15:13:24 CST; 1min 8s ago
-    
 
 ## Configuración de Pipelines en Logstash
 
@@ -365,72 +364,30 @@ Para habilitar algún  pipeline, este se e deben incluir en el archivo:
 /etc/logstash/pipelines.yml:
 
     - pipeline.id : apache
-
+    
       path.config: /etc/logstash/conf.d/apache-pipeline.conf
 
 Y la definición del pipeline la esribimos entonces en /etc/logstash/conf.d/apache-pipeline.conf:
 
     input {
-
-    beats {
-
-    port => "5044"
-
+      beats {
+        port => "5044"
+      }
     }
-
-    }
-
     
-
-    filter {
-
-    mutate {
-
-    add_field => { "full_message" => "%{message}" }
-
-    add_field => { "parsed" => true }
-
-    }
-
-    grok {
-
-    match => [
-
-    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\).%{DATA:mon_service_name} %{GREEDYDATA:message}",
-
-    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\).%{DATA:mon_service_name} v%{INT:mon_version} %{GREEDYDATA:message}",
-
-    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\) %{GREEDYDATA:message}",
-
-    "message", "%{GREEDYDATA:message}"
-
     
-
-    ]
-
-    overwrite => [ "message" ]
-
-    }
-
-    }
-
+    filter{
     
-
+    }
     output {
-
-    elasticsearch {
-
-    hosts => [ "10.32.237.208", "10.32.237.209", "10.32.237.210"]
-
-    index => "ceph_index"
-
-    document_type => "mytype"
-
-    }
-
-    }
-
     
+      elasticsearch {
+        hosts => [ "10.32.237.208", "10.32.237.209", "10.32.237.210"]
+        index => "apache_index"
+        document_type => "mytype"
+      }
+    }
 
-##   
+## 
+
 Visualización de logs en Kibana
