@@ -146,6 +146,42 @@ Para comprobar que el cluster inició correctamente, hacemos una petición a la 
 
 Salida esperada:
 
+    root@master01-s-1vcpu-2gb-nyc1-01 ~]# curl http://159.89.89.122:9200
+
+    {
+
+      "name" : "master01",
+
+      "cluster_name" : "elasticsearchcluster",
+
+      "cluster_uuid" : "twZSFiVsSzSYkfT8ZW2pVQ",
+
+      "version" : {
+
+        "number" : "7.6.0",
+
+        "build_flavor" : "default",
+
+        "build_type" : "rpm",
+
+        "build_hash" : "7f634e9f44834fbc12724506cc1da681b0c3b1e3",
+
+        "build_date" : "2020-02-06T00:09:00.449973Z",
+
+        "build_snapshot" : false,
+
+        "lucene_version" : "8.4.0",
+
+        "minimum_wire_compatibility_version" : "6.8.0",
+
+        "minimum_index_compatibility_version" : "6.0.0-beta1"
+
+      },
+
+      "tagline" : "You Know, for Search"
+
+    }
+
 ## Instalación Logstash
 
 Para la instalación mediante YUM utilizando el RPM:
