@@ -186,7 +186,7 @@ Para la instalación mediante YUM utilizando el RPM:
 
 3\. Instalar con yum
 
-    $ sudo yum install --enablerepo=logstash logstash
+    $ sudo yum install logstash
 
 _Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la sección anterior._
 
@@ -210,7 +210,7 @@ Una ves configurados los parametros, levantamos el servicio. Primero habilitamos
 Ahora, iniciamos logstash:
 
     $ sudo systemctl start logstash.service
-    # sudo systemctl status logstash.service
+    $ sudo systemctl status logstash.service
     ● logstash.service - logstash
        Loaded: loaded (/etc/systemd/system/logstash.service; enabled; vendor preset: disabled)
        Active: active (running) since Wed 2020-02-19 19:45:16 UTC; 7s ago
@@ -245,7 +245,7 @@ Para la instalación mediante YUM utilizando el RPM:
 
 3\. Instalar con yum
 
-    $ sudo yum install --enablerepo=kibana kibana
+    $ sudo yum install kibana
 
 _Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la sección anterior._
 
@@ -262,7 +262,6 @@ Por ejemplo en mi caso:
     server.port: 5601
     server.host: 165.227.83.121
     elasticsearch.hosts:["http://159.89.89.122:9200", "http://159.89.88.78:9200", "http://159.89.89.207:9200"]
-    
 
 Una ves configurados los parámetros, levantamos el servicio. Primero habilitamos el servicio para encienda automáticamente cuando el SO inicie:
 
@@ -273,11 +272,10 @@ Ahora, iniciamos kibana:
 
     $ sudo systemctl start kibana.service
     $ sudo systemctl status kibana.service
-    [root@kibana-s-1vcpu-2gb-nyc1-01 ~]# sudo systemctl status kibana.service
+    $ status kibana.service
     ● kibana.service - Kibana
        Loaded: loaded (/etc/systemd/system/kibana.service; enabled; vendor preset: disabled)
        Active: active (running) since Wed 2020-02-19 20:09:53 UTC; 1s ago
-    
 
 Comprobamos que el servicio quedó habilitado:
 
@@ -294,6 +292,145 @@ En secciones posteriores veremos como visualizar los datos que estarán almacena
 
 ## Instalación Beats
 
+En este punto tenemos el stack instalado y funcionando. Ahora veremos como llevar logs de servicios usando los agentes de beats.
+
+Podemos instalar beats de multiples formas, dependiendo la pltaforma. Aquí lo haré desde el archivo RPM. Yo lo instalaré en CentOS como el resto de los componentes y el caso de uso que exploraré será enviar los logs de un servidor web apache. Si usas windows u otra distribución de Linux busca las instrucciones aqui en  [el enlance oficial del sitio de elasticsearch.](https://www.elastic.co/es/downloads/beats/filebeat)
+
+1\. Importar la clave PGP de Elasticsearch:
+
+    $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+2\. Crear un archivo llamado elstic.repo en el directorio /etc/yum.repos.d/:
+
+    [elastic-7.x]
+    name=Elastic repository for 7.x packages
+    baseurl=https://artifacts.elastic.co/packages/7.x/yum
+    gpgcheck=1
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    autorefresh=1
+    type=rpm-md
+
+3\. Instalar con yum
+
+    $ sudo yum install filebeat
+
+### Configuración Beats
+
+La configuración se realiza mediante el archivo: /etc/filebeat/filebeat.yml, modificamos los siguientes parámetros:
+
+* enabled: Para habilitar el servicio
+* paths:  Las rutas de los archivos de log que deseamos capturar. Podemos agregar varios,  no solo uno.
+* output.logstash: habilitamos esta opción para indicar que enviaremos los logs hacia logstash
+* hosts: IP y puerto del host de logstash
+
+_Nota: la opción output.elasticsearch: debe estar deshabilitada, dejándola comentada, pues no enviaremos directamente hacia elasticsearch, si no a logstash._
+
+Por ejemplo en mi caso:
+
+    enabled: true
+    paths:
+        - /var/log/httpd/access_log
+    
+    #-------------------------- Elasticsearch output ------------------------------
+    #output.elasticsearch:
+      # Array of hosts to connect to.
+      #hosts: ["localhost:9200"]
+    
+    #----------------------------- Logstash output --------------------------------
+    output.logstash:
+      #The Logstash hosts
+      hosts: ["159.89.94.70:5044"]
+
+Una ves configurados los parámetros, levantamos el servicio. Primero habilitamos el servicio para encienda automáticamente cuando el SO inicie:
+
+    $ systemctl daemon-reload
+    $ systemctl enable filebeat.service
+
+Ahora, iniciamos kibana:Ahora, iniciamos filebeat:
+
+    $ sudo systemctl start filebeat.service
+    $ sudo systemctl status filebeat.service
+    ● filebeat.service - Filebeat sends log files to Logstash or directly to Elasticsearch.
+       Loaded: loaded (/usr/lib/systemd/system/filebeat.service; disabled; vendor preset: disabled)
+       Active: active (running) since Wed 2020-02-19 15:13:24 CST; 1min 8s ago
+    
+
 ## Configuración de Pipelines en Logstash
 
-## Visualización de logs en Kibana
+Cómo último paso,  vamos a configurar un pipeline de procesamiento en logstash para que los archivos de log que se están enviando desde los agentes de beats sean recibidos, procesados y  posteriormente enviados a su destino final, elasticsearch.
+
+Para habilitar algún  pipeline, este se e deben incluir en el archivo:
+
+/etc/logstash/pipelines.yml:
+
+    - pipeline.id : apache
+
+      path.config: /etc/logstash/conf.d/apache-pipeline.conf
+
+Y la definición del pipeline la esribimos entonces en /etc/logstash/conf.d/apache-pipeline.conf:
+
+    input {
+
+    beats {
+
+    port => "5044"
+
+    }
+
+    }
+
+    
+
+    filter {
+
+    mutate {
+
+    add_field => { "full_message" => "%{message}" }
+
+    add_field => { "parsed" => true }
+
+    }
+
+    grok {
+
+    match => [
+
+    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\).%{DATA:mon_service_name} %{GREEDYDATA:message}",
+
+    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\).%{DATA:mon_service_name} v%{INT:mon_version} %{GREEDYDATA:message}",
+
+    "message", "mon.%{DATA:mon_name}@%{INT:mon_rank}\(%{DATA:mon_state}\) %{GREEDYDATA:message}",
+
+    "message", "%{GREEDYDATA:message}"
+
+    
+
+    ]
+
+    overwrite => [ "message" ]
+
+    }
+
+    }
+
+    
+
+    output {
+
+    elasticsearch {
+
+    hosts => [ "10.32.237.208", "10.32.237.209", "10.32.237.210"]
+
+    index => "ceph_index"
+
+    document_type => "mytype"
+
+    }
+
+    }
+
+    
+
+##   
+Visualización de logs en Kibana
