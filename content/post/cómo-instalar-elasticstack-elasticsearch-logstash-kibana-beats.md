@@ -407,7 +407,7 @@ Podemos ver si inició correctamente el servicio y que pipelines están configur
 ### ¿Que significa?
 
 * **Input**: determina donde serán recibidos los logs, en este caso indicamos que se envian con beats y se reciben en el puerto 5044. Si deseamos tener multiples pipelines debemos definir un puerto para cada uno.
-* **Filter**: Podemos filtrar los archivos para descartar algunos o para transformarlos y enriquecerlos.
+* **Filter**: Podemos filtrar los archivos para descartar algunos o para transformarlos y enriquecerlos. En este ejemplo no agregaremos ni modificaremos campos.
 * **Output**: Indica hacia donde se debe enviar la información una vez filtrada y transformada. En este caso hacia elasticsearch. Usamos la IP de cada nodo master en el parámetro hosts.  Indicamos el nombre del indice con el parámetro index. Usamos el tipo default dedocumento.
 
 ## Visualización de logs en Kibana
