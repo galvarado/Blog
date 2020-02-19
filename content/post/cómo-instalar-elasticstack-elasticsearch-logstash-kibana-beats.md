@@ -45,6 +45,28 @@ La instalación se realizará usando el Sistema Operativo CentOS versión 8.
 
 _Nota: Para laboratorios todos los componentes se pueden instalar en la misma máquina virtual o incluso en un entorno local (laptop)._
 
+En cada servidor definiremos el archivo /etc/hosts para resolución de nombres de dominio local. Esto para no depender de crear registros DNS. Los hostnames son importantes porque la configuración de elasticsearch solicita hostnames y de esta manera se podrá resolver la IP de cada host.
+
+En mi caso el archivo /etc/hosts:
+
+    159.89.89.122   master01
+
+    159.89.88.78    master02
+
+    159.89.89.207   master03
+
+    159.89.89.222   data01
+
+    142.93.249.78   data02
+
+    159.89.89.72    data03
+
+    159.89.94.70    logstash
+
+    165.227.83.121  kibana
+
+    
+
 ## Prerequisito - Instalar Java 8
 
 En todos las máquinas virtuales instalamos Java 8 pues es un requisito:
@@ -52,9 +74,9 @@ En todos las máquinas virtuales instalamos Java 8 pues es un requisito:
     $ yum update
     $ yum install java-1.8.0-openjdk
     $ java -version
-    openjdk version "1.8.0_232"
-    OpenJDK Runtime Environment (build 1.8.0_232-b09)
-    OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)
+    openjdk version "1.8.0_242"
+    OpenJDK Runtime Environment (build 1.8.0_242-b08)
+    OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)
 
 ## Instalación Elasticsearch
 
@@ -83,6 +105,8 @@ Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elast
 
 Repetimos los pasos anteriores para todos los nodos de Elasticsearch, tanto los nodos master como los nodos de datos (datanodes).
 
+Elasticsearch es un motor que está diseñado para ser distruibuido y ofrecer alta disponibilidad. Esto quiere decir que para crear el cluster tenemos opciones de configuración predefinidas y fácil de llenar. 
+
 La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
 
 * cluster.name: Nombre del cluster
@@ -91,7 +115,7 @@ La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/
 * node.data: True o False, para determinar si un nodo es master node o es data node
 * network.host: IP del nodo
 * http.port: Puerto donde se habilita Elasticsearch, default 9200
-* discover.seed_hosts: Lista de IPs de todos los nodos que forman el cluster
+* discover.seed_hosts: Lista de IPs de todos los nodos que forman el cluster (masternodes y datanodes)
 * cluster.initial_master_nodes: Lista de hostnames de los nodos master  del cluster
 
 Por ejemplo en mi caso:
@@ -100,9 +124,9 @@ Por ejemplo en mi caso:
     node.name: master01
     node.master: true
     node.data: false
-    network.host: 
+    network.host: 159.89.89.122
     http.port: 9200
-    discovery.seed_hosts: [""]
+    discovery.seed_hosts: ["159.89.89.122", "159.89.88.78", "159.89.89.207", "159.89.89.222", "142.93.249.78", "159.89.89.72"]
     cluster.initial_master_nodes: ["master01", "master02", "master03"]
 
 _Nota: Distinguir entre las opciones node.master y node.data para designar el rol correcto para cada nodo. En este ejemplo tenemos 3 master nodes y 3 data nodes._
@@ -127,7 +151,7 @@ Comprobamos que el servicio quedó habilitado:
 
 Para comprobar que el cluster inició correctamente, hacemos una petición a la API de Elasticsearch:
 
-    $ curl http://localhost:9200
+    $ curl http://[MASTER_IP]:9200
 
 Salida esperada:
 
