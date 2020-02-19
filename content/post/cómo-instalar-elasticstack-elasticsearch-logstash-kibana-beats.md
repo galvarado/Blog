@@ -364,10 +364,9 @@ Para habilitar algún  pipeline, este se e deben incluir en el archivo:
 /etc/logstash/pipelines.yml:
 
     - pipeline.id : apache
-    
       path.config: /etc/logstash/conf.d/apache-pipeline.conf
 
-Y la definición del pipeline la esribimos entonces en /etc/logstash/conf.d/apache-pipeline.conf:
+Y la definición del pipeline la escribimos entonces en /etc/logstash/conf.d/apache-pipeline.conf:
 
     input {
       beats {
@@ -382,12 +381,46 @@ Y la definición del pipeline la esribimos entonces en /etc/logstash/conf.d/apac
     output {
     
       elasticsearch {
-        hosts => [ "10.32.237.208", "10.32.237.209", "10.32.237.210"]
+        hosts => [ "159.89.89.122", "159.89.89.78", "159.89.89.207"]
         index => "apache_index"
         document_type => "mytype"
       }
     }
 
-## 
+REiniciamos logstsash
 
-Visualización de logs en Kibana
+Podemos ver si inició correctamente el servicio y que pipelines están configuradas en el log:
+
+    [root@logstash-s-1vcpu-2gb-nyc1-01 ~]# tail -f /var/log/logstash/logstash-
+
+    logstash-deprecation.log    logstash-plain.log          logstash-slowlog-plain.log  
+
+    [root@logstash-s-1vcpu-2gb-nyc1-01 ~]# tail -f /var/log/logstash/logstash-plain.log 
+
+    [2020-02-19T22:31:35,722][INFO ][logstash.outputs.elasticsearch][apache] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//159.89.89.122"]}
+
+    [2020-02-19T22:31:35,809][INFO ][logstash.outputs.elasticsearch][apache] Using default mapping template
+
+    [2020-02-19T22:31:35,902][WARN ][org.logstash.instrument.metrics.gauge.LazyDelegatingGauge][apache] A gauge metric of an unknown type (org.jruby.specialized.RubyArrayOneObject) has been create for key: cluster_uuids. This may result in invalid serialization.  It is recommended to log an issue to the responsible developer/development team.
+
+    [2020-02-19T22:31:35,926][INFO ][logstash.outputs.elasticsearch][apache] Attempting to install template {:manage_template=>{"index_patterns"=>"logstash-*", "version"=>60001, "settings"=>{"index.refresh_interval"=>"5s", "number_of_shards"=>1}, "mappings"=>{"dynamic_templates"=>[{"message_field"=>{"path_match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false, "fields"=>{"keyword"=>{"type"=>"keyword", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"keyword"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"half_float"}, "longitude"=>{"type"=>"half_float"}}}}}}}
+
+    [2020-02-19T22:31:35,951][INFO ][logstash.javapipeline    ][apache] Starting pipeline {:pipeline_id=>"apache", "pipeline.workers"=>1, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>125, "pipeline.sources"=>["/etc/logstash/conf.d/apache-pipeline.conf"], :thread=>"#<Thread:0x1840e90e run>"}
+
+    [2020-02-19T22:31:38,367][INFO ][logstash.inputs.beats    ][apache] Beats inputs: Starting input listener {:address=>"0.0.0.0:5044"}
+
+    [2020-02-19T22:31:38,424][INFO ][logstash.javapipeline    ][apache] Pipeline started {"pipeline.id"=>"apache"}
+
+    [2020-02-19T22:31:38,495][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:apache], :non_running_pipelines=>[]}
+
+    [2020-02-19T22:31:38,688][INFO ][org.logstash.beats.Server][apache] Starting server on port: 5044
+
+    [2020-02-19T22:31:39,055][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+
+### ¿Que significa?
+
+* **Input**: determina donde serán recibidos los logs, en este caso indicamos que se envian con beats y se reciben en el puerto 5044. Si deseamos tener multiples pipelines debemos definir un puerto para cada uno.
+* **Filter**: Podemos filtrar los archivos para descartar algunos o para transformarlos y enriquecerlos.
+* **Output**: Indica hacia donde se debe enviar la información una vez filtrada y transformada. En este caso hacia elasticsearch. Usamos la IP de cada nodo master en el parámetro hosts.  Indicamos el nombre del indice con el parámetro index. Usamos el tipo default dedocumento.
+
+## Visualización de logs en Kibana
