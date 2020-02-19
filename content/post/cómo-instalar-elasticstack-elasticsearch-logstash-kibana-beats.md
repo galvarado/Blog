@@ -433,7 +433,63 @@ Una vez creado, podemos ir a la sección "Discover", ahí elegimos el índice y 
 
 Si inspeccionamos uno de los registros podemos ver todos los campos:
 
-    { "_index": "apache_index", "_type": "mytype", "_id": "r-2iX3ABMK33z-jz8TRe", "_version": 1, "_score": null, "_source": { "log": { "file": { "path": "/var/log/httpd/access_log" }, "offset": 3009 }, "host": { "name": "zenbook", "hostname": "zenbook", "architecture": "x86_64", "id": "4aabef803dd14a479296beb123e29ca6", "os": { "version": "30 (Workstation Edition)", "name": "Fedora", "platform": "fedora", "codename": "Thirty", "family": "redhat", "kernel": "5.4.14-100.fc30.x86_64" }, "containerized": false }, "agent": { "version": "7.6.0", "type": "filebeat", "ephemeral_id": "97d1de58-dc14-4b2d-a453-91ee3b85c701", "hostname": "zenbook", "id": "7159a1b5-1db8-406d-8206-9743aafa0011" }, "@timestamp": "2020-02-19T22:47:56.255Z", "ecs": { "version": "1.4.0" }, "message": "::1 - - [19/Feb/2020:16:47:52 -0600] \"GET / HTTP/1.1\" 403 4650 \"-\" \"Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36\"", "input": { "type": "log" }, "@version": "1", "tags": [ "beats_input_codec_plain_applied" ] }, "fields": { "@timestamp": [ "2020-02-19T22:47:56.255Z" ] }, "sort": [ 1582152476255 ] }
+    {
+       "_index": "apache_index",
+       "_type": "mytype",
+       "_id": "r-2iX3ABMK33z-jz8TRe",
+       "_version": 1,
+       "_score": null,
+       "_source": {
+          "log": {
+             "file": {
+                "path": "/var/log/httpd/access_log"
+             },
+             "offset": 3009
+          },
+          "host": {
+             "name": "zenbook",
+             "hostname": "zenbook",
+             "architecture": "x86_64",
+             "id": "4aabef803dd14a479296beb123e29ca6",
+             "os": {
+                "version": "30 (Workstation Edition)",
+                "name": "Fedora",
+                "platform": "fedora",
+                "codename": "Thirty",
+                "family": "redhat",
+                "kernel": "5.4.14-100.fc30.x86_64"
+             },
+             "containerized": false
+          },
+          "agent": {
+             "version": "7.6.0",
+             "type": "filebeat",
+             "ephemeral_id": "97d1de58-dc14-4b2d-a453-91ee3b85c701",
+             "hostname": "zenbook",
+             "id": "7159a1b5-1db8-406d-8206-9743aafa0011"
+          },
+          "@timestamp": "2020-02-19T22:47:56.255Z",
+          "ecs": {
+             "version": "1.4.0"
+          },
+          "message": "::1 - - [19/Feb/2020:16:47:52 -0600] \"GET / HTTP/1.1\" 403 4650 \"-\" \"Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36\"",
+          "input": {
+             "type": "log"
+          },
+          "@version": "1",
+          "tags": [
+             "beats_input_codec_plain_applied"
+          ]
+       },
+       "fields": {
+          "@timestamp": [
+             "2020-02-19T22:47:56.255Z"
+          ]
+       },
+       "sort": [
+          1582152476255
+       ]
+    }
 
 Si necesitamos agregar información podemos realizarlo en el pipeline en la sección de filter. En este ejemplo estamos guardando la información únicamente con los campos que logstash agrega por default. [Más información de transformación con logstash la encuentras aquí](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html).
 
