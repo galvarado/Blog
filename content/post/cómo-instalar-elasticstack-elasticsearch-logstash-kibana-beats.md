@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-02-06T19:00:00Z
-draft = true
 image = "/uploads/ElasticStack.png"
 tags = ["devops", "architecture", "elasticsearch"]
 title = "Cómo instalar y configurar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
@@ -387,34 +386,22 @@ Y la definición del pipeline la escribimos entonces en /etc/logstash/conf.d/apa
       }
     }
 
-REiniciamos logstsash
+Reiniciamos logstsash:
 
-Podemos ver si inició correctamente el servicio y que pipelines están configuradas en el log:
+    $ systemctl restart logstash.service
 
-    [root@logstash-s-1vcpu-2gb-nyc1-01 ~]# tail -f /var/log/logstash/logstash-
+Podemos ver si inició correctamente el servicio y que pipelines están configurados en el log:
 
-    logstash-deprecation.log    logstash-plain.log          logstash-slowlog-plain.log  
-
-    [root@logstash-s-1vcpu-2gb-nyc1-01 ~]# tail -f /var/log/logstash/logstash-plain.log 
-
+    $ tail -f /var/log/logstash/logstash-plain.log 
     [2020-02-19T22:31:35,722][INFO ][logstash.outputs.elasticsearch][apache] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//159.89.89.122"]}
-
     [2020-02-19T22:31:35,809][INFO ][logstash.outputs.elasticsearch][apache] Using default mapping template
-
     [2020-02-19T22:31:35,902][WARN ][org.logstash.instrument.metrics.gauge.LazyDelegatingGauge][apache] A gauge metric of an unknown type (org.jruby.specialized.RubyArrayOneObject) has been create for key: cluster_uuids. This may result in invalid serialization.  It is recommended to log an issue to the responsible developer/development team.
-
     [2020-02-19T22:31:35,926][INFO ][logstash.outputs.elasticsearch][apache] Attempting to install template {:manage_template=>{"index_patterns"=>"logstash-*", "version"=>60001, "settings"=>{"index.refresh_interval"=>"5s", "number_of_shards"=>1}, "mappings"=>{"dynamic_templates"=>[{"message_field"=>{"path_match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false, "fields"=>{"keyword"=>{"type"=>"keyword", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date"}, "@version"=>{"type"=>"keyword"}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"half_float"}, "longitude"=>{"type"=>"half_float"}}}}}}}
-
     [2020-02-19T22:31:35,951][INFO ][logstash.javapipeline    ][apache] Starting pipeline {:pipeline_id=>"apache", "pipeline.workers"=>1, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>125, "pipeline.sources"=>["/etc/logstash/conf.d/apache-pipeline.conf"], :thread=>"#<Thread:0x1840e90e run>"}
-
     [2020-02-19T22:31:38,367][INFO ][logstash.inputs.beats    ][apache] Beats inputs: Starting input listener {:address=>"0.0.0.0:5044"}
-
     [2020-02-19T22:31:38,424][INFO ][logstash.javapipeline    ][apache] Pipeline started {"pipeline.id"=>"apache"}
-
     [2020-02-19T22:31:38,495][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:apache], :non_running_pipelines=>[]}
-
     [2020-02-19T22:31:38,688][INFO ][org.logstash.beats.Server][apache] Starting server on port: 5044
-
     [2020-02-19T22:31:39,055][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
 
 ### ¿Que significa?
@@ -424,3 +411,54 @@ Podemos ver si inició correctamente el servicio y que pipelines están configur
 * **Output**: Indica hacia donde se debe enviar la información una vez filtrada y transformada. En este caso hacia elasticsearch. Usamos la IP de cada nodo master en el parámetro hosts.  Indicamos el nombre del indice con el parámetro index. Usamos el tipo default dedocumento.
 
 ## Visualización de logs en Kibana
+
+Con esto tenemos centralizados los logs de apache, esto aplica para este nodo o si tuvieramos 20 nodos ejecutando apache y otras plataformas más pueden ser incluidas generando un pipeline para cada una, como en una arquitecrura 3Layer con Apache+MySQL+PHP.  Teniendo todos los logs en un solo lugar nos facilitará la tarea de troubleshooting para solucionar errores cuando estos se presenten.
+
+Para visualizar los logs en kibana debemos crear un index patter por cada indice:
+
+1) Vamos a la opción Connect to your Elasticsearch index:
+
+![](/uploads/Captura de pantalla de 2020-02-19 16-42-40.png)
+
+2) Colocamos el nombre del índice:
+
+![](/uploads/Captura de pantalla de 2020-02-19 16-43-01.png)
+
+3) Definimos el campo de ordenamiento:  
+![](/uploads/Captura de pantalla de 2020-02-19 16-43-14.png)  
+  
+Una vez creado, podemos ir a la sección "Discover", ahí elegimos el índice y podremos visualizar los logs:
+
+![](/uploads/Captura de pantalla de 2020-02-19 16-49-21.png)
+
+Si inspeccionamos uno de los registros podemos ver todos los campos:
+
+| --- | --- |
+| @timestamp | Feb 19, 2020 @ 22:47:56.255 |
+|  | @version | 1 |
+|  | _id | r-2iX3ABMK33z-jz8TRe |
+|  | _index | apache_index |
+|  | _score | - |
+|  | _type | mytype |
+|  | agent.ephemeral_id | 97d1de58-dc14-4b2d-a453-91ee3b85c701 |
+|  | agent.hostname | zenbook |
+|  | agent.id | 7159a1b5-1db8-406d-8206-9743aafa0011 |
+|  | agent.type | filebeat |
+|  | agent.version | 7.6.0 |
+|  | ecs.version | 1.4.0 |
+|  | host.architecture | x86_64 |
+|  | host.containerized | false |
+|  | host.hostname | zenbook |
+|  | host.id | 4aabef803dd14a479296beb123e29ca6 |
+|  | host.name | zenbook |
+|  | host.os.codename | Thirty |
+|  | host.os.family | redhat |
+|  | host.os.kernel | 5.4.14-100.fc30.x86_64 |
+|  | host.os.name | Fedora |
+|  | host.os.platform | fedora |
+|  | host.os.version | 30 (Workstation Edition) |
+|  | input.type | log |
+|  | log.file.path | /var/log/httpd/access_log |
+|  | log.offset | 3,009 |
+|  | message | ::1 - - \[19/Feb/2020:16:47:52 -0600\] "GET / HTTP/1.1" 403 4650 "-" "Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36" |
+|  | tags | beats_input_codec_plain_applied |
