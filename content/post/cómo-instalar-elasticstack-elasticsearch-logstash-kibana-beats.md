@@ -47,25 +47,16 @@ _Nota: Para laboratorios todos los componentes se pueden instalar en la misma m�
 
 En cada servidor definiremos el archivo /etc/hosts para resolución de nombres de dominio local. Esto para no depender de crear registros DNS. Los hostnames son importantes porque la configuración de elasticsearch solicita hostnames y de esta manera se podrá resolver la IP de cada host.
 
-En mi caso el archivo /etc/hosts:
+En mi caso agregué al archivo /etc/hosts de cada nodo:
 
     159.89.89.122   master01
-
     159.89.88.78    master02
-
     159.89.89.207   master03
-
     159.89.89.222   data01
-
     142.93.249.78   data02
-
     159.89.89.72    data03
-
     159.89.94.70    logstash
-
     165.227.83.121  kibana
-
-    
 
 ## Prerequisito - Instalar Java 8
 
@@ -105,7 +96,7 @@ Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elast
 
 Repetimos los pasos anteriores para todos los nodos de Elasticsearch, tanto los nodos master como los nodos de datos (datanodes).
 
-Elasticsearch es un motor que está diseñado para ser distruibuido y ofrecer alta disponibilidad. Esto quiere decir que para crear el cluster tenemos opciones de configuración predefinidas y fácil de llenar. 
+Elasticsearch es un motor que está diseñado para ser distruibuido y ofrecer alta disponibilidad. Esto quiere decir que para crear el cluster tenemos opciones de configuración predefinidas y fácil de llenar.
 
 La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
 
