@@ -32,7 +32,7 @@ Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras ap
 
 ## Prerequisitos
 
-La versión que instalaremos será la 7.5 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad, 3 nodos master y 3 nodos de datos (datanodes). Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
+La versión que instalaremos será la 7.6 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad, 3 nodos master y 3 nodos de datos (datanodes). Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
 
 * 3 Máquinas virtuales como Elasticsearch Master Nodes
 * 3 Máquinas virtuales como Elasticsearch Data Nodes
@@ -146,40 +146,23 @@ Para comprobar que el cluster inició correctamente, hacemos una petición a la 
 
 Salida esperada:
 
-    root@master01-s-1vcpu-2gb-nyc1-01 ~]# curl http://159.89.89.122:9200
-
+    curl http://159.89.89.122:9200
     {
-
       "name" : "master01",
-
       "cluster_name" : "elasticsearchcluster",
-
       "cluster_uuid" : "twZSFiVsSzSYkfT8ZW2pVQ",
-
       "version" : {
-
         "number" : "7.6.0",
-
         "build_flavor" : "default",
-
         "build_type" : "rpm",
-
         "build_hash" : "7f634e9f44834fbc12724506cc1da681b0c3b1e3",
-
         "build_date" : "2020-02-06T00:09:00.449973Z",
-
         "build_snapshot" : false,
-
         "lucene_version" : "8.4.0",
-
         "minimum_wire_compatibility_version" : "6.8.0",
-
         "minimum_index_compatibility_version" : "6.0.0-beta1"
-
       },
-
       "tagline" : "You Know, for Search"
-
     }
 
 ## Instalación Logstash
@@ -205,7 +188,41 @@ Para la instalación mediante YUM utilizando el RPM:
 
     $ sudo yum install --enablerepo=logstash logstash
 
+_Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la sección anterior._
+
 ### Configuración Logstash
+
+La configuración se realiza mediante el archivo: /etc/logstash/logstash.yml, modificamos los siguientes parametros:
+
+* http.host: IP del servidor
+* http.port: Puerto del endpoint de metricas
+
+Por ejemplo en mi caso:
+
+    http.host: "159.89.94.70"
+    http.port: 9600-9700
+
+Una ves configurados los parametros, levantamos el servicio. Primero habilitamos el servicio para encienda automáticamente cuando el SO inicie:
+
+    $ systemctl daemon-reload
+    $ systemctl enable logstash.service
+
+Ahora, iniciamos logstash:
+
+    $ sudo systemctl start logstash.service
+    # sudo systemctl status logstash.service
+    ● logstash.service - logstash
+       Loaded: loaded (/etc/systemd/system/logstash.service; enabled; vendor preset: disabled)
+       Active: active (running) since Wed 2020-02-19 19:45:16 UTC; 7s ago
+
+Comprobamos que el servicio quedó habilitado:
+
+    $ systemctl list-unit-files --state=enabled | grep logstash
+    logstash.service                      enabled
+
+En este punto ya está ejecutandose el proceso de logstash, pero aún no definimos ningun pipeline para recibir los datos que enviaran los agentes de beats ni tampoco hemos configurado almacenar los datos en elasticsearch.
+
+En una sección posterior ( Configuración de Pipelines en Logstash) se detallará esta configuración. Por ahora nos basta con haber iniciado el proceso.
 
 ## Instalación Kibana
 
@@ -230,7 +247,50 @@ Para la instalación mediante YUM utilizando el RPM:
 
     $ sudo yum install --enablerepo=kibana kibana
 
+_Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la sección anterior._
+
 ### Configuración Kibana
+
+La configuración se realiza mediante el archivo: /etc/kibana/kibana.yml, modificamos los siguientes parámetros:
+
+* server.port: Puerto donde se habilitará el servicio
+* server.host:  IP del servidor donde se expondrá el dashboard
+* elasticsearch.hosts: los endpoints de elasticsearch. Colocamos aquí los nodos master.
+
+Por ejemplo en mi caso:
+
+    server.port: 5601
+    server.host: 165.227.83.121
+    elasticsearch.hosts:["http://159.89.89.122:9200", "http://159.89.88.78:9200", "http://159.89.89.207:9200"]
+    
+
+Una ves configurados los parámetros, levantamos el servicio. Primero habilitamos el servicio para encienda automáticamente cuando el SO inicie:
+
+    $ systemctl daemon-reload
+    $ systemctl enable kibana.service
+
+Ahora, iniciamos kibana:
+
+    $ sudo systemctl start kibana.service
+    $ sudo systemctl status kibana.service
+    [root@kibana-s-1vcpu-2gb-nyc1-01 ~]# sudo systemctl status kibana.service
+    ● kibana.service - Kibana
+       Loaded: loaded (/etc/systemd/system/kibana.service; enabled; vendor preset: disabled)
+       Active: active (running) since Wed 2020-02-19 20:09:53 UTC; 1s ago
+    
+
+Comprobamos que el servicio quedó habilitado:
+
+    $ systemctl list-unit-files --state=enabled | grep kibana
+    kibana.service                      enabled
+
+En este punto ya podemos entrar al dashboard, la página de bienvenida es esta:
+<center>
+
+![](/uploads/kibanahome.png)
+</center>
+
+En secciones posteriores veremos como visualizar los datos que estarán almacenados en elasticsearch. Por ahora nos basta con saber que kibana está instalado y funcionando.
 
 ## Instalación Beats
 
