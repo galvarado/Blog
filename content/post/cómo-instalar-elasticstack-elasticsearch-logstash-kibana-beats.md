@@ -491,7 +491,8 @@ Si inspeccionamos uno de los registros podemos ver todos los campos:
        ]
     }
 
-Si necesitamos agregar información podemos realizarlo en el pipeline en la sección de filter. En este ejemplo estamos guardando la información únicamente con los campos que logstash agrega por default. [Más información de transformación con logstash la encuentras aquí](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html).
+  
+Tenemos información del host que generó este log, el timestamp, el mensaje en el log y más información del agente que envia esta información. Todos estos campos son agregados por logstash. Si necesitamos agregar información podemos realizarlo en el pipeline en la sección de filter. En este ejemplo estamos guardando la información únicamente con los campos que logstash agrega por default. [Más información de transformación con logstash la encuentras aquí](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html).
 
 Hasta aquí el tutorial, puedes seguir explorando todas las opciones que tiene kibana para crear dashboards y visualizaciones con los datos, combinando campos e indices.
 
