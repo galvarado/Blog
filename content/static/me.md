@@ -10,6 +10,87 @@ Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en dí
 
 He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo largo de los años. Si te gustaría que hable en tu conferencia u organización, comicate conmigo. También tengo experiencia como docente en México y Latinoamérica, he impartido cursos en Perú, Bolivia y Chile.	
 
+### Certificaciones
+<div class="row">
+<div class="col-lg-3 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="">
+                
+                    <img class="img-fluid" src="/images/google.jpg" alt="A thumbnail image">
+                                
+            </a>
+        </div>
+        <div class="card-body">
+                    <p>Google Certified Professional Cloud Architect</p>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">    
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="">
+                
+                    <img class="img-fluid" src="/images/redhat.png" alt="A thumbnail image">
+                                
+            </a>
+        </div>
+        <div class="card-body">
+                    <p>Red Hat Certified Administrator in Openstack</p>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">    
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="">
+                
+                    <img class="img-fluid" src="/images/mirantis.png" alt="A thumbnail image">
+                                
+            </a>
+        </div>
+        <div class="card-body">
+                    <p>Mirantis Certified Administrator for Openstack </p>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">    
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6 mb-30px card-group">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="">
+                
+                    <img class="img-fluid" src="/images/appcelerator.png" alt="A thumbnail image">
+                                
+            </a>
+        </div>
+        <div class="card-body">
+                    <p>Titanium Application Developer</p>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">    
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
 ## Ok y...¿Fuera de lo profesional?
 
 Aunque mi trabajo no es lo único que me define. Si necesito describirme en una frase me gusta:  “Soy un hacedor, no importa qué, simplemente me gusta entregar resultados.“ 
