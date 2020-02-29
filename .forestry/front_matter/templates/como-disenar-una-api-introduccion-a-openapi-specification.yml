@@ -48,6 +48,7 @@ pages:
 - content/post/comparación-de-balanceadores-de-carga-en-google-cloud-http-s-vs-ssl-proxy-vs-tcp-proxy-vs-internal-vs-network-vs-internal-http-s.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
 - content/post/crear-un-chatbot-de-telegram-cn-python.md
+- content/post/crear-una-api-con-go.md
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
 - content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
 - content/post/explicándole-a-mi-mamá-qué-es-el-internet-y-como-funciona.md
