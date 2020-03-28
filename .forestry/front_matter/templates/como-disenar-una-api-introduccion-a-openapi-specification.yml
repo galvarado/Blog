@@ -50,6 +50,7 @@ pages:
 - content/post/crear-un-chatbot-de-telegram-cn-python.md
 - content/post/crear-una-api-con-go.md
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
+- content/post/desplegar-servicios-con-traefik-como-reverse-proxy.md
 - content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
 - content/post/explicándole-a-mi-mamá-qué-es-el-internet-y-como-funciona.md
 - content/post/google-sre-el-arte-del-site-reliability-engineering.md
