@@ -53,7 +53,7 @@ check_services.sh:
 
 **Revisión de nodo de control**
 
-El siguiente script dentro de un nodo de control para saber la salud del cluster de base de datos(Galera), Rabbitmq, Haproxy, Redis.
+El siguiente script dentro de un nodo de control para saber la salud del cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis.
 
 check_health.sh:
 
@@ -138,7 +138,7 @@ Conocer el comando con el que paunch inicia el contenedor:
 
 Comprender como funcionan los recursos de balanceo de carga y alta disponibilidad en Openstack  nos permiten debuggear los servicios más rápido.
 
-### HAproxy
+### HAProxy
 
 INVESTIGAR TODAS LAS IPS QUE BALANCEA 
 
@@ -148,7 +148,7 @@ Los múltiples servicios de  Openstack se configuran con HAProxy y las configura
 
      /var/lib/config-data/haproxy/etc/haproxy/haproxy.cfg
 
-Para ver las configuraciones en el contenedro de Haproxy, podemos ejecutar en algun nodo de control:
+Para ver las configuraciones en el contenedor de HAProxy, podemos ejecutar en algún nodo de control:
 
     docker exec -it $(docker ps | grep -oP "haproxy-bundle-docker-[0-9]+") cat  /etc/haproxy/haproxy.cfg
 
@@ -159,17 +159,17 @@ Para cada servicio en ese archivo, puede ver las siguientes propiedades:
 * bind: la dirección IP y el número de puerto TCP en el que escucha el servicio
 * server: el nombre de cada servidor que proporciona el servicio, la dirección IP del servidor y el puerto de escucha, y otra información.
 
-El siguiente ejemplo muestra cómo se configura el servicio de  Horizon en el archivo haproxy.cfg:
+El siguiente ejemplo muestra cómo se configura el servicio de Horizon en el archivo haproxy.cfg:
 
     listen horizon
 
-      bind 172.28.96.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
+      bind 172.128.96.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
 
-      bind 172.28.96.9:80 transparent
+      bind 172.128.96.9:80 transparent
 
-      bind 172.28.99.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
+      bind 172.128.99.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
 
-      bind 172.28.99.9:80 transparent
+      bind 172.128.99.9:80 transparent
 
       mode http
 
@@ -187,19 +187,26 @@ El siguiente ejemplo muestra cómo se configura el servicio de  Horizon en el ar
 
       rsprep ^Location:\ http://(.*) Location:\ https://\1
 
-      server controller01.internalapi.shcp.gob 172.28.96.11:80 check cookie controller01.internalapi.shcp.gob fall 5 inter 2000 rise 2
+      server controller01.internalapi.localhost 172.128.96.11:80 check cookie controller01.internalapi.shcp.gob fall 5 inter 2000 rise 2
 
-      server controller02.internalapi.shcp.gob 172.28.96.12:80 check cookie controller02.internalapi.shcp.gob fall 5 inter 2000 rise 2
+      server controller02.internalapi.localhost 172.128.96.12:80 check cookie controller02.internalapi.shcp.gob fall 5 inter 2000 rise 2
 
-      server controller03.internalapi.shcp.gob 172.28.96.13:80 check cookie controller03.internalapi.shcp.gob fall 5 inter 2000 rise 2
+      server controller03.internalapi.localhost 172.128.96.13:80 check cookie controller03.internalapi.shcp.gob fall 5 inter 2000 rise 2
 
-Este ejemplo de configuración de HAProxy para el servicio Cinder identifica las direcciones IP y los puertos en los que se ofrece el servicio Cinder (puerto 8777 en 172.16.0.10 y 192.168.1.150).
+Para el servicio de horizon se  identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind.  Puerto 443 y 80 en 
 
-La dirección 172.16.0.10 es una dirección IP virtual en la red API interna (VLAN201) para usar dentro de la nube superior, y la dirección IP virtual 192.168.1.150 está en la red externa (VLAN100) para proporcionar acceso a la red API desde fuera de la nube
+* 172.128.96.9 
+* 172.128.99.9
 
-HAProxy puede dirigir las solicitudes realizadas para esas dos direcciones IP a overcloud-controller-0 (172.16.0.13:8777), overcloud-controller-1 (172.16.0.14:8777) o overcloud-controller-2 (172.16.0.15:8777) .
+La dirección  172.128.96.9 es una dirección IP virtual en la red API interna para uso dentro de la nube y la dirección IP virtual 172.128.99.9 está en la red externa para proporcionar acceso desde fuera de la nube.
 
-Las opciones establecidas en estos servidores permiten las comprobaciones de estado (comprobación) y el servicio se considera muerto después de cinco comprobaciones de estado fallidas (caída 5). El intervalo entre dos comprobaciones de estado consecutivas se establece en 2000 milisegundos (o 2 segundos) entre 2000. Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (aumento 2).
+HAProxy balancea las peticiones realizadas para esas dos direcciones IP hacia los nodos de control:
+
+* controller01.internalapi.localhost 172.128.96.11
+* controller02.internalapi.localhost 172.128.96.12
+* controller03.internalapi.localhost 172.128.96.13
+
+Las opciones establecidas  permiten las comprobaciones de estado y el servicio se considera inactibo después de cinco comprobaciones de estado fallidas (fail 5). El intervalo entre dos comprobaciones de estado consecutivas se establece en 2000 milisegundos (o 2 segundos) . Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (rise 2).
 
 ### Pacemaker
 
