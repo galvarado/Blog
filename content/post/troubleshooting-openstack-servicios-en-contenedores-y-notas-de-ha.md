@@ -36,7 +36,9 @@ Dentro de este directorio están organizados por proyectos, podrás en contrar u
 
 ## Precheck de servicios y contenedores
 
-**Salud de los servcios**
+Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorarnos tiempo:
+
+**Revisón general de los servicios**
 
 Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash
 
@@ -52,9 +54,31 @@ check_services.sh
 
     Debuggear un contenedor
 
-**Monitorear los contenedores**
+**Revisión de nodo de control**
+
+El siguiente script nos permite saber la salud de la base de datos, rabbitmq, haproxy, redis.
+
+check_health.sh
+
+    echo -e  "\n\n########## Pacemaker Status ##########"
+
+    pcs status
+
+    echo -e  "\n\n########## RabbitMQ Status ##########"
+
+    docker exec -ti $(docker ps | grep -oP "rabbitmq-bundle-docker-[0-9]+") rabbitmqctl cluster_status
+
+    echo -e "\n\n########## Galera status Status ##########"
+
+    docker exec -ti $(docker ps | grep -oP "galera-bundle-docker-[0-9]+") mysql -e "SHOW GLOBAL STATUS LIKE 'wsrep_%'" | grep -E -- 'wsrep_local_state_comment|wsrep_evs_state'
+
+Dentro del nodo de control, ejecutamos el siguiente script que nos da un panorama de los servicios/contenedores que se están ejecutando
+
+Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra. 
 
 ## Debuggear los contenedores
+
+**Monitorear los contenedores**
 
 **Activar modo debug**
 
@@ -74,9 +98,9 @@ Posteriormente reiniciar el contenedor
 
     $ podman exec -ti [CONTAINER_NAME] [COMMAND]
 
-Por ejemplo:
+Por ejemplo, conocer el estado de rabbitmq en el contenedor que se está ejecutando:
 
-    $ podman exec -ti [CONTAINER_NAME] [COMMAND]
+    $ podman exec -ti rabbitmq-bundle-docker-0 rabbitmqctl cluster_status
 
 **Inspeccionar el contenedor**
 
