@@ -17,7 +17,6 @@ NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con
 
 ## Aspectos básicos de los servicios en contenedores
 
-  
 **Archivos de configuración**
 
 Los archivos de configuración de los servicios de openstack como nova.conf, los archivos de apache/httpd, horizon (django) y cualquier otro proyecto están la ruta:
@@ -138,9 +137,21 @@ Conocer el comando con el que paunch inicia el contenedor:
 
 Comprender como funcionan los recursos de balanceo de carga y alta disponibilidad en Openstack  nos permiten debuggear los servicios más rápido.
 
-### HAProxy
+### VirtualIPs
 
-INVESTIGAR TODAS LAS IPS QUE BALANCEA 
+Los servicios en HA se sirven meduante VIPs. Existen 7 de ellas y las encontraremos en las configuraciones de HAProxy y Pacemaker. En el proceso de despliegue podemos elegir IPs fijas para estas VIPs, estas se indentifican de la siguiente manera: 
+
+* DashboardFixedIp: 
+* ControlFixedIP
+* InternalApiVirtualFixedIP
+* RedisVirtualFixedIP
+* StorageVirtualFixedIPs
+* StorageMgmtVirtualFixedIPs
+* OVNDBsVirtualFixedIPs
+
+  ### HAProxy
+
+INVESTIGAR TODAS LAS IPS QUE BALANCEA
 
 HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalmente ejecutan los servicios/contenedores de control plane de Openstack.
 
@@ -152,65 +163,49 @@ Para ver las configuraciones en el contenedor de HAProxy, podemos ejecutar en al
 
     docker exec -it $(docker ps | grep -oP "haproxy-bundle-docker-[0-9]+") cat  /etc/haproxy/haproxy.cfg
 
-  
 Para cada servicio en ese archivo, puede ver las siguientes propiedades:
 
 * listen: el nombre del servicio que está escuchando las solicitudes
 * bind: la dirección IP y el número de puerto TCP en el que escucha el servicio
 * server: el nombre de cada servidor que proporciona el servicio, la dirección IP del servidor y el puerto de escucha, y otra información.
 
-El siguiente ejemplo muestra cómo se configura el servicio de Horizon en el archivo haproxy.cfg:
+El siguiente ejemplo muestra cómo se configura  el balanceo para el servicio de Horizon en el archivo haproxy.cfg:
 
     listen horizon
-
       bind 172.128.96.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
-
       bind 172.128.96.9:80 transparent
-
       bind 172.128.99.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
-
       bind 172.128.99.9:80 transparent
-
       mode http
-
       cookie SERVERID insert indirect nocache
-
       http-request set-header X-Forwarded-Proto https if { ssl_fc }
-
       http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
-
       option forwardfor
-
       option httpchk
-
       redirect scheme https code 301 if !{ ssl_fc }
-
       rsprep ^Location:\ http://(.*) Location:\ https://\1
-
       server controller01.internalapi.localhost 172.128.96.11:80 check cookie controller01.internalapi.shcp.gob fall 5 inter 2000 rise 2
-
       server controller02.internalapi.localhost 172.128.96.12:80 check cookie controller02.internalapi.shcp.gob fall 5 inter 2000 rise 2
-
       server controller03.internalapi.localhost 172.128.96.13:80 check cookie controller03.internalapi.shcp.gob fall 5 inter 2000 rise 2
 
-Para el servicio de horizon se  identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind.  Puerto 443 y 80 en 
+Para el servicio de horizon se  identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind.  Puerto 443 y 80 en las IPs:
 
-* 172.128.96.9 
+* 172.128.96.9
 * 172.128.99.9
 
 La dirección  172.128.96.9 es una dirección IP virtual en la red API interna para uso dentro de la nube y la dirección IP virtual 172.128.99.9 está en la red externa para proporcionar acceso desde fuera de la nube.
 
-HAProxy balancea las peticiones realizadas para esas dos direcciones IP hacia los nodos de control:
+HAProxy balancea las peticiones realizadas para esas dos direcciones IP hacia los nodos de control, en su dirección de la red API internal:
 
 * controller01.internalapi.localhost 172.128.96.11
 * controller02.internalapi.localhost 172.128.96.12
 * controller03.internalapi.localhost 172.128.96.13
 
-Las opciones establecidas  permiten las comprobaciones de estado y el servicio se considera inactibo después de cinco comprobaciones de estado fallidas (fail 5). El intervalo entre dos comprobaciones de estado consecutivas se establece en 2000 milisegundos (o 2 segundos) . Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (rise 2).
+Las opciones establecidas  permiten las comprobaciones de estado y el servicio se considera inactivo después de cinco comprobaciones de estado fallidas (fail 5). El intervalo entre dos comprobaciones de estado  se establece en 2000 milisegundos o 2 segundos. Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (rise 2).
 
 ### Pacemaker
 
-INVESTIGAR TODAS LAS IPS QUE GESTIONA 
+INVESTIGAR TODAS LAS IPS QUE GESTIONA
 
 En una implementación de Openstack en alta disponibilidad (HA), existen cuatro tipos de servicios: contenedores core,contededores  activos-pasivos, systemd y contenedor simples. Pacemaker ejecuta y administra los servicios de contenedores core y activos-pasivos
 
