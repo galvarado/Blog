@@ -40,9 +40,9 @@ Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluac
 
 **Revisón general de los servicios**
 
-Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash
+Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash.
 
-check_services.sh
+check_services.sh:
 
     source /home/stack/overcloudrc
 
@@ -56,9 +56,9 @@ check_services.sh
 
 **Revisión de nodo de control**
 
-El siguiente script nos permite saber la salud de la base de datos, rabbitmq, haproxy, redis.
+El siguiente script dentro de un nodo de control para saber la salud del cluster de base de datos(Galera), Rabbitmq, Haproxy, Redis.
 
-check_health.sh
+check_health.sh:
 
     echo -e  "\n\n########## Pacemaker Status ##########"
 
@@ -71,8 +71,6 @@ check_health.sh
     echo -e "\n\n########## Galera status Status ##########"
 
     docker exec -ti $(docker ps | grep -oP "galera-bundle-docker-[0-9]+") mysql -e "SHOW GLOBAL STATUS LIKE 'wsrep_%'" | grep -E -- 'wsrep_local_state_comment|wsrep_evs_state'
-
-Dentro del nodo de control, ejecutamos el siguiente script que nos da un panorama de los servicios/contenedores que se están ejecutando
 
 Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra. 
 
