@@ -13,6 +13,8 @@ El cambio no es menor y el proceso de despliegue es totalmente diferente.  Debem
 
 La instalación de los ambientes donde he  obteniendo esta experiencia esta basada en TripleO, ya sea con [RHOSP](https://www.redhat.com/es/technologies/linux-platforms/openstack-platform) o con la versión upstream de Openstack instalado en CentOS , es decir [RDO](https://www.rdoproject.org/rdo/).
 
+NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con podman. Depende de la versión de Openstack que estamos usando.
+
 ## Aspectos básicos de los servicios en contenedores
 
 **  
@@ -24,7 +26,7 @@ Los archivos de configuración de los servicios de openstack como nova.conf, los
 
 Cualquier cambio a estos archivos de configuración requieren de un reinicio del contenedor para que tome efecto.
 
-    $ podman restart [CONTAINER_NAME]
+    $ docker restart [CONTAINER_NAME]
 
 **Archivos de log**
 
@@ -45,14 +47,9 @@ Podemos realizar una validación rápida consutando los servicios de Openstack d
 check_services.sh:
 
     source /home/stack/overcloudrc
-
     openstack volume service list
-
     openstack hypervisor list
-
     openstack network agent list
-
-    Debuggear un contenedor
 
 **Revisión de nodo de control**
 
@@ -61,18 +58,13 @@ El siguiente script dentro de un nodo de control para saber la salud del cluster
 check_health.sh:
 
     echo -e  "\n\n########## Pacemaker Status ##########"
-
     pcs status
-
     echo -e  "\n\n########## RabbitMQ Status ##########"
-
     docker exec -ti $(docker ps | grep -oP "rabbitmq-bundle-docker-[0-9]+") rabbitmqctl cluster_status
-
     echo -e "\n\n########## Galera status Status ##########"
-
     docker exec -ti $(docker ps | grep -oP "galera-bundle-docker-[0-9]+") mysql -e "SHOW GLOBAL STATUS LIKE 'wsrep_%'" | grep -E -- 'wsrep_local_state_comment|wsrep_evs_state'
 
-Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra. 
+Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
 
 ## Debuggear los contenedores
 
@@ -86,25 +78,25 @@ Se debe modificar el parametro en el archivo de configuración de cada servicio.
 
 Posteriormente reiniciar el contenedor
 
-    $ podman restart [CONTAINER_NAME]
+    $ docker restart [CONTAINER_NAME]
 
 **Acceder a los contenedores**
 
-    $ podman exec -ti [CONTAINER_NAME] /bin/bash
+    $ docker exec -ti [CONTAINER_NAME] /bin/bash
 
 **Ejecutar comandos en los contenedores**
 
-    $ podman exec -ti [CONTAINER_NAME] [COMMAND]
+    $ docker exec -ti [CONTAINER_NAME] [COMMAND]
 
 Por ejemplo, conocer el estado de rabbitmq en el contenedor que se está ejecutando:
 
-    $ podman exec -ti rabbitmq-bundle-docker-0 rabbitmqctl cluster_status
+    $ docker exec -ti rabbitmq-bundle-docker-0 rabbitmqctl cluster_status
 
 **Inspeccionar el contenedor**
 
 Nos permite conocer la estructura y los metadatos del contenedor. Proporciona información sobre los montajes de volumenes en el contenedor, las etiquetas del contenedor, el comando del contenedor, etc.
 
-    $ podman inspect  [CONTAINER_NAME] 
+    $ docker inspect  [CONTAINER_NAME] 
 
 **Exportar un contenedor**
 
@@ -112,7 +104,7 @@ Cuando el contenedor falla, no sabemos que sucedió. Primero que nada debemos re
 
 Así exportamos el sistema de archivos completo de un contenedor gacia  un archivo tar que podremos explorar:
 
-    $ podman export [CONTAINER_NAME] -o [FILENAME].tar
+    $ docker export [CONTAINER_NAME] -o [FILENAME].tar
 
 Donde \[FILENAME\] es el nombre que deseamos colocar para el archivo tar.
 
@@ -120,11 +112,11 @@ Donde \[FILENAME\] es el nombre que deseamos colocar para el archivo tar.
 
 Esto es útil para saber como se inician los contenedores y sus argumentos
 
-    $ podman inspect --format='{{range .Config.Env}} -e "{{.}}" {{end}} {{range .Mounts}} -v {{.Source}}:{{.Destination}}{{if .Mode}}:{{.Mode}}{{end}}{{end}} -ti {{.Config.Image}}' $CONTAINER_ID_OR_NAME
+    $ docker inspect --format='{{range .Config.Env}} -e "{{.}}" {{end}} {{range .Mounts}} -v {{.Source}}:{{.Destination}}{{if .Mode}}:{{.Mode}}{{end}}{{end}} -ti {{.Config.Image}}' $CONTAINER_ID_OR_NAME
 
 Para iniciar el contenedor de manera manual entonces podemos copiar la salida anterior y ejecutarla:
 
-    $ podman run --rm [OUTPUT] /bin/bash
+    $ docker run --rm [OUTPUT] /bin/bash
 
 **Paunch**
 
