@@ -34,7 +34,9 @@ Todos los logs ahora se encuentran en:
 
 Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
 
-## Precheck
+## Precheck de servicios y contenedores
+
+**Salud de los servcios**
 
 Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash
 
@@ -51,6 +53,8 @@ check_services.sh
     Debuggear un contenedor
 
 **Monitorear los contenedores**
+
+## Debuggear los contenedores
 
 **Activar modo debug**
 
