@@ -11,9 +11,9 @@ Las versiones anteriores de  OpenStack  utilizaban  Systemd para administrar los
 
 El cambio no es menor y el proceso de despliegue es totalmente diferente.  Debemos saber que cambian la rutas de los archivos de configuración, de los archivos de log, pero también la manera en la que se inician los servicios y la forma la que debemos realizar tareas de troubleshooting y debugging. Esta es una guia de apoyo para quien deba llevar estas tareas acabo.
 
-La instalación de los ambientes donde he  obteniendo esta experiencia esta basada en TripleO, ya sea con [RHOSP](https://www.redhat.com/es/technologies/linux-platforms/openstack-platform) o con la versión upstream de Openstack instalado en CentOS , es decir [RDO](https://www.rdoproject.org/rdo/). 
+La instalación de los ambientes donde he  obteniendo esta experiencia esta basada en TripleO, ya sea con [RHOSP](https://www.redhat.com/es/technologies/linux-platforms/openstack-platform) o con la versión upstream de Openstack instalado en CentOS , es decir [RDO](https://www.rdoproject.org/rdo/).
 
-## Aspectos basicos de los contenedores
+## Aspectos básicos de los servicios en contenedores
 
 **  
 Archivos de configuración**
@@ -33,6 +33,22 @@ Todos los logs ahora se encuentran en:
     /var/log/containers
 
 Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
+
+## Precheck
+
+Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash
+
+check_services.sh
+
+    source /home/stack/overcloudrc
+
+    openstack volume service list
+
+    openstack hypervisor list
+
+    openstack network agent list
+
+    Debuggear un contenedor
 
 **Monitorear los contenedores**
 
@@ -64,12 +80,9 @@ Nos permite conocer la estructura y los metadatos del contenedor. Proporciona in
 
     $ podman inspect  [CONTAINER_NAME] 
 
-## Debuggear un contenedor
-
-  
 **Exportar un contenedor**
 
-Cuando el contenedor falla, no sabemos que sucedió. Primero que nada debemos revisar los logs de las rutas antes mencionadas, por lo general son las salidas de stdout. Pero una gran opción es exportar la estructura del sistema de archivos del contenedor, esto nos dejará ver otros archivos de logs que pueden no estar en los volúmenes montados. 
+Cuando el contenedor falla, no sabemos que sucedió. Primero que nada debemos revisar los logs de las rutas antes mencionadas, por lo general son las salidas de stdout. Pero una gran opción es exportar la estructura del sistema de archivos del contenedor, esto nos dejará ver otros archivos de logs que pueden no estar en los volúmenes montados.
 
 Así exportamos el sistema de archivos completo de un contenedor gacia  un archivo tar que podremos explorar:
 
@@ -93,7 +106,7 @@ Para iniciar el contenedor de manera manual entonces podemos copiar la salida an
 
     /var/lib/tripleo-config/
 
-_En estos ejemplos estaré usando el contenedor openstack-cinder-volume-docker-0._ 
+_En estos ejemplos estaré usando el contenedor openstack-cinder-volume-docker-0._
 
 Para ver el archivo de configuración con el que se inicia el contenedor:
 
@@ -103,15 +116,13 @@ Conocer el comando con el que paunch inicia el contenedor:
 
     paunch debug --file /var/lib/tripleo-config/container-startup-config-step_4.json --container openstack-cinder-volume-docker-0 --action print-cmd
 
-[http://tripleo.org/install/containers_deployment/tips_tricks.html](http://tripleo.org/install/containers_deployment/tips_tricks.html "http://tripleo.org/install/containers_deployment/tips_tricks.html")
-
 ## Recursos en Alta Disponibilidad
 
 Comprender como funcionan los recursos de balanceo de carga y alta disponibilidad en Openstack  nos permiten debuggear los servicios más rápido.
 
 ### HAproxy
 
-HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalente ejecutan los servicios/contenedores de control plane de OpenStack. 
+HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalente ejecutan los servicios/contenedores de control plane de OpenStack.
 
 Los múltiples servicios de  Openstack se configuran con HAProxy y las configuraciones se encuentran en el archivo:
 
@@ -153,21 +164,21 @@ Las acciones fallidas relacionadas con los recursos administrados por Pacemaker 
 
     $ pcs status
 
- Hay diferentes tipos  de problemas que pueden ocurrir. En general, puede ser un error en general del nodo de control o un error de un recurso específico.
+Hay diferentes tipos  de problemas que pueden ocurrir. En general, puede ser un error en general del nodo de control o un error de un recurso específico.
 
 **Problema de nodos de control**
 
-Si fallan las comprobaciones de estado de un controlador,  podemos acceder al  controlador y comprobar si los servicios pueden iniciar . Los problemas  al iniciar los servicios podrían indicar un problema de comunicación/red entre los nodos de control. 
+Si fallan las comprobaciones de estado de un controlador,  podemos acceder al  controlador y comprobar si los servicios pueden iniciar . Los problemas  al iniciar los servicios podrían indicar un problema de comunicación/red entre los nodos de control.
 
 **Problema de recursos individuales**
 
 Si los servicios de un controlador  funcionan, pero solo un recurso individual falla, lo primero sería  interpretar la salida del comando de estado (pcs status).
 
- A partir de este punto debemos investigar los recursos que están fallando, para esto debemos primero entender como función Pacemaker,  a continuación una breve resumen de este funcionamiento y como debuggear un contenedor controlado por pacemaker que está fallando.
+A partir de este punto debemos investigar los recursos que están fallando, para esto debemos primero entender como función Pacemaker,  a continuación una breve resumen de este funcionamiento y como debuggear un contenedor controlado por pacemaker que está fallando.
 
 **Pacemaker Bundles**
 
-Un bundle o paquete, es un conjunto de servicios y  ahora también contenedores que pacemaker  implementa en  los nodos de control. 
+Un bundle o paquete, es un conjunto de servicios y  ahora también contenedores que pacemaker  implementa en  los nodos de control.
 
 Para cada paquete o bundle, podemos ver los siguientes detalles:
 
@@ -175,7 +186,7 @@ Para cada paquete o bundle, podemos ver los siguientes detalles:
 * La referencia al contenedor que está asociado con el paquete
 * La lista de las réplicas que se ejecutan en los diferentes controladores con su estado
 
-Si alguno de los recursos falla de alguna manera, se debería de observaren la salida del pcs status  debajo de _Failed Actions._ 
+Si alguno de los recursos falla de alguna manera, se debería de observaren la salida del pcs status  debajo de _Failed Actions._
 
 **Bundle simple**
 
@@ -183,17 +194,17 @@ Para ver detalles sobre un servicio de paquete en particular, como el bundle de 
 
     $ sudo pcs resource show haproxy-clone
 
- Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker.
+EJEMPLO
 
-**Bundle complejo - Recursos Multi-state** 
+Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker.
+
+**Bundle complejo - Recursos Multi-state**
 
 Los servicios de Galera y Redis se ejecutan como recursos Multi-state. Así es como se ve la salida de estado para estos  servicios:
 
 SALIDA DE COMANDO
 
 Para el recurso galera-master, los tres controladores se ejecutan como master. Para el recurso redis, el nodo X  como master, mientras que los otros dos controladores se ejecutan como slave.
-
- 
 
 Una vez entendido como funcionan los recursos en HA, podemos aplicar los comandos antes mencionados para debuggear su estado.
 
