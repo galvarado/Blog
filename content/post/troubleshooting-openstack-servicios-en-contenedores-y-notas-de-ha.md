@@ -17,8 +17,8 @@ NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con
 
 ## Aspectos básicos de los servicios en contenedores
 
-**  
-Archivos de configuración**
+  
+**Archivos de configuración**
 
 Los archivos de configuración de los servicios de openstack como nova.conf, los archivos de apache/httpd, horizon (django) y cualquier otro proyecto están la ruta:
 
@@ -42,7 +42,7 @@ Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluac
 
 **Revisón general de los servicios**
 
-Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash.
+Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash desde el undercloud.
 
 check_services.sh:
 
@@ -140,21 +140,58 @@ Comprender como funcionan los recursos de balanceo de carga y alta disponibilida
 
 ### HAproxy
 
-HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalente ejecutan los servicios/contenedores de control plane de OpenStack.
+INVESTIGAR TODAS LAS IPS QUE BALANCEA 
+
+HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalmente ejecutan los servicios/contenedores de control plane de Openstack.
 
 Los múltiples servicios de  Openstack se configuran con HAProxy y las configuraciones se encuentran en el archivo:
 
      /var/lib/config-data/haproxy/etc/haproxy/haproxy.cfg
 
+Para ver las configuraciones en el contenedro de Haproxy, podemos ejecutar en algun nodo de control:
+
+    docker exec -it $(docker ps | grep -oP "haproxy-bundle-docker-[0-9]+") cat  /etc/haproxy/haproxy.cfg
+
+  
 Para cada servicio en ese archivo, puede ver las siguientes propiedades:
 
 * listen: el nombre del servicio que está escuchando las solicitudes
 * bind: la dirección IP y el número de puerto TCP en el que escucha el servicio
 * server: el nombre de cada servidor que proporciona el servicio, la dirección IP del servidor y el puerto de escucha, y otra información.
 
-El siguiente ejemplo muestra cómo se configura el servicio de  Cinder en el archivo haproxy.cfg:
+El siguiente ejemplo muestra cómo se configura el servicio de  Horizon en el archivo haproxy.cfg:
 
-EJEMPLO
+    listen horizon
+
+      bind 172.28.96.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
+
+      bind 172.28.96.9:80 transparent
+
+      bind 172.28.99.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
+
+      bind 172.28.99.9:80 transparent
+
+      mode http
+
+      cookie SERVERID insert indirect nocache
+
+      http-request set-header X-Forwarded-Proto https if { ssl_fc }
+
+      http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
+
+      option forwardfor
+
+      option httpchk
+
+      redirect scheme https code 301 if !{ ssl_fc }
+
+      rsprep ^Location:\ http://(.*) Location:\ https://\1
+
+      server controller01.internalapi.shcp.gob 172.28.96.11:80 check cookie controller01.internalapi.shcp.gob fall 5 inter 2000 rise 2
+
+      server controller02.internalapi.shcp.gob 172.28.96.12:80 check cookie controller02.internalapi.shcp.gob fall 5 inter 2000 rise 2
+
+      server controller03.internalapi.shcp.gob 172.28.96.13:80 check cookie controller03.internalapi.shcp.gob fall 5 inter 2000 rise 2
 
 Este ejemplo de configuración de HAProxy para el servicio Cinder identifica las direcciones IP y los puertos en los que se ofrece el servicio Cinder (puerto 8777 en 172.16.0.10 y 192.168.1.150).
 
@@ -165,6 +202,8 @@ HAProxy puede dirigir las solicitudes realizadas para esas dos direcciones IP a 
 Las opciones establecidas en estos servidores permiten las comprobaciones de estado (comprobación) y el servicio se considera muerto después de cinco comprobaciones de estado fallidas (caída 5). El intervalo entre dos comprobaciones de estado consecutivas se establece en 2000 milisegundos (o 2 segundos) entre 2000. Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (aumento 2).
 
 ### Pacemaker
+
+INVESTIGAR TODAS LAS IPS QUE GESTIONA 
 
 En una implementación de Openstack en alta disponibilidad (HA), existen cuatro tipos de servicios: contenedores core,contededores  activos-pasivos, systemd y contenedor simples. Pacemaker ejecuta y administra los servicios de contenedores core y activos-pasivos
 
@@ -228,7 +267,7 @@ Una vez entendido como funcionan los recursos en HA, podemos aplicar los comando
 
 Si te parece útil, por favor comparte =)
 
-Referencias y más recursos:
+Referencias y otros recursos:
 
 [https://naleejang.tistory.com/217](https://naleejang.tistory.com/217 "https://naleejang.tistory.com/217")
 
