@@ -60,8 +60,14 @@ check_health.sh:
     pcs status
     echo -e  "\n\n########## RabbitMQ Status ##########"
     docker exec -ti $(docker ps | grep -oP "rabbitmq-bundle-docker-[0-9]+") rabbitmqctl cluster_status
-    echo -e "\n\n########## Galera status Status ##########"
+    echo -e "\n\n########## Galera Status ##########"
     docker exec -ti $(docker ps | grep -oP "galera-bundle-docker-[0-9]+") mysql -e "SHOW GLOBAL STATUS LIKE 'wsrep_%'" | grep -E -- 'wsrep_local_state_comment|wsrep_evs_state'
+    echo -e "\n\n########## Redis Status ##########"
+    docker exec -ti $(docker ps | grep -oP "redis-bundle-docker-[0-9]+")  ps -efw
+    echo -e "\n\n########## HAProxy Status ##########"
+    docker exec -it $(docker ps | grep -oP "haproxy-bundle-docker-[0-9]+") ps -efw
+    echo -e "\n\n########## Ceph Status ##########"
+    docker exec -ti $(docker ps | grep -oP "ceph-mon-controller01[0-9]*") ceph -s
 
 Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
 
