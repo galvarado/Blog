@@ -20,9 +20,11 @@ Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico ráp
 
 **Revisión general de los servicios**
 
-Podemos realizar una validación rápida consultando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash desde el undercloud.
+Podemos realizar una validación rápida consultando los servicios de Openstack desde el CLI. 
 
-check_services.sh:
+Podemos ejecutar estas validaciones con un script en bash desde el undercloud. Este script lista el estado de los hypervisores, lo agentes de cinder y neutron además de comprobar el estado del dashbard (horizon) así como obtnener un token de keystone para comprobar que está operando:
+
+check_services.sh
 
     source /home//stack/overcloudrc
     openstack volume service list
