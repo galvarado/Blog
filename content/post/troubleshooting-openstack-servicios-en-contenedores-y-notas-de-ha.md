@@ -239,7 +239,7 @@ Nos permite conocer la estructura y los metadatos del contenedor. Proporciona in
 
 Cuando el contenedor falla, no sabemos que sucedió. Primero que nada debemos revisar los logs de las rutas antes mencionadas, por lo general son las salidas de stdout. Pero una gran opción es exportar la estructura del sistema de archivos del contenedor, esto nos dejará ver otros archivos de logs que pueden no estar en los volúmenes montados.
 
-Así exportamos el sistema de archivos completo de un contenedor gacia  un archivo tar que podremos explorar:
+Así exportamos el sistema de archivos completo de un contenedor hacia  un archivo tar que podremos explorar:
 
     $ docker export [CONTAINER_NAME] -o [FILENAME].tar
 
