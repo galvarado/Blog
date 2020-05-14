@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-05-18T05:00:00Z
-draft = true
 image = "/uploads/TroubleshootingOpenstack.png"
 tags = ["containers", "CloudOps", "Openstack"]
 title = "Troubleshooting Openstack: Servicios en contenedores y notas de HA"
@@ -39,7 +38,7 @@ Dentro de este directorio están organizados por proyectos, podrás en contrar u
 
 Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorarnos tiempo:
 
-**Revisón general de los servicios**
+**Revisión general de los servicios**
 
 Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash desde el undercloud.
 
@@ -56,6 +55,8 @@ El siguiente script dentro de un nodo de control para saber la salud del cluster
 
 check_health.sh:
 
+    echo -e  "\n\n########## Containers unhealthy ##########"
+    docker ps | grep unhealthy
     echo -e  "\n\n########## Pacemaker Status ##########"
     pcs status
     echo -e  "\n\n########## RabbitMQ Status ##########"
