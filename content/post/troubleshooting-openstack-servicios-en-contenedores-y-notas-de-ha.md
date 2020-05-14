@@ -179,7 +179,7 @@ La salida:
         usage:   42 TiB used, 262 TiB / 304 TiB avail
         pgs:     768 active+clean
 
-Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
+Después de realizar esta revisión rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
 
 ## Aspectos básicos de los servicios en contenedores
 
@@ -201,7 +201,7 @@ Todos los logs ahora se encuentran en:
 
 Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
 
-Debuggear los contenedores
+### Debuggear los contenedores
 
 **Monitorear los contenedores**
 
