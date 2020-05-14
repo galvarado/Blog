@@ -129,7 +129,7 @@ La salida sería similar a:
 
 **Revisión de nodo de control**
 
-Podemos ejecutar l siguiente script dentro de un nodo de control para saber la salud de los contenedores, el cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis y Ceph.
+Podemos ejecutar el siguiente script dentro de un nodo de control para saber la salud de los contenedores, el cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis y Ceph.
 
 check_health.sh:
 
