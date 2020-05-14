@@ -83,7 +83,6 @@ La salida sería similar a:
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
     
     
-    
      ########## Horizon status ##########
     
     
@@ -109,7 +108,6 @@ La salida sería similar a:
     Content-Length: 9489
     Content-Type: text/html; charset=utf-8
     Set-Cookie: SERVERID=controller03.internalapi.shcp.gob; path=/
-    
     
     
      ########## Keystone token ##########
