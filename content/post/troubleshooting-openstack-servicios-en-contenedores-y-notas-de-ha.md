@@ -35,7 +35,7 @@ Todos los logs ahora se encuentran en:
 
 Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
 
-## Precheck de servicios y contenedores
+## Pre-Check de servicios y contenedores
 
 Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorarnos tiempo:
 
@@ -68,6 +68,8 @@ Después de realizar esta revisón rápida, podemos tener una idea de donde come
 ## Debuggear los contenedores
 
 **Monitorear los contenedores**
+
+    $ docker ps 
 
 **Activar modo debug**
 
@@ -296,17 +298,17 @@ La salida se ve así:
        options=rw source-dir=/dev/log target-dir=/dev/log (haproxy-dev-log)
        options=ro source-dir=/etc/pki/tls/private/overcloud_endpoint.pem target-dir=/var/lib/kolla/config_files/src-tls/etc/pki/tls/private/overcloud_endpoint.pem (haproxy-cert)
 
-Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker.
+Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker. Por tanto HAProxy se ejecuta en cada nodo de control.
 
-**Bundle complejo - Recursos Multi-state**
+**Bundle  multi-state**
 
-Los servicios de Galera y Redis se ejecutan como recursos Multi-state. Así es como se ve la salida de estado para estos  servicios:
+Los servicios de Galera y Redis se ejecutan como recursos multi-state.
 
-SALIDA DE COMANDO
+Para el recurso de galera , los tres controladores se ejecutan como master. Para el recurso de OVN y Redis, existe un nodo master, mientras que los otros dos controladores se ejecutan como slave.
 
-Para el recurso galera-master, los tres controladores se ejecutan como master. Para el recurso redis, el nodo X  como master, mientras que los otros dos controladores se ejecutan como slave.
+Aunque un servicio podría estar ejecutándose en múltiples controladores al mismo tiempo, el controlador en sí podría no estar escuchando la dirección IP que se necesita para llegar a esos servicios. Esto lo gestiona HAProxy. 
 
-Una vez entendido como funcionan los recursos en HA, podemos aplicar los comandos antes mencionados para debuggear su estado.
+Una vez entendido como funcionan los recursos en HA, podemos aplicar los comandos antes mencionados sobre los contenedores para debuggear su estado.
 
 Si te parece útil, por favor comparte =)
 
