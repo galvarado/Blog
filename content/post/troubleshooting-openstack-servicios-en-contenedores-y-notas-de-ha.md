@@ -30,7 +30,7 @@ check_services.sh:
     openstack network agent list
     
     # Variables
-    ENDPOINT='cloud.localhost' # Openstck keystone endpoint
+    ENDPOINT='cloud.somedomain' # Openstck keystone endpoint
     USER='admin'
     PASSWORD='somestrongpass'
     
@@ -70,7 +70,7 @@ La salida sería similar a:
     +--------------------------------------+---------------------+-----------------+--------------+-------+
     | ID                                   | Hypervisor Hostname | Hypervisor Type | Host IP      | State |
     +--------------------------------------+---------------------+-----------------+--------------+-------+
-    | cc023c60-c2e9-414b-b017-38c9c47390d2 | compute01.shcp.gob  | QEMU            | 172.28.96.14 | up    |
+    | cc023c60-c2e9-414b-b017-38c9c47390d2 | compute01.localhost  | QEMU            | 172.28.96.14 | up    |
     +--------------------------------------+---------------------+-----------------+--------------+-------+
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
     | ID                                   | Agent Type           | Host                  | Availability Zone | Alive | State | Binary                        |
@@ -92,9 +92,9 @@ La salida sería similar a:
     Content-Language: en
     Vary: Accept-Language,Cookie
     X-Frame-Options: SAMEORIGIN
-    Location: https://dashboard.shcp.gob/dashboard/auth/login/?next=/dashboard/
+    Location: https://cloud.somedomain/dashboard/auth/login/?next=/dashboard/
     Content-Type: text/html; charset=utf-8
-    Set-Cookie: SERVERID=controller02.internalapi.shcp.gob; path=/
+    Set-Cookie: SERVERID=controller02.internalapi.localb; path=/
     
     HTTP/1.1 200 OK
     Date: Thu, 14 May 2020 05:09:30 GMT
@@ -107,7 +107,7 @@ La salida sería similar a:
     Set-Cookie: csrftoken=WlMotmycI9zL14TGgxRheuzNm91invLkUOLqIySOh1dl40y48QCGp9situ8KLaAn; Path=/; secure
     Content-Length: 9489
     Content-Type: text/html; charset=utf-8
-    Set-Cookie: SERVERID=controller03.internalapi.shcp.gob; path=/
+    Set-Cookie: SERVERID=controller03.internalapi.local; path=/
     
     
      ########## Keystone token ##########
@@ -207,7 +207,7 @@ La salida:
     [{nodes,[{disc,[rabbit@controller01,rabbit@controller02,
                     rabbit@controller03]}]},
      {running_nodes,[rabbit@controller03,rabbit@controller02,rabbit@controller01]},
-     {cluster_name,<<"rabbit@controller01.shcp.gob">>},
+     {cluster_name,<<"rabbit@controller01.local">>},
      {partitions,[]},
      {alarms,[{rabbit@controller03,[]},
               {rabbit@controller02,[]},
