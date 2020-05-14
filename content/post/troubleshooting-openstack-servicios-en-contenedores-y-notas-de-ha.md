@@ -14,26 +14,6 @@ La instalación de los ambientes donde he  obteniendo esta experiencia esta basa
 
 NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con podman. Depende de la versión de Openstack que estamos usando.
 
-## Aspectos básicos de los servicios en contenedores
-
-**Archivos de configuración**
-
-Los archivos de configuración de los servicios de openstack como nova.conf, los archivos de apache/httpd, horizon (django) y cualquier otro proyecto están la ruta:
-
-    /var/lib/config-data/puppet-generated/
-
-Cualquier cambio a estos archivos de configuración requieren de un reinicio del contenedor para que tome efecto.
-
-    $ docker restart [CONTAINER_NAME]
-
-**Archivos de log**
-
-Todos los logs ahora se encuentran en:
-
-    /var/log/containers
-
-Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
-
 ## Pre-Check de servicios y contenedores
 
 Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico rápido de la situación. Con los siguientes 2 scripts obtenemos infromación general de la salud del Openstack.. Esta validación puede ahorrarnos tiempo:
@@ -281,7 +261,27 @@ La salida:
 
 Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
 
-## Debuggear los contenedores
+## Aspectos básicos de los servicios en contenedores
+
+**Archivos de configuración**
+
+Los archivos de configuración de los servicios de openstack como nova.conf, los archivos de apache/httpd, horizon (django) y cualquier otro proyecto están la ruta:
+
+    /var/lib/config-data/puppet-generated/
+
+Cualquier cambio a estos archivos de configuración requieren de un reinicio del contenedor para que tome efecto.
+
+    $ docker restart [CONTAINER_NAME]
+
+**Archivos de log**
+
+Todos los logs ahora se encuentran en:
+
+    /var/log/containers
+
+Dentro de este directorio están organizados por proyectos, podrás en contrar un directorio para nova, otro para cinder, uno para rabbitmq, etc.
+
+Debuggear los contenedores
 
 **Monitorear los contenedores**
 
