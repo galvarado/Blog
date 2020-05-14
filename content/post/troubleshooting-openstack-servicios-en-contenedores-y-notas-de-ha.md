@@ -24,12 +24,40 @@ Podemos realizar una validación rápida consultando los servicios de Openstack 
 
 check_services.sh:
 
-    source /home/stack/overcloudrc
+    source /home//stack/overcloudrc
     openstack volume service list
     openstack hypervisor list
     openstack network agent list
+    
+    # Variables
+    ENDPOINT='cloud.localhost' # Openstck keystone endpoint
+    USER='admin'
+    PASSWORD='somestrongpass'
+    
+    echo -e "\n\n ########## Horizon status ##########\n\n"
+    curl -IL https://$ENDPOINT/dashboard
+    
+    echo -e "\n\n ########## Keystone token ##########\n\n"
+    curl -i \
+      -H "Content-Type: application/json" \
+      -d '
+    { "auth": {
+        "identity": {
+          "methods": ["password"],
+          "password": {
+            "user": {
+              "name": "'$USER'",
+              "domain": { "id": "default" },
+              "password": "'$PASSWORD'"
+            }
+          }
+        }
+      }
+    }' \
+    "https://$ENDPOINT:13000/v3/auth/tokens" 
+    
 
-La salida sería simiar a:
+La salida sería similar a:
 
     +------------------+------------------------+------+---------+-------+----------------------------+
     | Binary           | Host                   | Zone | Status  | State | Updated At                 |
@@ -53,6 +81,51 @@ La salida sería simiar a:
     | ad9f8b60-ab42-47e5-b8d2-1fffb0f3f228 | OVN Controller agent | controller02.localhost| n/a               | :-)   | UP    | ovn-controller                |
     | 8eccb86f-fe41-4254-8c98-f1b0407014e0 | OVN Controller agent | controller01.localhost| n/a               | :-)   | UP    | ovn-controller                |
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
+    
+    
+    
+     ########## Horizon status ##########
+    
+    
+    HTTP/1.1 302 Found
+    Date: Thu, 14 May 2020 05:09:30 GMT
+    Server: Apache
+    Content-Language: en
+    Vary: Accept-Language,Cookie
+    X-Frame-Options: SAMEORIGIN
+    Location: https://dashboard.shcp.gob/dashboard/auth/login/?next=/dashboard/
+    Content-Type: text/html; charset=utf-8
+    Set-Cookie: SERVERID=controller02.internalapi.shcp.gob; path=/
+    
+    HTTP/1.1 200 OK
+    Date: Thu, 14 May 2020 05:09:30 GMT
+    Server: Apache
+    Content-Language: en
+    Expires: Thu, 14 May 2020 05:09:30 GMT
+    Vary: Cookie,Accept-Language,Accept-Encoding
+    Cache-Control: no-cache, no-store, must-revalidate, max-age=0
+    X-Frame-Options: SAMEORIGIN
+    Set-Cookie: csrftoken=WlMotmycI9zL14TGgxRheuzNm91invLkUOLqIySOh1dl40y48QCGp9situ8KLaAn; Path=/; secure
+    Content-Length: 9489
+    Content-Type: text/html; charset=utf-8
+    Set-Cookie: SERVERID=controller03.internalapi.shcp.gob; path=/
+    
+    
+    
+     ########## Keystone token ##########
+    
+    
+    HTTP/1.1 201 CREATED
+    Date: Thu, 14 May 2020 05:09:30 GMT
+    Server: Apache
+    X-Subject-Token: gAAAAABevNKL4KEY9RIrWpBrBnPWbzYw5p7RBj2-dptjKTHEqKdO2n5fFKPVSUKSr5FVdFklwjVtpMt0E8MGWheAe8K9jCQ2KSLSVzVjsfUESEfF4xYY8QYcFSxXacyrP7Y8Fg2eNhTuu7X01rraqQGmOlXfFijHSg
+    Vary: X-Auth-Token
+    x-openstack-request-id: req-b5eeb9a3-7324-4c50-a8e5-d7f131158d9a
+    Content-Length: 312
+    Content-Type: application/json
+    
+    {"token": {"issued_at": "2020-05-14T05:09:31.000000Z", "audit_ids": ["rxApLmS2TXy9OkEKNlaQBg"], "methods": ["password"], "expires_at": "2020-05-14T06:09:31.000000Z", "user": {"password_expires_at": null, "domain": {"id": "default", "name": "Default"}, "id": "9227598ba27340309e12766f737efc92", "name": "admin"}}}
+    
 
 **Revisión de nodo de control**
 
