@@ -36,11 +36,11 @@ Dentro de este directorio están organizados por proyectos, podrás en contrar u
 
 ## Pre-Check de servicios y contenedores
 
-Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorarnos tiempo:
+Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorrarnos tiempo:
 
 **Revisión general de los servicios**
 
-Podemos realizar una validación rápida consutando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash desde el undercloud.
+Podemos realizar una validación rápida consultando los servicios de Openstack desde el CLI. Podemos ejecutar estas validaciones con un script en bash desde el undercloud.
 
 check_services.sh:
 
@@ -51,7 +51,7 @@ check_services.sh:
 
 **Revisión de nodo de control**
 
-El siguiente script dentro de un nodo de control para saber la salud del cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis.
+Podemos ejecutar l siguiente script dentro de un nodo de control para saber la salud de los contenedores, el cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis y Ceph.
 
 check_health.sh:
 
