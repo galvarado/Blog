@@ -36,7 +36,7 @@ Dentro de este directorio están organizados por proyectos, podrás en contrar u
 
 ## Pre-Check de servicios y contenedores
 
-Me gustaría compartir 2 sencillos scripts que nos permiten realizar una evaluación rápida de la situación. Esta validación puede ahorrarnos tiempo:
+Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico rápido de la situación. Con los siguientes 2 scripts obtenemos infromación general de la salud del Openstack.. Esta validación puede ahorrarnos tiempo:
 
 **Revisión general de los servicios**
 
@@ -52,50 +52,27 @@ check_services.sh:
 La salida sería simiar a:
 
     +------------------+------------------------+------+---------+-------+----------------------------+
-
     | Binary           | Host                   | Zone | Status  | State | Updated At                 |
-
     +------------------+------------------------+------+---------+-------+----------------------------+
-
     | cinder-scheduler | controller02           | nova | enabled | up    | 2020-05-14T04:45:52.000000 |
-
     | cinder-scheduler | controller01           | nova | enabled | up    | 2020-05-14T04:45:48.000000 |
-
     | cinder-scheduler | controller03           | nova | enabled | up    | 2020-05-14T04:45:52.000000 |
-
     | cinder-volume    | hostgroup@tripleo_ceph | nova | enabled | up    | 2020-05-14T04:45:47.000000 |
-
     +------------------+------------------------+------+---------+-------+----------------------------+
-
     +--------------------------------------+---------------------+-----------------+--------------+-------+
-
     | ID                                   | Hypervisor Hostname | Hypervisor Type | Host IP      | State |
-
     +--------------------------------------+---------------------+-----------------+--------------+-------+
-
     | cc023c60-c2e9-414b-b017-38c9c47390d2 | compute01.shcp.gob  | QEMU            | 172.28.96.14 | up    |
-
     +--------------------------------------+---------------------+-----------------+--------------+-------+
-
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
-
     | ID                                   | Agent Type           | Host                  | Availability Zone | Alive | State | Binary                        |
-
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
-
-    | 276ef646-c294-4cf4-bdda-42ad903579a5 | OVN Controller agent | controller03.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
-
-    | df32e280-eed2-4313-82d5-169f761fd848 | OVN Controller agent | compute01.shcp.gob    | n/a               | :-)   | UP    | ovn-controller                |
-
-    | ba38cb5b-44fb-4362-87be-27a56cedc107 | OVN Metadata agent   | compute01.shcp.gob    | n/a               | :-)   | UP    | networking-ovn-metadata-agent |
-
-    | ad9f8b60-ab42-47e5-b8d2-1fffb0f3f228 | OVN Controller agent | controller02.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
-
-    | 8eccb86f-fe41-4254-8c98-f1b0407014e0 | OVN Controller agent | controller01.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
-
+    | 276ef646-c294-4cf4-bdda-42ad903579a5 | OVN Controller agent | controller03.localhost| n/a               | :-)   | UP    | ovn-controller                |
+    | df32e280-eed2-4313-82d5-169f761fd848 | OVN Controller agent | compute01.localhost   | n/a               | :-)   | UP    | ovn-controller                |
+    | ba38cb5b-44fb-4362-87be-27a56cedc107 | OVN Metadata agent   | compute01.localhost   | n/a               | :-)   | UP    | networking-ovn-metadata-agent |
+    | ad9f8b60-ab42-47e5-b8d2-1fffb0f3f228 | OVN Controller agent | controller02.localhost| n/a               | :-)   | UP    | ovn-controller                |
+    | 8eccb86f-fe41-4254-8c98-f1b0407014e0 | OVN Controller agent | controller01.localhost| n/a               | :-)   | UP    | ovn-controller                |
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
-
-    
 
 **Revisión de nodo de control**
 
@@ -117,6 +94,190 @@ check_health.sh:
     docker exec -it $(docker ps | grep -oP "haproxy-bundle-docker-[0-9]+") ps -efw
     echo -e "\n\n########## Ceph Status ##########"
     docker exec -ti $(docker ps | grep -oP "ceph-mon-controller01[0-9]*") ceph -s
+
+La salida:
+
+    ########## Containers unhealthy ##########
+
+    ba53346c88d6        docker.io/tripleotrain/centos-binary-nova-scheduler:current-tripleo       "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       nova_scheduler
+
+    5d7024a18ec1        docker.io/tripleotrain/centos-binary-nova-conductor:current-tripleo       "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       nova_conductor
+
+    ee4a7107250b        docker.io/tripleotrain/centos-binary-cinder-scheduler:current-tripleo     "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       cinder_scheduler
+
+    cf907b8344d6        docker.io/tripleotrain/centos-binary-heat-engine:current-tripleo          "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       heat_engine
+
+    ########## Pacemaker Status ##########
+
+    Cluster name: tripleo_cluster
+
+    Stack: corosync
+
+    Current DC: controller03 (version 1.1.20-5.el7_7.2-3c4c782f70) - partition with quorum
+
+    Last updated: Wed May 13 23:50:15 2020
+
+    Last change: Tue May 12 21:11:01 2020 by root via crm_resource on controller01
+
+    15 nodes configured
+
+    47 resources configured
+
+    Online: [ controller01 controller02 controller03 ]
+
+    GuestOnline: [ galera-bundle-0@controller01 galera-bundle-1@controller02 galera-bundle-2@controller03 ovn-dbs-bundle-0@controller01 ovn-dbs-bundle-1@controller02 ovn-dbs-bundle-2@controller03 rabbitmq-bundle-0@controller01 rabbitmq-bundle-1@controller02 rabbitmq-bundle-2@controller03 redis-bundle-0@controller01 redis-bundle-1@controller02 redis-bundle-2@controller03 ]
+
+    Full list of resources:
+
+     Docker container set: rabbitmq-bundle [cluster.common.tag/centos-binary-rabbitmq:pcmklatest]
+
+       rabbitmq-bundle-0	(ocf::heartbeat:rabbitmq-cluster):	Started controller01
+
+       rabbitmq-bundle-1	(ocf::heartbeat:rabbitmq-cluster):	Started controller02
+
+       rabbitmq-bundle-2	(ocf::heartbeat:rabbitmq-cluster):	Started controller03
+
+     Docker container set: galera-bundle [cluster.common.tag/centos-binary-mariadb:pcmklatest]
+
+       galera-bundle-0	(ocf::heartbeat:galera):	Master controller01
+
+       galera-bundle-1	(ocf::heartbeat:galera):	Master controller02
+
+       galera-bundle-2	(ocf::heartbeat:galera):	Master controller03
+
+     Docker container set: redis-bundle [cluster.common.tag/centos-binary-redis:pcmklatest]
+
+       redis-bundle-0	(ocf::heartbeat:redis):	Master controller01
+
+       redis-bundle-1	(ocf::heartbeat:redis):	Slave controller02
+
+       redis-bundle-2	(ocf::heartbeat:redis):	Slave controller03
+
+     ip-172.28.91.49	(ocf::heartbeat:IPaddr2):	Started controller01
+
+     ip-172.28.99.9	(ocf::heartbeat:IPaddr2):	Started controller02
+
+     ip-172.28.96.8	(ocf::heartbeat:IPaddr2):	Started controller03
+
+     ip-172.28.96.9	(ocf::heartbeat:IPaddr2):	Started controller01
+
+     ip-172.28.94.9	(ocf::heartbeat:IPaddr2):	Started controller02
+
+     ip-172.28.95.9	(ocf::heartbeat:IPaddr2):	Started controller03
+
+     Docker container set: haproxy-bundle [cluster.common.tag/centos-binary-haproxy:pcmklatest]
+
+       haproxy-bundle-docker-0	(ocf::heartbeat:docker):	Started controller01
+
+       haproxy-bundle-docker-1	(ocf::heartbeat:docker):	Started controller02
+
+       haproxy-bundle-docker-2	(ocf::heartbeat:docker):	Started controller03
+
+     Docker container set: ovn-dbs-bundle [cluster.common.tag/centos-binary-ovn-northd:pcmklatest]
+
+       ovn-dbs-bundle-0	(ocf::ovn:ovndb-servers):	Master controller01
+
+       ovn-dbs-bundle-1	(ocf::ovn:ovndb-servers):	Slave controller02
+
+       ovn-dbs-bundle-2	(ocf::ovn:ovndb-servers):	Slave controller03
+
+     ip-172.28.96.7	(ocf::heartbeat:IPaddr2):	Started controller01
+
+     Docker container: openstack-cinder-volume [cluster.common.tag/centos-binary-cinder-volume:pcmklatest]
+
+       openstack-cinder-volume-docker-0	(ocf::heartbeat:docker):	Started controller02
+
+    Daemon Status:
+
+      corosync: active/enabled
+
+      pacemaker: active/enabled
+
+      pcsd: active/enabled
+
+    ########## RabbitMQ Status ##########
+
+    Cluster status of node rabbit@controller01
+
+    [{nodes,[{disc,[rabbit@controller01,rabbit@controller02,
+
+                    rabbit@controller03]}]},
+
+     {running_nodes,[rabbit@controller03,rabbit@controller02,rabbit@controller01]},
+
+     {cluster_name,<<"rabbit@controller01.shcp.gob">>},
+
+     {partitions,[]},
+
+     {alarms,[{rabbit@controller03,[]},
+
+              {rabbit@controller02,[]},
+
+              {rabbit@controller01,[]}]}]
+
+    ########## Galera Status ##########
+
+    | wsrep_evs_state               | OPERATIONAL                                                                                                          |
+
+    | wsrep_local_state_comment     | Synced                                                                                                               |
+
+    ########## Redis Status ##########
+
+    UID          PID    PPID  C STIME TTY          TIME CMD
+
+    root           1       0  0 May12 ?        00:00:00 dumb-init --single-child -- /bin/bash /usr/local/bin/kolla_start
+
+    root           8       1  0 May12 ?        00:00:32 /usr/sbin/pacemaker_remoted
+
+    redis         85       1  0 May12 ?        00:01:50 /usr/bin/redis-server 172.28.96.11:6379
+
+    root      153828       0 24 23:50 ?        00:00:00 ps -efw
+
+    ########## HAProxy Status ##########
+
+    UID          PID    PPID  C STIME TTY          TIME CMD
+
+    root           1       0  0 May12 ?        00:00:00 dumb-init --single-child -- /bin/bash /usr/local/bin/kolla_start
+
+    root           8       1  0 May12 ?        00:00:00 /usr/sbin/haproxy-systemd-wrapper -f /etc/haproxy/haproxy.cfg
+
+    haproxy       15       8  0 May12 ?        00:00:00 /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -Ds
+
+    haproxy       16      15  0 May12 ?        00:12:43 /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -Ds
+
+    root       11343       0  0 23:50 ?        00:00:00 ps -efw
+
+    ########## Ceph Status ##########
+
+      cluster:
+
+        id:     f61a82a5-f279-4959-94a6-2fcf69f8f3c0
+
+        health: HEALTH_OK
+
+     
+
+      services:
+
+        mon: 3 daemons, quorum controller01,controller02,controller03 (age 27h)
+
+        mgr: controller01(active, since 27h), standbys: controller02, controller03
+
+        osd: 36 osds: 36 up (since 4h), 36 in (since 27h)
+
+     
+
+      data:
+
+        pools:   3 pools, 768 pgs
+
+        objects: 1.32k objects, 1.6 GiB
+
+        usage:   42 TiB used, 262 TiB / 304 TiB avail
+
+        pgs:     768 active+clean
+
+    
 
 Después de realizar esta revisón rápida, podemos tener una idea de donde comenzar el debugging así que manos a la obra.
 
@@ -361,7 +522,7 @@ Los servicios de Galera y Redis se ejecutan como recursos multi-state.
 
 Para el recurso de galera , los tres controladores se ejecutan como master. Para el recurso de OVN y Redis, existe un nodo master, mientras que los otros dos controladores se ejecutan como slave.
 
-Aunque un servicio podría estar ejecutándose en múltiples controladores al mismo tiempo, el controlador en sí podría no estar escuchando la dirección IP que se necesita para llegar a esos servicios. Esto lo gestiona HAProxy. 
+Aunque un servicio podría estar ejecutándose en múltiples controladores al mismo tiempo, el controlador en sí podría no estar escuchando la dirección IP que se necesita para llegar a esos servicios. Esto lo gestiona HAProxy.
 
 Una vez entendido como funcionan los recursos en HA, podemos aplicar los comandos antes mencionados sobre los contenedores para debuggear su estado.
 
