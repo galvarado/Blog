@@ -16,7 +16,7 @@ NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con
 
 ## Pre-Check de servicios y contenedores
 
-Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico rápido de la situación. Con los siguientes 2 scripts obtenemos infromación general de la salud del Openstack.. Esta validación puede ahorrarnos tiempo:
+Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico rápido de la situación. Con los siguientes 2 scripts obtenemos infromación general de la salud de Openstack. Esta validación puede ahorrarnos tiempo:
 
 **Revisión general de los servicios**
 
