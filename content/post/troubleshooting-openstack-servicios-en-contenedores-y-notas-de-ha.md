@@ -49,6 +49,54 @@ check_services.sh:
     openstack hypervisor list
     openstack network agent list
 
+La salida sería simiar a:
+
+    +------------------+------------------------+------+---------+-------+----------------------------+
+
+    | Binary           | Host                   | Zone | Status  | State | Updated At                 |
+
+    +------------------+------------------------+------+---------+-------+----------------------------+
+
+    | cinder-scheduler | controller02           | nova | enabled | up    | 2020-05-14T04:45:52.000000 |
+
+    | cinder-scheduler | controller01           | nova | enabled | up    | 2020-05-14T04:45:48.000000 |
+
+    | cinder-scheduler | controller03           | nova | enabled | up    | 2020-05-14T04:45:52.000000 |
+
+    | cinder-volume    | hostgroup@tripleo_ceph | nova | enabled | up    | 2020-05-14T04:45:47.000000 |
+
+    +------------------+------------------------+------+---------+-------+----------------------------+
+
+    +--------------------------------------+---------------------+-----------------+--------------+-------+
+
+    | ID                                   | Hypervisor Hostname | Hypervisor Type | Host IP      | State |
+
+    +--------------------------------------+---------------------+-----------------+--------------+-------+
+
+    | cc023c60-c2e9-414b-b017-38c9c47390d2 | compute01.shcp.gob  | QEMU            | 172.28.96.14 | up    |
+
+    +--------------------------------------+---------------------+-----------------+--------------+-------+
+
+    +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
+
+    | ID                                   | Agent Type           | Host                  | Availability Zone | Alive | State | Binary                        |
+
+    +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
+
+    | 276ef646-c294-4cf4-bdda-42ad903579a5 | OVN Controller agent | controller03.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
+
+    | df32e280-eed2-4313-82d5-169f761fd848 | OVN Controller agent | compute01.shcp.gob    | n/a               | :-)   | UP    | ovn-controller                |
+
+    | ba38cb5b-44fb-4362-87be-27a56cedc107 | OVN Metadata agent   | compute01.shcp.gob    | n/a               | :-)   | UP    | networking-ovn-metadata-agent |
+
+    | ad9f8b60-ab42-47e5-b8d2-1fffb0f3f228 | OVN Controller agent | controller02.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
+
+    | 8eccb86f-fe41-4254-8c98-f1b0407014e0 | OVN Controller agent | controller01.shcp.gob | n/a               | :-)   | UP    | ovn-controller                |
+
+    +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
+
+    
+
 **Revisión de nodo de control**
 
 Podemos ejecutar l siguiente script dentro de un nodo de control para saber la salud de los contenedores, el cluster de base de datos(Galera), Rabbitmq, HAProxy, Redis y Ceph.
