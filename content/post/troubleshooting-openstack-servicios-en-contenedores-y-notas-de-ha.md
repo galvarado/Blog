@@ -283,37 +283,37 @@ Las IPs las usa más de un servicio y algunos servicios se exponen en más de un
 
 **DashboardFixedIp:**
 
-IP del segmento External API. Para exponer servicios de manera pública.
-
-Principalmente para keystone y para horizon. Es usada por HAProxy y Pacemaker.
+* IP del segmento External API. Para exponer servicios de manera pública.
+* Principalmente para keystone y para horizon. Es usada por HAProxy y Pacemaker.
 
 **ControlFixedIP**
 
-IP del segmento de Control Plane
-
-Principalmente para keystone_admin.  Es usada por HAProxy.
+* IP del segmento de Control Plane
+* Principalmente para keystone_admin.  Es usada por HAProxy.
 
 **InternalApiVirtualFixedIP**
 
-IP del segmento Internal API. Para exponer servicios de manera interna.
-
-Principalmente para MySQL y keystone. Es usada por HAProxy y Pacemaker.
+* IP del segmento Internal API. Para exponer servicios de manera interna.
+* Principalmente para MySQL y keystone. Es usada por HAProxy y Pacemaker.
 
 **RedisVirtualFixedIP**
 
-IP del segmento Internal API. Para exponer redis de manera interna. Es usada por HAProxy y Pacemaker.
+* IP del segmento Internal API.
+* Para exponer redis de manera interna. Es usada por HAProxy y Pacemaker.
 
 **StorageVirtualFixedIPs**
 
-IP del segmento Internal API. Para exponer swift de manera interna.Es usada por HAProxy y Pacemaker.
+* IP del segmento Internal API. 
+* Para exponer swift de manera interna.Es usada por HAProxy y Pacemaker.
 
 **StorageMgmtVirtualFixedIPs**
 
-Es usada por Pacemaker.
+* Es usada por Pacemaker.
 
 **OVNDBsVirtualFixedIPs**
 
-IP del segmento Internal API.  Para exponer la base de datos de [OVN](https://en.wikipedia.org/wiki/OVN). Es usada por Pacemaker.
+* IP del segmento Internal API. 
+* Para exponer la base de datos de [OVN](https://en.wikipedia.org/wiki/OVN). Es usada por Pacemaker.
 
 _Nota: La IP de StorageMgmt y  OVNDBs no se gestiona en HAProxy._
 
