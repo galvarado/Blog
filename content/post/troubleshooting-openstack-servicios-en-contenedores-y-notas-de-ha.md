@@ -139,9 +139,9 @@ Comprender como funcionan los recursos de balanceo de carga y alta disponibilida
 
 ### VirtualIPs
 
-Cada recurso que se expone en Openstack se  establece en una dirección IP virtual que los clientes usan para solicitar acceso a un servicio. Si el nodo de control asignado a esa dirección IP falla, la dirección IP se reasigna a un controlador diferente. Además, las peticiones a estas VIPs se balancean al resto de los nodos vía HAProxy. 
+Cada recurso que se expone en Openstack se  establece en una dirección IP virtual que los clientes usan para solicitar acceso a un servicio. Si el nodo de control asignado a esa dirección IP falla, la dirección IP se reasigna a un controlador diferente. Además, las peticiones a estas VIPs se balancean al resto de los nodos vía HAProxy.
 
-Las IPs las usa más de un servicio y algunos servicios se exponen en más de una IP. Por ejemplo, Horizon se expone de manera pública e interna.  Existen 7 de ellas y las encontraremos en las configuraciones de HAProxy y Pacemaker. En el proceso de despliegue podemos elegir IPs fijas para estas VIPs, estas se indentifican de la siguiente manera: 
+Las IPs las usa más de un servicio y algunos servicios se exponen en más de una IP. Por ejemplo, Horizon se expone de manera pública e interna.  Existen 7 de ellas y las encontraremos en las configuraciones de HAProxy y Pacemaker. En el proceso de despliegue podemos elegir IPs fijas para estas VIPs, estas se indentifican de la siguiente manera:
 
 **DashboardFixedIp:**
 
@@ -157,7 +157,7 @@ Principalmente para keystone_admin.  Es usada por HAProxy.
 
 **InternalApiVirtualFixedIP**
 
-IP del segmento Internal API. Para exponer servicios de manera interna. 
+IP del segmento Internal API. Para exponer servicios de manera interna.
 
 Principalmente para MySQL y keystone. Es usada por HAProxy y Pacemaker.
 
@@ -177,7 +177,7 @@ Es usada por Pacemaker.
 
 IP del segmento Internal API.  Para exponer la base de datos de [OVN](https://en.wikipedia.org/wiki/OVN). Es usada por Pacemaker.
 
-_Nota: La IP de StorageMgmt y  OVNDBs no se gestiona en HAProxy._ 
+_Nota: La IP de StorageMgmt y  OVNDBs no se gestiona en HAProxy._
 
 ### HAProxy
 
@@ -282,31 +282,18 @@ Para ver detalles sobre un servicio de paquete en particular, como el bundle de 
 La salida se ve así:
 
     Bundle: haproxy-bundle
-
       Docker: image=cluster.common.tag/centos-binary-haproxy:pcmklatest network=host options="--user=root --log-driver=journald -e KOLLA_CONFIG_STRATEGY=COPY_ALWAYS" replicas=3 run-command="/bin/bash /usr/local/bin/kolla_start"
-
       Storage Mapping:
-
        options=ro source-dir=/var/lib/kolla/config_files/haproxy.json target-dir=/var/lib/kolla/config_files/config.json (haproxy-cfg-files)
-
        options=ro source-dir=/var/lib/config-data/puppet-generated/haproxy/ target-dir=/var/lib/kolla/config_files/src (haproxy-cfg-data)
-
        options=ro source-dir=/etc/hosts target-dir=/etc/hosts (haproxy-hosts)
-
        options=ro source-dir=/etc/localtime target-dir=/etc/localtime (haproxy-localtime)
-
        options=rw source-dir=/var/lib/haproxy target-dir=/var/lib/haproxy (haproxy-var-lib)
-
        options=ro source-dir=/etc/pki/ca-trust/extracted target-dir=/etc/pki/ca-trust/extracted (haproxy-pki-extracted)
-
        options=ro source-dir=/etc/pki/tls/certs/ca-bundle.crt target-dir=/etc/pki/tls/certs/ca-bundle.crt (haproxy-pki-ca-bundle-crt)
-
        options=ro source-dir=/etc/pki/tls/certs/ca-bundle.trust.crt target-dir=/etc/pki/tls/certs/ca-bundle.trust.crt (haproxy-pki-ca-bundle-trust-crt)
-
        options=ro source-dir=/etc/pki/tls/cert.pem target-dir=/etc/pki/tls/cert.pem (haproxy-pki-cert)
-
        options=rw source-dir=/dev/log target-dir=/dev/log (haproxy-dev-log)
-
        options=ro source-dir=/etc/pki/tls/private/overcloud_endpoint.pem target-dir=/var/lib/kolla/config_files/src-tls/etc/pki/tls/private/overcloud_endpoint.pem (haproxy-cert)
 
 Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker.
