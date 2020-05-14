@@ -220,9 +220,9 @@ El siguiente ejemplo muestra cómo se configura  el balanceo para el servicio de
       option httpchk
       redirect scheme https code 301 if !{ ssl_fc }
       rsprep ^Location:\ http://(.*) Location:\ https://\1
-      server controller01.internalapi.localhost 172.128.96.11:80 check cookie controller01.internalapi.shcp.gob fall 5 inter 2000 rise 2
-      server controller02.internalapi.localhost 172.128.96.12:80 check cookie controller02.internalapi.shcp.gob fall 5 inter 2000 rise 2
-      server controller03.internalapi.localhost 172.128.96.13:80 check cookie controller03.internalapi.shcp.gob fall 5 inter 2000 rise 2
+      server controller01.internalapi.localhost 172.128.96.11:80 check cookie controller01.internalapi.localhost fall 5 inter 2000 rise 2
+      server controller02.internalapi.localhost 172.128.96.12:80 check cookie controller02.internalapi.localhost fall 5 inter 2000 rise 2
+      server controller03.internalapi.localhost 172.128.96.13:80 check cookie controller03.internalapi.localhost fall 5 inter 2000 rise 2
 
 Para el servicio de horizon se  identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind.  Puerto 443 y 80 en las IPs:
 
