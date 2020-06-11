@@ -14,7 +14,7 @@ Muchas empresas están utilizando los logs de seguridad para detectar incidentes
 
 Una montaña de datos no  proporciona  información útil como nos gustaría. A veces menos es más. Si recibes tantas alertas que no puede responderlas adecuadamente, entonces algo debe cambiar. Un sistema centralizado de gestión de logs puede ayudar. 
 
-En el pasado, los registros se usaban en gran medida como una herramienta de solución de problemas. Con el tiempo, han evolucionado para desempeñar un papel mucho más amplio. Los registros se han convertido en una parte crucial de la optimización del rendimiento del sistema y de la red, el seguimiento de las acciones del usuario, el suministro de datos para la investigación de actividades sospechosas y el monitoreo proactivo. Los registros de fácil acceso pueden evitar advertencias de oportunidades sobre problemas del sistema antes de que causen daños irreparables.
+En el pasado, los logs se usaban en gran medida como una herramienta de solución de problemas. Con el tiempo, han evolucionado para desempeñar un papel mucho más amplio. Los logs se han convertido en una parte crucial de la optimización del rendimiento del sistema y de la red, el seguimiento de las acciones del usuario, el suministro de datos para la investigación de actividades sospechosas y el monitoreo proactivo. Los logs de fácil acceso pueden darnos advertencias y oportunidades sobre problemas  antes de que causen daños irreparables.
 
 ## Breve Historia de Elastic
 
