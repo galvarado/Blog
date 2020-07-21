@@ -50,6 +50,7 @@ pages:
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
 - content/post/desplegar-servicios-con-traefik-como-reverse-proxy.md
 - content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
+- content/post/despliegue-continuo-con-spinnaker.md
 - content/post/explicándole-a-mi-mamá-qué-es-el-internet-y-como-funciona.md
 - content/post/google-sre-el-arte-del-site-reliability-engineering.md
 - content/post/guia-para-conteinerizar-una-aplicación.md
