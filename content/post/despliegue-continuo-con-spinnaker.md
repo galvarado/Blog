@@ -53,7 +53,7 @@ Integración para  notificaciones de eventos por correo electrónico, Slack, Hip
 
 Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es un CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
 
-**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas  (herramientas de administración)
+**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas  (herramientas de administración).
 
 Spinnaker se creó para combinar CI y CD para implementaciones optimizadas en varias nubes. Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks. Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados
 
