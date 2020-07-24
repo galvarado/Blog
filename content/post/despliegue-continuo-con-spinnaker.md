@@ -31,7 +31,7 @@ Soporta múltiples proveedores de  nube, incluidos AWS EC2, Kubernetes, Google C
 
 **Liberación automatizadas**
 
-Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones. Dispara pipelines mediante eventos hacia  git, Jenkins, Travis CI, Docker, CRON , etc. Escucha eventos, recolecte artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker.
+Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker. 
 
 **Integraciones de monitoreo**
 
