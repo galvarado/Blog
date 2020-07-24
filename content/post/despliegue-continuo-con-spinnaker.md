@@ -21,7 +21,7 @@ Podemos  manejar nuestro   [Systems Development Life Cycle](https://es.wikipedia
 * Clusters
 * Firewalls
 
-Como dice el mismo sitio de Spinnaker, creamos un "camino pavimentado" para la entrega de aplicaciones, con protecciones que aseguran que solo la infraestructura válida y la configuración alcancen la producción.
+Como dice el mismo sitio de Spinnaker, creamos un "camino pavimentado" para la entrega de aplicaciones, con protecciones que aseguran que solo la infraestructura y configuración válida  alcancen producción.
 
 ## Características
 
