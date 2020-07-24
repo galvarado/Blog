@@ -49,3 +49,17 @@ Integración para  notificaciones de eventos por correo electrónico, Slack, Hip
 **VM Bakery**
 
 "Hornea" imágenes VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
+
+## Jenkins vs Spinnaker
+
+Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es un CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
+
+ **Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas  (herramientas de administración)
+
+Spinnaker se creó para combinar CI y CD para implementaciones optimizadas en varias nubes. Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks. Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados
+
+Entones, antes teniamos: Jenkins + Ansible + proveedor de la nube para hacer un pipeline de CI/CD completo.
+
+Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar llamar a Jenkins y monitorearlo desde el tablero de Spinnaker.
+
+**En conclusión, es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
