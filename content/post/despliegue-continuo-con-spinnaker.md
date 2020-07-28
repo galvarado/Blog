@@ -38,10 +38,6 @@ Soporta pipelines de implementación que ejecutan pruebas de integración y pued
 
 Se integra con servicios de monitoreo; Datadog, Prometheus, Stackdriver, SignalFx o New Relic utilizando sus métricas para el análisis canario.
 
-**Estrategias de implementación**
-
-Configura pipelines con estrategias de implementación  como highlander y red/black o blue/green deployment. Soporte para Canary releases.
-
 **Notificaciones**
 
 Integración para notificaciones de eventos por correo electrónico, Slack, HipChat o SMS (a través de Twilio).
@@ -50,7 +46,61 @@ Integración para notificaciones de eventos por correo electrónico, Slack, HipC
 
 "Hornea" imágenesde  VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
 
-## Jenkins vs Spinnaker
+**Estrategias de implementación**
+
+Configura pipelines con estrategias de implementación  como highlander y red/black o blue/green deployment. Soporte para Canary releases.
+
+## Componentes de Spinnaker
+
+¿Cómo está hecho  Spinnaker? Se compone de una serie de microservicios :
+
+* **Deck** es la interfaz de usuario (UI) para acceder desde navegador.
+* **Gate** es la e API. La interfaz de usuario de Spinnaker y todos los componentes que llaman a  Spinnaker lo hacen a través de Gate.
+* **Orca** es el motor de orquestación. Maneja todas las operaciones y pipelines.
+* **Clouddriver** es responsable de todas las llamadas hacia los proveedores de nube y de indexar / almacenar en caché todos los recursos desplegados.
+* **Front50** se utiliza para persistir los metadatos de aplicaciones, piplenes, proyectos y notificaciones.
+* **Rosco** es el componente que se utiliza para "Bakeru". Se usa para producir imágenes de máquinas(por ejemplo, imágenes GCE, AWS AMI, imágenes de Azure VM) Actualmente es un wrapper para  Packer de Hashicorp, pero se ampliará para admitir otros plugins para producir imágenes de VM.
+* **Igor** se usa para activar (trigger) pipelines a través de trabajos de integración continua en sistemas como Jenkins, Travis CI y Docker Registry
+* **Echo** es el bus de eventos de Spinnaker. Admite el envío de notificaciones (por ejemplo, Slack, correo electrónico, Hipchat, SMS) y actúa en los webhooks  de servicios como GitHub.
+* **Fiat** es el servicio de autorización de Spinnaker. Se utiliza para consultar los permisos de acceso de un usuario para cuentas, aplicaciones y cuentas de servicio.
+* **Kayenta** proporciona análisis canario automatizado para Spinnaker.
+* **Halyard** es el servicio de configuración de Spinnaker. Halyard gestiona el ciclo de vida de cada uno de los servicios anteriores. Es la herramienta con la que instalamos Spinnaker.
+
+Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para almacenar información relacionada con la infraestructura, almacenar ejecuciones en vivo, devolver definiciones de pipelines más rápido, etc.
+
+## Terminología de Spinnaker
+
+Spinnaker en core  proporciona funciones de administración de aplicaciones y de implementación de aplicaciones. Ayudaría a entender la terminología de Spinnaker:
+
+![](/uploads/terminologia_spinnaker.png)![](/uploads/terminologia_spinnaker.png)
+
+### Aplicación
+
+Una aplicación es una agrupación lógica de servicios que tiene que implementar Spinnaker, incluye una colección de clústeres, que a su vez son colecciones de grupos de servidores. Tambiénse  puede incluir firewalls y equilibradores de carga.
+
+Podemos entender una aplicación como un  servicio, es decir, una sola aplicación puede asignarse a un microservicio, aunque spinnaker no lo impone.
+
+### Clúster
+
+Varios servidores es un grupo de servidores, mientras que un clúster es un conjunto de grupos de servidores.
+
+### Grupos de servidores
+
+Es el recurso base, un grupo de servidores  identifica el artefacto desplegable para la aplicación como una imagen de VM o una  imagen de Docker además de sus configuraciones como número de instancias, políticas de autoescalado, metadatos, etc.
+
+Ejemlpos de esto son deslplegar una VM (En este caso el grupo des de 1)  o Dos  VMs. También pueden ser 1 o 2 pods/containers de k8s.
+
+### LoadBalancer
+
+Un Load Balancer está asociado con un protocolo de ingreso y un rango de puertos. Maneja el tráfico entre instancias en los grupos de servidores.
+
+### Firewall
+
+Un conjunto de reglas de firewall para políticas de acceso a la red.
+
+## Sobre la instalación de Spinnaker
+
+## Bonus: Jenkins vs Spinnaker
 
 Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es para CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
 
@@ -63,3 +113,5 @@ Entones, antes teniamos: Jenkins + Ansible + proveedor de la nube para hacer un 
 Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar llamar a Jenkins y monitorearlo desde el tablero de Spinnaker.
 
 **En conclusión: es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
+
+Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
