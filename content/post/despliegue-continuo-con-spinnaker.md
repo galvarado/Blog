@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = 2020-07-24T16:00:00Z
+date = 2020-07-28T16:00:00Z
 image = "/uploads/spinnaker.png"
 tags = ["devops", "cloud", "containers"]
 title = "¿Qué es Spinnaker?  Una herramienta DevOps para desplegar a produccón rápido, seguro y repetible "
