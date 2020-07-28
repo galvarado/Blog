@@ -29,27 +29,27 @@ Como dice el mismo sitio de Spinnaker, creamos un "camino pavimentado" para la e
 
 ## Características
 
-**Multi-Nube:**
+##### Multi-Nube
 
 Soporta múltiples proveedores de  nube, incluidos AWS EC2, Kubernetes, Google Compute Engine, Google Kubernetes Engine, Google App Engine, Microsoft Azure, Openstack, Cloud Foundry y Oracle Cloud Infrastructure, con DC / OS próximamente.
 
-**Liberación automatizadas**
+##### Liberación automatizadas
 
 Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker.
 
-**Integraciones de monitoreo**
+##### Integraciones de monitoreo
 
 Se integra con servicios de monitoreo; Datadog, Prometheus, Stackdriver, SignalFx o New Relic utilizando sus métricas para el análisis canario.
 
-**Notificaciones**
+##### Notificaciones
 
 Integración para notificaciones de eventos por correo electrónico, Slack, HipChat o SMS (a través de Twilio).
 
-**VM Bakery**
+##### VM Bakery
 
-"Hornea" imágenesde  VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
+"Hornea" imágenes de  VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
 
-**Estrategias de implementación**
+##### Estrategias de implementación
 
 Configura pipelines con estrategias de implementación  como highlander y red/black o blue/green deployment. Soporte para Canary releases.
 
@@ -79,9 +79,7 @@ Spinnaker tiene 2  capacidades diferentes: realizar la gestión de aplicaciones 
 
 ### Gestión de aplicaciones
 
-Spinnaker  puede  ver y administrar los recursos en la nube.
-
-Las organizaciones  modernas operan colecciones de servicios, a veces denominadas "aplicaciones" o "microservicios". Una aplicación de Spinnaker modela este concepto.
+**Spinnaker  puede  ver y administrar los recursos en la nube.** Las organizaciones  modernas operan colecciones de servicios, a veces denominadas "aplicaciones" o "microservicios". Una aplicación de Spinnaker modela este concepto.
 
 Las aplicaciones, los clústeres y los grupos de servidores son los conceptos clave que Spinnaker usa para describir los servicios. Los balanceadores de carga y los firewalls describen cómo los servicios están expuestos a los usuarios.
 
@@ -117,9 +115,21 @@ Utilizamos las funciones de implementación de aplicaciones de Spinnaker para co
 
 ##### Pipeline
 
-##### Stage
+Un pipeline es el componente clave de gestión de despliegues en Spinnaker. Consiste en una secuencia de acciones, conocidas como etapas. Podemos pasar parámetros de etapa en etapa a lo largo del pipeline.
 
-##### Task
+Podemos iniciar un pipeline manualmente, o podemos configurarlo para que se active automáticamente por un evento, como la finalización de un trabajo de Jenkins, una nueva imagen de Docker que aparece en el registro, un evento de CRON o una etapa en otro pipeline.
+
+![](/uploads/pipeline_spinnaker.png)
+
+##### Etapa
+
+Una etapa en Spinnaker es una colección de tareas que describen una acción de nivel superior que el pipeline realizar. Podemos secuenciar etapas en un pipeline en cualquier orden.
+
+Spinnaker ofrece una serie de etapas, como desplegar , escalar recurso, eliminar recurso, desactivar recurso, juicio manual, analisis canario, ejecutar Job de Jenkinks, y muchas más. La lista completa [la puedes consultar aquí](https://spinnaker.io/reference/pipeline/stages/).
+
+##### Tarea
+
+Una tarea en Spinnaker es una función a realizar.
 
 ## Consideraciones sobre la instalación de Spinnaker
 
@@ -127,7 +137,7 @@ Utilizamos las funciones de implementación de aplicaciones de Spinnaker para co
 
 Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es para CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
 
-**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas. Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks. 
+**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas. Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks.
 
 Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados como necesita Jenkins.
 
