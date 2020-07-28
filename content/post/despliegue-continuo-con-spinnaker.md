@@ -35,11 +35,11 @@ Soporta múltiples proveedores de  nube, incluidos AWS EC2, Kubernetes, Google C
 
 ##### Liberación automatizadas
 
-Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker.
+Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de [Jenkins](https://www.jenkins.io/) o[ Travis CI](https://travis-ci.org/). También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker.
 
 ##### Integraciones de monitoreo
 
-Se integra con servicios de monitoreo; Datadog, Prometheus, Stackdriver, SignalFx o New Relic utilizando sus métricas para el análisis canario.
+Se integra con servicios de monitoreo; [Datadog](https://www.datadoghq.com/), [Prometheus](https://prometheus.io/), [Stackdriver](https://cloud.google.com/products/operations?hl=es), [SignalFx](https://www.signalfx.com/) o [New Relic](https://newrelic.com/) utilizando sus métricas para el análisis canario.
 
 ##### Notificaciones
 
@@ -47,31 +47,27 @@ Integración para notificaciones de eventos por correo electrónico, Slack, HipC
 
 ##### VM Bakery
 
-"Hornea" imágenes de  VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
+"Hornea" imágenes de  VM inmutables a través de [Packer](https://www.packer.io/), que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
 
 ##### Estrategias de implementación
 
 Configura pipelines con estrategias de implementación  como highlander y red/black o blue/green deployment. Soporte para Canary releases.
 
-## Componentes de Spinnaker
+## Jenkins vs Spinnaker
 
-¿Cómo está hecho  Spinnaker? Se compone de una serie de microservicios :
+Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es para CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
 
-![](/uploads/componentes_spinnaker.png)
+**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas. Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks.
 
-* **Deck** es la interfaz de usuario (UI) para acceder desde navegador.
-* **Gate** es la e API. La interfaz de usuario de Spinnaker y todos los componentes que llaman a  Spinnaker lo hacen a través de Gate.
-* **Orca** es el motor de orquestación. Maneja todas las operaciones y pipelines.
-* **Clouddriver** es responsable de todas las llamadas hacia los proveedores de nube y de indexar / almacenar en caché todos los recursos desplegados.
-* **Front50** se utiliza para persistir los metadatos de aplicaciones, piplenes, proyectos y notificaciones.
-* **Rosco** es el componente que se utiliza para "Bakeru". Se usa para producir imágenes de máquinas(por ejemplo, imágenes GCE, AWS AMI, imágenes de Azure VM) Actualmente es un wrapper para  Packer de Hashicorp, pero se ampliará para admitir otros plugins para producir imágenes de VM.
-* **Igor** se usa para activar (trigger) pipelines a través de trabajos de integración continua en sistemas como Jenkins, Travis CI y Docker Registry
-* **Echo** es el bus de eventos de Spinnaker. Admite el envío de notificaciones (por ejemplo, Slack, correo electrónico, Hipchat, SMS) y actúa en los webhooks  de servicios como GitHub.
-* **Fiat** es el servicio de autorización de Spinnaker. Se utiliza para consultar los permisos de acceso de un usuario para cuentas, aplicaciones y cuentas de servicio.
-* **Kayenta** proporciona análisis canario automatizado para Spinnaker.
-* **Halyard** es el servicio de configuración de Spinnaker. Halyard gestiona el ciclo de vida de cada uno de los servicios anteriores. Es la herramienta con la que instalamos Spinnaker.
+Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados como necesita Jenkins.
 
-Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para almacenar información relacionada con la infraestructura, almacenar ejecuciones en vivo, devolver definiciones de pipelines más rápido, etc.
+Entones, antes teniamos: Jenkins + Ansible + proveedor de la nube para hacer un pipeline de CI/CD completo.
+
+Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar llamar a Jenkins y monitorearlo desde el tablero de Spinnaker.
+
+**En conclusión: es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
+
+Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
 
 ## Terminología de Spinnaker
 
@@ -131,23 +127,84 @@ Spinnaker ofrece una serie de etapas, como desplegar , escalar recurso, eliminar
 
 Una tarea en Spinnaker es una función a realizar.
 
+## Componentes de Spinnaker
+
+¿Cómo está hecho  Spinnaker? Se compone de una serie de microservicios :
+
+![](/uploads/componentes_spinnaker.png)
+
+* **Deck** es la interfaz de usuario (UI) para acceder desde navegador.
+* **Gate** es la e API. La interfaz de usuario de Spinnaker y todos los componentes que llaman a  Spinnaker lo hacen a través de Gate.
+* **Orca** es el motor de orquestación. Maneja todas las operaciones y pipelines.
+* **Clouddriver** es responsable de todas las llamadas hacia los proveedores de nube y de indexar / almacenar en caché todos los recursos desplegados.
+* **Front50** se utiliza para persistir los metadatos de aplicaciones, piplenes, proyectos y notificaciones.
+* **Rosco** es el componente que se utiliza para "Bakeru". Se usa para producir imágenes de máquinas(por ejemplo, imágenes GCE, AWS AMI, imágenes de Azure VM) Actualmente es un wrapper para  Packer de Hashicorp, pero se ampliará para admitir otros plugins para producir imágenes de VM.
+* **Igor** se usa para activar (trigger) pipelines a través de trabajos de integración continua en sistemas como Jenkins, Travis CI y Docker Registry
+* **Echo** es el bus de eventos de Spinnaker. Admite el envío de notificaciones (por ejemplo, Slack, correo electrónico, Hipchat, SMS) y actúa en los webhooks  de servicios como GitHub.
+* **Fiat** es el servicio de autorización de Spinnaker. Se utiliza para consultar los permisos de acceso de un usuario para cuentas, aplicaciones y cuentas de servicio.
+* **Kayenta** proporciona análisis canario automatizado para Spinnaker.
+* **Halyard** es el servicio de configuración de Spinnaker. Halyard gestiona el ciclo de vida de cada uno de los servicios anteriores. Es la herramienta con la que instalamos Spinnaker.
+
+Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para almacenar información relacionada con la infraestructura, almacenar ejecuciones en vivo, devolver definiciones de pipelines más rápido, etc.
+
 ## Consideraciones sobre la instalación de Spinnaker
 
-## Bonus: Jenkins vs Spinnaker
+El proceso de instalación es el siguiente:
 
-Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es para CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
+### 1. Instalar Halyard
 
-**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas. Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks.
+Debemos contar con el CLI de Hayard instalado.
 
-Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados como necesita Jenkins.
+### 2. Elegir proveedores de nube
 
-Entones, antes teniamos: Jenkins + Ansible + proveedor de la nube para hacer un pipeline de CI/CD completo.
+En Spinnaker, los proveedores son integraciones a las plataformas en la nube en las que implementan las  aplicaciones.
 
-Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar llamar a Jenkins y monitorearlo desde el tablero de Spinnaker.
+En esta etapa,se registran las credenciales para las plataformas en la nube. Esas credenciales se conocen como Cuentas en Spinnaker.
 
-**En conclusión: es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
+Todas las abstracciones y capacidades de Spinnaker se basan en los proveedores de la nube que admite. Entonces, para que Spinnaker haga algo, **debemos habilitar al menos un proveedor,** con una cuenta agregada para ello.
 
-Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
+Podeos agregar  tantos proveedores como queramos,  de los siguientes :
+
+* App Engine
+* Amaozon EC3 y ECS
+* Azure
+* Cloud Foundry
+* DC / OS
+* Google Compute Engine
+* Kubernetes
+* Oracle
+
+### 3. Eligir un entorno
+
+Debemos elegir un entorno, las opciones son:
+
+**Instalación distribuida en Kubernetes**
+
+Halyard despliega cada uno de los microservicios de Spinnaker por separado. Esto es muy recomendable para su uso en producción.
+
+**Instalaciones locales de paquetes Debian**
+
+Spinnaker se implementa en una sola máquina, basada en Debian o Ubuntu. La instalación de Debian local significa que Spinnaker se descargará y ejecutará en la  máquina en la que Halyard está instalado actualmente. Se Recomendia al menos 4 núcleos y 16 GB de RAM.
+
+Nota: La instalación local de Debian requiere Ubuntu 14.04 o 16.04.
+
+### 4. Eligir un servicio de almacenamiento
+
+Spinnaker requiere un proveedor de almacenamiento externo para mantener la configuración  de las aplicaciones y los pipelines. E
+
+Spinnaker es compatible con los proveedores de almacenamiento que se listas a continuación. La opción que elija no afecta la elección de proveedor de la nube. Es decir, podemos usar Google Cloud Storage como fuente de almacenamiento pero implementar aplicaciones en Microsoft Azure.
+
+Soluciones de almacenamiento compatibles:
+
+* Azure Storage
+* Google Cloud Storage
+* [Minio](https://min.io/)
+* Amazon S3
+* Oracle Object Storage
+
+### 5. Implementar y conectar
+
+Finalmente elegimos una versión e instalamos. Spinnaker no se bindea en las IPs públicas, sino que está disponible en localhost. Para cambiar esto,[ consulta el procedimiento aqui](https://spinnaker.io/setup/quickstart/faq//#i-want-to-expose-localdebian-spinnaker-on-a-public-ip-address-but-it-always-binds-to-localhost). Las opciones de autenticación [se listan en este enlace.](https://spinnaker.io/setup/security/authentication/#available-options)
 
 Referencias:
 
