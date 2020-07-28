@@ -67,8 +67,6 @@ Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar lla
 
 **En conclusión: es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
 
-Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
-
 ## Terminología de Spinnaker
 
 Spinnaker tiene 2  capacidades diferentes: realizar la gestión de aplicaciones y la implementación de aplicaciones .
@@ -205,6 +203,8 @@ Soluciones de almacenamiento compatibles:
 ### 5. Implementar y conectar
 
 Finalmente elegimos una versión e instalamos. Spinnaker no se bindea en las IPs públicas, sino que está disponible en localhost. Para cambiar esto,[ consulta el procedimiento aqui](https://spinnaker.io/setup/quickstart/faq//#i-want-to-expose-localdebian-spinnaker-on-a-public-ip-address-but-it-always-binds-to-localhost). Las opciones de autenticación [se listan en este enlace.](https://spinnaker.io/setup/security/authentication/#available-options)
+
+Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
 
 Referencias:
 
