@@ -32,7 +32,7 @@ Soporta múltiples proveedores de  nube, incluidos AWS EC2, Kubernetes, Google C
 
 **Liberación automatizadas**
 
-Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker. 
+Soporta pipelines de implementación que ejecutan pruebas de integración y puede activar y desactivar grupos de servidores así como  supervisar las implementaciones.  Escucha eventos, recolecta artiacts y activa pipelines de Jenkins o Travis CI. También se admiten triggers a través de git, cron o el push de una nueva imagen en un registro de docker.
 
 **Integraciones de monitoreo**
 
@@ -40,23 +40,23 @@ Se integra con servicios de monitoreo; Datadog, Prometheus, Stackdriver, SignalF
 
 **Estrategias de implementación**
 
-Configura pipelines con estrategias de implementación integradas como highlander y red/black o blue/green deployment. Soporte para Canary releases.
+Configura pipelines con estrategias de implementación  como highlander y red/black o blue/green deployment. Soporte para Canary releases.
 
 **Notificaciones**
 
-Integración para  notificaciones de eventos por correo electrónico, Slack, HipChat o SMS (a través de Twilio).
+Integración para notificaciones de eventos por correo electrónico, Slack, HipChat o SMS (a través de Twilio).
 
 **VM Bakery**
 
-"Hornea" imágenes VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
+"Hornea" imágenesde  VM inmutables a través de Packer, que viene empaquetado con Spinnaker y ofrece soporte para plantillas de Chef y Puppet.
 
 ## Jenkins vs Spinnaker
 
-Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es un CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
+Spinnaker no es una herramienta de construcción (Build) , sino una herramienta de implementación, con un enfoque en la nube.  Jenkins es para CI (Integración continua) y necesita scripts y complementos para hacer CD (Despliegue continuo).
 
-**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas  (herramientas de administración).
+**Spinnaker no reemplaza por completo a Jenkins** en un pipeline de CI/CD, pero tiene integraciones nativas hacia la nube y con capacidades extendidas. Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks. 
 
-Spinnaker se creó para combinar CI y CD para lograr implementaciones optimizadas en la  nube. Si bien Jenkins nos puede ayudar a desplegar sofware, no se construyó con esos fines y necesita mucha mano para lograrlo.  Spinnaker ofrece soporte integrado para hacer cosas como crear balanceadores de carga, redimensionar clústeres y ejecutar rollbacks. Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados
+Spinnaker ofrece soporte nativo para implementaciones básicas y avanzadas sin la necesidad de código y scripts personalizados como necesita Jenkins.
 
 Entones, antes teniamos: Jenkins + Ansible + proveedor de la nube para hacer un pipeline de CI/CD completo.
 
