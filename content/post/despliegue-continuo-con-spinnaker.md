@@ -71,7 +71,7 @@ Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para 
 
 ## Terminología de Spinnaker
 
-![](/uploads/terminologia_spinnaker.png)![](/uploads/terminologia_spinnaker.png)
+![](/uploads/terminologia_spinnaker.png)
 
 ### Aplicación
 
