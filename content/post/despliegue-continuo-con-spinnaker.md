@@ -75,33 +75,53 @@ Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para 
 
 ## Terminología de Spinnaker
 
+Spinnaker tiene 2  capacidades diferentes: realizar la gestión de aplicaciones y la implementación de aplicaciones .
+
+### Gestión de aplicaciones
+
+Spinnaker  puede  ver y administrar los recursos en la nube.
+
+Las organizaciones  modernas operan colecciones de servicios, a veces denominadas "aplicaciones" o "microservicios". Una aplicación de Spinnaker modela este concepto.
+
+Las aplicaciones, los clústeres y los grupos de servidores son los conceptos clave que Spinnaker usa para describir los servicios. Los balanceadores de carga y los firewalls describen cómo los servicios están expuestos a los usuarios.
+
 ![](/uploads/terminologia_spinnaker.png)
 
-### Aplicación
+##### Aplicación
 
 Una aplicación es una agrupación lógica de servicios que tiene que implementar Spinnaker, incluye una colección de clústeres, que a su vez son colecciones de grupos de servidores. Tambiénse  puede incluir firewalls y equilibradores de carga.
 
 Podemos entender una aplicación como un  servicio, es decir, una sola aplicación puede asignarse a un microservicio, aunque spinnaker no lo impone.
 
-### Clúster
+##### Clúster
 
 Varios servidores es un grupo de servidores, mientras que un clúster es un conjunto de grupos de servidores.
 
-### Grupos de servidores
+##### Grupos de servidores
 
 Es el recurso base, un grupo de servidores  identifica el artefacto desplegable para la aplicación como una imagen de VM o una  imagen de Docker además de sus configuraciones como número de instancias, políticas de autoescalado, metadatos, etc.
 
 Ejemlpos de esto son deslplegar una VM (En este caso el grupo des de 1)  o Dos  VMs. También pueden ser 1 o 2 pods/containers de k8s.
 
-### LoadBalancer
+##### LoadBalancer
 
 Un Load Balancer está asociado con un protocolo de ingreso y un rango de puertos. Maneja el tráfico entre instancias en los grupos de servidores.
 
-### Firewall
+##### Firewall
 
 Un conjunto de reglas de firewall para políticas de acceso a la red.
 
-## Sobre la instalación de Spinnaker
+### Implementación de aplicaciones
+
+Utilizamos las funciones de implementación de aplicaciones de Spinnaker para construir y administrar flujos de trabajo de entrega continua.
+
+##### Pipeline
+
+##### Stage
+
+##### Task
+
+## Consideraciones sobre la instalación de Spinnaker
 
 ## Bonus: Jenkins vs Spinnaker
 
