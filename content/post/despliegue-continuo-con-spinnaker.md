@@ -164,7 +164,7 @@ Todas las abstracciones y capacidades de Spinnaker se basan en los proveedores d
 Podeos agregar  tantos proveedores como queramos,  de los siguientes :
 
 * App Engine
-* Amaozon EC3 y ECS
+* Amaozon EC2 y ECS
 * Azure
 * Cloud Foundry
 * DC / OS
@@ -188,7 +188,7 @@ Nota: La instalación local de Debian requiere Ubuntu 14.04 o 16.04.
 
 ### 4. Eligir un servicio de almacenamiento
 
-Spinnaker requiere un proveedor de almacenamiento externo para mantener la configuración  de las aplicaciones y los pipelines. E
+Spinnaker requiere un proveedor de almacenamiento externo para mantener la configuración  de las aplicaciones y los pipelines.
 
 Spinnaker es compatible con los proveedores de almacenamiento que se listas a continuación. La opción que elija no afecta la elección de proveedor de la nube. Es decir, podemos usar Google Cloud Storage como fuente de almacenamiento pero implementar aplicaciones en Microsoft Azure.
 
