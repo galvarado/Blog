@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-07-24T16:00:00Z
-draft = true
 image = "/uploads/spinnaker.png"
 tags = ["devops", "cloud", "containers"]
 title = "¿Conoces Spinnaker?  Una herramienta para desplegar a produccón rápido, seguro y repetible "
@@ -54,6 +53,8 @@ Configura pipelines con estrategias de implementación  como highlander y red/bl
 
 ¿Cómo está hecho  Spinnaker? Se compone de una serie de microservicios :
 
+![](/uploads/componentes_spinnaker.png)
+
 * **Deck** es la interfaz de usuario (UI) para acceder desde navegador.
 * **Gate** es la e API. La interfaz de usuario de Spinnaker y todos los componentes que llaman a  Spinnaker lo hacen a través de Gate.
 * **Orca** es el motor de orquestación. Maneja todas las operaciones y pipelines.
@@ -69,8 +70,6 @@ Configura pipelines con estrategias de implementación  como highlander y red/bl
 Además, Spinnaker utiliza Redis como un motor de almacenamiento en caché para almacenar información relacionada con la infraestructura, almacenar ejecuciones en vivo, devolver definiciones de pipelines más rápido, etc.
 
 ## Terminología de Spinnaker
-
-Spinnaker en core  proporciona funciones de administración de aplicaciones y de implementación de aplicaciones. Ayudaría a entender la terminología de Spinnaker:
 
 ![](/uploads/terminologia_spinnaker.png)![](/uploads/terminologia_spinnaker.png)
 
@@ -115,3 +114,9 @@ Hoy, podemos centralizar todos los pasos desde Spinnaker pues podemos mandar lla
 **En conclusión: es correcto usar Jenkins y Spinnaker, cada quién a lo suyo, pero podemos gestionar todo el pipeline desde Spinnaker delegando tareas a Jenkins.**
 
 Si te pareció útil, por favor comparte. Si tienes dudas , no dudes en escribirme en los comentarios o a través de redes sociales.
+
+Referencias:
+
+[https://medium.com/searce/spinnaker-the-hard-way-278913f3f1d8](https://medium.com/searce/spinnaker-the-hard-way-278913f3f1d8 "https://medium.com/searce/spinnaker-the-hard-way-278913f3f1d8")
+
+[https://spinnaker.io/setup/install/](https://spinnaker.io/setup/install/ "https://spinnaker.io/setup/install/")
