@@ -97,10 +97,11 @@ Aunque mi trabajo no es lo único que me define. Si necesito describirme en una 
 
 Tengo algunos retos personales ya que me gusta mucho viajar. Quiero visitar todos los Estados de mi País (14 de 32). Quiero pisar todos los continentes (4 de 5) y quiero conocer 50 paises (15 de 50).
 
-Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a> y hago bicicleta de montaña, una deporte dónde encuentro el placer de la lucha y del esfuerzo realizado para conseguir aquello que tantos consideran inútil o imposible, donde puedo cuidar mi cuerpo pero sobre todo mi mente y además conocer y ver paisajes increibles. 
+Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a>. 
+
+Practico Mountan Bike, modalidad Cross Country y también Enduro.  Cuando estoy arriba de la bici haciendo una bajada técnica me lleno de alegría, euforia, felicidad y satisfacción. Encontré en la bicicleta de montaña un escape del estrés y la vida cotidiana. Es una actividad que te acerca a la naturaleza. Pocos deportes como el mountain bike te pueden llevar a conocer y descubrir parajes espectaculares en tan poco tiempo. La bicicleta te permite descubrir sitios increíbles y por el nivel de concentración que exige nos desinhibe del estres, dejando en un segundo plano los problemas.
 
 <center>![](/images/mtb.jpg)</center>
 
-Practico Mountan Bike, modalidad Cross Country y también Enduro.  Cuando estoy arriba de la bici haciendo una bajada técnica me llegno de alegría, euforia, felicidad y satisfacción. Encontré en la bicicleta de montaña un escape del estrés y la vida cotidiana. Es una actividad que te acerca a la naturaleza. Pocos deportes como el mountain bike te pueden llevar a conocer y descubrir parajes espectaculares en tan poco tiempo. La bicicleta te permite descubrir sitios increíbles y por el nivel de concentración que exige nos desinhibe del estres, dejando en un segundo plano los problemas.
 
 En la foto estoy en la pista "Lions Hill"  en el Parque Nacional Desierto de los Leones. 
