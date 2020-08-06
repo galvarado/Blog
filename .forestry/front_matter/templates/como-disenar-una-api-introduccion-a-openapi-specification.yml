@@ -59,6 +59,7 @@ pages:
 - content/post/introducción-instalación-de-harbor-un-repositorio-privado-de-imagenes-para-docker.md
 - content/post/introducción-instalación-de-suse-portus-un-repositorio-privado-de-imágenes-para-docker.md
 - content/post/mis-consejos-para-obtener-la-certificación-de-professional-cloud-architect-de-google-cloud.md
+- content/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual.md
 - content/post/primeros-pasos-en-integración-y-despliegue-continuo-con-circle-ci.md
 - content/post/recuperar-un-cluster-de-elasticsearch-red-state.md
 - content/post/simplificando-la-gestión-multicloud-con-mist-io.md
