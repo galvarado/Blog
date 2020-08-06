@@ -6,7 +6,7 @@
 
 <center><a target="_blank"  href="https://twitter.com/galvarado89">![](/images/twitter.png)</a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/">![](/images/linkedin.png)</a></center>
 
-Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en día soy CTO en <a href="sentinel.la">Sentinel.la<a>. Tengo 9 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 5 años enfocado en cloud, containers, devops e integración continua. Soy co-organizador del <a href="https://www.meetup.com/OpenInfrastructureCDMX/">meetup de Open Infrastructure en Ciudad de México</a>.
+Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en día soy CTO en <a href="sentinel.la">Sentinel.la<a>. Tengo 10 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 5 años enfocado en cloud, containers, devops e integración continua. Soy co-organizador del <a href="https://www.meetup.com/OpenInfrastructureCDMX/">meetup de Open Infrastructure en Ciudad de México</a>.
 
 He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo largo de los años. Si te gustaría que hable en tu conferencia u organización, comicate conmigo. También tengo experiencia como docente en México y Latinoamérica, he impartido cursos en Perú, Bolivia y Chile.	
 
