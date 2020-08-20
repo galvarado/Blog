@@ -77,6 +77,36 @@ Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/cat
 
 Kind es lo más parecido a un clúster real de k8s que encontrarás. Podeos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
 
+La instalación de Kind es muy sencilla, es un ejecutable en go por tanto solo falta descargarlo y darle permisos de ejecución:
+
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
+    chmod +x ./kind
+    mv ./kind /some-dir-in-your-PATH/kind
+
+Para crear un cluster con Kind:
+
+    kind create cluster # Default cluster context name is `kind`.
+
+Pero también podemos definir el cluster en un archivo y crearlo como usualmente creamos recursos en k8s:
+
+    kind: Cluster
+    apiVersion: kind.x-k8s.io/v1alpha4
+    # One control plane node and three "workers".
+    #
+    # While these will not add more real compute capacity and
+    # have limited isolation, this can be useful for testing
+    # rolling updates etc.
+    #
+    # The API-server and other control plane components will be
+    # on the control-plane node.
+    #
+    # You probably don't need this unless you are testing Kubernetes itself.
+    nodes:
+    - role: control-plane
+    - role: worker
+    - role: worker
+    - role: worker
+
 ## ¿Qué resolvemos con Vagrant y Kind?
 
 El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un ambiente homogeneo, capaz de ser automatizado y replicable fácilmente. Si bien podemos instalar directamente [minikube](https://galvarado.com.mx/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes/) en nuestra laptop, esto nos limita en personalización pues minikube crea la VM por nosotros y se vuelve un artifact que no podemos replicar con el resto del equipo.
