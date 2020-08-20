@@ -158,17 +158,17 @@ Los providers en Vagrant son los hipervisores  capaces de virtualizar, en nuestr
 
 #### Crear Vagrant box
 
-Basada en la imagnen de hashicorp/bionic64:
+Basada en la imagen de hashicorp/bionic64:
 
 Creamos un directorio:
 
-    $ mkdir vagrant-kind
+    $ mkdir vagrant-box-bionic64-kind
 
 Agregamos el box que usaremos como base:
 
     $ vagrant box add hashicorp/bionic64
 
-Mofificamos el archivo Vagrantfile:
+Modificamos el archivo Vagrantfile:
 
     Vagrant.configure("2") do |config|
       # The most common configuration options are documented and commented below.
