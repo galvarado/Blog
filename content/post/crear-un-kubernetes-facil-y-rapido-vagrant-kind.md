@@ -122,9 +122,9 @@ Entonces, al combinar Vagrant con Kind, no instalamos software en nuestra laptop
 
 El enfoque DevOps de Kind es:
 
-* **Personalizaciones a través de un archivo de configuración declarativo:** puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
-* **Clústers de múltiples nodos:** para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
-* **Portabilidad**: puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
+* **Personalizaciones a través de un archivo de configuración declarativo:** Puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
+* **Clústers de múltiples nodos:** Para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
+* **Portabilidad**: Puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
 * **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústers con la misma configuración en los pipelines de de CI que los de producción.
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
