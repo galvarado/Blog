@@ -11,7 +11,7 @@ Kubernetes es una plataforma  para administrar clústers de contenedores, escrit
 
 Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicablesde un cluster  de kubernetes en nuestra laptop.
 
-##  Vagrant
+## Vagrant
 
 Vagrant es una herramienta de Hashicorp para crear y configurar entornos de desarrollo virtualizados. Originalmente se desarrolló para VirtualBox, sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples [proveedores](https://www.vagrantup.com/docs/providers).
 
@@ -39,7 +39,7 @@ Agregar un box del catálogo es muy fácil. Cada una muestra instrucciones sobre
 
     $ vagrant box add USER/BOX
 
-Por ejemplo: 
+Por ejemplo:
 
     $ vagrant box add hashicorp/bionic64
 
@@ -55,11 +55,13 @@ Y accedemos a nuestro entorno con:
 
 Ya tenemos un sistema independiente, a partir de este punto podemos instalar el software que queramos usar. Podemos agregar un [provisioner](https://www.vagrantup.com/docs/provisioning) para que se instale esto mediante scripts. Esto lo veremos más adelante.  En cualquier momento podremos destruir la imagen y mediante el provisioner, todo el software se volverá a instalar obteniendo así un entorno repetible y predecible.
 
+NOTA: Antes de ejecutar estos pasos debes tener instalado Vagrant y Virtualbox. Las indicaciones están más adelante.
+
 ## Kind
 
 Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker. Es decir, usa contenedores de Docker para simular nodos de kubernetes.
 
-Se diseñó principalmente para probar Kubernetes en sí, pero ambién para desarrollo local o CI. Kind hace que ejecutar kubernetes en docker se vea y se sienta tan fácil y simple como esperaríamos que fuera. Su enfoque es la velocidad y la simplicidad para optimizar la experiencia del los desarrolladores. La ventaja de kind es la posibilidad de crear rápidamente un clúster de kubernetes hermético, desechable y predecible bajo demanda.
+Se diseñó principalmente para probar Kubernetes en sí, pero también para desarrollo local o CI/CD. Kind hace que ejecutar kubernetes en docker se vea y se sienta tan fácil y simple como esperaríamos que fuera. Su enfoque es la velocidad y la simplicidad para optimizar la experiencia del los desarrolladores. La ventaja de kind es la posibilidad de crear rápidamente un clúster de kubernetes hermético, desechable y predecible bajo demanda.
 
 #### **Características**
 
@@ -73,7 +75,7 @@ Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNC
 
 Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
 
-Kind es lo más parecido a un clúster real que encontrarás. Podeos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
+Kind es lo más parecido a un clúster real de k8s que encontrarás. Podeos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
 
 ## ¿Qué resolvemos con Vagrant y Kind?
 
@@ -92,15 +94,9 @@ Entonces, al combinar Vagrant con Kind, no instalamos software en nuestra laptop
 El enfoque DevOps de Kind es:
 
 * **Personalizaciones a través de un archivo de configuración declarativo:** puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
-
-
 * **Clústers de múltiples nodos:** para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
-
-
 * **Portabilidad**: puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
-
-
-* **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústeres con la misma configuración en los pipelnes de de CI que los de producción.
+* **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústers con la misma configuración en los pipelines de de CI que los de producción.
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
@@ -108,9 +104,9 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 ## Manos a la obra
 
-#### Instalar Vagrant 
+#### Instalar Vagrant
 
-Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico: 
+Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico:
 
 * MAC OS X
 * WINDOWS
@@ -118,23 +114,66 @@ Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.
 * DEBIAN
 * CENTOS
 
- El instalador agregará automáticamente Vagrant a la ruta de su sistema para que esté disponible en la terminal.
+El instalador agregará automáticamente Vagrant a la ruta de su sistema para que esté disponible en la terminal.
 
 **Verificar la instalación**
 
 Después de instalar Vagrant, verificamos que la instalación funcionó  en la consola:
 
     $ vagrant -v
-
     Vagrant 2.2.9
 
-#### Instalar Virtualbox 
+#### Instalar Virtualbox
 
-Los Rpviders en Vagrant son los hipervisores  un sistema capaz de virtualizar, instalamos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están documentadas[ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
+Los prpviders en Vagrant son los hipervisores  capaces de virtualizar, en nuestro caso instalaremos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están [ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
 
-#### Crear Vagrant box
+#### Crear Vagrant box 
 
-#### Script de instalación de Minikube
+Basada en la imagnen de hashicorp/bionic64:
+
+Creamos un directorio:
+
+    $ mkdir vagrant-kind
+
+Agregamos el box que usaremos como base:
+
+    $ vagrant box add hashicorp/bionic64
+
+Mofificamos el archivo Vagrantfile:
+
+    Vagrant.configure("2") do |config|
+
+      # The most common configuration options are documented and commented below.
+
+      # For a complete reference, please see the online documentation at
+
+      # https://docs.vagrantup.com.
+
+      # Every Vagrant development environment requires a box. You can search for
+
+      # boxes at https://vagrantcloud.com/search.
+
+      config.vm.box = "hashicorp/bionic64"
+
+      config.vm.network "private_network", ip: "192.168.50.4"
+
+      config.vm.hostname = "myk8s"
+
+      config.vm.provision :shell, path: "bootstrap.sh"
+
+      config.vm.provider "virtualbox" do |v|
+
+        v.memory = 4096
+
+        v.cpus = 2
+
+        v.name = "myk8s"
+
+      end
+
+    
+
+#### Script bootstrap
 
 ## Desplegar una aplicación en nuestro kubernetes
 
