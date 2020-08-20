@@ -237,11 +237,11 @@ Crear un cluster con nombre myk8s:
 
     kind create cluster --name myk8s 
 
-Obtener una lista de los clusters:
+Obtener una lista de los clusters (solo par avalidar):
 
     kind get clusters
 
-Crear el directrio para el archivo de kubectl:
+Crear el directorio para el archivo de kubectl:
 
     mkdir .kube
 
@@ -272,6 +272,8 @@ Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, e
     $ docker ps
     CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
     b146042fd3db        kindest/node:v1.18.2   "/usr/local/bin/entr…"   11 minutes ago      Up 11 minutes       127.0.0.1:46157->6443/tcp   myk8s-control-plane
+
+Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que podemos interactuar.
 
 #### Desplegar una aplicación sobre nuestro clúster
 
