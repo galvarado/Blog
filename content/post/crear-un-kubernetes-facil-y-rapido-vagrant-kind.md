@@ -9,11 +9,11 @@ title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant +
 +++
 Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
-Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para levantar un cluster  rápido y fácil en nuestra laptop y comenzar a  crear aplicaciones en k8s.
+Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicablesde un cluster  de kubernetes en nuestra laptop.
 
-## Vagrant
+##  Vagrant
 
-Vagrant es una herramienta para crear y configurar entornos de desarrollo virtualizados. Originalmente se desarrolló para VirtualBox, sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples proveedores, como VMware, Amazon EC2, LXC, etc.
+Vagrant es una herramienta de Hashicorp para crear y configurar entornos de desarrollo virtualizados. Originalmente se desarrolló para VirtualBox, sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples [proveedores](https://www.vagrantup.com/docs/providers).
 
 Con un flujo de trabajo fácil de usar y un enfoque en la automatización, Vagrant reduce el tiempo de configuración del entorno de desarrollo, aumenta la paridad de producción y hace que los "En mi máquina funciona" sean una cosa del pasado.
 
@@ -21,9 +21,39 @@ Con un flujo de trabajo fácil de usar y un enfoque en la automatización, Vagra
 
 Vagrant proporciona entornos de trabajo fáciles de configurar, reproducibles y portátiles construidos sobre  tecnología estándar y controlados por un único flujo de trabajo  para ayudar a maximizar la productividad y flexibilidad de todo el equipo.
 
-Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, VMware o KVM. Vagrant puede configurar automáticamente carpetas compartidas, las conexiones SSH, crear túneles HTTP en su entorno de desarrollo, y mucho más.
+Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, VMware o KVM. Vagrant puede configurar automáticamente carpetas compartidas, las conexiones SSH, crear túneles HTTP en su entorno de desarrollo, y mucho más. [Más información en su sitio oficial.](https://www.vagrantup.com/)
 
-[Más información en su sitio oficial.](https://www.vagrantup.com/)
+**Comandos útiles:**
+
+* `vagrant init`: Crea una nueva instancia de VM. Cada instancia tiene un directorio oculto (`.vagrant` ) y un archivo de configuración ( `Vagrantfile`).
+* `vagrant up`: Inicia la VM con  todas las configuraciones presentes el archivo `Vagrantfile` .
+* `vagrant ssh`: Acceder a la instancia de VM por secure shell.
+* `vagrant halt`: Detiene la instancia de virtualización.
+* `vagrant destroy`: Elimina la instancia y todas sus configuraciones, excepto el archivo de configuración `Vagrantfile`.
+
+La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con sunuestrocaso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.
+
+Estos Boxes del catálogo público funcionan con muchos proveedores diferentes. Ya sea que esté utilizando Vagrant con VirtualBox, VMware, AWS, etc., deberíamos poder encontrar la que necesitamos o podemos contruir la propia desde un Sistema Operativo base. Este último enfoque es el que seguiremos.
+
+Agregar un box del catálogo es muy fácil. Cada una muestra instrucciones sobre cómo agregarlo, pero todos siguen el mismo formato:
+
+    $ vagrant box add USER/BOX
+
+Por ejemplo: 
+
+    $ vagrant box add hashicorp/bionic64
+
+Con esto estamos agregando la [box oficial de Hashicorp de  Ubuntu 16.04.](https://app.vagrantup.com/hashicorp/boxes/bionic64) En este momento es descargada la imagen y una vez finalizada la descarga, tendremos un archivo Vagrantfile. Este lo podemos modificar para lograr personalizaciones. Más información en [la documentación oficial.](https://www.vagrantup.com/docs/vagrantfile)
+
+Creamos nuestra VM con:
+
+    $ vagrant up
+
+Y accedemos a nuestro entorno con:
+
+    $ vagrant ssh
+
+Ya tenemos un sistema independiente, a partir de este punto podemos instalar el software que queramos usar. Podemos agregar un [provisioner](https://www.vagrantup.com/docs/provisioning) para que se instale esto mediante scripts. Esto lo veremos más adelante.  En cualquier momento podremos destruir la imagen y mediante el provisioner, todo el software se volverá a instalar obteniendo así un entorno repetible y predecible.
 
 ## Kind
 
@@ -78,7 +108,29 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 ## Manos a la obra
 
-#### Instalar VirtualBox y Vagrant
+#### Instalar Vagrant 
+
+Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico: 
+
+* MAC OS X
+* WINDOWS
+* LINUX
+* DEBIAN
+* CENTOS
+
+ El instalador agregará automáticamente Vagrant a la ruta de su sistema para que esté disponible en la terminal.
+
+**Verificar la instalación**
+
+Después de instalar Vagrant, verificamos que la instalación funcionó  en la consola:
+
+    $ vagrant -v
+
+    Vagrant 2.2.9
+
+#### Instalar Virtualbox 
+
+Los Rpviders en Vagrant son los hipervisores  un sistema capaz de virtualizar, instalamos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están documentadas[ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
 
 #### Crear Vagrant box
 
