@@ -6,7 +6,7 @@ tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant + Kind"
 
 +++
-Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
+kubectlKubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
 Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
 
@@ -114,7 +114,7 @@ El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un a
 
 Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos.  Esto conlleva un  enfoque de automatización pues estos archivos pueden ser versionados, por lo tanto nos bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instalado  Vagrant usará el Vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse. Cuando realicemos cambios, podremos compartirlos con los demás vía el repositorio.
 
-Otra funcionalidad de Vagrant son  las carpetas sincronizadas. Estas  permiten a Vagrant sincronizar una carpeta en la máquina host con la máquina guest, lo que le permite continuar trabajando en los archivos del  proyecto en la máquina host, pero usar los recursos en la máquina guest para  ejecutar el proyecto. 
+Otra funcionalidad de Vagrant son  las carpetas sincronizadas. Estas  permiten a Vagrant sincronizar una carpeta en la máquina host con la máquina guest, lo que le permite continuar trabajando en los archivos del  proyecto en la máquina host, pero usar los recursos en la máquina guest para  ejecutar el proyecto.
 
 De forma predeterminada, Vagrant compartirá el directorio del proyecto (el directorio con el Vagrantfile) con el guest en `/vagrant`. En este escenario podremos tener el respositorio del código de la app en nuestro host sincronizado en `/vagrant` y podremos desplegarla en nuestro entorno de k8s.
 
@@ -225,9 +225,9 @@ Creamos un archivo en bash:
     kind get kubeconfig --name "myk8s" > .kube/config
     echo "**** Cluster started :) Ready to shine!"
 
-Este script está basado en la documentaión oficial para instalar docker, kubectl y kind.
+Este script está basado en la documentación oficial para instalar [docker](https://docs.docker.com/engine/install/ubuntu/), [kubectl](https://kubernetes.io/es/docs/tasks/tools/install-kubectl/) y [kind](https://kind.sigs.k8s.io/docs/user/quick-start/).
 
-Colocamos este archivo en el mismo directorio que el Vagrantfile. En este último archivo, estamos indicandolo de la siguiente manera:
+Colocamos este archivo en el mismo directorio que el Vagrantfile. En este último archivo, estamos indicando nuestro archivo bootstrap de la siguiente manera:
 
     config.vm.provision :shell, path: "bootstrap.sh"
 
@@ -266,7 +266,6 @@ Y verificamos nuestro cluster con kubectl:
     KubeDNS is running at https://127.0.0.1:46157/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
     
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-    
 
 Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción:
 
