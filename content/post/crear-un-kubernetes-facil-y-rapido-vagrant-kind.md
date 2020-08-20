@@ -8,7 +8,7 @@ title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant +
 +++
 Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
-Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicablesde un cluster  de kubernetes en nuestra laptop.
+Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
 
 ## Vagrant
 
