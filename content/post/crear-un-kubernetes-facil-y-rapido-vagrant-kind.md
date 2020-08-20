@@ -74,7 +74,7 @@ Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNC
 
 Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
 
-Kind es lo más parecido a un clúster real de k8s que encontrarás. Podeos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
+Kind es lo más parecido a un clúster real de k8s que encontrarás. Podemos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
 
 La instalación de Kind es muy sencilla, es un ejecutable en go por tanto solo falta descargarlo y darle permisos de ejecución:
 
