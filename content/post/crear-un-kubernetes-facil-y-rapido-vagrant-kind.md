@@ -43,15 +43,30 @@ Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNC
 
 Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
 
+Kind es lo más parecido a un clúster real que encontrarás. Podeos ejecutar un cluster de 4 nodos: 1 maestro + 3 workers. Minikube nos limita a 1 solo nodo y entonces no podemos probar escenarios de HA.
+
 ## ¿Qué resolvemos con Vagrant y Kind?
 
-Si bien podemos instalar directamente minikube en nuestra laptop, combinarla con Vagrant nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.
+El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un ambiente homogeneo, capaz de ser automatizado y replicable fácilmente. Si bien podemos instalar directamente minikube en nuestra laptop, esto nos limita en personalización pues minikube crea la VM por nosotros, esto nos limita en compartir personalizaciones con  los demás. 
 
-Como hemos venido mencionado vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos.  Esto conlleva un  enfoque de automatización pues estos archivos pueden ser versionados, por lo tanto nos bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instgalado  vagrant usará el vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse.
+Usar Kink con Vagrant  nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.
 
-Al combinarse con Minikube, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Minikube se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box.
+Como hemos venido mencionado vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos.  Esto conlleva un  enfoque de automatización pues estos archivos pueden ser versionados, por lo tanto nos bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instgalado  vagrant usará el vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse.
 
-**Kind Kind Kind Kind Kind Kind Kind**
+Al combinarse con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box.
+
+El enfoque DevOps de Kind es:
+
+* **Personalizaciones a través de un archivo de configuración declarativo:** puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
+
+
+* **Clústeres de múltiples nodos:** para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
+
+
+* **Portabilidad**: puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
+
+
+* F**lujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústeres con la misma configuración en los pipelnes de de CI que los de producción.
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
@@ -59,13 +74,11 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 ## Manos a la obra
 
-#### Prerequisitos
+#### Instalar VirtualBox y Vagrant
 
-Instalar VirtualBox y Vagrant
+#### Crear Vagrant box
 
-Crear Vagrant box
-
-Script de instalación de Minikube
+#### Script de instalación de Minikube
 
 ## Desplegar una aplicación en nuestro kubernetes
 
