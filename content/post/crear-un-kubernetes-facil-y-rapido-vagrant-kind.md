@@ -238,7 +238,7 @@ Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, e
 
     $ docker ps
 
-#### Desplegar una aplicación sobre nuestro cluster
+#### Desplegar una aplicación sobre nuestro clúster
 
 #### Repositorio en Github
 
