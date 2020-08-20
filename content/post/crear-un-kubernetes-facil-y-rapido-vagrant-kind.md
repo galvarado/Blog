@@ -27,6 +27,22 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 
 ## Kind
 
+Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker.  Es decir, usa contenedores de Docker para simular nodos de kubernetes.
+
+Se diseñó principalmente para probar Kubernetes en sí, pero ambién para desarrollo local o CI. Kind hace que ejecutar kubernetes en docker se vea y se sienta tan fácil y simple como  esperaríamos que fuera. Su enfoque es la velocidad y la simplicidad para optimizar la experiencia del los desarrolladores.
+
+#### **Características**
+
+* Kind admite clústers de múltiples nodos (incluido HA)
+* Soporte para make / bash / docker, o bazel, además de compilaciones publicadas previamente
+* Es compatible con Linux, macOS y Windows.
+
+Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNCF. (minikube no lo es).
+
+![](/uploads/kindcncf.png)
+
+Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
+
 ## ¿Qué resolvemos con Vagrant y Kind?
 
 Si bien podemos instalar directamente minikube en nuestra laptop, combinarla con Vagrant nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.
@@ -35,7 +51,7 @@ Como hemos venido mencionado vagrant sirve para ayudarnos a crear y configurar m
 
 Al combinarse con Minikube, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Minikube se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box.
 
-**Kind Kind Kind Kind Kind Kind Kind** 
+**Kind Kind Kind Kind Kind Kind Kind**
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
