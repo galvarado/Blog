@@ -47,7 +47,7 @@ Al combinarse con Minikube, no instalamos software en nuestra laptop y logramos 
 
 Minikube se describe comúnmente como una forma para que las personas adquieran experiencia práctica con Kubernetes al administrar un clúster localmente. También se puede utilizar en las tareas de desarrollo.
 
-Entonces, cada ocasión que necesites interctuar con un cluster real de kubernetes, solo tendrás que ejecutar:
+Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
     $ vagrant up
 
