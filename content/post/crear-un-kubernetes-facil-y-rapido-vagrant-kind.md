@@ -4,7 +4,7 @@ date = 2020-08-21T05:00:00Z
 draft = true
 image = "/uploads/vagrantkindkubernetes.png"
 tags = ["devops", "cloud", "containers", "CloudOps"]
-title = "Crear un kubernetes fácil y rápido: Vagrant + Kind"
+title = "Crear un ambiente local de kubernetes fácil y rápido: Vagrant + Kind"
 
 +++
 Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
@@ -27,21 +27,7 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 
 ## Kind
 
-Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker.  Es decir, usa contenedores de Docker para simular nodos de kubernetes.
-
-Se diseñó principalmente para probar Kubernetes en sí, pero ambién para desarrollo local o CI. Kind hace que ejecutar kubernetes en docker se vea y se sienta tan fácil y simple como  esperaríamos que fuera. Su enfoque es la velocidad y la simplicidad para optimizar la experiencia del los desarrolladores.
-
-#### **Características**
-
-* Kind admite clústers de múltiples nodos (incluido HA)
-* Soporte para make / bash / docker, o bazel, además de compilaciones publicadas previamente
-* Es compatible con Linux, macOS y Windows.
-
-Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNCF. (minikube no lo es).
-
-![](/uploads/kindcncf.png)
-
-Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
+La ventaja del tipo es la posibilidad de crear rápidamente un clúster de kubernetes hermético, desechable y predecible a pedido.
 
 ## ¿Qué resolvemos con Vagrant y Kind?
 
