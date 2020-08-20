@@ -143,7 +143,7 @@ Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.
 * DEBIAN
 * CENTOS
 
-El instalador agregará automáticamente Vagrant a la ruta de su sistema para que esté disponible en la terminal.
+El instalador agregará automáticamente Vagrant a la ruta del sistema para que esté disponible en la terminal.
 
 **Verificar la instalación**
 
