@@ -279,9 +279,7 @@ Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que 
 
 #### Repositorio en Github
 
-Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind) Puedes seguir las instrucciones en el README o el paso a paso de este tutorial
-
-Si tienes dudas o comentarios no dejes de escribirme. 
+Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind) Puedes seguir las instrucciones en el README o el paso a paso de este tutorial. Si tienes dudas o comentarios no dejes de escribirme. 
 
 Si te pareció útil, por favor comparte =)
 
