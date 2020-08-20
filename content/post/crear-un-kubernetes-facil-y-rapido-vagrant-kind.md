@@ -233,10 +233,17 @@ Una vez finalizado entramos con:
 Y verificamos nuestro cluster con kubectl:
 
     $ kubectl cluster-info
+    Kubernetes master is running at https://127.0.0.1:46157
+    KubeDNS is running at https://127.0.0.1:46157/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+    
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+    
 
 Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción:
 
     $ docker ps
+    CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
+    b146042fd3db        kindest/node:v1.18.2   "/usr/local/bin/entr…"   11 minutes ago      Up 11 minutes       127.0.0.1:46157->6443/tcp   myk8s-control-plane
 
 #### Desplegar una aplicación sobre nuestro clúster
 
