@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-08-21T05:00:00Z
-draft = true
 image = "/uploads/vagrantkindkubernetes.png"
 tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un ambiente local de kubernetes fácil y rápido: Vagrant + Kind"
@@ -53,20 +52,26 @@ Usar Kink con Vagrant  nos permite crear un entorno estandarizado para compartir
 
 Como hemos venido mencionado vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos.  Esto conlleva un  enfoque de automatización pues estos archivos pueden ser versionados, por lo tanto nos bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instgalado  vagrant usará el vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse.
 
-Al combinarse con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box.
+Al combinarse con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box
+
+Una característica que me gusta mucho es la capacidad de cargar mis imágenes locales directamente en el clúster. Esto me ahorra algunos pasos adicionales de configurar un registro y hacer push de mi imagen cada vez que quiero probar mis cambios. Con un  simple:
+
+    load docker-image my-app:latest
+
+La imagen ya está disponible para su uso en mi clúster. 
 
 El enfoque DevOps de Kind es:
 
 * **Personalizaciones a través de un archivo de configuración declarativo:** puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
 
 
-* **Clústeres de múltiples nodos:** para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
+* **Clústers de múltiples nodos:** para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
 
 
 * **Portabilidad**: puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
 
 
-* F**lujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústeres con la misma configuración en los pipelnes de de CI que los de producción.
+* **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústeres con la misma configuración en los pipelnes de de CI que los de producción.
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
