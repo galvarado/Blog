@@ -27,7 +27,21 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 
 ## Kind
 
-La ventaja del tipo es la posibilidad de crear rápidamente un clúster de kubernetes hermético, desechable y predecible a pedido.
+Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker. Es decir, usa contenedores de Docker para simular nodos de kubernetes.
+
+Se diseñó principalmente para probar Kubernetes en sí, pero ambién para desarrollo local o CI. Kind hace que ejecutar kubernetes en docker se vea y se sienta tan fácil y simple como esperaríamos que fuera. Su enfoque es la velocidad y la simplicidad para optimizar la experiencia del los desarrolladores. La ventaja de kind es la posibilidad de crear rápidamente un clúster de kubernetes hermético, desechable y predecible bajo demanda.
+
+#### **Características**
+
+* Kind admite clústers de múltiples nodos (incluido HA)
+* Soporte para make/bash/docker, o bazel, además de compilaciones publicadas previamente
+* Es compatible con Linux, macOS y Windows.
+
+Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNCF. (minikube no lo es).
+
+![](/uploads/kindcncf.png)
+
+Ver: [Platform - Certified Kubernetes - Installer](https://landscape.cncf.io/category=certified-kubernetes-installer&format=card-mode&grouping=category&selected=kind)
 
 ## ¿Qué resolvemos con Vagrant y Kind?
 
