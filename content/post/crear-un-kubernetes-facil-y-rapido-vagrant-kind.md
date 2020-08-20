@@ -20,7 +20,7 @@ Con un flujo de trabajo fácil de usar y un enfoque en la automatización, Vagra
 
 Vagrant proporciona entornos de trabajo fáciles de configurar, reproducibles y portátiles construidos sobre  tecnología estándar y controlados por un único flujo de trabajo  para ayudar a maximizar la productividad y flexibilidad de todo el equipo.
 
-Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, VMware o KVM. Vagrant puede configurar automáticamente carpetas compartidas, las conexiones SSH, crear túneles HTTP en su entorno de desarrollo, y mucho más. [Más información en su sitio oficial.](https://www.vagrantup.com/)
+Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, Hyper-V,  VMware o KVM.  Vagrant puede configurar automáticamente carpetas compartidas, conexiones SSH, crear túneles HTTP en nuestro entorno de desarrollo, y mucho más. [Más información en su sitio oficial.](https://www.vagrantup.com/)
 
 **Comandos útiles:**
 
