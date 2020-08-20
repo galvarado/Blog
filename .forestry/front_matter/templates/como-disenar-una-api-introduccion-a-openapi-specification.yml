@@ -66,3 +66,4 @@ pages:
 - content/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean.md
 - content/post/troubleshooting-openstack-servicios-en-contenedores-y-notas-de-ha.md
 - content/post/tutorial-infraestructura-como-código-con-terraform.md
+- content/post/tutorial-levantar-un-cluster-de-kubernetes-facilmente-con-vagrant-y-minikube.md
