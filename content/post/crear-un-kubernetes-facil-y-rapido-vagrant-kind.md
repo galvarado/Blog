@@ -116,7 +116,7 @@ Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar m
 
 Otra funcionalidad de Vagrant son  las carpetas sincronizadas. Estas  permiten a Vagrant sincronizar una carpeta en la máquina host con la máquina guest, lo que le permite continuar trabajando en los archivos del  proyecto en la máquina host, pero usar los recursos en la máquina guest para  ejecutar el proyecto. 
 
-De forma predeterminada, Vagrant compartirá el directorio del proyecto (el directorio con el Vagrantfile) con el guest en /`vagrant`. En este escenario podremos tener el respositorio del código de la app sincronizado en `/vagrant` y podremos desplegarla en nuestro entorno de k8s.
+De forma predeterminada, Vagrant compartirá el directorio del proyecto (el directorio con el Vagrantfile) con el guest en `/vagrant`. En este escenario podremos tener el respositorio del código de la app en nuestro host sincronizado en `/vagrant` y podremos desplegarla en nuestro entorno de k8s.
 
 Entonces, al combinar Vagrant con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box, además podremos instalar otros componentes como Helm o algún ingress controller.
 
