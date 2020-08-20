@@ -13,7 +13,7 @@ Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un d
 
 ## Vagrant
 
-Vagrant es una herramienta de Hashicorp para crear y configurar entornos de desarrollo virtualizados. Originalmente se desarrolló para VirtualBox, sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples [proveedores](https://www.vagrantup.com/docs/providers).
+Vagrant es una herramienta de [Hashicorp](https://www.hashicorp.com/) para crear y configurar entornos de desarrollo virtualizados. Originalmente se desarrolló para VirtualBox, sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples [proveedores](https://www.vagrantup.com/docs/providers).
 
 Con un flujo de trabajo fácil de usar y un enfoque en la automatización, Vagrant reduce el tiempo de configuración del entorno de desarrollo, aumenta la paridad de producción y hace que los "En mi máquina funciona" sean una cosa del pasado.
 
@@ -164,66 +164,85 @@ Ya tenemos una imagen de Ubuntu, pero necesitamos instalar el software que reque
 Creamos un archivo en bash:
 
     #!/bin/bash
-
+    
     # Install docker
-
     sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
     sudo apt-get update
-
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
-
     usermod -aG docker vagrant
-
     sudo docker run hello-world
-
     echo "**** End installing Docker CE"
-
+    
     # Install kubectl
-
     sudo apt-get update && sudo apt-get install -y apt-transport-https
-
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-
     sudo apt-get update
-
     sudo apt-get install -y kubectl 
-
     kubectl cluster-info
-
     echo "**** End installing kubectl"
-
+    
     # Install kind
-
     curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
-
     chmod +x ./kind
-
     mv ./kind /usr/local/bin/kind
-
+    
     # Initialize kind
+    kind create cluster --name myk8s 
+    kind get clusters
+    mkdir .kube
+    kind get kubeconfig --name "myk8s" > .kube/config
+    echo "**** Cluster started :) Ready to shine!"
+
+Este script está basado en la documentaión oficial para instalar docker, kubectl y kind.
+
+Colocamos este archivo en el mismo directorio que el Vagrantfile. En este último archivo, estamos indicandolo de la siguiente manera:
+
+    config.vm.provision :shell, path: "bootstrap.sh"
+
+Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. Estos son los comandos dentro del archivo bootstrap que crean el cluster de k8s:
+
+Crear un cluster con nombre myk8s:
 
     kind create cluster --name myk8s 
 
+Obtener una lista de los clusters:
+
     kind get clusters
+
+Crear el directrio para el archivo de kubectl:
 
     mkdir .kube
 
+Obtener la configuración del kubeconfig para el cluster y escribirla en la ruta default:
+
     kind get kubeconfig --name "myk8s" > .kube/config
 
-    echo "**** Cluster started :) Ready to shine!"
+#### Vagrant Up!
 
-    Desplegar una aplicación en nuestro kubernetes
+Vamos a levantar el entorno con:
 
-## Repositorio en Github
+    $ vagrant up
 
-Todo lo que estuvimos ejecutando está disponible en este repositorio.
+Una vez finalizado entramos con:
+
+    $ vagrant ssh
+
+Y verificamos nuestro cluster con kubectl:
+
+    $ kubectl cluster-info
+
+Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción:
+
+    $ docker ps
+
+#### Desplegar una aplicación sobre nuestro cluster
+
+#### Repositorio en Github
+
+Todo lo necesario para ejecutar el entorno está disponible en este repositorio.
 
 Si te pareció útil, por favor comparte.
 
