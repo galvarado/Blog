@@ -34,7 +34,7 @@ La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de
 
 Estos Boxes del catálogo público funcionan con muchos proveedores diferentes. Ya sea que usemos  Vagrant con VirtualBox, VMware, AWS, etc., deberíamos poder encontrar la que necesitamos o podemos contruir la propia desde un Sistema Operativo base. Este último enfoque es el que seguiremos.
 
-Agregar un box del catálogo es muy fácil. Cada una muestra instrucciones sobre cómo agregarlo, pero todos siguen el mismo formato:
+Agregar una box del catálogo es muy fácil. Cada una muestra instrucciones sobre cómo agregarla, pero todas siguen el mismo formato:
 
     $ vagrant box add USER/BOX
 
