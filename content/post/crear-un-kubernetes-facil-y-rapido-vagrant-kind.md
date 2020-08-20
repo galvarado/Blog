@@ -32,7 +32,7 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 
 La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.
 
-Estos Boxes del catálogo público funcionan con muchos proveedores diferentes. Ya sea que esté utilizando Vagrant con VirtualBox, VMware, AWS, etc., deberíamos poder encontrar la que necesitamos o podemos contruir la propia desde un Sistema Operativo base. Este último enfoque es el que seguiremos.
+Estos Boxes del catálogo público funcionan con muchos proveedores diferentes. Ya sea que usemos  Vagrant con VirtualBox, VMware, AWS, etc., deberíamos poder encontrar la que necesitamos o podemos contruir la propia desde un Sistema Operativo base. Este último enfoque es el que seguiremos.
 
 Agregar un box del catálogo es muy fácil. Cada una muestra instrucciones sobre cómo agregarlo, pero todos siguen el mismo formato:
 
