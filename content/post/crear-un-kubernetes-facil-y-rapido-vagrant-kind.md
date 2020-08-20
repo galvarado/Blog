@@ -127,7 +127,7 @@ Después de instalar Vagrant, verificamos que la instalación funcionó  en la c
 
 Los prpviders en Vagrant son los hipervisores  capaces de virtualizar, en nuestro caso instalaremos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están [ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
 
-#### Crear Vagrant box 
+#### Crear Vagrant box
 
 Basada en la imagnen de hashicorp/bionic64:
 
@@ -142,40 +142,84 @@ Agregamos el box que usaremos como base:
 Mofificamos el archivo Vagrantfile:
 
     Vagrant.configure("2") do |config|
-
       # The most common configuration options are documented and commented below.
-
       # For a complete reference, please see the online documentation at
-
-      # https://docs.vagrantup.com.
-
+      # https://docs.vagrantup.com
       # Every Vagrant development environment requires a box. You can search for
-
       # boxes at https://vagrantcloud.com/search.
-
       config.vm.box = "hashicorp/bionic64"
-
       config.vm.network "private_network", ip: "192.168.50.4"
-
       config.vm.hostname = "myk8s"
-
       config.vm.provision :shell, path: "bootstrap.sh"
-
       config.vm.provider "virtualbox" do |v|
-
         v.memory = 4096
-
         v.cpus = 2
-
         v.name = "myk8s"
-
       end
-
-    
 
 #### Script bootstrap
 
-## Desplegar una aplicación en nuestro kubernetes
+Ya tenemos una imagen de Ubuntu, pero necesitamos instalar el software que requerimos, en este caso Docker, kubectl y kind.
+
+Creamos un archivo en bash:
+
+    #!/bin/bash
+
+    # Install docker
+
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+    sudo apt-get update
+
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
+
+    usermod -aG docker vagrant
+
+    sudo docker run hello-world
+
+    echo "**** End installing Docker CE"
+
+    # Install kubectl
+
+    sudo apt-get update && sudo apt-get install -y apt-transport-https
+
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+
+    sudo apt-get update
+
+    sudo apt-get install -y kubectl 
+
+    kubectl cluster-info
+
+    echo "**** End installing kubectl"
+
+    # Install kind
+
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
+
+    chmod +x ./kind
+
+    mv ./kind /usr/local/bin/kind
+
+    # Initialize kind
+
+    kind create cluster --name myk8s 
+
+    kind get clusters
+
+    mkdir .kube
+
+    kind get kubeconfig --name "myk8s" > .kube/config
+
+    echo "**** Cluster started :) Ready to shine!"
+
+    Desplegar una aplicación en nuestro kubernetes
 
 ## Repositorio en Github
 
