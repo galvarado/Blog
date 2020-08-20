@@ -26,7 +26,7 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 
 ## Minikube
 
-Minikube es una herramienta que facilita la ejecución local de Kubernetes, ejecuta un cluster de Kubernetes de un solo nodo dentro de una Máquina Virtual (por ejemplo, Virtualbox) en nuestro entorno de desarrollo local, es decir, en nuestra laptop.
+Minikube es una herramienta que facilita la ejecución local de Kubernetes, ejecuta un cluster de Kubernetes de un solo nodo dentro de una Máquina Virtual (por ejemplo, Virtualbox) en nuestro entorno de desarrollo local es decir, en nuestra laptop.
 
 Características:
 
