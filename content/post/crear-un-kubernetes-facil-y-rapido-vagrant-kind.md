@@ -223,6 +223,21 @@ Creamos un archivo en bash:
     - |-
       [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:${reg_port}"]
         endpoint = ["http://${reg_name}:${reg_port}"]
+    nodes:
+    - role: control-plane
+      kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+      extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
     EOF
     
     # connect the registry to the cluster network
@@ -238,6 +253,8 @@ Creamos un archivo en bash:
     kind get clusters
     mkdir .kube
     kind get kubeconfig > .kube/config
+    # Create nginx-ingress controller 
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
     
     echo "**** Cluster started :) Ready to shine!"
 
