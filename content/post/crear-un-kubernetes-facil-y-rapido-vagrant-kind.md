@@ -62,27 +62,11 @@ Para crear un cluster con Kind:
 
     kind create cluster # Default cluster context name is `kind`.
 
-Pero también podemos definir el cluster en un archivo y crearlo como usualmente creamos recursos en k8s:
-
-    kind: Cluster
-    apiVersion: kind.x-k8s.io/v1alpha4
-    # One control plane node and three "workers".
-    #
-    # While these will not add more real compute capacity and
-    # have limited isolation, this can be useful for testing
-    # rolling updates etc.
-    #
-    # The API-server and other control plane components will be
-    # on the control-plane node.
-    #
-    # You probably don't need this unless you are testing Kubernetes itself.
-    nodes:
-    - role: control-plane
-    
+Pero también podemos definir el cluster en un archivo y crearlo como usualmente creamos recursos en k8s.
 
 ## ¿Qué resolvemos con Vagrant y Kind?
 
-El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un ambiente homogeneo, capaz de ser automatizado y replicable fácilmente. Si bien podemos instalar directamente [minikube](https://galvarado.com.mx/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes/) en nuestra laptop, esto nos limita en personalización pues minikube crea la VM por nosotros y se vuelve un artifact que no podemos replicar con el resto del equipo.
+Si quieres interctuar con un cluster de kubernetes en tu máquina local, esta es una muy buena solución. El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un ambiente homogéneo, capaz de ser automatizado y replicable fácilmente. Si bien podemos instalar directamente [minikube](https://galvarado.com.mx/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes/) en nuestra laptop, esto nos limita en personalización pues minikube crea la VM por nosotros y se vuelve un artifact que no podemos replicar con el resto del equipo.
 
 **Usar Kind con Vagrant  nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.**
 
