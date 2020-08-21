@@ -6,7 +6,7 @@ tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant + Kind"
 
 +++
-kubectlKubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
+Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
 Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
 
@@ -133,7 +133,7 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 ## Manos a la obra
 
-Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)  
+Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)
 
 #### Instalar Vagrant
 
@@ -234,7 +234,7 @@ Colocamos este archivo en el mismo directorio que el Vagrantfile. En este últim
 
     config.vm.provision :shell, path: "bootstrap.sh"
 
-Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. 
+Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes.
 
 #### Script create kind cluster
 
@@ -285,7 +285,7 @@ Colocamos este archivo en el mismo directorio que el Vagrantfile. En este últim
 
     config.vm.provision :shell, path: "kind_cluster_with_localregistry.sh"
 
-Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. 
+Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes.
 
 #### Vagrant Up!
 
@@ -336,38 +336,35 @@ Construir imagen:
 Taggeamos a imagen y hacemos push para subirla al docker registry local:
 
     $ docker tag nginx-app-example:latest localhost:5000/nginx-app-example:latest
-
     $ docker push localhost:5000/nginx-app-example:latest
-
     The push refers to repository [localhost:5000/nginx-app-example]
-
     d2aca6f889f3: Pushed 
-
     550333325e31: Pushed 
-
     22ea89b1a816: Pushed 
-
     a4d893caa5c9: Pushed 
-
     0338db614b95: Pushed 
-
     d0f104dc0a1f: Pushed 
-
     latest: digest: sha256:bf7556c6be09126a4219cc9b2b7caac91d53f03b666e5f25e1ae4ab2ee9e9080 size: 1571
 
 Crear namespace:
 
     $ kubectl create -f nginx-namespace.yml 
-
     namespace/nginx-app-example created
 
 Crear deployment:
 
     kubectl create -f nginx-deployment.yml 
-
     deployment.apps/nginx-deployment created
 
-Si tienes dudas o comentarios no dejes de escribirme. 
+    $ kubectl get pods -n nginx-app-example
+
+    NAME                                READY   STATUS    RESTARTS   AGE
+
+    nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          9s
+
+    nginx-deployment-8469fcbd4f-twczg   1/1     Running   0          9s
+
+Si tienes dudas o comentarios no dejes de escribirme.
 
 Si te pareció útil, por favor comparte =)
 
