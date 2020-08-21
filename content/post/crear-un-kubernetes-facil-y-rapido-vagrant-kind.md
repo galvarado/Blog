@@ -388,6 +388,25 @@ Revisamos los recursos creados:
     NAME                                          DESIRED   CURRENT   READY   AGE
     replicaset.apps/nginx-deployment-8469fcbd4f   2         2         2       6m24s
 
+  
+Hacemos un curl para ver si nos responde el ingress:
+
+    $ curl localhost/
+
+    <!DOCTYPE html>
+
+    <html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+
+Está respondiendo. Como aplicamos una IP privada a la VM creada por Vagrant, podemos acceder a la aplicación desde nuestro navegador si vamo a http://\[IP_VM\]  
+  
+Si no modificaste la IP, es: http://192.168.50.4
+
+![](/uploads/captura-de-pantalla-de-2020-08-21-16-59-10.png)
+
 Si tienes dudas o comentarios no dejes de escribirme.
 
 Si te pareció útil, por favor comparte =)
