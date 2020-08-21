@@ -304,7 +304,7 @@ Construir imagen:
 
     $ docker build -t nginx-app-example:latest .
 
-Taggeamos a imagen y hacemos push para subirla al docker registry local:
+Taggeamos la imagen y hacemos push para subirla al docker registry local:
 
     $ docker tag nginx-app-example:latest localhost:5000/nginx-app-example:latest
     $ docker push localhost:5000/nginx-app-example:latest
