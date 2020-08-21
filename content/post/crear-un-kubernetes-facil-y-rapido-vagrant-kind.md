@@ -328,11 +328,8 @@ Crear deployment:
     deployment.apps/nginx-deployment created
     
     $ kubectl get pods -n nginx-app-example
-    
     NAME                                READY   STATUS    RESTARTS   AGE
-    
     nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          9s
-    
     nginx-deployment-8469fcbd4f-twczg   1/1     Running   0          9s
 
 Crear servicio:
