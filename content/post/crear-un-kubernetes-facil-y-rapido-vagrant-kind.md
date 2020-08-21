@@ -370,7 +370,7 @@ Hacemos un curl para ver si nos responde el ingress:
         .
         .
 
-Está respondiendo. Como aplicamos una IP privada a la VM creada por Vagrant, podemos acceder a la aplicación desde nuestro navegador si vamo a http://\[IP_VM\]
+Está respondiendo. Como aplicamos una IP privada a la VM creada por Vagrant, podemos acceder a la aplicación desde nuestro navegador si vamso a http://\[IP_VM\]
 
 Si no modificaste la IP en archivo de Vagrant, esta es: http://192.168.50.4
 
