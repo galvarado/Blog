@@ -30,33 +30,7 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 * `vagrant halt`: Detiene la instancia de virtualización.
 * `vagrant destroy`: Elimina la instancia y todas sus configuraciones, excepto el archivo de configuración `Vagrantfile`.
 
-La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.
-
-Estos Boxes del catálogo público funcionan con muchos proveedores diferentes. Ya sea que usemos  Vagrant con VirtualBox, VMware, AWS, etc., deberíamos poder encontrar la que necesitamos o podemos contruir la propia desde un Sistema Operativo base. Este último enfoque es el que seguiremos.
-
-Agregar una box del catálogo es muy fácil. Cada una muestra instrucciones sobre cómo agregarla, pero todas siguen el mismo formato:
-
-    $ vagrant box add USER/BOX
-
-Por ejemplo:
-
-    $ vagrant box add hashicorp/bionic64
-
-Con esto estamos agregando la [box oficial de Hashicorp de  Ubuntu 16.04.](https://app.vagrantup.com/hashicorp/boxes/bionic64) En este momento es descargada la imagen y una vez finalizada la descarga, tendremos un archivo Vagrantfile. Este lo podemos modificar para lograr personalizaciones. Más información en [la documentación oficial.](https://www.vagrantup.com/docs/vagrantfile)
-
-Creamos nuestra VM con:
-
-    $ vagrant up
-
-Y accedemos a nuestro entorno con:
-
-    $ vagrant ssh
-
-Ya tenemos un sistema independiente, a partir de este punto podemos instalar el software que queramos usar. Podemos agregar un [provisioner](https://www.vagrantup.com/docs/provisioning) para que se instale esto mediante scripts. Esto lo veremos más adelante.  En cualquier momento podremos destruir la imagen y mediante el provisioner, todo el software se volverá a instalar obteniendo así un entorno repetible y predecible.
-
-NOTA: Antes de ejecutar estos pasos debes tener instalado Vagrant y Virtualbox. Las indicaciones están más adelante.
-
-## Kind
+La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.Kind
 
 Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker. Es decir, usa contenedores de Docker para simular nodos de kubernetes.
 
@@ -102,9 +76,7 @@ Pero también podemos definir el cluster en un archivo y crearlo como usualmente
     # You probably don't need this unless you are testing Kubernetes itself.
     nodes:
     - role: control-plane
-    - role: worker
-    - role: worker
-    - role: worker
+    
 
 ## ¿Qué resolvemos con Vagrant y Kind?
 
@@ -112,11 +84,7 @@ El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un a
 
 **Usar Kind con Vagrant  nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.**
 
-Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos.  Esto conlleva un  enfoque de automatización pues estos archivos pueden ser versionados, por lo tanto nos bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instalado  Vagrant usará el Vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse. Cuando realicemos cambios, podremos compartirlos con los demás vía el repositorio.
-
-Otra funcionalidad de Vagrant son  las carpetas sincronizadas. Estas  permiten a Vagrant sincronizar una carpeta en la máquina host con la máquina guest, lo que le permite continuar trabajando en los archivos del  proyecto en la máquina host, pero usar los recursos en la máquina guest para  ejecutar el proyecto.
-
-De forma predeterminada, Vagrant compartirá el directorio del proyecto (el directorio con el Vagrantfile) con el guest en `/vagrant`. En este escenario podremos tener el respositorio del código de la app en nuestro host sincronizado en `/vagrant` y podremos desplegarla en nuestro entorno de k8s.
+Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos. B bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instalado  Vagrant usará el Vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse. Cuando realicemos cambios, podremos compartirlos con los demás vía el repositorio.
 
 Entonces, al combinar Vagrant con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box, además podremos instalar otros componentes como Helm o algún ingress controller.
 
