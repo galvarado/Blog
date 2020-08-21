@@ -364,6 +364,30 @@ Crear deployment:
 
     nginx-deployment-8469fcbd4f-twczg   1/1     Running   0          9s
 
+Crear servicio:
+
+    $ kubectl create -f nginx-service.yml
+
+    service/nginx-service created
+
+    Revisamos los recursos creados:NAME                                    READY   STATUS    RESTARTS   AGE
+
+    pod/nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          6m24s
+
+    pod/nginx-deployment-8469fcbd4f-twczg   1/1     Running   0          6m24s
+
+    NAME                    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+
+    service/nginx-service   NodePort   10.111.22.182   <none>        80:31480/TCP   62s
+
+    NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+
+    deployment.apps/nginx-deployment   2/2     2            2           6m24s
+
+    NAME                                          DESIRED   CURRENT   READY   AGE
+
+    replicaset.apps/nginx-deployment-8469fcbd4f   2         2         2       6m24s
+
 Si tienes dudas o comentarios no dejes de escribirme.
 
 Si te pareció útil, por favor comparte =)
