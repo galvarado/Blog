@@ -6,7 +6,7 @@ tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant + Kind"
 
 +++
-Kubernetes es una plataforma  para administrar clústers de contenedores, escrita originalmente por Google y disponible como open source.  Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
+Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
 Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
 
@@ -31,6 +31,8 @@ Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquin
 * `vagrant destroy`: Elimina la instancia y todas sus configuraciones, excepto el archivo de configuración `Vagrantfile`.
 
 La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.Kind
+
+## Kind
 
 Kind, que significa "**K**ubernetes **In D**ocker" es una herramienta para ejecutar clústers de Kubernetes locales utilizando Docker. Es decir, usa contenedores de Docker para simular nodos de kubernetes.
 
@@ -99,7 +101,7 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
     $ vagrant up
 
-## Manos a la obra
+## Paso a paso
 
 Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)
 
