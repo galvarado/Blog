@@ -139,6 +139,8 @@ El entorno que crearemos consiste en una VM manejada por Vagrant, virtualizada e
 
 Desplegaremos una aplicación en el kubernetes construyendo una imagen y subiendola al repositorio.  Crearemos el namespace, el deployment, el servicio y el ingress. Finalmente probaremos acceder a la aplicación recién creada desde nuestra laptop a través de nuestro navegador.
 
+ En el repositorio  encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar la aplicación.
+
 #### Instalar Vagrant
 
 Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico:
@@ -315,12 +317,6 @@ Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, e
     CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
     5f0d100a5f0c        kindest/node:v1.18.2   "/usr/local/bin/entr…"   24 minutes ago      Up 23 minutes       127.0.0.1:40899->6443/tcp   kind-control-plane
     036174b1e88a        registry:2             "/entrypoint.sh /etc…"   25 minutes ago      Up 25 minutes       0.0.0.0:5000->5000/tcp      kind-registry
-
-#### Repositorio en Github
-
-Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)  En el repositorio también encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar una aplicación basada en nginx.
-
-Ahora sí, vamos a desplegar una aplicación en nuestro nuevo entorno.
 
 #### Desplegar una aplicación sobre nuestro clúster
 
