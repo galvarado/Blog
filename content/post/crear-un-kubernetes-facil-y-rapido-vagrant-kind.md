@@ -370,7 +370,9 @@ Crear servicio:
 
     service/nginx-service created
 
-    Revisamos los recursos creados:NAME                                    READY   STATUS    RESTARTS   AGE
+Revisamos los recursos creados:
+
+    NAME                                    READY   STATUS    RESTARTS   AGE
 
     pod/nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          6m24s
 
