@@ -372,7 +372,6 @@ Crear servicio:
 Crear ingress:
 
     kubectl create -f nginx-ingress.yml 
-
     ingress.networking.k8s.io/nginx-ingress created
 
 Revisamos los recursos creados:
