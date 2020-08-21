@@ -3,7 +3,7 @@ comments = "true"
 date = 2020-08-20T14:00:00Z
 image = "/uploads/vagrantkindkubernetes.png"
 tags = ["devops", "cloud", "containers", "CloudOps"]
-title = "Crear un entorno DevOps de kubernetes local fácil y rápido: Vagrant + Kind"
+title = "Crear un entorno local DevOps de kubernetes fácil y rápido: Vagrant + Kind"
 
 +++
 Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
