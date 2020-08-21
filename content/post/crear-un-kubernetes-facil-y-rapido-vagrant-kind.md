@@ -133,6 +133,8 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 ## Manos a la obra
 
+Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)  
+
 #### Instalar Vagrant
 
 Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico:
@@ -168,7 +170,7 @@ Agregamos el box que usaremos como base:
 
     $ vagrant box add hashicorp/bionic64
 
-Modificamos el archivo Vagrantfile:
+Modificamos el archivo Vagrantfile y colocamos las siguientes configuraciones:
 
     Vagrant.configure("2") do |config|
       # The most common configuration options are documented and commented below.
@@ -180,6 +182,7 @@ Modificamos el archivo Vagrantfile:
       config.vm.network "private_network", ip: "192.168.50.4"
       config.vm.hostname = "myk8s"
       config.vm.provision :shell, path: "bootstrap.sh"
+      config.vm.provision :shell, path: "kind_cluster_with_localregistry.sh"
       config.vm.provider "virtualbox" do |v|
         v.memory = 4096
         v.cpus = 2
@@ -231,23 +234,58 @@ Colocamos este archivo en el mismo directorio que el Vagrantfile. En este últim
 
     config.vm.provision :shell, path: "bootstrap.sh"
 
-Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. Estos son los comandos dentro del archivo bootstrap que crean el cluster de k8s:
+Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. 
 
-Crear un cluster con nombre myk8s:
+#### Script create kind cluster
 
-    kind create cluster --name myk8s 
+El siguiente script tiene las definiciones para que kind cree un cluster y un docker registry local. Basado en [la documentación oficial de kind](https://kind.sigs.k8s.io/docs/user/local-registry/).
 
-Obtener una lista de los clusters (solo par avalidar):
+Creamos un archivo en bash:
 
+    #!/bin/sh
+    set -o errexit
+    
+    # create registry container unless it already exists
+    reg_name='kind-registry'
+    reg_port='5000'
+    running="$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)"
+    if [ "${running}" != 'true' ]; then
+      docker run \
+        -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
+        registry:2
+    fi
+    
+    # create a cluster with the local registry enabled in containerd
+    cat <<EOF | kind create cluster --config=-
+    kind: Cluster
+    apiVersion: kind.x-k8s.io/v1alpha4
+    containerdConfigPatches:
+    - |-
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:${reg_port}"]
+        endpoint = ["http://${reg_name}:${reg_port}"]
+    EOF
+    
+    # connect the registry to the cluster network
+    docker network connect "kind" "${reg_name}"
+    
+    # tell https://tilt.dev to use the registry
+    # https://docs.tilt.dev/choosing_clusters.html#discovering-the-registry
+    for node in $(kind get nodes); do
+      kubectl annotate node "${node}" "kind.x-k8s.io/registry=localhost:${reg_port}";
+    done
+    
+    # Initialize kind
     kind get clusters
-
-Crear el directorio para el archivo de kubectl:
-
     mkdir .kube
+    kind get kubeconfig > .kube/config
+    
+    echo "**** Cluster started :) Ready to shine!"
 
-Obtener la configuración del kubeconfig para el cluster y escribirla en la ruta default:
+Colocamos este archivo en el mismo directorio que el Vagrantfile. En este último archivo, estamos indicando nuestro archivo bootstrap de la siguiente manera:
 
-    kind get kubeconfig --name "myk8s" > .kube/config
+    config.vm.provision :shell, path: "kind_cluster_with_localregistry.sh"
+
+Entonces cuando la VM se cree, se ejecutará este script que instala lo necesario para que kind pueda crear por nosotros un cluster de kubernetes. 
 
 #### Vagrant Up!
 
@@ -267,19 +305,69 @@ Y verificamos nuestro cluster con kubectl:
     
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
-Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción:
+Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción. Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que podemos interactuar. También podemos ver el contenedor del registro local:
 
     $ docker ps
     CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
-    b146042fd3db        kindest/node:v1.18.2   "/usr/local/bin/entr…"   11 minutes ago      Up 11 minutes       127.0.0.1:46157->6443/tcp   myk8s-control-plane
-
-Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que podemos interactuar.
-
-#### Desplegar una aplicación sobre nuestro clúster
+    5f0d100a5f0c        kindest/node:v1.18.2   "/usr/local/bin/entr…"   24 minutes ago      Up 23 minutes       127.0.0.1:40899->6443/tcp   kind-control-plane
+    036174b1e88a        registry:2             "/entrypoint.sh /etc…"   25 minutes ago      Up 25 minutes       0.0.0.0:5000->5000/tcp      kind-registry
 
 #### Repositorio en Github
 
-Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind) Puedes seguir las instrucciones en el README o el paso a paso de este tutorial. Si tienes dudas o comentarios no dejes de escribirme. 
+Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)  En el repositorio también encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar una aplicación basada en nginx.
+
+Ahora sí, vamos a desplegar una aplicación en nuestro nuevo entorno.
+
+#### Desplegar una aplicación sobre nuestro clúster
+
+Si clonaste el  repositorio, entonces  el directorio `/vagrant` dentro de la VM contiene los manifests de kubernetes, dentro del directorio  `nginx-app-example` Si no los tienes, tómalos del repositorio y  colócalos en el mismo directorio donde tienes el archivo Vagrantfile y los podrás ver dentro de la VM.
+
+Construiremos una imagen y desplegaremos una aplicación en nuestro Kubernetes:
+
+Dockerfile:
+
+    FROM nginx
+    COPY landing /usr/share/nginx/html
+
+Construir imagen:
+
+    $ docker build -t nginx-app-example:latest .
+
+Taggeamos a imagen y hacemos push para subirla al docker registry local:
+
+    $ docker tag nginx-app-example:latest localhost:5000/nginx-app-example:latest
+
+    $ docker push localhost:5000/nginx-app-example:latest
+
+    The push refers to repository [localhost:5000/nginx-app-example]
+
+    d2aca6f889f3: Pushed 
+
+    550333325e31: Pushed 
+
+    22ea89b1a816: Pushed 
+
+    a4d893caa5c9: Pushed 
+
+    0338db614b95: Pushed 
+
+    d0f104dc0a1f: Pushed 
+
+    latest: digest: sha256:bf7556c6be09126a4219cc9b2b7caac91d53f03b666e5f25e1ae4ab2ee9e9080 size: 1571
+
+Crear namespace:
+
+    $ kubectl create -f nginx-namespace.yml 
+
+    namespace/nginx-app-example created
+
+Crear deployment:
+
+    kubectl create -f nginx-deployment.yml 
+
+    deployment.apps/nginx-deployment created
+
+Si tienes dudas o comentarios no dejes de escribirme. 
 
 Si te pareció útil, por favor comparte =)
 
