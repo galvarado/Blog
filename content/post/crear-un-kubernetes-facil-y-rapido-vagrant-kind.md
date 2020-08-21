@@ -135,6 +135,10 @@ Entonces, cada ocasión que necesites interactuar con un cluster real de kuberne
 
 Todo lo necesario para ejecutar el entorno [está disponible en este repositorio.](https://github.com/galvarado/vagrant-box-bionic64-kind)
 
+El entorno que crearemos consiste en una VM manejada por Vagrant, virtualizada en VirtualBox. Esta contendrá un cluster de Kubernetes con un docker registry local y un nginx-ingress controller.
+
+Desplegaremos una aplicación en el kubernetes construyendo una imagen y subiendola al repositorio.  Crearemos el namespace, el deployment, el servicio y el ingress. Finalmente probaremos acceder a la aplicación recién creada desde nuestra laptop a través de nuestro navegador.
+
 #### Instalar Vagrant
 
 Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico:
@@ -388,22 +392,23 @@ Revisamos los recursos creados:
     NAME                                          DESIRED   CURRENT   READY   AGE
     replicaset.apps/nginx-deployment-8469fcbd4f   2         2         2       6m24s
 
-  
 Hacemos un curl para ver si nos responde el ingress:
 
     $ curl localhost/
-
+    
     <!DOCTYPE html>
-
     <html lang="en" class="no-js">
-
     <head>
-
         <meta charset="utf-8">
+        .
+        .
+        .
+        .
+        .
 
-Está respondiendo. Como aplicamos una IP privada a la VM creada por Vagrant, podemos acceder a la aplicación desde nuestro navegador si vamo a http://\[IP_VM\]  
-  
-Si no modificaste la IP, es: http://192.168.50.4
+Está respondiendo. Como aplicamos una IP privada a la VM creada por Vagrant, podemos acceder a la aplicación desde nuestro navegador si vamo a http://\[IP_VM\]
+
+Si no modificaste la IP en archivo de Vagrant, esta es: http://192.168.50.4
 
 ![](/uploads/captura-de-pantalla-de-2020-08-21-16-59-10.png)
 
@@ -416,3 +421,5 @@ Referencias:
 [https://learn.hashicorp.com/collections/vagrant/getting-started](https://learn.hashicorp.com/collections/vagrant/getting-started "https://learn.hashicorp.com/collections/vagrant/getting-started")
 
 [https://kind.sigs.k8s.io/](https://kind.sigs.k8s.io/ "https://kind.sigs.k8s.io/")
+
+[https://kind.sigs.k8s.io/docs/user/ingress/](https://kind.sigs.k8s.io/docs/user/ingress/ "https://kind.sigs.k8s.io/docs/user/ingress/")
