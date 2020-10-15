@@ -33,9 +33,7 @@ Packer puede crear imagenes de  Amazon Machine Images (AMI) , después Terraform
 
 Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.
 
-Flujo normal:
-
-Flujo con Infraestructura Inmutable y Packer:
+**![](/uploads/flow.png)**
 
 Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
 
