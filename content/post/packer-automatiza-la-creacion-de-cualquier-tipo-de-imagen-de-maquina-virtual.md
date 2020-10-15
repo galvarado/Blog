@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-08-07T05:00:00Z
-draft = true
 image = ""
 tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
@@ -52,8 +51,6 @@ La diferencia más fundamental entre la infraestructura mutable e inmutable est�
 ## Golden Image
 
 # Manos a la Obra
-
-Esta imagen refleja lo que haremos:
 
 ## Instalación en Linux
 
