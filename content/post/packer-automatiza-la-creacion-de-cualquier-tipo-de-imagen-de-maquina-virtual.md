@@ -13,9 +13,17 @@ Una imagen de máquina es una unidad estática que contiene un sistema operativo
 
 Packer es rápido, relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, puede crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado
 
+![](/uploads/packer-workflow.png)
+
 ## ¿Por qué usar Packer?
 
 Construir imágenes es tedioso. Es normalmente un proceso manual por lo tanto es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con  herramientas de gestión de condiguraciones como Ansible. Packer  permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
+
+#### Casos de uso: Consistencia ambiental
+
+¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, staging y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.
+
+Por ejemplo,  un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el "hardening" de base que para imponer estándares entre equipos.
 
 #### Casos de uso: Entrega continua
 
@@ -25,17 +33,29 @@ Packer puede crear imagenes de  Amazon Machine Images (AMI) , después Terraform
 
 Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.
 
-#### Casos de uso: Consistencia ambiental
+Flujo normal:
 
-¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, staging y producción? Packer es ideal para estandarizar   esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas. 
+Flujo con Infraestructura Inmutable y Packer:
 
-Por ejemplo,  un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el "hardening" de base que para imponer estándares entre equipos.
+Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
 
-## Infraetructura Mutable vs Infraestructura Inutable
+## Infraestructura Mutable vs Infraestructura Inmutable
 
-## Golden Config
+En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los  administradores que trabajan con este tipo de infraestructura pueden acceder a los servidores, actualizar paquetes manualmente, modificar los archivos de configuración servidor por servidor e implementar código nuevo directamente en los servidores. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación. La infraestructura compuesta por servidores mutables puede denominarse tradicional o (despectivamente) artesanal.
 
-## Configuration management
+Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los cambios apropiados para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
+
+Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables. Sin embargo, usarlo de manera eficiente a menudo incluye la automatización integral de la implementación, el aprovisionamiento rápido de servidores en un entorno flexible y soluciones externas para manejar los estados.
+
+La diferencia más fundamental entre la infraestructura mutable e inmutable está en su política central: los componentes de la primera están diseñados para cambiarse después de la implementación; los componentes de la última están diseñados para permanecer sin cambios y finalmente ser reemplazados.
+
+¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? Esa es la distinción fundamental entre infraestructura mutable e inmutable.
+
+## Golden Image
+
+# Manos a la Obra
+
+Esta imagen refleja lo que haremos:
 
 ## Instalación en Linux
 
