@@ -1,7 +1,7 @@
 +++
 comments = "true"
 date = 2020-10-12T05:00:00Z
-image = "/uploads/packer_builder.png"
+image = "/uploads/packer_flow.png"
 tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
 
