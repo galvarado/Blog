@@ -50,8 +50,6 @@ La diferencia más fundamental entre la infraestructura mutable e inmutable est�
 
 ¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? Esa es la distinción fundamental entre infraestructura mutable e inmutable.
 
-## Golden Image
-
 # Manos a la Obra
 
 ## Instalación en Linux
