@@ -6,11 +6,13 @@ tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
 
 +++
-Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Nos permite crear imágenes de máquina idénticas,  para múltiples plataformas de destino, desde una única fuente de configuración. Packer es compatible con Linux,  Windows y Mac OS X. También etible con una amplia variedad de formatos de imagen,y cuenta con  integraciones para otras herramientas.
+Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Nos permite crear imágenes de máquina idénticas,  para múltiples plataformas de destino, desde una única fuente de configuración. [Packer](https://www.packer.io/) es compatible con Linux,  Windows y Mac OS X. También etible con una amplia variedad de formatos de imagen,y cuenta con  integraciones para otras herramientas.
 
 Una imagen de máquina es una unidad estática que contiene un sistema operativo preconfigurado y un software instalado. Podemos usar imágenes para clonar o crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y despliegue de nueva infraestructura. Las imágenes vienen en muchos formatos, específicos para diversas plataformas y entornos de implementación.
 
 Packer es rápido, relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, puede crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado
+
+El Packer tiene soporte para crear imágenes de Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más.
 
 ![](/uploads/packer-workflow.png)
 
