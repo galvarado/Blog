@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2020-10-12T05:00:00Z
-draft = true
 image = "/uploads/packer_build.png"
 tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
