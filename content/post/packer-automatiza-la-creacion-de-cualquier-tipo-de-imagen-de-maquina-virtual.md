@@ -194,23 +194,25 @@ Después de realizar el Build, podemos iniciar el entorno con Vagrant.
 
 **1. Primero añadimos el Box:**
 
-       $ vagrant box add --name ubuntu-20.04 output/ubuntu-20.04-virtualbox.box
+      $ vagrant box add --name ubuntu-20.04 output/ubuntu-20.04-virtualbox.box
+
 **2. Creamos un archivo Vagrantfile:**
 
-       $ cat > Vagrantfile << 'EOF'
-         # -*- mode: ruby -*-
-         # vi: set ft=ruby :
-         Vagrant.configure("2") do |config|
-           config.vm.box = "ubuntu-20.04"
-           config.vm.provider "virtualbox" do |vb|
-             # Display the VirtualBox GUI when booting the machine
-             vb.gui = false
-           end
-         end
-       EOF
+    $ cat > Vagrantfile << 'EOF'
+      # -*- mode: ruby -*-
+      # vi: set ft=ruby :
+      Vagrant.configure("2") do |config|
+      config.vm.box = "ubuntu-20.04"
+        config.vm.provider "virtualbox" do |vb|
+        # Display the VirtualBox GUI when booting the machine
+        vb.gui = false
+        end
+      end
+    EOF
+
 **3. Iniciamos el vagrant box y accedemos a él**
 
-       $ vagrant up && vagrant ssh
+    $ vagrant up && vagrant ssh
 
 Para el próximo tutorial veremos como construir imágenes para entornos de nube.
 
