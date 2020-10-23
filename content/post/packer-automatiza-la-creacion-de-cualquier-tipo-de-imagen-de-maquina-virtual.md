@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-10-12T05:00:00Z
 draft = true
-image = "/uploads/packer_flow.png"
+image = "/uploads/packercloud.png"
 tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
 
@@ -13,7 +13,7 @@ Una imagen de máquina es una unidad estática que contiene un sistema operativo
 
 Packer es rápido, relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, puede crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado
 
-El Packer tiene soporte para crear imágenes de Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más.
+Packer tiene soporte para crear imágenes de Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más.
 
 ![](/uploads/packer-workflow.png)
 
