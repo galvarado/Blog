@@ -86,70 +86,37 @@ Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secci
 Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para Vagrant (Virtualbox) en formato OVA.
 
     "builders": [
-
-    {
-
-    "type": "virtualbox-iso",
-
-    "vboxmanage": [
-
-    [ "modifyvm", "{{.Name}}", "--memory", "{{ user `ram` }}" ],
-
-    [ "modifyvm", "{{.Name}}", "--vram", "36" ],
-
-    [ "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}" ]
-
-    ],
-
-    "guest_os_type": "Ubuntu_64",
-
-    "disk_size": "{{ user `virtualbox_disk_size` }}",
-
-    "headless": "{{ user `headless` }}",
-
-    "iso_url": "{{ user `iso_url` }}",
-
-    "iso_checksum": "{{ user `iso_checksum` }}",
-
-    "vm_name": "ubuntu2004",
-
-    "boot_command": [
-
-    "<enter><enter><f6><esc><wait> ",
-
-    "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
-
-    "<enter>"
-
-    ],
-
-    "boot_wait": "5s",
-
-    "http_directory": "http",
-
-    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-
-    "ssh_password": "vagrant",
-
-    "ssh_port": 22,
-
-    "ssh_username": "vagrant",
-
-    "ssh_timeout": "10000s",
-
-    "ssh_handshake_attempts": "50",
-
-    "guest_additions_mode": "upload",
-
-    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-
-    "format": "ova"
-
+      {
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "{{ user `ram` }}" ],
+        [ "modifyvm", "{{.Name}}", "--vram", "36" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}" ]
+      ],
+      "guest_os_type": "Ubuntu_64",
+      "disk_size": "{{ user `virtualbox_disk_size` }}",
+      "headless": "{{ user `headless` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "vm_name": "ubuntu2004",
+      "boot_command": [
+      "<enter><enter><f6><esc><wait> ",
+      "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
+      "<enter>"
+      ],
+      "boot_wait": "5s",
+      "http_directory": "http",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_timeout": "10000s",
+      "ssh_handshake_attempts": "50",
+      "guest_additions_mode": "upload",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "format": "ova"
     }
-
     ],
-
-    
 
 Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema.
 
