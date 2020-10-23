@@ -190,7 +190,7 @@ La imagen resultante se exportará en :
 
 ## Como usar la imagen con Vagrant
 
-Después de realizar el Build, podemos iniciar el entorno con Vagrant. 
+Después de realizar el Build, podemos iniciar el entorno con Vagrant.
 
 1. **Primero añadimos el Box:**
 
@@ -208,7 +208,6 @@ Después de realizar el Build, podemos iniciar el entorno con Vagrant.
              vb.gui = false
            end
          end
-       
        EOF
 3. **Iniciamos el vagrant box y accedemos a él**
 
