@@ -190,7 +190,9 @@ La imagen resultante se exportará en :
 
 ## Como usar la imagen con Vagrant
 
-1. **Después de realizar el Build, podemos iniciar el entorno con Vagrant. Primero añadimos el Box:**
+Después de realizar el Build, podemos iniciar el entorno con Vagrant. 
+
+1. **Primero añadimos el Box:**
 
        $ vagrant box add --name ubuntu-20.04 output/ubuntu-20.04-virtualbox.box
 2. **Creamos un archivo Vagrantfile:**
