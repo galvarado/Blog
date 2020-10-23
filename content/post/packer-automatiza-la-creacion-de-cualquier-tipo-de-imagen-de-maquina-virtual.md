@@ -181,4 +181,49 @@ Esta sección define variables que se usan en algunos parametros antes descritos
             "output": "output/ubuntu-20.04-{{.Provider}}.box"
         }]
 
-Por último, están los postprocesadores. Este es opcional, pero es necesario para crear boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
+Por último, están los postprocesadores. Este es opcional, pero es necesario para crear boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.  
+  
+Solo nos resta construir la imagen con el siguiente comando:
+
+    $ packer build  ubuntu2004.json
+
+5. La imagen resultante se exportará en t:
+
+    output/ubuntu-20.04-virtualbox.box
+
+## Como usar la imagen con Vagrant
+
+1. Después de realizar el Build, podemos iniciar el entorno con Vagrant. Primero añadimos el Box:
+
+    $ vagrant box add --name ubuntu-20.04 output/ubuntu-20.04-virtualbox.box
+
+2. Creamos un archivo Vagrantfile
+
+    $ cat > Vagrantfile << 'EOF'
+    # -*- mode: ruby -*-
+    # vi: set ft=ruby :
+    Vagrant.configure("2") do |config|
+      config.vm.box = "ubuntu-20.04"
+      config.vm.provider "virtualbox" do |vb|
+        # Display the VirtualBox GUI when booting the machine
+        vb.gui = false
+      end
+    end
+    EOF
+
+3. Iniciamos el vagrant box y accedemos a él
+
+    $ vagrant up && vagrant ssh
+
+  
+Para el próximo tutorial veremos como construir imágenes para entornos de nube.
+
+Si te parece útil, comparte =)
+
+Referencias:
+
+[https://github.com/chef/bento](https://github.com/chef/bento "https://github.com/chef/bento")
+
+[https://nickcharlton.net/posts/automating-ubuntu-2004-installs-with-packer.html](https://nickcharlton.net/posts/automating-ubuntu-2004-installs-with-packer.html "https://nickcharlton.net/posts/automating-ubuntu-2004-installs-with-packer.html")
+
+[https://nickhowell.uk/2020/05/01/Automating-Ubuntu2004-Images/](https://nickhowell.uk/2020/05/01/Automating-Ubuntu2004-Images/ "https://nickhowell.uk/2020/05/01/Automating-Ubuntu2004-Images/")
