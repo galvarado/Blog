@@ -192,10 +192,10 @@ La imagen resultante se exportará en :
 
 Después de realizar el Build, podemos iniciar el entorno con Vagrant.
 
-1. **Primero añadimos el Box:**
+**1. Primero añadimos el Box:**
 
        $ vagrant box add --name ubuntu-20.04 output/ubuntu-20.04-virtualbox.box
-2. **Creamos un archivo Vagrantfile:**
+**2. Creamos un archivo Vagrantfile:**
 
        $ cat > Vagrantfile << 'EOF'
          # -*- mode: ruby -*-
@@ -208,7 +208,7 @@ Después de realizar el Build, podemos iniciar el entorno con Vagrant.
            end
          end
        EOF
-3. **Iniciamos el vagrant box y accedemos a él**
+**3. Iniciamos el vagrant box y accedemos a él**
 
        $ vagrant up && vagrant ssh
 
