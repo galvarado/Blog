@@ -1,7 +1,6 @@
 +++
 comments = "true"
-date = 2020-10-12T05:00:00Z
-draft = true
+date = 2020-10-23T12:00:00Z
 image = "/uploads/packercloud.png"
 tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
@@ -80,4 +79,4 @@ Para agregarlo al shell startup:
     $ packer version
     Packer v1.6.0
 
-## Construir una imagen de VM para Digital Ocean
+## Construir una imagen de VM para Vagrant
