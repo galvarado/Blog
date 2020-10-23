@@ -81,7 +81,15 @@ Documentación oficial: [https://www.packer.io/docs/install](https://www.packer.
 
 ## Construir una imagen de VM para Vagrant
 
-Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: constructores, aprovisionadores y postprocesamiento.
+En el primerejemplo, crearemos una imagen con Packer para ejecutar con Vagrant y Virtualbox en un entorno local. Esta imagen estará basada en Ubuntu 20.04. Para este caso es necesario descargar el ISO de Ubuntu. Packer nos ayudará a realizar una instalaión desatentida mediante el[ autoinstall de Ubuntu.](https://ubuntu.com/server/docs/install/autoinstall)
+
+El código del ejemplo completo listo para ejecutar lo puedes descargar desde [este repositorio den Github]( https://github.com/Instituto-i2ds/packer-template-ubuntu20.04)
+
+Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: builders, provisioners y postprocesamiento.
+
+A continuación el template explicado por cada sección:
+
+**Builders**
 
 Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para Vagrant (Virtualbox) en formato OVA.
 
@@ -118,10 +126,72 @@ Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es 
     }
     ],
 
+**Provisioners**
+
+    "provisioners": [{
+
+            "environment_vars": [
+
+                "HOME_DIR=/home/vagrant"
+
+            ],
+
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+
+            "expect_disconnect": true,
+
+            "scripts": [
+
+                "scripts/update.sh",
+
+                "scripts/sudoers.sh",
+
+                "scripts/virtualbox.sh",
+
+                "scripts/vagrant.sh",
+
+                "scripts/cleanup.sh"
+
+            ],
+
+            "type": "shell"
+
+        }],
+
 Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema.
 
 Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible o módulos Puppet. Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.
 
-Por último, están los postprocesadores. Este es opcional, pero es necesario para crear boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
+**Variables**
 
-Para ejemplificar el uso de Packer usaremos el siguiente template:
+    variables": {
+
+            "headless": "false",
+
+            "iso_checksum": "443511f6bf12402c12503733059269a2e10dec602916c0a75263e5d990f6bb93",
+
+            "iso_url": "iso/ubuntu-20.04.1-live-server-amd64.iso",
+
+            "version": "0",
+
+            "ram": "1024",
+
+            "cpus": "2",
+
+            "virtualbox_disk_size": "12288"
+
+        },
+
+**Post-processors**
+
+    "post-processors": [{
+
+            "type": "vagrant",
+
+            "compression_level": "8",
+
+            "output": "output/ubuntu-20.04-{{.Provider}}.box"
+
+        }]
+
+Por último, están los postprocesadores. Este es opcional, pero es necesario para crear boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
