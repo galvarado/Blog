@@ -196,18 +196,17 @@ La imagen resultante se exportará en :
 2. **Creamos un archivo Vagrantfile:**
 
        $ cat > Vagrantfile << 'EOF'
-
-       -- mode: ruby --
-
-       vi: set ft=ruby :
-
-       Vagrant.configure("2") do |config|
-       config.vm.box = "ubuntu-20.04"
-       config.vm.provider "virtualbox" do |vb|
-       # Display the VirtualBox GUI when booting the machine
-       vb.gui = false
-       end
-       end
+         # -*- mode: ruby -*-
+         # vi: set ft=ruby :
+       
+         Vagrant.configure("2") do |config|
+           config.vm.box = "ubuntu-20.04"
+           config.vm.provider "virtualbox" do |vb|
+             # Display the VirtualBox GUI when booting the machine
+             vb.gui = false
+           end
+         end
+       
        EOF
 3. **Iniciamos el vagrant box y accedemos a él**
 
