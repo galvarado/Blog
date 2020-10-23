@@ -80,3 +80,81 @@ Para agregarlo al shell startup:
 Documentación oficial: [https://www.packer.io/docs/install](https://www.packer.io/docs/install "https://www.packer.io/docs/install")
 
 ## Construir una imagen de VM para Vagrant
+
+Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: constructores, aprovisionadores y postprocesamiento.
+
+Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para Vagrant (Virtualbox) en formato OVA.
+
+    "builders": [
+
+    {
+
+    "type": "virtualbox-iso",
+
+    "vboxmanage": [
+
+    [ "modifyvm", "{{.Name}}", "--memory", "{{ user `ram` }}" ],
+
+    [ "modifyvm", "{{.Name}}", "--vram", "36" ],
+
+    [ "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}" ]
+
+    ],
+
+    "guest_os_type": "Ubuntu_64",
+
+    "disk_size": "{{ user `virtualbox_disk_size` }}",
+
+    "headless": "{{ user `headless` }}",
+
+    "iso_url": "{{ user `iso_url` }}",
+
+    "iso_checksum": "{{ user `iso_checksum` }}",
+
+    "vm_name": "ubuntu2004",
+
+    "boot_command": [
+
+    "<enter><enter><f6><esc><wait> ",
+
+    "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
+
+    "<enter>"
+
+    ],
+
+    "boot_wait": "5s",
+
+    "http_directory": "http",
+
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+
+    "ssh_password": "vagrant",
+
+    "ssh_port": 22,
+
+    "ssh_username": "vagrant",
+
+    "ssh_timeout": "10000s",
+
+    "ssh_handshake_attempts": "50",
+
+    "guest_additions_mode": "upload",
+
+    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+
+    "format": "ova"
+
+    }
+
+    ],
+
+    
+
+Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema.
+
+Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible o módulos Puppet. Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.
+
+Por último, están los postprocesadores. Este es opcional, pero es necesario para crear boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
+
+Para ejemplificar el uso de Packer usaremos el siguiente template:
