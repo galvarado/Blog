@@ -52,8 +52,6 @@ La diferencia más fundamental entre la infraestructura mutable e inmutable est�
 
 # Manos a la Obra
 
-## Instalación en Linux
-
 **1.Descargar desde** [https://www.packer.io/downloads.html](https://www.packer.io/downloads.html "https://www.packer.io/downloads.html")
 
     wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip
@@ -78,5 +76,7 @@ Para agregarlo al shell startup:
 
     $ packer version
     Packer v1.6.0
+
+Documentación oficial: [https://www.packer.io/docs/install](https://www.packer.io/docs/install "https://www.packer.io/docs/install")
 
 ## Construir una imagen de VM para Vagrant
