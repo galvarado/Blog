@@ -26,13 +26,13 @@ Con infraestructura inmutabe, en lugar de instalar nginx en el servidor, crearem
 
 ![](/uploads/inmutable.png)
 
-Cuando las pruebas sean satisfactorias, removeremos el servidor original.
+Cuando las pruebas sean satisfactorias, daremos de baja el servidor original y lo destruiremos, para colocar en producción el nuevo servidor.
 
-![](/uploads/infrainmutable.png)
+![](/uploads/infraestruturainmutable.png)
 
 **¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. ¿Que pasaría si no logramos actualizar un paquete debido a algun erro en el despliegue? Podemos comenzar a tener "sucios" los ambientes. Sin embargo, si tenemos el proceso automatizado, crearemos nueva infraetructura y la reemplazaremos la primera, hasta estar seguros de que funciona el nuevo despliegue. 
 
-Obviamente hay algunas condiciones que debemos cumplir, que explico más adelante.
+Obviamente hay algunas condiciones que debemos cumplir: si estamos manejando una base de datos, tendremos  que migrarla al nuevo servidor. Lo mejor sería sacarla del servidor actual para no eliminar la información persistente y lograr tener una aplicación stateless. Luego, podremos simplemente apuntar al nuevo servidor de base de datos cuando creemos un nuevo servidor de aplicación.
 
 ## ¿Cuáles son los beneficios de la infraestructura inmutable?
 
