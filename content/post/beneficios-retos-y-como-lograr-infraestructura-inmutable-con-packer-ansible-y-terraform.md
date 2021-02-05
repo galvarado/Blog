@@ -16,11 +16,19 @@ Dentro de la Automatización podemos encontrar la IaC o Infraestructura como có
 
 En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores acceden a los servidores, actualizan paquetes , modifican los archivos de configuración e implementar nuevo código. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación.
 
-![](/uploads/mutable.png)
+Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los nuevos cambios para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
 
 Ejemplo: Liberamos una aplicación en Python con servidor web apache y base de datos MySQL. Para la segunda versión, mejoramos el rendimiento con nginx, así que instalamos en el servidor el nuevo software y deshabilitamos apache. El servidor es el mismo y ha sido manipulado.
 
-Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los nuevos cambios para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
+![](/uploads/mutable.png)
+
+Con infraestructura inmutabe, en lugar de instalar nginx en el servidor, crearemos un nuevo servidor con este nuevo paquete y lo desplegaremos con la aplicación.
+
+![](/uploads/inmutable.png)
+
+Cuando las pruebas sean satisfactorias, removeremos el servidor original.
+
+![](/uploads/infrainmutable.png)
 
 ¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? Esa es la distinción fundamental entre infraestructura mutable e inmutable.
 
