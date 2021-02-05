@@ -189,6 +189,8 @@ Con esto, ya podemos ejecutar Packer:
 
 Cuando este termine, debemos ver la imagen recién creada en Digitla Ocean en: [https://cloud.digitalocean.com/images/snapshots/droplets](https://cloud.digitalocean.com/images/snapshots/droplets "https://cloud.digitalocean.com/images/snapshots/droplets").
 
+![](/uploads/captura-realizada-el-2021-02-05-11-32-19.png)
+
 Esta imagen es la que usará terraform para crear el servidor  en la nube y ya cuenta con todas las dependencias  y la aplicación. Así que en cualquier proceso de restauración, podemos siempre crear nuevos servidores a partir de esta imagen.
 
 ### Terraform
