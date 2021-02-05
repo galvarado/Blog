@@ -54,9 +54,9 @@ Para usar este enfoque de manera eficiente debemos:
 
 1. Automatizar los despliegues de aplicaciones.
 2. Automatizar el aprovisionamiento rápido de servidores en un entorno de nube.
-3. Usar arquitectuas y aplicaciones que usan soluciones externas (datastoreo bases de datos) para manejar los estados, es decir, son stateless.
+3. Usar arquitecturas y aplicaciones que usan soluciones externas (datastore o bases de datos) para manejar los estados, es decir, son stateless.
 
-Todas las actualizaciones (deploy) deberán pasar por un procesoautomatizado. Sin una automatización bien probada, los despliegues suelen ser experiencias dolorosas, que provocan miedo y que consumen mucho tiempo. Sin embargo, cuando uno tiene confianza en la automatización y se puede estar seguro del estado de los sistemas en todo momento, los despliegues se vuelven simples y pueden realizarse muchas veces al día.
+Todas las actualizaciones (deploy) deberán pasar por un proceso automatizado. Sin una automatización bien probada, los despliegues suelen ser experiencias dolorosas, que provocan miedo y que consumen mucho tiempo. Sin embargo, cuando uno tiene confianza en la automatización y se puede estar seguro del estado de los sistemas en todo momento, los despliegues se vuelven simples y pueden realizarse muchas veces al día.
 
 > Algunas inversiones iniciales en la automatización de la infraestructura siembran las semillas que le permitirán cosechar grandes beneficios .
 
@@ -72,7 +72,7 @@ Las herramientas para esto son:
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
-Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberíamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y los templetas de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
+Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberíamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y los templates de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionaos y la desplegamos en la nube.
 
@@ -87,37 +87,46 @@ Creamos el playbook que aprovisiona el software:
     ---
     - name: 'Bootstrap server and Install application'
       hosts: default
+    
       tasks:
-        - name: "install nginx"
-          become: yes
-          apt:
-            name: 'nginx'
-            state: latest
-            update_cache: yes
-        - name: "create www directory"
+    
+        - name: Add epel-release repo
+          yum:
+            name: epel-release
+            state: present
+    
+        - name: Install nginx
+          yum:
+            name: nginx
+            state: present
+    
+        - name: "create html directory"
           become: yes
           file:
-            path: /var/www/app
+            path: /usr/share/nginx/html/app
             state: directory
             mode: '0775'
+    
         - name: delete default nginx site
           become: yes
           file:
-            path: /etc/nginx/sites-enabled/default
+            path: /etc/nginx/nginx.conf
             state: absent
-        - name: copy nginx site.conf
+          
+        - name: copy nginx nginx..conf
           become: yes
           template:
-            src: site.conf.j2
-            dest: /etc/nginx/sites-enabled/app
+            src: nginx.conf.j2
+            dest: /etc/nginx/nginx.conf
             owner: root
             group: root
             mode: '0644'
+    
         - name: "sync app"
           become: no
           synchronize:
-            src: app/
-            dest: /var/www/app
+            src: ../app/
+            dest: /usr/share/nginx/html/app
             archive: no
             checksum: yes
             recursive: yes
@@ -134,7 +143,7 @@ Este playbook instala nginx, realiza la configuración de la aplicación y sincr
 
 ### Packer
 
-Creamos un template de packer que construye una imagen de Ubuntu 20.04 en Digital Ocean. Indicamos como provisioner el playbook de ansible que instala las dependencias y la aplicación en sí.
+Creamos un template de packer que construye una imagen de Centos 8 en Digital Ocean. Indicamos como provisioner el playbook de ansible que instala las dependencias y la aplicación en sí.
 
 El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen y usa la región NCY1.
 
@@ -142,18 +151,20 @@ El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen 
       "variables": {
         "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
       },
+    
       "builders": [{
         "type": "digitalocean",
         "api_token": "{{user `do_api_token`}}",
         "size": "s-1vcpu-1gb",
         "region": "nyc1",
-        "image": "ubuntu-20-04-x64",
-        "droplet_name": "packer-ubuntu-2004-x64",
-        "snapshot_name": "ubuntu2004-packer-{{timestamp}}",
+        "image": "centos-8-x64",
+        "droplet_name": "packer-centos8-x64",
+        "snapshot_name": "image-by-packer-centos8-x64-{{timestamp}}",
         "ssh_username": "root",
         "private_networking": true,
         "monitoring": true
       }],
+    
       "provisioners": [{
         "type": "ansible",
         "playbook_file": "../ansible/bootstrap.yml"
@@ -173,7 +184,7 @@ Copiamos el token y lo exportamos como variable de entorno.
 Con esto, ya podemos ejecutar Packer:
 
     $ cd packer
-    $ packer build  ubuntu2004-digitalocean.json
+    $ packer build  centos8-digitalocean.json
 
 Cuando este termine, debemos ver la imagen recién creada en Digitla Ocean en:[https://cloud.digitalocean.com/images/snapshots/droplets](https://cloud.digitalocean.com/images/snapshots/droplets "https://cloud.digitalocean.com/images/snapshots/droplets").
 
