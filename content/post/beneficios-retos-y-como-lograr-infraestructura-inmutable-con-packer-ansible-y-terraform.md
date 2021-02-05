@@ -30,7 +30,7 @@ Cuando las pruebas sean satisfactorias, daremos de baja el servidor original y l
 
 ![](/uploads/infraestruturainmutable.png)
 
-**¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. ¿Qué pasaría si no logramos actualizar un paquete debido a algún error de red durante el despliegue? Podemos comenzar a tener "sucios" los ambientes. Sin embargo, si tenemos el proceso automatizado, crearemos nueva infraestructura y la reemplazaremos la primera, hasta estar seguros de que funciona el nuevo despliegue. 
+**¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. ¿Qué pasaría si no logramos actualizar un paquete debido a algún error de red durante el despliegue? Podemos comenzar a tener "sucios" los ambientes. Sin embargo, si tenemos el proceso automatizado, crearemos nueva infraestructura y la reemplazaremos la primera, hasta estar seguros de que funciona el nuevo despliegue.
 
 Obviamente hay algunas condiciones que debemos cumplir: si estamos manejando una base de datos, tendremos  que migrarla al nuevo servidor. Lo mejor sería sacarla del servidor actual para no eliminar la información persistente y lograr tener una aplicación stateless. Luego, simplemente apuntaremos al nuevo servidor de base de datos cuando creemos un nuevo servidor de aplicación.
 
@@ -80,7 +80,47 @@ Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a pa
 
 ### Packer
 
-### 
+    {
+
+      "variables": {
+
+        "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
+
+      },
+
+      "builders": [{
+
+        "type": "digitalocean",
+
+        "api_token": "{{user `do_api_token`}}",
+
+        "size": "s-1vcpu-1gb",
+
+        "region": "nyc1",
+
+        "image": "ubuntu-20-04-x64",
+
+        "droplet_name": "packer-ubuntu-2004-x64",
+
+        "snapshot_name": "ubuntu2004-packer-{{timestamp}}",
+
+        "ssh_username": "root",
+
+        "private_networking": true,
+
+        "monitoring": true
+
+      }],
+
+      "provisioners": [{
+
+        "type": "ansible",
+
+        "playbook_file": "../ansible/bootstrap.yml"
+
+      }]
+
+    }
 
 ### Ansible
 
@@ -92,15 +132,15 @@ Todo el código disponible en:
 
 El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo. Esto lo revisaremos en el próximo post.
 
-Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). 
+Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).
 
 Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
 
-Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) 
+Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
 
 Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
 
-Referencias: 
+Referencias:
 
 [https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
 
