@@ -211,6 +211,10 @@ Con esto, ya podemos ejecutar Packer:
     $ cd packer
     $ packer build  ubuntu2004-digitalocean.json
 
+Cuando este termine, debemos ver la imagen recién creada en Digitla Ocean en:[https://cloud.digitalocean.com/images/snapshots/droplets](https://cloud.digitalocean.com/images/snapshots/droplets "https://cloud.digitalocean.com/images/snapshots/droplets").
+
+Esta imagen es la que usará terraform para crear e servidor  en la nube.
+
 ### Terraform
 
 Creamos el archivo de variables. En la ruta raíz del código de terraform  creamos  un archivo llamado terraform.tfvars y colocamos las siguientes variables:
