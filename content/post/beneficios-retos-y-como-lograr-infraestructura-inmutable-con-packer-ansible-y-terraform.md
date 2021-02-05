@@ -207,7 +207,7 @@ Por ejemplo, para listar las llaves SSH en la cuenta:
 
     $ doctl  -t $DIGITALOCEAN_API_TOKEN compute ssh-key list
 
-Para listar los OS:
+Para listar las regiones:
 
     $ doctl  -t $DIGITALOCEAN_API_TOKEN compute  region list
 
