@@ -66,13 +66,13 @@ Esta es una herramienta de enorme importancia en el arsenal del desarrollo de so
 
 Las herramientas para esto son:
 
-1. Packer para construir una imagen de VM.
+1. Packer para construir una imagen de sel servidor a desplegar.
 2. Ansible para el aprovisionamiento de software e instalación de dependencias
 3. Terraform para orquestar y crear la infraestructura en la nube.
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
-Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberíamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y los templetes de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
+Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberíamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y los templetas de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionaos y la desplegamos en la nube.
 
@@ -226,18 +226,12 @@ Cuando terraform termine, debemos ver la aplicación desplegada:
 
 El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo. Esto lo revisaremos en el próximo post.
 
-Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/).
-
-Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
-
-Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
+Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/) Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
 
 Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
 
 Referencias:
 
-[https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
-
-[https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb](https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb "https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb")
-
-[https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8](https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8 "https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8")
+* [https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
+* [https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb](https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb "https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb")
+* [https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8](https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8 "https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8")
