@@ -84,7 +84,7 @@ Si quieres saber más de Infraestructura como código y conceptos de Terraform t
 
 Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
 
-Sobre conceptos de Packery como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) 
+Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) 
 
 Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
 
