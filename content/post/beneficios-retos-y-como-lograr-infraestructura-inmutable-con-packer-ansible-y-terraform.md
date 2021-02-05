@@ -66,7 +66,7 @@ Esta es una herramienta de enorme importancia en el arsenal del desarrollo de so
 
 Las herramientas para esto son:
 
-1. Packer para construir una imagen de sel servidor a desplegar.
+1. Packer para construir una imagen del servidor a desplegar.
 2. Ansible para el aprovisionamiento de software e instalación de dependencias
 3. Terraform para orquestar y crear la infraestructura en la nube.
 
