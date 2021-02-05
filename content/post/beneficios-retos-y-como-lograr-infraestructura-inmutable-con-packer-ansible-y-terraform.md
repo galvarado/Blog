@@ -12,7 +12,11 @@ En teoría, se puede aplicar cierto nivel de automatización a cualquier tarea d
 
 Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable.
 
-Todo el código del ejemplo en: [https://github.com/galvarado/immutable-infrastructure-demo](https://github.com/galvarado/immutable-infrastructure-demo "https://github.com/galvarado/immutable-infrastructure-demo")
+Todo el código del ejemplo en: 
+
+![](/uploads/captura-realizada-el-2021-02-05-12-37-36.png)
+
+[https://github.com/galvarado/immutable-infrastructure-demo](https://github.com/galvarado/immutable-infrastructure-demo "https://github.com/galvarado/immutable-infrastructure-demo")
 
 ¿Encuentras una mejora? Bienvenidas las PR =)
 
