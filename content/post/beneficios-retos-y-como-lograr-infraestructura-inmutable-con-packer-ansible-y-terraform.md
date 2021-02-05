@@ -33,7 +33,7 @@ Una máxima es:
 
 Sin embargo, si tenemos sistemas inmutables respaldados por procesos de automatización de uso frecuente, ya tenemos integrada la recuperación ante desastres. La infraestructura se vuelve desechable y podemos recrear entornos de forma rápida y sencilla.
 
-La infraestructura inmutable juega un papel muy importante en el desarrollo de software , ya que en lugar de cambiar parte de La infraestructura, ahora podemos crear una nueva con las nuevas características necesarias y desechar la antigua. La nube nos ha brindado las herramientas para hacerlo más barato y eficiente, de modo que todo tipo de sistemas, desde sitios web d pequeños hasta plataformas de medios internacionales a gran escala, puedan beneficiarse.
+La infraestructura inmutable juega un papel muy importante en el desarrollo de software, ya que en lugar de cambiar parte de la infraestructura, ahora podemos crear una nueva con las nuevas características necesarias y desechar la antigua. La nube nos ha brindado las herramientas para hacerlo más barato y eficiente, de modo que todo tipo de sistemas, desde sitios web d pequeños hasta plataformas de medios internacionales a gran escala, puedan beneficiarse.
 
 ## ¿Dónde se puede aplicar la infraestructura inmutable? ¿Cuáles son los inconvenientes ?
 
