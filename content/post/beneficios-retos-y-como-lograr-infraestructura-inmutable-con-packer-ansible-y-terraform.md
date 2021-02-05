@@ -6,18 +6,17 @@ tags = ["devops", "cloud", "best practices"]
 title = "Beneficios y retos de la Infraestructura Inmutable + Tutorial: Packer, Ansible y Terraform"
 
 +++
-
 En los últimos años, la automatización se ha vuelto clave para la entrega de un producto de alta calidad.La clave aquí es: hazlo una vez, hazlo bien, hazlo replicable
 
 En teoría, se puede aplicar cierto nivel de automatización a cualquier tarea de TI. Por lo tanto, la automatización puede incorporarse y aplicarse a cualquier elemento, desde la la red hasta la infraestructura, la implementación en la nube, los sistemas operativos, la gestión de la configuración y el despliegue de aplicaciones.
 
-Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable. 
+Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable.
 
 ## Infraestructura Inmutable vs Mutable
 
 En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores acceden a los servidores, actualizan paquetes , modifican los archivos de configuración e implementar nuevo código. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación.
 
-Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los nuevos cambios para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran. 
+Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los nuevos cambios para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
 
 ¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? Esa es la distinción fundamental entre infraestructura mutable e inmutable.
 
@@ -53,15 +52,17 @@ Esta es una herramienta de enorme importancia en el arsenal del desarrollo de so
 
 ## Estoy convencido ¿Cómo lo aplico?
 
-Las herramientas para esto son:   
-  
-Packer para construir una imagen de VM.  
-Ansible para el aprovisionamiento de software e instalación de dependencias   
-Terraform para orquestar y crear la infraestructura en la nube.
+Las herramientas para esto son:
+
+1. Packer para construir una imagen de VM.
+2. Ansible para el aprovisionamiento de software e instalación de dependencias
+3. Terraform para orquestar y crear la infraestructura en la nube.
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
-Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberiamos entonces encontra un directorio con el template de packer, para construir la imagen del servidor, playbooks de ansible que instalarán cualquier dependencia de la aplicación y los archivos de terraform que nos permiten crear la infraestructura en la nube.
+Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberiamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y los templetes de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
+
+Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionaos y la desplegamos en la nube.
 
 Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a paso a continuación:
 
@@ -73,7 +74,7 @@ Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a pa
 
 ### 
 
-### Terraform 
+### Terraform
 
 Todo el código disponible en:
 
