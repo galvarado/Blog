@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2021-02-05T05:00:00Z
-draft = true
 image = ""
 tags = ["devops", "cloud", "best practices"]
 title = "Beneficios, retos y como lograr Infraestructura Inmutable con Packer, Ansible y Terraform"
@@ -25,8 +24,7 @@ La diferencia más fundamental entre la infraestructura mutable e inmutable est�
 
 ¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? **Esa es la distinción fundamental entre infraestructura mutable e inmutable.**
 
-##   
-¿Cuáles son los beneficios de la infraestructura inmutable?
+## ¿Cuáles son los beneficios de la infraestructura inmutable?
 
 Respuesta ráida: La confiabilidad. Ya sea que esté se esté desplegando contenido en sistemas bare metal o en la nube en servicios como AWS, GCP oAzure, siempre existe el riesgo de que algo falle y las plataformas deban restaurarse rápidamente. En estas situaciones, tener copias de seguridad está bien, pero normalmente el proceso para recuperarlas no está tan bien probado como debería y, puede llevar muchísimo tiempo.
 
@@ -51,3 +49,5 @@ Todas las actualizaciones (deploy) deberán pasar por un proceso de automatizado
 Esta es una herramienta de enorme importancia en el arsenal del desarrollo de software moderno.
 
 ## Estoy convencido ¿Cómo lo aplico?
+
+![](/uploads/infraestructurainmutableansiblepackerterraform.png)
