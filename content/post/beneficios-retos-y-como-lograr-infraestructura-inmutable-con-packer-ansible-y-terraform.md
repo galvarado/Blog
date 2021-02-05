@@ -180,7 +180,7 @@ El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen 
       }]
     }
 
-Para aprovisionar la imágenes es necesario contar con una cuenta en DigitalOcean. Una vez tengamos la cuenta hay que darle acceso a Packer para que pueda crear la imagen por nosotros.
+Para aprovisionar la imágen es necesario contar con una cuenta en DigitalOcean. Una vez tengamos la cuenta hay que darle acceso a Packer para que pueda crear la imagen por nosotros.
 
 Para esto es necesario generar un token, ir a la página [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens "https://cloud.digitalocean.com/account/api/tokens") y crear un token:
 
