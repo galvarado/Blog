@@ -1,7 +1,7 @@
 +++
 comments = "true"
 date = 2021-02-05T05:00:00Z
-image = ""
+image = "/uploads/ansibleterraforminmutable.png"
 tags = ["devops", "cloud", "best practices"]
 title = "Beneficios, retos y como lograr Infraestructura Inmutable con Packer, Ansible y Terraform"
 
@@ -50,4 +50,28 @@ Esta es una herramienta de enorme importancia en el arsenal del desarrollo de so
 
 ## Estoy convencido ¿Cómo lo aplico?
 
+Las herramientas par esto son: Packer para construir una imagen de VM, Ansible para el aprovisionamiento de software e instalación de dependencias y Terraform para orquestar y crear la infraestructura en la nube.
+
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
+
+Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberiamos entonces encontra un directorio con el template de packer, para construir la imagen del servidor, playbooks de ansible que instalarán cualquier dependencia de la aplicación y los archivos de terraform que nos permiten crear la infraestructura en la nube.
+
+Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a paso a continuación:
+
+### Packer
+
+### 
+
+### Ansible
+
+### 
+
+### Terraform 
+
+Todo el código disponible en:
+
+El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo.
+
+Si te pareció útil, por favor comparte =)
+
+Referencias:
