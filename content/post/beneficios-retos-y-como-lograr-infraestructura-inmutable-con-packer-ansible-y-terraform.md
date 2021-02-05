@@ -86,107 +86,93 @@ Creamos el playbook que aprovisiona el software:
 
 \- name: 'Bootstrap server and Install application'
 
-  hosts: default
+hosts: default
 
-  become: true
+become: true
 
-  tasks:
+tasks:
 
     - name: Update and upgrade apt packages
-
       apt:
-
         name: nginx
-
         state: latest
-
         update_cache: yes
-
-        upgrade: yes
-
-  
-
+        
     - name: start nginx
-
       service:
-
           name: nginx
-
           state: started
-
+          
     - name: "Create www directory"
-
       file:
-
         path: /var/www/app
-
         state: directory
-
+    
         mode: '0775'
-
+    
         owner: "{{ ansible_user }}"
-
+    
         group: "{{ ansible_user }}"
-
+    
     - name: Delete default nginx site
-
+    
       file:
-
+    
         path: /etc/nginx/sites-enabled/default
-
+    
         state: absent
-
+    
       
-
+    
     - name: Copy nginx site.conf
-
+    
       template:
-
+    
         src: site.conf.j2
-
+    
         dest: /etc/nginx/sites-enabled/app
-
+    
         owner: root
-
+    
         group: root
-
+    
         mode: '0644'
-
+    
     - name: "Sync app code"
-
+    
       synchronize:
-
+    
         src: ../app/
-
+    
         dest: /var/www/app
-
+    
         archive: no
-
+    
         checksum: yes
-
+    
         recursive: yes
-
+    
         delete: yes
-
+    
       notify: restart nginx
-
+    
       become: no
 
-  handlers:
+handlers:
 
     - name: Restart nginx
-
+    
       service:
-
+    
         name: nginx
-
+    
         state: restarted
 
 ### Packer
 
-Creamos un template de packer que construye una imagen de Ubuntu 20.04 en Digital Ocean. Indicamos como provisioner el playbook de ansible que instala las dependencias y la aplicación en sí. 
+Creamos un template de packer que construye una imagen de Ubuntu 20.04 en Digital Ocean. Indicamos como provisioner el playbook de ansible que instala las dependencias y la aplicación en sí.
 
-El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen y usa la región NCY1. 
+El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen y usa la región NCY1.
 
     {
       "variables": {
@@ -220,14 +206,56 @@ Copiamos el token y lo exportamos como variable de entorno.
 
     export DIGITALOCEAN_API_TOKEN=4059d45e5a75de0f24fe8f2ec678062e5cf8d66db885cdf4826befb30557d2gh
 
- Con esto, ya podemos ejecutar Packer:
+Con esto, ya podemos ejecutar Packer:
 
     $ cd packer
     $ packer build  ubuntu2004-digitalocean.json
 
 ### Terraform
 
-Todo el código disponible en:
+Creamos el archivo de variables. En la ruta raíz del código de terraform  creamos  un archivo llamado terraform.tfvars y colocamos las siguientes variables:
+
+    do_token: must have the token created in the previous step.
+    droplet_ssh_key_id: The id of the key in DigitalOcean that will be used to connect to the virtual machine
+    droplet_name: The name of the droplet in DigitalOcean
+    droplet_size: The size of the droplet to use
+    droplet_region: The region where the droplet will be deployed
+
+  
+Para obtener los valores de la región, la clave ssh, el nombre de la imagen y el tamaño de la máquina virtual, instala el cliente de línea de comandos de Digital Ocean: [https://www.digitalocean.com/docs/apis-clis/doctl/](https://www.digitalocean.com/docs/apis-clis/doctl/ "https://www.digitalocean.com/docs/apis-clis/doctl/")
+
+Por ejemplo, para listar las llaves SSH en la cuenta:
+
+    $ doctl  -t $DIGITALOCEAN_API_TOKEN compute ssh-key list
+
+Para listar los OS:
+
+    $ doctl  -t $DIGITALOCEAN_API_TOKEN compute  region list
+
+Para listar los tamaños de VM:
+
+    $ doctl  -t $DIGITALOCEAN_API_TOKEN compute  size list
+
+Estos son los valores que también está usando packer. 
+
+Nota: El tamaño de la VM puede diferir entre el tamaño que deseamos que use packer para construir la imagen  y el que será el tamaño final de la VM ya desplegada.
+
+**terraform.tfvars**
+
+    do_token = "xxxdfc7f164a7001f76048313b0970bd46092f20569b9780ac242b00c9a7axxx"
+    droplet_ssh_key_id = "1632017"
+    droplet_name = "server-by-terraform"
+    droplet_size = "s-1vcpu-1gb"
+    droplet_region = "nyc1"
+
+Para desplegar la VM con la imagen creada por Packer y aprovisionada por Ansible:
+
+    $ cd terraform
+    $ terraform init
+    $ terraform plan
+    $ terraform apply
+
+Cuando terraform termine, debemos ver la aplicación desplegada:
 
 El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo. Esto lo revisaremos en el próximo post.
 
