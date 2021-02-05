@@ -62,7 +62,7 @@ Para usar este enfoque de manera eficiente debemos:
 
 Todas las actualizaciones (deploy) deberán pasar por un proceso automatizado. Sin una automatización bien probada, los despliegues suelen ser experiencias dolorosas, que provocan miedo y que consumen mucho tiempo. Sin embargo, cuando uno tiene confianza en la automatización y se puede estar seguro del estado de los sistemas en todo momento, los despliegues se vuelven simples y pueden realizarse muchas veces al día.
 
-> Algunas inversiones iniciales en la automatización de la infraestructura siembran las semillas que le permitirán cosechar grandes beneficios .
+> Algunas inversiones iniciales en la automatización de la infraestructura siembran las semillas que  permitirán cosechar grandes beneficios en tiempo y esfuerzo.
 
 Esta es una herramienta de enorme importancia en el arsenal del desarrollo de software moderno.
 
