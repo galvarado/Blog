@@ -114,6 +114,7 @@ Creamos el playbook que aprovisiona el software:
           service:
             name: nginx
             state: started
+            enabled: yes
           become: yes
     
         - name: "create html directory"
