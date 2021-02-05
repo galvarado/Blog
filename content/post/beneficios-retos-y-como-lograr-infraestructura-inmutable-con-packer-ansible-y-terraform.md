@@ -6,17 +6,15 @@ tags = ["devops", "cloud", "best practices"]
 title = "Beneficios, retos y como lograr Infraestructura Inmutable con Packer, Ansible y Terraform"
 
 +++
-En los últimos años, la automatización se ha vuelto clave para la entrega de un producto de alta calidad, no solo en el desarrollo de software sino también para muchas otras industrias. La clave aquí es: hazlo una vez, hazlo bien, hazlo replicable.
+Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable. 
 
-La automatización consiste en el uso de sistemas de software para crear instrucciones y procesos repetibles a fin de reemplazar o reducir la interacción humana con los sistemas de TI.
+En los últimos años, la automatización se ha vuelto clave para la entrega de un producto de alta calidad.La clave aquí es: hazlo una vez, hazlo bien, hazlo replicable
 
 En teoría, se puede aplicar cierto nivel de automatización a cualquier tarea de TI. Por lo tanto, la automatización puede incorporarse y aplicarse a cualquier elemento, desde la la red hasta la infraestructura, la implementación en la nube, los sistemas operativos, la gestión de la configuración y el despliegue de aplicaciones.
 
-Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable.
-
 ## Infraestructura Inmutable vs Mutable
 
-En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores acceden a los servidores, actualizan paquetes , modifican los archivos de configuración e implementarn nuevo código. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación.
+En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores acceden a los servidores, actualizan paquetes , modifican los archivos de configuración e implementar nuevo código. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación.
 
 Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los cambios apropiados para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
 
@@ -26,11 +24,11 @@ La diferencia más fundamental entre la infraestructura mutable e inmutable est�
 
 ## ¿Cuáles son los beneficios de la infraestructura inmutable?
 
-Respuesta ráida: La confiabilidad. Ya sea que esté se esté desplegando contenido en sistemas bare metal o en la nube en servicios como AWS, GCP oAzure, siempre existe el riesgo de que algo falle y las plataformas deban restaurarse rápidamente. En estas situaciones, tener copias de seguridad está bien, pero normalmente el proceso para recuperarlas no está tan bien probado como debería y, puede llevar muchísimo tiempo.
+Respuesta rápida: La confiabilidad. Ya sea que esté se esté desplegando contenido en sistemas bare metal o en la nube en servicios como AWS, GCP oAzure, siempre existe el riesgo de que algo falle y las plataformas deban restaurarse rápidamente. En estas situaciones, tener copias de seguridad está bien, pero normalmente el proceso para recuperarlas no está tan bien probado como debería y, puede llevar muchísimo tiempo.
 
 Una máxima es:
 
-> Los respaldos funcionan, hasta que nos necesitas restaurar.
+> Los respaldos funcionan, hasta que los necesitas restaurar.
 
 Sin embargo, si tenemos sistemas inmutables respaldados por procesos de automatización de uso frecuente, ya tenemos integrada la recuperación ante desastres. La infraestructura se vuelve desechable y podemos recrear entornos de forma rápida y sencilla.
 
