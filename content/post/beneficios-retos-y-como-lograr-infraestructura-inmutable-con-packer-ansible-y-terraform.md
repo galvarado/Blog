@@ -12,6 +12,10 @@ En teoría, se puede aplicar cierto nivel de automatización a cualquier tarea d
 
 Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable.
 
+Todo el código del ejemplo en: [https://github.com/galvarado/immutable-infrastructure-demo](https://github.com/galvarado/immutable-infrastructure-demo "https://github.com/galvarado/immutable-infrastructure-demo")
+
+¿Encuentras una mejora? Bienvenidas las PR =)
+
 ## Infraestructura Inmutable vs Mutable
 
 En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores acceden a los servidores, actualizan paquetes , modifican los archivos de configuración e implementar nuevo código. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación.
