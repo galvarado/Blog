@@ -76,7 +76,7 @@ Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En e
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionaos y la desplegamos en la nube.
 
-Puedes clonar el ejemplo completo [en el siguiente repositorio](https://github.com/galvarado/immutable-infrastructure-demo). 
+Puedes clonar el ejemplo completo [en el siguiente repositorio](https://github.com/galvarado/immutable-infrastructure-demo).
 
 Lo explico paso a paso a continuación:
 
@@ -84,91 +84,53 @@ Lo explico paso a paso a continuación:
 
 Creamos el playbook que aprovisiona el software:
 
-\---
+    ---
+    - name: 'Bootstrap server and Install application'
+      hosts: default
+      tasks:
+        - name: "install nginx"
+          become: yes
+          apt:
+            name: 'nginx'
+            state: latest
+            update_cache: yes
+        - name: "create www directory"
+          become: yes
+          file:
+            path: /var/www/app
+            state: directory
+            mode: '0775'
+        - name: delete default nginx site
+          become: yes
+          file:
+            path: /etc/nginx/sites-enabled/default
+            state: absent
+        - name: copy nginx site.conf
+          become: yes
+          template:
+            src: site.conf.j2
+            dest: /etc/nginx/sites-enabled/app
+            owner: root
+            group: root
+            mode: '0644'
+        - name: "sync app"
+          become: no
+          synchronize:
+            src: app/
+            dest: /var/www/app
+            archive: no
+            checksum: yes
+            recursive: yes
+            delete: yes
+          notify: restart nginx
+    
+      handlers:
+        - name: restart nginx
+          service:
+            name: nginx
+            state: restarted
 
-\- name: 'Bootstrap server and Install application'
-
-hosts: default
-
-become: true
-
-tasks:
-
-    - name: Update and upgrade apt packages
-      apt:
-        name: nginx
-        state: latest
-        update_cache: yes
-        
-    - name: start nginx
-      service:
-          name: nginx
-          state: started
-          
-    - name: "Create www directory"
-      file:
-        path: /var/www/app
-        state: directory
-    
-        mode: '0775'
-    
-        owner: "{{ ansible_user }}"
-    
-        group: "{{ ansible_user }}"
-    
-    - name: Delete default nginx site
-    
-      file:
-    
-        path: /etc/nginx/sites-enabled/default
-    
-        state: absent
-    
-      
-    
-    - name: Copy nginx site.conf
-    
-      template:
-    
-        src: site.conf.j2
-    
-        dest: /etc/nginx/sites-enabled/app
-    
-        owner: root
-    
-        group: root
-    
-        mode: '0644'
-    
-    - name: "Sync app code"
-    
-      synchronize:
-    
-        src: ../app/
-    
-        dest: /var/www/app
-    
-        archive: no
-    
-        checksum: yes
-    
-        recursive: yes
-    
-        delete: yes
-    
-      notify: restart nginx
-    
-      become: no
-
-handlers:
-
-    - name: Restart nginx
-    
-      service:
-    
-        name: nginx
-    
-        state: restarted
+Este playbook instala nginx, realiza la configuración de la aplicación y sincroniza el código de la misma en el servidor.
 
 ### Packer
 
@@ -227,7 +189,6 @@ Creamos el archivo de variables. En la ruta raíz del código de terraform  crea
     droplet_size: The size of the droplet to use
     droplet_region: The region where the droplet will be deployed
 
-  
 Para obtener los valores de la región, la clave ssh, el nombre de la imagen y el tamaño de la máquina virtual, instala el cliente de línea de comandos de Digital Ocean: [https://www.digitalocean.com/docs/apis-clis/doctl/](https://www.digitalocean.com/docs/apis-clis/doctl/ "https://www.digitalocean.com/docs/apis-clis/doctl/")
 
 Por ejemplo, para listar las llaves SSH en la cuenta:
@@ -242,7 +203,7 @@ Para listar los tamaños de VM:
 
     $ doctl  -t $DIGITALOCEAN_API_TOKEN compute  size list
 
-Estos son los valores que también está usando packer. 
+Estos son los valores que también está usando packer.
 
 Nota: El tamaño de la VM puede diferir entre el tamaño que deseamos que use packer para construir la imagen  y el que será el tamaño final de la VM ya desplegada.
 
