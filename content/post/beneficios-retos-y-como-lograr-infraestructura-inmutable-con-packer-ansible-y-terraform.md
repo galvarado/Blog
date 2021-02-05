@@ -273,6 +273,8 @@ Cuando terraform termine, veremos el servidor recién creado:
 
 Y debemos ver la aplicación desplegada en la IP que obtuvimos:
 
+![](/uploads/screenshot-1.png)
+
 El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo, para no ejecutar los comandos uno a uno. Esto lo revisaremos en el próximo post.
 
 Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
