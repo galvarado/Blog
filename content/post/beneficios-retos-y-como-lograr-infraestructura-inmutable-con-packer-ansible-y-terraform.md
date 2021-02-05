@@ -72,7 +72,7 @@ Las herramientas para esto son:
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
-Por lo tanto, en nuestro proyecto, deberemos integrar estas 3 herramientas. En el repositorio de código del proyecto deberíamos entonces encontrar un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y  templates de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
+Por lo tanto, en los proyectos donde queramos ir por el paradigma de la infraetructura inmutable deberiamos integrar estas 3 herramientas. En el repositorio deberíamos tendremos un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y  templates de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionamos y la desplegamos en la nube.
 
