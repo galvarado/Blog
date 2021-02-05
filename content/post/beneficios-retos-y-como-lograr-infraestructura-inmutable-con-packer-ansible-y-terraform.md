@@ -39,7 +39,7 @@ La infraestructura inmutable juega un papel muy importante en el desarrollo de s
 
 La automatización inspira confianza tanto en el software como en la arquitectura en la que se ejecuta. Se puede aplicar en todas partes, desde el arranque del entorno de desarrollo y los sistemas de integración continua hasta los sistemas eb producción. Con una planificación cuidadosa, podemos recrear sistemas completos o aplicar actualizaciones a entornos con un solo clic y reproducir de forma fiable los mismos resultados una y otra vez.
 
-Para usar este enfoque de manera eficiente debemos automatizarlos despliegues de aplicaciones, también debemos automatizar el aprovisionamiento rápido de servidores en un entorno de nube y  generalmente, las aplicaciones usan soluciones externas (datastore) para manejar los estados (stateless).
+Para usar este enfoque de manera eficiente debemos automatizar los despliegues de aplicaciones, también debemos automatizar el aprovisionamiento rápido de servidores en un entorno de nube y  generalmente, las aplicaciones usan soluciones externas (datastore) para manejar los estados (stateless).
 
 Todas las actualizaciones (deploy) deberán pasar por un proceso de automatizado. Sin una automatización bien probada, los despliegues suelen ser experiencias dolorosas, que provocan miedo y que consumen mucho tiempo. Sin embargo, cuando uno tiene confianza en la automatización y se puede estar seguro del estado de los sistemas en todo momento, los despliegues se vuelven simples y pueden realizarse muchas veces al día.
 
