@@ -37,7 +37,7 @@ La infraestructura inmutable juega un papel muy importante en el desarrollo de s
 
 ## ¿Dónde se puede aplicar la infraestructura inmutable? ¿Cuáles son los inconvenientes ?
 
-La automatización inspira confianza tanto en el software como en la arquitectura en la que se ejecuta. Se puede aplicar en todas partes, desde el arranque del entorno de desarrollo y los sistemas de integración continua hasta los sistemas de aplicaciones web de producción y los planes de recuperación ante desastres. Con una planificación cuidadosa, podemos recrear sistemas completos o aplicar actualizaciones a entornos con un solo clic y reproducir de forma fiable los mismos resultados una y otra vez.
+La automatización inspira confianza tanto en el software como en la arquitectura en la que se ejecuta. Se puede aplicar en todas partes, desde el arranque del entorno de desarrollo y los sistemas de integración continua hasta los sistemas eb producción. Con una planificación cuidadosa, podemos recrear sistemas completos o aplicar actualizaciones a entornos con un solo clic y reproducir de forma fiable los mismos resultados una y otra vez.
 
 Para usar este enfoque de manera eficiente debemos automatizarlos despliegues de aplicaciones, también debemos automatizar el aprovisionamiento rápido de servidores en un entorno de nube y  generalmente, las aplicaciones usan soluciones externas (datastore) para manejar los estados (stateless).
 
