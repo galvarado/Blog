@@ -3,7 +3,7 @@ comments = "true"
 date = 2021-02-05T05:00:00Z
 image = "/uploads/terraformansibleinmutable.png"
 tags = ["devops", "cloud", "best practices"]
-title = "Beneficios, retos y como lograr Infraestructura Inmutable con Packer, Ansible y Terraform"
+title = "Beneficios y retos de la Infraestructura Inmutable + Tutorial: Packer, Ansible y Terraform"
 
 +++
 
