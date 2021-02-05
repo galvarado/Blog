@@ -195,6 +195,56 @@ Esta imagen es la que usará terraform para crear el servidor  en la nube y ya c
 
 ### Terraform
 
+En el template de terraform que crea el servidor, indicamos una expresión regular para que este busque la imagen que recién creo Packer.
+
+    variable "do_token" {}
+
+    variable "droplet_ssh_key_id" {}
+
+    variable "droplet_name" {}
+
+    variable "droplet_size" {}
+
+    variable "droplet_region" {}
+
+    # Configure the DigitalOcean Provider
+
+    provider "digitalocean" {
+
+      token = var.do_token
+
+    }
+
+    # Get snapshot name
+
+    data "digitalocean_droplet_snapshot" "ubuntu2004-packer-image" {
+
+      name_regex  = "^image-by-packer-centos8"
+
+      region      = "nyc1"
+
+      most_recent = true
+
+    }
+
+    # Create a web server
+
+    resource "digitalocean_droplet" "server-by-terrraform" {
+
+      image      = "${data.digitalocean_droplet_snapshot.ubuntu2004-packer-image.id}"
+
+      name       = var.droplet_name
+
+      region     = var.droplet_region
+
+      size       = var.droplet_size
+
+      monitoring = "true"
+
+      ssh_keys   = [var.droplet_ssh_key_id]
+
+    }
+
 Creamos el archivo de variables. En la ruta raíz del código de terraform  creamos  un archivo llamado terraform.tfvars y colocamos las siguientes variables:
 
     do_token: must have the token created in the previous step.
