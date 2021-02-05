@@ -76,6 +76,8 @@ Por lo tanto, en los proyectos donde queramos ir por el paradigma de la infraetr
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionamos y la desplegamos en la nube.
 
+Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/) Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
+
 Puedes clonar el ejemplo completo [en el siguiente repositorio](https://github.com/galvarado/immutable-infrastructure-demo).
 
 Lo explico paso a paso a continuación:
@@ -140,7 +142,6 @@ Creamos el playbook que aprovisiona el software:
             name: nginx
             state: restarted
           become: yes
-    
 
 Este playbook instala nginx, realiza la configuración de la aplicación, sincroniza el código de la misma en el servidor y reinicia el servicio de nginx.
 
@@ -198,51 +199,31 @@ Esta imagen es la que usará terraform para crear el servidor  en la nube y ya c
 En el template de terraform que crea el servidor, indicamos una expresión regular para que este busque la imagen que recién creo Packer.
 
     variable "do_token" {}
-
     variable "droplet_ssh_key_id" {}
-
     variable "droplet_name" {}
-
     variable "droplet_size" {}
-
     variable "droplet_region" {}
-
+    
     # Configure the DigitalOcean Provider
-
     provider "digitalocean" {
-
       token = var.do_token
-
     }
-
+    
     # Get snapshot name
-
     data "digitalocean_droplet_snapshot" "ubuntu2004-packer-image" {
-
       name_regex  = "^image-by-packer-centos8"
-
       region      = "nyc1"
-
       most_recent = true
-
     }
-
+    
     # Create a web server
-
     resource "digitalocean_droplet" "server-by-terrraform" {
-
       image      = "${data.digitalocean_droplet_snapshot.ubuntu2004-packer-image.id}"
-
       name       = var.droplet_name
-
       region     = var.droplet_region
-
       size       = var.droplet_size
-
       monitoring = "true"
-
       ssh_keys   = [var.droplet_ssh_key_id]
-
     }
 
 Creamos el archivo de variables. En la ruta raíz del código de terraform  creamos  un archivo llamado terraform.tfvars y colocamos las siguientes variables:
@@ -286,11 +267,13 @@ Para desplegar la VM con la imagen creada por Packer y aprovisionada por Ansible
     $ terraform plan
     $ terraform apply
 
-Cuando terraform termine, debemos ver la aplicación desplegada:
+Cuando terraform termine, veremos el servidor recién creado:
 
-El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo. Esto lo revisaremos en el próximo post.
+![](/uploads/captura-realizada-el-2021-02-05-11-35-50.png)
 
-Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/) Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
+Y debemos ver la aplicación desplegada en la IP que obtuvimos:
+
+El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo, para no ejecutar los comandos uno a uno. Esto lo revisaremos en el próximo post.
 
 Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
 
