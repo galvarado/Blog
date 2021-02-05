@@ -30,9 +30,9 @@ Cuando las pruebas sean satisfactorias, removeremos el servidor original.
 
 ![](/uploads/infrainmutable.png)
 
-¿Tomamos la infraestructura existente y tratamos de actualizarla en su lugar, o tomamos la infraestructura existente, creamos una nueva infraestructura y destruimos lo existente en su lugar? Esa es la distinción fundamental entre infraestructura mutable e inmutable.
+**¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. ¿Que pasaría si no logramos actualizar un paquete debido a algun erro en el despliegue? Podemos comenzar a tener "sucios" los ambientes. Sin embargo, si tenemos el proceso automatizado, crearemos nueva infraetructura y la reemplazaremos la primera, hasta estar seguros de que funciona el nuevo despliegue. 
 
-**¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. Obviamente hay algunas condiciones que debemos cumplir, que explico más adelante.
+Obviamente hay algunas condiciones que debemos cumplir, que explico más adelante.
 
 ## ¿Cuáles son los beneficios de la infraestructura inmutable?
 
