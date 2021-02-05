@@ -53,7 +53,11 @@ Esta es una herramienta de enorme importancia en el arsenal del desarrollo de so
 
 ## Estoy convencido ¿Cómo lo aplico?
 
-Las herramientas par esto son: Packer para construir una imagen de VM, Ansible para el aprovisionamiento de software e instalación de dependencias y Terraform para orquestar y crear la infraestructura en la nube.
+Las herramientas para esto son:   
+  
+Packer para construir una imagen de VM.  
+Ansible para el aprovisionamiento de software e instalación de dependencias   
+Terraform para orquestar y crear la infraestructura en la nube.
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
