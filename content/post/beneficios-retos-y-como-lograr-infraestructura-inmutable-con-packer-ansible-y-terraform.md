@@ -78,8 +78,20 @@ Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a pa
 
 Todo el código disponible en:
 
-El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo.
+El siguiente paso es realizar un pipeline con una herramienta de CI/CD como Jenkins que maneje todo el flujo. Esto lo revisaremos en el próximo post.
 
-Si te pareció útil, por favor comparte =)
+Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). 
 
-Referencias:
+Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
+
+Sobre conceptos de Packery como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) 
+
+Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir en los comentarios.
+
+Referencias: 
+
+[https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
+
+[https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb](https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb "https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb")
+
+[https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8](https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8 "https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8")
