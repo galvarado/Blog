@@ -150,7 +150,6 @@ El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen 
       "variables": {
         "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
       },
-    
       "builders": [{
         "type": "digitalocean",
         "api_token": "{{user `do_api_token`}}",
@@ -163,7 +162,6 @@ El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen 
         "private_networking": true,
         "monitoring": true
       }],
-    
       "provisioners": [{
         "type": "ansible",
         "playbook_file": "../ansible/bootstrap.yml"
