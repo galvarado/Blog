@@ -78,6 +78,8 @@ Para poner en práctica los conceptos, desplegaremos un sitio sencillo en Digita
 
 Si quieres saber más de Infraestructura como código y conceptos de Terraform te recomiendo este post: [Tutorial: Infraestructura como código con Terraform](https://galvarado.com.mx/post/tutorial-infraestructura-como-c%C3%B3digo-con-terraform/). Sobre Ansible, este post explica como [automatizar toda la instalación de Wordpress con Ansible.](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/) Sobre conceptos de Packer y como se puede automatizar la construcción de imágenes [puedes leer este post.](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/)
 
+## Tutorial
+
 Puedes clonar el ejemplo completo [en el siguiente repositorio](https://github.com/galvarado/immutable-infrastructure-demo).
 
 Lo explico paso a paso a continuación:
