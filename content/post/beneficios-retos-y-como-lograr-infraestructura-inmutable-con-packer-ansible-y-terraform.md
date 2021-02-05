@@ -142,7 +142,7 @@ Creamos el playbook que aprovisiona el software:
           become: yes
     
 
-Este playbook instala nginx, realiza la configuración de la aplicación y sincroniza el código de la misma en el servidor.
+Este playbook instala nginx, realiza la configuración de la aplicación, sincroniza el código de la misma en el servidor y reinicia el servicio de nginx.
 
 ### Packer
 
