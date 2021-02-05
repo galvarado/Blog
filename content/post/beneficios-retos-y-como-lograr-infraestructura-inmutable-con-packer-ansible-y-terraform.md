@@ -78,53 +78,152 @@ Para poner en práctica los conceptos, desplegaremos un sitio sencillo en Digita
 
 Puedes ver un ejemplo completo en el siguiente repositorio. Lo explico paso a paso a continuación:
 
-### Packer
-
-    {
-
-      "variables": {
-
-        "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
-
-      },
-
-      "builders": [{
-
-        "type": "digitalocean",
-
-        "api_token": "{{user `do_api_token`}}",
-
-        "size": "s-1vcpu-1gb",
-
-        "region": "nyc1",
-
-        "image": "ubuntu-20-04-x64",
-
-        "droplet_name": "packer-ubuntu-2004-x64",
-
-        "snapshot_name": "ubuntu2004-packer-{{timestamp}}",
-
-        "ssh_username": "root",
-
-        "private_networking": true,
-
-        "monitoring": true
-
-      }],
-
-      "provisioners": [{
-
-        "type": "ansible",
-
-        "playbook_file": "../ansible/bootstrap.yml"
-
-      }]
-
-    }
-
 ### Ansible
 
-### 
+Creamos el playbook que aprovisiona el software:
+
+\---
+
+\- name: 'Bootstrap server and Install application'
+
+  hosts: default
+
+  become: true
+
+  tasks:
+
+    - name: Update and upgrade apt packages
+
+      apt:
+
+        name: nginx
+
+        state: latest
+
+        update_cache: yes
+
+        upgrade: yes
+
+  
+
+    - name: start nginx
+
+      service:
+
+          name: nginx
+
+          state: started
+
+    - name: "Create www directory"
+
+      file:
+
+        path: /var/www/app
+
+        state: directory
+
+        mode: '0775'
+
+        owner: "{{ ansible_user }}"
+
+        group: "{{ ansible_user }}"
+
+    - name: Delete default nginx site
+
+      file:
+
+        path: /etc/nginx/sites-enabled/default
+
+        state: absent
+
+      
+
+    - name: Copy nginx site.conf
+
+      template:
+
+        src: site.conf.j2
+
+        dest: /etc/nginx/sites-enabled/app
+
+        owner: root
+
+        group: root
+
+        mode: '0644'
+
+    - name: "Sync app code"
+
+      synchronize:
+
+        src: ../app/
+
+        dest: /var/www/app
+
+        archive: no
+
+        checksum: yes
+
+        recursive: yes
+
+        delete: yes
+
+      notify: restart nginx
+
+      become: no
+
+  handlers:
+
+    - name: Restart nginx
+
+      service:
+
+        name: nginx
+
+        state: restarted
+
+### Packer
+
+Creamos un template de packer que construye una imagen de Ubuntu 20.04 en Digital Ocean. Indicamos como provisioner el playbook de ansible que instala las dependencias y la aplicación en sí. 
+
+El template define una VM de 1vcpu y 1GB RAM para la construcción de la imagen y usa la región NCY1. 
+
+    {
+      "variables": {
+        "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}"
+      },
+      "builders": [{
+        "type": "digitalocean",
+        "api_token": "{{user `do_api_token`}}",
+        "size": "s-1vcpu-1gb",
+        "region": "nyc1",
+        "image": "ubuntu-20-04-x64",
+        "droplet_name": "packer-ubuntu-2004-x64",
+        "snapshot_name": "ubuntu2004-packer-{{timestamp}}",
+        "ssh_username": "root",
+        "private_networking": true,
+        "monitoring": true
+      }],
+      "provisioners": [{
+        "type": "ansible",
+        "playbook_file": "../ansible/bootstrap.yml"
+      }]
+    }
+
+Para aprovisionar la imagenenes necesario contar con una cuenta en Digital Ocean. Una vez tengamos la cuenta hay que darle acceso a Packer para que pueda crear la imagen por nosotros.
+
+Para esto es necesario generar un token, ir a la página [https://cloud.digitalocean.com/account/api/tokens](https://cloud.digitalocean.com/account/api/tokens "https://cloud.digitalocean.com/account/api/tokens") y crear un token:
+
+![](/uploads/tokendo-1.png)
+
+Copiamos el token y lo exportamos como variable de entorno.
+
+    export DIGITALOCEAN_API_TOKEN=4059d45e5a75de0f24fe8f2ec678062e5cf8d66db885cdf4826befb30557d2gh
+
+ Con esto, ya podemos ejecutar Packer:
+
+    $ cd packer
+    $ packer build  ubuntu2004-digitalocean.json
 
 ### Terraform
 
