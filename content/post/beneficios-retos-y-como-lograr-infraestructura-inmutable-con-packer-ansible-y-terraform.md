@@ -87,17 +87,26 @@ Creamos el playbook que aprovisiona el software:
     ---
     - name: 'Bootstrap server and Install application'
       hosts: default
+    
       tasks:
     
         - name: Add epel-release repo
           yum:
             name: epel-release
             state: present
+          become: yes
     
         - name: Install nginx
           yum:
             name: nginx
             state: present
+          become: yes
+    
+        - name: start nginx
+          service:
+            name: nginx
+            state: started
+          become: yes
     
         - name: "create html directory"
           become: yes
@@ -106,23 +115,8 @@ Creamos el playbook que aprovisiona el software:
             state: directory
             mode: '0775'
     
-        - name: delete default nginx site
+        - name: "sync app code"
           become: yes
-          file:
-            path: /etc/nginx/nginx.conf
-            state: absent
-          
-        - name: copy nginx nginx..conf
-          become: yes
-          template:
-            src: nginx.conf.j2
-            dest: /etc/nginx/nginx.conf
-            owner: root
-            group: root
-            mode: '0644'
-    
-        - name: "sync app"
-          become: no
           synchronize:
             src: ../app/
             dest: /usr/share/nginx/html/app
@@ -130,6 +124,14 @@ Creamos el playbook que aprovisiona el software:
             checksum: yes
             recursive: yes
             delete: yes
+          
+    
+        - name: Update default document root
+          become: yes
+          replace: 
+            path: "/etc/nginx/nginx.conf"
+            replace: "root         /usr/share/nginx/html/app;"
+            regexp: "root         /usr/share/nginx/html;"
           notify: restart nginx
     
       handlers:
@@ -137,6 +139,8 @@ Creamos el playbook que aprovisiona el software:
           service:
             name: nginx
             state: restarted
+          become: yes
+    
 
 Este playbook instala nginx, realiza la configuración de la aplicación y sincroniza el código de la misma en el servidor.
 
