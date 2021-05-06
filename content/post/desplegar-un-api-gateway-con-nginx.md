@@ -27,6 +27,6 @@ Un API Gateway nos ayuda a resolver fácilmente cuestiones como:
 
 A continuación veremos como lograr obtener estos beneficios desplegando nginx como API Gateway.   Nuestro API Gateway brindará de HTTPS y Autenticación a APIs de distinto proposito y desarrolladas con diferentes stacks de tecnología.
 
-Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección o servicios. Disponemos de tres servicios diferentes para atender la tienda online: Catálogo, Tiendas y Existencias. Estos se implementan como servicios separados construidos con diferentes pilas de tecnología y nuestra API Gateway los publica como una única API.
+Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios. Disponemos de tres servicios diferentes para atender la tienda online: Catálogo, Tiendas y Existencias. Estos se implementan como servicios separados construidos con diferentes pilas de tecnología y nuestra API Gateway los publica como una única API.
 
 En el siguiente diagrama ilustramos el propósito:
