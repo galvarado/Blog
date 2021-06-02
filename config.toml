@@ -40,20 +40,10 @@ Currently trying to get this blog running, still don't know what the blog will b
 [[menu.main]]
     name = "Inicio"
     weight = 100
-    identifier = "index"
+    identifier = "inicio"
     url = "/"
 [[menu.main]]
-    name = "Blog"
-    identifier = "blog"
+    name = "¿Quién soy?"
+    identifier = "me"
     weight = 200
-    url = "/static/blog"
-[[menu.main]]
-    name = "Acerca de"
-    identifier = "about"
-    weight = 200
-    url = "/static/about"
-  [[menu.main]]
-    name = "Contacto"
-    identifier = "contact"
-    weight = 200
-    url = "/static/contact"
+    url = "/static/me"
