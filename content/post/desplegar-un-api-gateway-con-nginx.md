@@ -31,30 +31,26 @@ Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la 
 
 En el siguiente diagrama ilustramos el propósito:
 
-    FastAPI - API de Catalogocurl -i --request GET  http://localhost/books
-
+    FastAPI - API de Catalogo
+    
+    $ curl -i --request GET  http://localhost/books
+    
     HTTP/1.1 200 OK
-
     date: Thu, 09 Sep 2021 20:55:59 GMT
-
     server: uvicorn
-
     content-length: 221
-
     content-type: application/json
-
+    
     [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo","price":320},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz","price":380},{"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410}][guillermo@zenbook catalog]$
-
+    
+    
+    
     $ curl -i --request GET  http://localhost/books/3
-
+    
     HTTP/1.1 200 OK
-
     date: Thu, 09 Sep 2021 20:57:00 GMT
-
     server: uvicorn
-
     content-length: 73
-
     content-type: application/json
-
+    
     {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410}[guillermo@zenbook catalog]$
