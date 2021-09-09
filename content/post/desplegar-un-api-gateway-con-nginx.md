@@ -31,6 +31,12 @@ Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la 
 
 En el siguiente diagrama ilustramos el propósito:
 
+docker build -t fastapi-catalog .
+
+docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
+
+[https://twitter.com/AscensoInglesok/status/1435777680457228291](https://twitter.com/AscensoInglesok/status/1435777680457228291 "https://twitter.com/AscensoInglesok/status/1435777680457228291")
+
     FastAPI - API de Catalogo
     
     $ curl -i --request GET  http://localhost/books
