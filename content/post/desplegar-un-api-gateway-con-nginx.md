@@ -25,20 +25,28 @@ Un API Gateway nos ayuda a resolver fácilmente cuestiones como:
 
 ## Nginx como API Gateway
 
-A continuación veremos como lograr obtener estos beneficios desplegando nginx como API Gateway.   Nuestro API Gateway brindará de HTTPS y Autenticación a APIs de distinto propósito y desarrolladas con diferentes stacks de tecnología.
+A continuación veremos como lograr obtener estos beneficios desplegando nginx como API Gateway.  Este brindará de HTTPS y Autenticación a APIs de distinto propósito y desarrolladas con diferentes stacks de tecnología.
 
-Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios. Disponemos de tres servicios diferentes para atender la tienda online: Catálogo, Tiendas y Existencias. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
+Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
 
 En el siguiente diagrama ilustramos el propósito:
 
-docker build -t fastapi-catalog .
+## FastAPI - API de Catalogo
 
-docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
+Usamos Python para construir nuestra API de catalogo con el framework, FastAPI. Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
 
-[https://twitter.com/AscensoInglesok/status/1435777680457228291](https://twitter.com/AscensoInglesok/status/1435777680457228291 "https://twitter.com/AscensoInglesok/status/1435777680457228291")
+Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base de datos, sino que es una estructura sencilla estática. Sin embargo, puedes implementar el proyecto con una BD y modificar el cógido.
 
-    FastAPI - API de Catalogo
-    
+Para iniciar nuestra API de catalogo, entramos al directorio catalog y construimos la imagen:
+
+    docker build -t fastapi-catalog .
+
+Ahora, iniciamos el contenedor de la API con:
+
+    docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
+
+Probamos la API, para obtener todos los libros:
+
     $ curl -i --request GET  http://localhost/books
     
     HTTP/1.1 200 OK
@@ -47,10 +55,10 @@ docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
     content-length: 221
     content-type: application/json
     
-    [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo","price":320},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz","price":380},{"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410}][guillermo@zenbook catalog]$
-    
-    
-    
+    [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo","price":320},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz"},{"id":3,"name":"La casa junto al rio","author":"Elena Garro"}]
+
+Para obtener el detalle de un libro en particular, consultamos por su ID:
+
     $ curl -i --request GET  http://localhost/books/3
     
     HTTP/1.1 200 OK
@@ -59,4 +67,8 @@ docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
     content-length: 73
     content-type: application/json
     
-    {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410}[guillermo@zenbook catalog]$
+    {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410, "existence":10}
+
+## Go - API de Tiendas
+
+Usamos Go para construir nuestra API de tiendas esta vez sin ningún framework.  Esta API nos da las sucursales físicas (tiendas)  que forman parte de la cadena de libros.
