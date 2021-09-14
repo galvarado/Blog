@@ -43,7 +43,7 @@ Para iniciar nuestra API de catalogo, entramos al directorio catalog y construim
 
 Ahora, iniciamos el contenedor de la API con:
 
-    docker run -d --name fastapi-catalog -p 888:80 fastapi-catalog
+    docker run -d --name fastapi-catalog -p 8888:80 fastapi-catalog
 
 Probamos la API, para obtener todos los libros:
 
@@ -69,6 +69,6 @@ Para obtener el detalle de un libro en particular, consultamos por su ID:
     
     {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410, "existence":10}
 
-## Go - API de Tiendas
+## Gin - API de Tiendas
 
-Usamos Go para construir nuestra API de tiendas esta vez sin ningún framework.  Esta API nos da las sucursales físicas (tiendas)  que forman parte de la cadena de libros.
+Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de la cadena de libros.
