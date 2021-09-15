@@ -202,11 +202,11 @@ A continuación el archivo api_gateway.conf:
         }
     }
 
-Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 17:
+Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 17, con esta linea estamos incluyendo las configuraciones en el directorio api_conf.d que por ahora está vacio, pero que contendra las reglas de nuestra API de libros (Bookstore) :
 
     include api_conf.d/*.conf;
 
-Las líneas 19 a 23 tratan sobre el manejo de errores y se analizan más adelante:
+Las líneas 19 a 23 tratan sobre el manejo de errores :
 
     # Error responses
     error_page 404 = @400;         # Invalid paths are treated as bad requests
