@@ -209,37 +209,24 @@ Esta configuración está destinada a ser estática: los detalles de las API ind
 Las líneas 19 a 23 tratan sobre el manejo de errores y se analizan más adelante:
 
     # Error responses
-
-        error_page 404 = @400;         # Invalid paths are treated as bad requests
-
-        proxy_intercept_errors on;     # Do not send backend errors to the client
-
-        include api_json_errors.conf;  # API client friendly JSON error responses
-
-        default_type application/json; # If no content-type then assume JSON
+    error_page 404 = @400;         # Invalid paths are treated as bad requests
+    proxy_intercept_errors on;     # Do not send backend errors to the client
+    include api_json_errors.conf;  # API client friendly JSON error responses
+    default_type application/json; # If no content-type then assume JSON
 
 Las lineas 25 a 33 realizan la validación de la autenticación por apikey que también analizaremos a continuación:
 
     # API key validation
-
-        location = /_validate_apikey {
-
-            internal;
-
-            if ($http_apikey = "") {
-
-                return 401; # Unauthorized
-
-            }
-
-            if ($api_client_name = "") {
-
-                return 403; # Forbidden
-
-            }
-
-            return 204; # OK (no content)
-
+    
+    location = /_validate_apikey {
+        internal;
+        if ($http_apikey = "") {
+          return 401; # Unauthorized
         }
-
+        if ($api_client_name = "") {
+          return 403; # Forbidden
+        }
+        return 204; # OK (no content)
     }
+    
+    
