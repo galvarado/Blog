@@ -206,7 +206,10 @@ Esta configuración está destinada a ser estática: los detalles de las API ind
 
     include api_conf.d/*.conf;
 
-Las líneas 19 a 23 tratan sobre el manejo de errores :
+### Manejo de errores
+
+  
+Las líneas 19 a 23 del archivo de configuración raiz del gateway  (api_gateway.conf) tratan sobre el manejo de errores :
 
     # Error responses
     error_page 404 = @400;         # Invalid paths are treated as bad requests
@@ -230,7 +233,9 @@ Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver er
     error_page 404 = @404;
     location @404 { return 404 '{"status":404,"message":"Resource not found"}\n'; }
 
-Las lineas 25 a 33 realizan la validación de la autenticación por apikey que también analizaremos a continuación:
+### Autenticación
+
+Las lineas 25 a 33 del archivo de configuración raiz del gateway  (api_gateway.conf) realizan la validación de la autenticación por apikey:
 
     # API key validation
     
@@ -250,31 +255,19 @@ Las lineas 25 a 33 realizan la validación de la autenticación por apikey que t
     # Bookstore API
     
     location /api/ {
-    
         # Policy configuration here (authentication, rate limiting, logging, more...)
-    
         access_log /var/log/nginx/api_bookstore.log main;
-    
         auth_request /_validate_apikey;
-    
-        # URI routing
-    
+        
+    	# URI routing
         location /api/catalog/ {
-    
             proxy_pass http://fastapi-catalog/;
-    
             proxy_set_header Host $host;
-    
         }
     
         location /api/stores/ {
-    
             proxy_pass http://gin-stores/;
-    
             proxy_set_header Host $host;
-    
         }
-    
         return 404; # Catch-all
-    
     }
