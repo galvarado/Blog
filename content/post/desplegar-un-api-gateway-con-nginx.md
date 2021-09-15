@@ -128,7 +128,7 @@ Los directorios y nombres de archivo para toda la configuración del API Gateway
 
 ### Archivo nginx.conf
 
-Toda la configuración de NGINX comienza con el archivo de configuración principal: _nginx.conf_. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  _api_gateway_._conf_.
+Toda la configuración de NGINX comienza con el archivo de configuración principal: _nginx.conf_. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  api_gateway.conf.
 
 Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.conf:
 
