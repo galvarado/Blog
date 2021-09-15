@@ -112,3 +112,14 @@ Probamos la API, para obtener todas las tiendas:
 Listo, en este momento nuestros dos servicios responden peticiones dado que con Docker estamos publicandolos en un puerto del host.  Ahora, implementaremos el api gateway y dejaremos de publicar estos servicios en el host, siendo accesibles solo dentro de la red de docker, dado que lo único que nos interesa publicar es el gateway de nginx.
 
 ## Nginx como API Gateway
+
+Vamos a configurar Nginx para que actue como nuestro Gateway, a continuación la estructura de archivos que crearemos:
+
+    etc/
+    └── nginx/
+        ├── api_conf.d/ ………………………………… Subdirectorio de configuración para cada API
+        │   └── bookstore_api.conf …… Definición y politicas de la API (Bookstore)
+        ├── api_json_errors.conf ………………… Definición de respuestas a errores
+        ├── api_keys.conf ………………… Definición de llaves de autenticación
+        ├── api_gateway.conf …………………… Configuración raiz del API Gateway
+        ├── nginx.conf …………………… Configuración raiz de nginx
