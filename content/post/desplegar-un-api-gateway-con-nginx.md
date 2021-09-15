@@ -161,8 +161,6 @@ El archivo api_gateway.conf es la confiuración raiz de nuestro Gateway y define
 
 Esto quiere decir que podemo tener mas de una API publicada en el Gateway, por el momento solo tendremos la de la tienda de libros (Bookstore).
 
-Tenga en cuenta que esta configuración es puramente HTTPS: no hay un escucha HTTP de texto sin formato. Esperamos que los clientes de API conozcan el punto de entrada correcto y realicen conexiones HTTPS de forma predeterminada.
-
 A continuación el archivo api_gateway.conf:
 
     include api_keys.conf;
@@ -208,7 +206,6 @@ Esta configuración está destinada a ser estática: los detalles de las API ind
 
 ### Manejo de errores
 
-  
 Las líneas 19 a 23 del archivo de configuración raiz del gateway  (api_gateway.conf) tratan sobre el manejo de errores :
 
     # Error responses
@@ -252,18 +249,18 @@ Las lineas 25 a 33 del archivo de configuración raiz del gateway  (api_gateway.
 
 Es inusual publicar API sin algún tipo de autenticación para protegerlas. NGINX ofrece varios enfoques para proteger la API y autenticar clientes , nosotros lo haremos con Autenticación de llaves o apikeys.
 
-Las llaves de API son un secreto compartido con el cliente y esta es  es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencia. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl: 
+Las llaves de API son un secreto compartido con el cliente y esta es  es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencia. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl:
 
     $ openssl rand -base64 18
-
+    
      7B5zIqmRGXmrJTFmKa99vcit
 
 En el archivo  api_gateway.co_f, en la primer liena incluimos el archivo  api_keys.conf;_ que creamos a continuación con el valor obtenido:
 
     map $http_apikey $api_client_name {
-
+    
         "7B5zIqmRGXmrJTFmKa99vcit" "client_one";
-
+    
     }
 
 | --- | --- |
