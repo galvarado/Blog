@@ -166,65 +166,36 @@ Tenga en cuenta que esta configuración es puramente HTTPS: no hay un escucha HT
 A continuación el archivo api_gateway.conf:
 
     include api_keys.conf;
-
+    
     server {
-
         access_log /var/log/nginx/api_access.log main; # Each API may also log to a separate file
-
         listen 443 ssl;
-
         server_name bookstore.io;
-
         # TLS config
-
         ssl_certificate      /etc/ssl/certs/bookstore.io.cer;
-
         ssl_certificate_key  /etc/ssl/certs/bookstore.io.key;
-
         ssl_session_cache    shared:SSL:10m;
-
         ssl_session_timeout  5m;
-
         ssl_ciphers          HIGH:!aNULL:!MD5;
-
         ssl_protocols        TLSv1.2 TLSv1.3;
-
         # API definitions, one per file
-
         include api_conf.d/*.conf;
-
         # Error responses
-
         error_page 404 = @400;         # Invalid paths are treated as bad requests
-
         proxy_intercept_errors on;     # Do not send backend errors to the client
-
         include api_json_errors.conf;  # API client friendly JSON error responses
-
         default_type application/json; # If no content-type then assume JSON
-
         # API key validation
-
         location = /_validate_apikey {
-
             internal;
-
             if ($http_apikey = "") {
-
                 return 401; # Unauthorized
-
             }
-
             if ($api_client_name = "") {
-
                 return 403; # Forbidden
-
             }
-
             return 204; # OK (no content)
-
         }
-
     }
 
-Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios de backend se especifican en los archivos a los que hace referencia la directiva include en la línea 19. Las líneas 22 a 25 tratan sobre el manejo de errores y se analizan en Respuesta a errores a continuación.
+Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 15. Las líneas 15 a 20 tratan sobre el manejo de errores y se analizan más adelante. Las lineas 21 a 31 realizan la validación de la autenticación por apikey que también analizaremos a continuación.
