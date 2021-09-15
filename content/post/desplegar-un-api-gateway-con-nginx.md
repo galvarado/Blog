@@ -287,3 +287,24 @@ En conclusión, solo las peticiones que presenten un apikey existente en los hea
         }
         return 404; # Catch-all
     }
+
+### Despliegue
+
+Finalmente, desplegamos nuestro api gateway construyendo la imagen:
+
+Iniciamos el servicio:
+
+Paramos los servicios anteriores para dejar de publicarlos en los puertos del host y los iniciamos nuevamente:
+
+Deberiamos tener los siguientes contenedores ejecutandose:
+
+###   
+Consumiendo nuestro API Gateway
+
+**Petición sin apikey**
+
+**Petición con apikey incorrecta**
+
+**Petición correcta al servicio de catalogo**
+
+**Petición correcta al servicio de tiendas**
