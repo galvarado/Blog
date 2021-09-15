@@ -249,7 +249,7 @@ Las lineas 25 a 33 del archivo de configuración raiz del gateway  (api_gateway.
 
 Es inusual publicar API sin algún tipo de autenticación para protegerlas. NGINX ofrece varios enfoques para proteger la API y autenticar clientes , nosotros lo haremos con Autenticación de llaves o apikeys.
 
-Las llaves de API son un secreto compartido con el cliente y esta es  es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencia. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl:
+Las llaves de API son un secreto compartido con el cliente y esta es  es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencial. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl:
 
     $ openssl rand -base64 18
     
