@@ -157,7 +157,7 @@ Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.
 
 ### archivo api_gateway.conf
 
-El archivo api_gateway.conf es la confiuración raiz de nuestro Gateway y define el servidor virtual que expone NGINX como una puerta de enlace API para los clientes. Esta configuración expone todas las API publicadas por nginx en un único punto de entrada, [https://bookstore.io/](https://api.example.com/ "https://api.example.com/") (línea 8), protegido por TLS según lo configurado en las líneas 11 a 16.
+El archivo api_gateway.conf es la confiuración raiz de nuestro Gateway y define el servidor virtual que expone NGINX como una puerta de enlace API para los clientes. Esta configuración expone todas las API publicadas por nginx en un único punto de entrada, [https://bookstore.io/](https://api.example.com/ "https://api.example.com/") (línea 6), protegido por TLS según lo configurado en las líneas 7 a 13.
 
 Esto quiere decir que podemo tener mas de una API publicada en el Gateway, por el momento solo tendremos la de la tienda de libros (Bookstore).
 
