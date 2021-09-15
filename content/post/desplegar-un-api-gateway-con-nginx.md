@@ -123,3 +123,51 @@ Vamos a configurar Nginx para que actue como nuestro Gateway, a continuación la
         ├── api_keys.conf ………………… Definición de llaves de autenticación
         ├── api_gateway.conf …………………… Configuración raiz del API Gateway
         ├── nginx.conf …………………… Configuración raiz de nginx
+
+Los directorios y nombres de archivo para toda la configuración del API Gatewaytienen el prefijo api_. Cada uno de estos archivos y directorios habilita una función o capacidad diferente del gateway  y se explica en detalle a continuación. 
+
+### Archivo nginx.conf
+
+Toda la configuración de NGINX comienza con el archivo de configuración principal: nginx.conf. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  _api_gateway_._conf_. 
+
+Entonces agregamos la linea include:
+
+    user  nginx;
+
+    worker_processes  auto;
+
+    error_log  /var/log/nginx/error.log notice;
+
+    pid        /var/run/nginx.pid;
+
+    load_module /etc/nginx/modules/ngx_http_js_module.so;
+
+    events {
+
+        worker_connections  1024;
+
+    }
+
+    http {
+
+        include       /etc/nginx/mime.types;
+
+        default_type  application/octet-stream;
+
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+
+                          '$status $body_bytes_sent "$http_referer" '
+
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log  /var/log/nginx/access.log  main;
+
+        sendfile        on;
+
+        #tcp_nopush     on;
+
+        keepalive_timeout  65;
+
+        include /etc/nginx/api_gateway.conf; # All API gateway configuration
+
+    }
