@@ -124,11 +124,11 @@ Vamos a configurar Nginx para que actue como nuestro Gateway, a continuación la
         ├── api_gateway.conf …………………… Configuración raiz del API Gateway
         ├── nginx.conf …………………… Configuración raiz de nginx
 
-Los directorios y nombres de archivo para toda la configuración del API Gatewaytienen el prefijo api_. Cada uno de estos archivos y directorios habilita una función o capacidad diferente del gateway  y se explica en detalle a continuación.
+Los directorios y nombres de archivo para toda la configuración del API Gateway tienen el prefijo api_. Cada uno de estos archivos y directorios habilita una función o capacidad diferente del gateway  y se explica en detalle a continuación.
 
 ### Archivo nginx.conf
 
-Toda la configuración de NGINX comienza con el archivo de configuración principal: nginx.conf. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  _api_gateway_._conf_.
+Toda la configuración de NGINX comienza con el archivo de configuración principal: _nginx.conf_. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  _api_gateway_._conf_.
 
 Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.conf:
 
