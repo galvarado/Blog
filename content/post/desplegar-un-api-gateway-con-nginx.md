@@ -72,7 +72,7 @@ Para obtener el detalle de un libro en particular, consultamos por su ID:
 
 ## Gin - API de Tiendas
 
-Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de la cadena de libros.
+Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de nuestra tienda de libros.
 
 Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos la imagen:
 
