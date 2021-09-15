@@ -268,20 +268,35 @@ En conclusión, solo las peticiones que presenten un apikey existente en los hea
 
 ### archivo bookstore_api.conf
 
+La API Bookstore se define en el archivo bookstore_api.conf mediante una serie de bloques de "location" en una configuración anidada, como se ilustra en el siguiente ejemplo. 
+
+El bloque de ubicación exterior (/api/bookstore) identifica la ruta base, bajo la cual las ubicaciones anidadas especifican las ubicaciones válidas que se enrutan a los servicios  backend (catalog y stores).  
+  
+Por lo tanto, definimos que nuestros servicios de catalog y stores estarán respectivamente en:
+
+* /api/bookstore/catalog
+* /api/bookstore/stores 
+
+Dentr de cada directiva location, hacemos uso de proxy pass, para enviar el trafico que llegue a esta url al servicio correspondiente.
+
+Notese que usamos el nombre del contenedor que debe responder, en http simple.
+
+Finalmente para cualqui URL no conocida regresamos 404.
+
     # Bookstore API
     
-    location /api/ {
+    location /api/bookstore {
         # Policy configuration here (authentication, rate limiting, logging, more...)
         access_log /var/log/nginx/api_bookstore.log main;
         auth_request /_validate_apikey;
         
     	# URI routing
-        location /api/catalog/ {
+        location /api/bookstore/catalog/ {
             proxy_pass http://fastapi-catalog/;
             proxy_set_header Host $host;
         }
     
-        location /api/stores/ {
+        location /api/bookstore/stores/ {
             proxy_pass http://gin-stores/;
             proxy_set_header Host $host;
         }
@@ -298,8 +313,9 @@ Paramos los servicios anteriores para dejar de publicarlos en los puertos del ho
 
 Deberiamos tener los siguientes contenedores ejecutandose:
 
-###   
-Consumiendo nuestro API Gateway
+### 
+
+### Consumiendo nuestro API Gateway
 
 **Petición sin apikey**
 
