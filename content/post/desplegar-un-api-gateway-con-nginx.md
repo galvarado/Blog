@@ -228,5 +228,37 @@ Las lineas 25 a 33 realizan la validación de la autenticación por apikey que t
         }
         return 204; # OK (no content)
     }
-    
-    
+
+### archivo bookstore_api.conf
+
+    # Bookstore API
+
+    location /api/ {
+
+        # Policy configuration here (authentication, rate limiting, logging, more...)
+
+        access_log /var/log/nginx/api_bookstore.log main;
+
+        auth_request /_validate_apikey;
+
+        # URI routing
+
+        location /api/catalog/ {
+
+            proxy_pass http://fastapi-catalog/;
+
+            proxy_set_header Host $host;
+
+        }
+
+        location /api/stores/ {
+
+            proxy_pass http://gin-stores/;
+
+            proxy_set_header Host $host;
+
+        }
+
+        return 404; # Catch-all
+
+    }
