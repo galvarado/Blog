@@ -214,7 +214,9 @@ Las líneas 19 a 23 tratan sobre el manejo de errores :
     include api_json_errors.conf;  # API client friendly JSON error responses
     default_type application/json; # If no content-type then assume JSON
 
-    Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver errores de la manera que mejor se adapte a los clientes. Entonces crearemos el archivo api_json_errors.conferror_page 400 = @400;
+Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver errores de la manera que mejor se adapte a los clientes. Entonces crearemos el archivo api_json_errors.conf
+
+    error_page 400 = @400;
 
     location @400 { return 400 '{"status":400,"message":"Bad request"}\n'; }
 
@@ -252,33 +254,33 @@ Las lineas 25 a 33 realizan la validación de la autenticación por apikey que t
 ### archivo bookstore_api.conf
 
     # Bookstore API
-
+    
     location /api/ {
-
+    
         # Policy configuration here (authentication, rate limiting, logging, more...)
-
+    
         access_log /var/log/nginx/api_bookstore.log main;
-
+    
         auth_request /_validate_apikey;
-
+    
         # URI routing
-
+    
         location /api/catalog/ {
-
+    
             proxy_pass http://fastapi-catalog/;
-
+    
             proxy_set_header Host $host;
-
+    
         }
-
+    
         location /api/stores/ {
-
+    
             proxy_pass http://gin-stores/;
-
+    
             proxy_set_header Host $host;
-
+    
         }
-
+    
         return 404; # Catch-all
-
+    
     }
