@@ -48,7 +48,7 @@ Ahora, iniciamos el contenedor de la API  exponiendola en el host en el puerto 8
 
 Probamos la API, para obtener todos los libros:
 
-    $ curl -i --request GET  http://localhost/books
+    $ curl -i --request GET  http://localhost:8888/books
     
     HTTP/1.1 200 OK
     date: Thu, 09 Sep 2021 20:55:59 GMT
@@ -60,7 +60,7 @@ Probamos la API, para obtener todos los libros:
 
 Para obtener el detalle de un libro en particular, consultamos por su ID:
 
-    $ curl -i --request GET  http://localhost/books/3
+    $ curl -i --request GET  http://localhost:8888/books/3
     
     HTTP/1.1 200 OK
     date: Thu, 09 Sep 2021 20:57:00 GMT
