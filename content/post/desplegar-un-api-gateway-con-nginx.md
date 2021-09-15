@@ -22,9 +22,9 @@ Un API Gateway nos ayuda a resolver fácilmente cuestiones como:
 
 ¿Desventajas? Un API Gateway es otro componente de alta disponibilidad que debe desarrollarse, implementarse y administrarse. También existe el riesgo de que  se convierta en un cuello de botella de desarrollo. Es importante que el proceso de actualización o publicación de nuevos servicios sea  lo más ligero posible. De lo contrario, los desarrolladores se verán obligados a esperar.  Sin embargo, a pesar de estos inconvenientes, para la mayoría de las aplicaciones del mundo real tiene sentido utilizar un API Gateway.
 
-## Proyecto Demo
+## Proyecto Demo | Book Store API
 
-Nuestro proyecto demo es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
+Nuestro proyecto demo basado en docker es es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
 
 En el siguiente diagrama ilustramos el propósito:
 
@@ -34,15 +34,15 @@ Todo el código para seguir el tutorial está disponible en: [https://github.com
 
 ## FastAPI - API de Catalogo
 
-Usamos Python para construir nuestra API de catalogo con el framework, FastAPI. Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
+Usamos Python para construir nuestra API de catalogo con el framework [FastAPI](). Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
 
-Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base de datos, sino que es una estructura sencilla estática. Sin embargo, puedes implementar el proyecto con una BD y modificar el cógido.
+Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base de datos, sino que es una estructura sencilla estática. Sin embargo, puedes implementar el proyecto con una BD y modificar el código.
 
 Para iniciar nuestra API de catalogo, entramos al directorio catalog y construimos la imagen:
 
     $ docker build -t fastapi-catalog .
 
-Ahora, iniciamos el contenedor de la API con:
+Ahora, iniciamos el contenedor de la API  exponiendola en el host en el puerto 8888 con:
 
     $ docker run -d --name fastapi-catalog -p 8888:80 fastapi-catalog
 
@@ -78,7 +78,7 @@ Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos
 
     $ docker build -t gin-stores .
 
-Ahora, iniciamos el contenedor de la API con:
+Ahora, iniciamos el contenedor de la API exponiendola en el host en el puerto 88889 con:
 
     $ docker run -d --name gin-stores-catalog -p 8889:80 gin-stores
 
@@ -109,6 +109,6 @@ Probamos la API, para obtener todas las tiendas:
         }
       ]
 
-## Nginx como API Gateway
+Listo, en este momento nuestros dos servicios responden peticiones dado que con Docker estamos publicandolos en un puerto del host.  Ahora, implementaremos el api gateway y dejaremos de publicar estos servicios en el host, siendo accesibles solo dentro de la red de docker, dado que lo único que nos interesa publicar es el gateway de nginx.
 
-A continuación veremos como lograr obtener estos beneficios desplegando nginx como API Gateway.  Este brindará de HTTPS y Autenticación a APIs de distinto propósito y desarrolladas con diferentes stacks de tecnología.
+## Nginx como API Gateway
