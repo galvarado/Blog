@@ -214,7 +214,7 @@ Las líneas 19 a 23 tratan sobre el manejo de errores :
     include api_json_errors.conf;  # API client friendly JSON error responses
     default_type application/json; # If no content-type then assume JSON
 
-Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver errores de la manera que mejor se adapte a los clientes. Entonces crearemos el archivo api_json_errors.conf
+Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver errores de la manera que mejor se adapte a los clientes. Entonces crearemos el archivo api_json_errors.conf a continuación:
 
     error_page 400 = @400;
     location @400 { return 400 '{"status":400,"message":"Bad request"}\n'; }
