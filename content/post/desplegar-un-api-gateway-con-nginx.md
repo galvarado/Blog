@@ -214,6 +214,26 @@ Las líneas 19 a 23 tratan sobre el manejo de errores :
     include api_json_errors.conf;  # API client friendly JSON error responses
     default_type application/json; # If no content-type then assume JSON
 
+    Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver errores de la manera que mejor se adapte a los clientes. Entonces crearemos el archivo api_json_errors.conferror_page 400 = @400;
+
+    location @400 { return 400 '{"status":400,"message":"Bad request"}\n'; }
+
+    # Without API KEY
+
+    error_page 401 = @401;
+
+    location @401 { return 401 '{"status":401,"message":"Unauthorized"}\n'; }
+
+    # Incorrect API KEY
+
+    error_page 403 = @403;
+
+    location @403 { return 403 '{"status":403,"message":"Forbidden"}\n'; }
+
+    error_page 404 = @404;
+
+    location @404 { return 404 '{"status":404,"message":"Resource not found"}\n'; }
+
 Las lineas 25 a 33 realizan la validación de la autenticación por apikey que también analizaremos a continuación:
 
     # API key validation
