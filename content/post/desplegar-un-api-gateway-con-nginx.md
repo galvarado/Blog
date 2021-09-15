@@ -254,7 +254,7 @@ Las llaves de API son un secreto compartido con el cliente y esta es  es esencia
     $ openssl rand -base64 18
      7B5zIqmRGXmrJTFmKa99vcit
 
-En el archivo  api_gateway.conf, en la primer liena incluimos el archivo  api_keys.conf;_ que creamos a continuación con el valor obtenido:
+En el archivo  api_gateway.conf, en la primer liena incluimos el archivo  api_keys.conf que creamos a continuación con el valor obtenido:
 
     map $http_apikey $api_client_name {
         "7B5zIqmRGXmrJTFmKa99vcit" "client_one";
