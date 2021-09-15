@@ -157,7 +157,7 @@ Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.
 
 ### archivo api_gateway.conf
 
-El archivo api_gateway.conf es la confiuración raiz de nuestro Gateway y define el servidor virtual que expone NGINX como una puerta de enlace API para los clientes. Esta configuración expone todas las API publicadas por nginx en un único punto de entrada, [https://bookstore.io/](https://api.example.com/ "https://api.example.com/") (línea 6), protegido por TLS según lo configurado en las líneas 7 a 13.
+El archivo api_gateway.conf es la confiuración raiz de nuestro Gateway y define el servidor virtual que expone NGINX como una puerta de enlace API para los clientes. Esta configuración expone todas las API publicadas por nginx en un único punto de entrada, [https://bookstore.io/](https://api.example.com/ "https://api.example.com/") (línea 6), protegido por TLS según lo configurado en las líneas 8 a 14.
 
 Esto quiere decir que podemo tener mas de una API publicada en el Gateway, por el momento solo tendremos la de la tienda de libros (Bookstore).
 
@@ -171,6 +171,7 @@ A continuación el archivo api_gateway.conf:
         access_log /var/log/nginx/api_access.log main; # Each API may also log to a separate file
         listen 443 ssl;
         server_name bookstore.io;
+    
         # TLS config
         ssl_certificate      /etc/ssl/certs/bookstore.io.cer;
         ssl_certificate_key  /etc/ssl/certs/bookstore.io.key;
@@ -178,13 +179,16 @@ A continuación el archivo api_gateway.conf:
         ssl_session_timeout  5m;
         ssl_ciphers          HIGH:!aNULL:!MD5;
         ssl_protocols        TLSv1.2 TLSv1.3;
+    
         # API definitions, one per file
         include api_conf.d/*.conf;
+    
         # Error responses
         error_page 404 = @400;         # Invalid paths are treated as bad requests
         proxy_intercept_errors on;     # Do not send backend errors to the client
         include api_json_errors.conf;  # API client friendly JSON error responses
         default_type application/json; # If no content-type then assume JSON
+        
         # API key validation
         location = /_validate_apikey {
             internal;
@@ -198,4 +202,44 @@ A continuación el archivo api_gateway.conf:
         }
     }
 
-Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 15. Las líneas 15 a 20 tratan sobre el manejo de errores y se analizan más adelante. Las lineas 21 a 31 realizan la validación de la autenticación por apikey que también analizaremos a continuación.
+Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 17:
+
+    include api_conf.d/*.conf;
+
+Las líneas 19 a 23 tratan sobre el manejo de errores y se analizan más adelante:
+
+    # Error responses
+
+        error_page 404 = @400;         # Invalid paths are treated as bad requests
+
+        proxy_intercept_errors on;     # Do not send backend errors to the client
+
+        include api_json_errors.conf;  # API client friendly JSON error responses
+
+        default_type application/json; # If no content-type then assume JSON
+
+Las lineas 25 a 33 realizan la validación de la autenticación por apikey que también analizaremos a continuación:
+
+    # API key validation
+
+        location = /_validate_apikey {
+
+            internal;
+
+            if ($http_apikey = "") {
+
+                return 401; # Unauthorized
+
+            }
+
+            if ($api_client_name = "") {
+
+                return 403; # Forbidden
+
+            }
+
+            return 204; # OK (no content)
+
+        }
+
+    }
