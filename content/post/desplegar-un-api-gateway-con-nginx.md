@@ -39,11 +39,11 @@ Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base
 
 Para iniciar nuestra API de catalogo, entramos al directorio catalog y construimos la imagen:
 
-    docker build -t fastapi-catalog .
+    $ docker build -t fastapi-catalog .
 
 Ahora, iniciamos el contenedor de la API con:
 
-    docker run -d --name fastapi-catalog -p 8888:80 fastapi-catalog
+    $ docker run -d --name fastapi-catalog -p 8888:80 fastapi-catalog
 
 Probamos la API, para obtener todos los libros:
 
@@ -72,3 +72,38 @@ Para obtener el detalle de un libro en particular, consultamos por su ID:
 ## Gin - API de Tiendas
 
 Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de la cadena de libros.
+
+Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos la imagen:
+
+    $ docker build -t gin-stores .
+
+Ahora, iniciamos el contenedor de la API con:
+
+    $ docker run -d --name gin-stores-catalog -p 8889:80 gin-stores
+
+Probamos la API, para obtener todas las tiendas:
+
+    $ curl -i http://localhost:8889/stores
+    
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Wed, 15 Sep 2021 02:53:13 GMT
+    Content-Length: 414
+    
+    [
+        {
+            "id": "1",
+            "name": "Sucursa Cielo",
+            "location": "Av Cielo #567. Deelgación Benito Juárez. Ciudad de México."
+        },
+        {
+            "id": "2",
+            "name": "Sucursal Alfa",
+            "location": "Calle Alfa #22. Guadalajara, Jalisco."
+        },
+        {
+            "id": "3",
+            "name": "Sucursal Guerrero",
+            "location": "Boulevard de la paz #3456. Acapulco. Guerrero."
+        }
+      ]
