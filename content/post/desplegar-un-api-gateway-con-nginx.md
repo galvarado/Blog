@@ -260,6 +260,12 @@ En el archivo  api_gateway.conf, en la primer liena incluimos el archivo  api_ke
         "7B5zIqmRGXmrJTFmKa99vcit" "client_one";
     }
 
+Las llaves de API se definen dentro de un bloque de map. La directiva del map toma dos parámetros. El primero define dónde encontrar la llave API, en este caso en el encabezado HTTP apikey de la solicitud del cliente y es capturada en la variable $ http_apikey. El segundo parámetro crea una nueva variable ($ api_client_name) y la establece en el valor del segundo parámetro en la línea donde el primer parámetro coincide con la clave.
+
+Por ejemplo, cuando un cliente presenta la clave  7B5zIqmRGXmrJTFmKa99vcit, la variable $api_client_name se establece en client_one. Esta variable se puede utilizar para comprobar si hay clientes autenticados e incluirse en las entradas del registro para una auditoría más detallada. El formato del bloque de mapa es simple y fácil de integrar en los flujos de trabajo de automatización que generan el archivo api_keys.conf a partir de un almacén de credenciales existente.
+
+En conclusión, solo las peticiones que presenten un apikey existente en los headers de la petición, serán atendidas. El resto serán ignoradas. Con esto estámos autenticando nuestra API desde el Gateway, los servicios internos no se enteran de que existen estas validaciones.
+
 ### archivo bookstore_api.conf
 
     # Bookstore API
