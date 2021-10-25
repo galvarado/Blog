@@ -6,6 +6,13 @@ tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un entorno local DevOps de kubernetes fácil y rápido: Vagrant + Kind"
 
 +++
+***
+
+**Actualización: 25 de Octubre de 2021  
+  
+Gracias a los comentarios de** [**Adrián Freisinger**](https://disqus.com/by/adrinfreisinger/)**, se detectó que hay un bug del nginx ingress controller y por tal motivo se actualzó la instalaciń de Kind hacia v0.11.1 para que nos de un kubernetes en su última versión: v1.21.1 ya que ahí no nos afecta el bug.  
+  
+**  
 Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
 Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
@@ -93,7 +100,7 @@ El entorno que crearemos consiste en una VM manejada por Vagrant, virtualizada e
 
 Desplegaremos una aplicación en el kubernetes construyendo una imagen y subiendola al repositorio.  Crearemos el namespace, el deployment, el servicio y el ingress. Finalmente probaremos acceder a la aplicación recién creada desde nuestra laptop a través de nuestro navegador.
 
- En el repositorio  encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar la aplicación.
+En el repositorio  encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar la aplicación.
 
 #### Instalar Vagrant
 
