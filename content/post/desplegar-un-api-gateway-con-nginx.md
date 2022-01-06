@@ -396,6 +396,16 @@ Probamos la resolución haciendo un ping:
 
     ping bookstore.io
 
+La salida es similar a:
+
+    PING localhost (127.0.0.1) 56(84) bytes of data.
+
+    64 bytes from view-localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.115 ms
+
+    64 bytes from view-localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.134 ms
+
+    64 bytes from view-localhost (127.0.0.1): icmp_seq=3 ttl=64 time=0.113 ms
+
 ### 
 
 ### Consumiendo nuestro API Gateway
