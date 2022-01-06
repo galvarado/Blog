@@ -396,9 +396,8 @@ En este punto los servicios ya no son alcanzables desde los peurtos 8888 y 8889 
 
     curl -i --request GET  http://localhost:8888/books
     curl: (7) Failed to connect to localhost port 8888: Connection refused
-
+    
     curl -i --request GET  http://localhost:8889/stores
-
     curl: (7) Failed to connect to localhost port 8889: Connection refused
 
 Pero serán alcanzados desde nuestro API Gateway como comprobaremos a continuación.
