@@ -385,21 +385,16 @@ Iniciamos el servicio:
 Paramos los servicios anteriores para dejar de publicarlos en los puertos del host y los iniciamos nuevamente:
 
     docker stop fastapi-catalog; docker stop gin-stores
-
     docker run -d --name  fastapi-catalog --net=bookstore-network  fastapi-catalog
-
     docker run -d --name  gin-stores --net=bookstore-network  gin-stores
 
 Deberiamos tener los siguientes contenedores ejecutandose:
 
     docker ps
-
+    
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                          NAMES
-
     5818f8b45c70        fastapi-catalog     "/start.sh"              2 seconds ago       Up 1 second         80/tcp                         fastapi-catalog
-
     5af2e4b88af1        gin-stores          "/main"                  19 seconds ago      Up 18 seconds                                      gin-stores
-
     5d0aa46788df        api-gateway         "/docker-entrypoint.…"   4 minutes ago       Up 4 minutes        80/tcp, 0.0.0.0:443->443/tcp   api-gateway
 
 En este punto los servicios ya no son alcanzables desde los peurtos 8888 y 8889 en el host:
