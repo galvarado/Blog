@@ -384,9 +384,26 @@ Iniciamos el servicio:
 
 Paramos los servicios anteriores para dejar de publicarlos en los puertos del host y los iniciamos nuevamente:
 
+docker stop fastapi-catalog; docker stop gin-stores
+
+docker run -d --name  fastapi-catalog --net=bookstore-network  fastapi-catalog
+
+docker run -d --name  gin-stores --net=bookstore-network  gin-stores
+
 Deberiamos tener los siguientes contenedores ejecutandose:
 
-Para consumir nuestra API via SSL en el puerto 443, agregaremos una entrada en nuestro archivo _/etc/hosts_ para que nuestro localhost resuelva a _bookstore.io_, dado que es el nombre del dominio que usamos en los certificados.
+En este punto los servicios ya no son alcanzables desde los peurtos 8888 y 8889 en el host:
+
+    curl -i --request GET  http://localhost:8888/books
+    curl: (7) Failed to connect to localhost port 8888: Connection refused
+
+    curl -i --request GET  http://localhost:8889/stores
+
+    curl: (7) Failed to connect to localhost port 8889: Connection refused
+
+Pero serán alcanzados desde nuestro API Gateway como comprobaremos a continuación.
+
+Para consumir nuestra API via SSL en el puerto 443, agregaremos una entrada en nuestro archivo /etc/hosts para que nuestro localhost resuelva a bookstore.io, dado que es el nombre del dominio que usamos en los certificados.
 
 Se vería algo así:
 
@@ -449,19 +466,13 @@ La salida es similar a:
 Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
 
     curl -ik --header "apikey:XXXXXXX" --request GET  https://bookstore.io/api/bookstore/catalog/books
-
+    
     HTTP/1.1 403 Forbidden
-
     Server: nginx/1.19.6
-
     Date: Thu, 06 Jan 2022 20:00:58 GMT
-
     Content-Type: application/json
-
     Content-Length: 37
-
     Connection: keep-alive
-
     {"status":403,"message":"Forbidden"}
 
 **Petición sin apikey**
@@ -469,17 +480,17 @@ Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
 Si no agregamos un apikey como header, obtenemos un 401 Unathorized
 
     curl -ik --request GET  https://bookstore.io/api/bookstore/catalog/books
-
+    
     HTTP/1.1 401 Unauthorized
-
     Server: nginx/1.19.6
-
     Date: Thu, 06 Jan 2022 20:01:27 GMT
-
     Content-Type: application/json
-
     Content-Length: 40
-
     Connection: keep-alive
-
     {"status":401,"message":"Unauthorized"}
+
+Con esto, estamos desplegando nuestros servicios en un unico punto, con protección de certificado SSL en el puerto 443 y con autorización via APIKey.
+
+Si te resulta últil, por favor comparte =)
+
+Si tienes dudas no dudes en dejar un comentario.
