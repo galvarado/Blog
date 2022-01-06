@@ -34,7 +34,7 @@ Todo el código para seguir el tutorial está disponible en: [https://github.com
 
 ## FastAPI - API de Catalogo
 
-Usamos Python para construir nuestra API de catalogo con el framework [FastAPI](). Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
+Usamos Python para construir nuestra API de catalogo con el framework [FastAPI](https://fastapi.tiangolo.com/) Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
 
 Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base de datos, sino que es una estructura sencilla estática. Sin embargo, puedes implementar el proyecto con una BD y modificar el código.
 
@@ -268,14 +268,14 @@ En conclusión, solo las peticiones que presenten un apikey existente en los hea
 
 ### archivo bookstore_api.conf
 
-La API Bookstore se define en el archivo bookstore_api.conf mediante una serie de bloques de "location" en una configuración anidada, como se ilustra en el siguiente ejemplo. 
+La API Bookstore se define en el archivo bookstore_api.conf mediante una serie de bloques de "location" en una configuración anidada, como se ilustra en el siguiente ejemplo.
 
-El bloque de ubicación exterior (/api/bookstore) identifica la ruta base, bajo la cual las ubicaciones anidadas especifican las ubicaciones válidas que se enrutan a los servicios  backend (catalog y stores).  
-  
+El bloque de ubicación exterior (/api/bookstore) identifica la ruta base, bajo la cual las ubicaciones anidadas especifican las ubicaciones válidas que se enrutan a los servicios  backend (catalog y stores).
+
 Por lo tanto, definimos que nuestros servicios de catalog y stores estarán respectivamente en:
 
 * /api/bookstore/catalog
-* /api/bookstore/stores 
+* /api/bookstore/stores
 
 Dentr de cada directiva location, hacemos uso de proxy pass, para enviar el trafico que llegue a esta url al servicio correspondiente.
 
