@@ -80,7 +80,7 @@ Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos
 
 Ahora, iniciamos el contenedor de la API exponiendola en el host en el puerto 88889 con:
 
-    $ docker run -d --name gin-stores-catalog -p 8889:80 gin-stores
+    $ docker run -d --name gin-stores -p 8889:80 gin-stores
 
 Probamos la API, para obtener todas las tiendas:
 
