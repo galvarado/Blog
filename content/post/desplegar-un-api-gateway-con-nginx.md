@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = 2021-05-05T05:00:00Z
+date = 2022-01-06T17:53:00Z
 image = "/uploads/nginx_api_gateway.png"
 tags = ["devops", "architecture", "cloud", "containers"]
 title = "Desplegar un API Gateway con Nginx"
