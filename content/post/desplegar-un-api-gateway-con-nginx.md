@@ -38,13 +38,19 @@ Usamos Python para construir nuestra API de catalogo con el framework [FastAPI](
 
 Dado que la parte que nos interesa es el API Gateway, el catalogo no usará base de datos, sino que es una estructura sencilla estática. Sin embargo, puedes implementar el proyecto con una BD y modificar el código.
 
+Usaremos el enfoque de usar una docker network con bridge, más info qui: [https://docs.docker.com/network/bridge/](https://docs.docker.com/network/bridge/ "https://docs.docker.com/network/bridge/")
+
+P crear la red ejecutamos:
+
+    docker network create -d bridge bookstore-network
+
 Para iniciar nuestra API de catalogo, entramos al directorio catalog y construimos la imagen:
 
     $ docker build -t fastapi-catalog .
 
 Ahora, iniciamos el contenedor de la API  exponiendola en el host en el puerto 8888 con:
 
-    $ docker run -d --name fastapi-catalog -p 8888:80 fastapi-catalog
+    $ docker run -d --name fastapi-catalog --net=bookstore-network -p 8888:80 fastapi-catalog
 
 Probamos la API, para obtener todos los libros:
 
@@ -80,7 +86,7 @@ Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos
 
 Ahora, iniciamos el contenedor de la API exponiendola en el host en el puerto 88889 con:
 
-    $ docker run -d --name gin-stores -p 8889:80 gin-stores
+    $ docker run -d --name gin-stores --net=bookstore-network  -p 8889:80 gin-stores
 
 Probamos la API, para obtener todas las tiendas:
 
@@ -368,13 +374,27 @@ Y la salida deben ser los archivos _bookstore.io.crt_ y _bookstore.io.key_
 
 ### Despliegue
 
-Finalmente, desplegamos nuestro api gateway construyendo la imagen:
+Finalmente, desplegamos nuestro api gateway construyendo la imagen desde el directorio de gateway:
+
+    docker build -t api-gateway .
 
 Iniciamos el servicio:
+
+    docker run -d --name api-gateway --net=bookstore-network  -p 443:443 api-gateway
 
 Paramos los servicios anteriores para dejar de publicarlos en los puertos del host y los iniciamos nuevamente:
 
 Deberiamos tener los siguientes contenedores ejecutandose:
+
+Para consumir nuestra API via SSL en el puerto 443, agregaremos una entrada en nuestro archivo _/etc/hosts_ para que nuestro localhost resuelva a _bookstore.io_, dado que es el nombre del dominio que usamos en los certificados.
+
+Se vería algo así:
+
+    127.0.0.1    localhost bookstore.io
+
+Probamos la resolución haciendo un ping:
+
+    ping bookstore.io
 
 ### 
 
