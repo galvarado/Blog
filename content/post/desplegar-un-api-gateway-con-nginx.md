@@ -364,9 +364,9 @@ Debemos tener una salida similar a esta:
     organizationalunit [Development]:
     Common Name (e.g. server FQDN or YOUR name) [bookstore.io]:
 
-### 
+Y la salida deben ser los archivos _bookstore.io.crt_ y _bookstore.io.key_
 
-Despliegue
+### Despliegue
 
 Finalmente, desplegamos nuestro api gateway construyendo la imagen:
 
