@@ -418,6 +418,8 @@ La salida es similar a:
     Content-Type: application/json
     Content-Length: 185
     Connection: keep-alive
+    
+    [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo"},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz"},{"id":3,"name":"La casa junto al rio","author":"Elena Garro"}]
 
 **Petición correcta al servicio de tiendas**
 
