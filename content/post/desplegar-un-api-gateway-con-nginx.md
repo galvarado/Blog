@@ -406,14 +406,72 @@ La salida es similar a:
 
     64 bytes from view-localhost (127.0.0.1): icmp_seq=3 ttl=64 time=0.113 ms
 
-### 
-
 ### Consumiendo nuestro API Gateway
 
 **Petición sin apikey**
 
 **Petición con apikey incorrecta**
 
-**Petición correcta al servicio de catalogo**
+    Petición correcta al servicio de catalogocurl -curl -ik --header "apikey:/ZkKxb0WYcqS8DRgn+e0aw==" --request GET  https://bookstore.io/api/bookstore/catalog/books
+
+    HTTP/1.1 200 OK
+
+    Server: nginx/1.19.6
+
+    Date: Thu, 06 Jan 2022 19:57:34 GMT
+
+    Content-Type: application/json
+
+    Content-Length: 185
+
+    Connection: keep-alive
 
 **Petición correcta al servicio de tiendas**
+
+    curl -ik --header "apikey:/ZkKxb0WYcqS8DRgn+e0aw==" --request GET  https://bookstore.io/api/bookstore/stores/stores
+
+    HTTP/1.1 200 OK
+
+    Server: nginx/1.19.6
+
+    Date: Thu, 06 Jan 2022 19:58:12 GMT
+
+    Content-Type: application/json; charset=utf-8
+
+    Content-Length: 414
+
+    Connection: keep-alive
+
+    [
+
+        {
+
+            "id": "1",
+
+            "name": "Sucursa Cielo",
+
+            "location": "Av Cielo #567. Deelgación Benito Juárez. Ciudad de México."
+
+        },
+
+        {
+
+            "id": "2",
+
+            "name": "Sucursal Alfa",
+
+            "location": "Calle Alfa #22. Guadalajara, Jalisco."
+
+        },
+
+        {
+
+            "id": "3",
+
+            "name": "Sucursal Guerrero",
+
+            "location": "Boulevard de la paz #3456. Acapulco. Guerrero."
+
+        }
+
+    ]
