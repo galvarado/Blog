@@ -384,11 +384,11 @@ Iniciamos el servicio:
 
 Paramos los servicios anteriores para dejar de publicarlos en los puertos del host y los iniciamos nuevamente:
 
-docker stop fastapi-catalog; docker stop gin-stores
+    docker stop fastapi-catalog; docker stop gin-stores
 
-docker run -d --name  fastapi-catalog --net=bookstore-network  fastapi-catalog
+    docker run -d --name  fastapi-catalog --net=bookstore-network  fastapi-catalog
 
-docker run -d --name  gin-stores --net=bookstore-network  gin-stores
+    docker run -d --name  gin-stores --net=bookstore-network  gin-stores
 
 Deberiamos tener los siguientes contenedores ejecutandose:
 
