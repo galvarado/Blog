@@ -481,7 +481,7 @@ Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
 
 **Petición sin apikey**
 
-Si no agregamos un apikey como header, obtenemos un 401 Unathorized
+Si no agregamos un apikey como header, obtenemos un 401 Unathorized:
 
     curl -ik --request GET  https://bookstore.io/api/bookstore/catalog/books
     
