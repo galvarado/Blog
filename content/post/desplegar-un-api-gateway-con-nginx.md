@@ -405,10 +405,6 @@ La salida es similar a:
 
 ### Consumiendo nuestro API Gateway
 
-**Petición sin apikey**
-
-**Petición con apikey incorrecta**
-
 **Petición correcta al servicio de catalogo**
 
     curl -ik --header "apikey:/ZkKxb0WYcqS8DRgn+e0aw==" --request GET  https://bookstore.io/api/bookstore/catalog/books
@@ -447,3 +443,43 @@ La salida es similar a:
             "location": "Boulevard de la paz #3456. Acapulco. Guerrero."
         }
     ]
+
+**Petición con apikey incorrecta**
+
+Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
+
+curl -ik --header "apikey:XXXXXXX" --request GET  [https://bookstore.io/api/bookstore/catalog/books](https://bookstore.io/api/bookstore/catalog/books "https://bookstore.io/api/bookstore/catalog/books")
+
+HTTP/1.1 403 Forbidden
+
+Server: nginx/1.19.6
+
+Date: Thu, 06 Jan 2022 20:00:58 GMT
+
+Content-Type: application/json
+
+Content-Length: 37
+
+Connection: keep-alive
+
+{"status":403,"message":"Forbidden"}
+
+**Petición sin apikey**
+
+Si no agregamos un apikey como header, obtenemos un 401 Unathorized
+
+curl -ik --request GET  [https://bookstore.io/api/bookstore/catalog/books](https://bookstore.io/api/bookstore/catalog/books "https://bookstore.io/api/bookstore/catalog/books")
+
+HTTP/1.1 401 Unauthorized
+
+Server: nginx/1.19.6
+
+Date: Thu, 06 Jan 2022 20:01:27 GMT
+
+Content-Type: application/json
+
+Content-Length: 40
+
+Connection: keep-alive
+
+{"status":401,"message":"Unauthorized"}
