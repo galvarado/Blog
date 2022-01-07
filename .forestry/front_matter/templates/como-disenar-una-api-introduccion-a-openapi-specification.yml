@@ -51,7 +51,6 @@ pages:
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
 - content/post/crear-un-kubernetes-facil-y-rapido-vagrant-kind.md
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
-- content/post/desplegar-servicios-con-traefik-como-reverse-proxy.md
 - content/post/desplegar-un-api-gateway-con-nginx.md
 - content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
 - content/post/despliegue-continuo-con-spinnaker.md
