@@ -6,7 +6,11 @@ tags = ["devops", "architecture", "cloud", "containers"]
 title = "Desplegar un API Gateway con Nginx"
 
 +++
-Para este tutorial preparé un proyecto demo que demostrará como desplegar endpoints construidos con stacks distintos  y colocar enfrente un API Gateway con Nginx. El código disponible tiene 2 APIs listas para responder peticiones, una construida con Python y usando el framework de FatAPI y otra con Go yusando el framework de Gin. Durante el tutorial se explica a detalle las configuraciones de nginx necesarias para funcionar como API Gateway. Después de realizar el tutorial, tendrás desplegados 3 contenedores con docker y una API que responde peticiones   protegida con HTTPS  usando un certifcado SSL y además autenticación basada en API Key. 
+Para este tutorial preparé un proyecto demo que demostrará como desplegar endpoints construidos con stacks distintos  y colocar enfrente un API Gateway con Nginx. 
+
+El código disponible tiene 2 APIs listas para responder peticiones, una construida con Python y usando el framework de FatAPI y otra con Go usando el framework de Gin. Durante el tutorial se explica a detalle las configuraciones de nginx necesarias para funcionar como API Gateway.   
+  
+Después de realizar el tutorial, tendrás desplegados 3 contenedores con docker y una API que responde peticiones   protegida con HTTPS  usando un certifcado SSL y además autenticación basada en API Key. 
 
 En el siguiente diagrama ilustramos el propósito:
 
