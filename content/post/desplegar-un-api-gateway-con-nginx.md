@@ -6,6 +6,16 @@ tags = ["devops", "architecture", "cloud", "containers"]
 title = "Desplegar un API Gateway con Nginx"
 
 +++
+Para este tutorial preparé un proyecto demo que demostrará como desplegar endpoints construidos con stacks distintos  y colocar enfrente un API Gateway con Nginx. El código disponible tiene 2 APIs listas para responder peticiones, una construida con Python y usando el framework de FatAPI y otra con Go yusando el framework de Gin. Durante el tutorial se explica a detalle las configuraciones de nginx necesarias para funcionar como API Gateway. Después de realizar el tutorial, tendrás desplegados 3 contenedores con docker y una API que responde peticiones   protegida con HTTPS  usando un certifcado SSL y además autenticación basada en API Key. 
+
+En el siguiente diagrama ilustramos el propósito:
+
+![](/uploads/bookstoreapigateway.png)
+
+Todo el código para seguir el tutorial está disponible en: [https://github.com/galvarado/nginx-api-gateway](https://github.com/galvarado/nginx-api-gateway "https://github.com/galvarado/nginx-api-gateway")
+
+## ¿Qué es un API Gateway?
+
 Hoy en día no podemos hablar de  arquitecturas de aplicaciones modernas sin mencionar a las APIs. Estas proporciona una interfaz común, independientemente de la escala de la aplicación, desde un microservicio de propósito único hasta una aplicaión monolítica integral.
 
 Básicamente, un API Gateway es un proxy inverso a los servicios y actúa como un punto de entrada único a todo el sistema. Todas las solicitudes de los clientes pasan primero por el API Gateway, luego este enruta las solicitudes al servicio o endpoint apropiado.
@@ -24,15 +34,9 @@ Un API Gateway nos ayuda a resolver fácilmente cuestiones como:
 
 ## Proyecto Demo | Book Store API
 
-Nuestro proyecto demo basado en docker es es la API para una tienda online de Libros.  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
+Nuestro proyecto demo basado en docker es es la API para una tienda online de Libros que desplegaremos usando el dominio bookstore.io  Crearemos un certificado autofirmado con openssl y el dominio solo respondera localmente modificando el archivo _/etc/hosts_ .  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
 
-En el siguiente diagrama ilustramos el propósito:
-
-![](/uploads/bookstoreapigateway.png)
-
-Todo el código para seguir el tutorial está disponible en: [https://github.com/galvarado/nginx-api-gateway](https://github.com/galvarado/nginx-api-gateway "https://github.com/galvarado/nginx-api-gateway")
-
-## FastAPI - API de Catalogo
+### FastAPI - API de Catalogo
 
 Usamos Python para construir nuestra API de catalogo con el framework [FastAPI](https://fastapi.tiangolo.com/) Esta API se encarga de los libros existentes en almacén, con sus existencias y precios.
 
@@ -76,7 +80,7 @@ Para obtener el detalle de un libro en particular, consultamos por su ID:
     
     {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410, "existence":10}
 
-## Gin - API de Tiendas
+### Gin - API de Tiendas
 
 Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de nuestra tienda de libros.
 
