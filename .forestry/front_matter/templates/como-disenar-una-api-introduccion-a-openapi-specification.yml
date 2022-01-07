@@ -46,7 +46,6 @@ fields:
 pages:
 - content/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes.md
 - content/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform.md
-- content/post/como-cree-mi-e-commerce.md
 - content/post/comparación-de-balanceadores-de-carga-en-google-cloud-http-s-vs-ssl-proxy-vs-tcp-proxy-vs-internal-vs-network-vs-internal-http-s.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
 - content/post/crear-un-kubernetes-facil-y-rapido-vagrant-kind.md
