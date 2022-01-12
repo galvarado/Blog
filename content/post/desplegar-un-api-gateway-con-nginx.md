@@ -509,4 +509,4 @@ Si tienes dudas no dudes en dejar un comentario.
 
 Referencias:
 
-[https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/#:\~:text=One%20advantage%20of%20using%20NGINX,deploy%20a%20separate%20API%20gateway.](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/#:\~:text=One%20advantage%20of%20using%20NGINX,deploy%20a%20separate%20API%20gateway. "https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/#:~:text=One%20advantage%20of%20using%20NGINX,deploy%20a%20separate%20API%20gateway.")
+[https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/ "https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/")
