@@ -9,6 +9,10 @@ disqusShortname = "galvarado-com-mx"
 googleAnalytics = "UA-118969871-1"
 comments = true
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
   logo = "/images/profile.png"

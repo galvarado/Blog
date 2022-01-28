@@ -1,12 +1,12 @@
 # ¿Quién soy?
 
-<center>![](/images/profile.png)</center>
+<center><img class="img-fluid" src="/images/profile.png" alt="A thumbnail image"> </center>
 
-<center>Mi nombre es Guillermo Antonio Alvarado Mejía y vivo del software. </center>
+<br />
+<center><a target="_blank"  href="https://twitter.com/galvarado89"><img class="img-fluid" src="/images/twitter.png" alt="A thumbnail image"> </a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/"><img class="img-fluid" src="/images/linkedin.png" alt="A thumbnail image"> </a></center>
 
-<center><a target="_blank"  href="https://twitter.com/galvarado89">![](/images/twitter.png)</a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/">![](/images/linkedin.png)</a></center>
 
-Actualmente vivo en la Ciudad de México aunque crecí en Michoacán. Hoy en día soy CTO en <a href="sentinel.la">Sentinel.la<a>. Tengo 10 años de experiencia en desarrollo, despliegue y operación de Software. Los últimos 5 años enfocado en cloud, containers, devops e integración continua. Soy co-organizador del <a href="https://www.meetup.com/OpenInfrastructureCDMX/">meetup de Open Infrastructure en Ciudad de México</a>.
+Mi nombre es Guillermo Antonio Alvarado Mejía, tengo 11 años de experiencia en TI, los últimos 7 años con experiencia práctica en arquitectura, automatizando, operando y optimizando implementaciones de misión crítica en grandes infraestructuras.Empecé mi carrera como Ingeniero de Software así que he podido desarrollar una visión de extremo a extremo.<br /><br />Hoy en día soy Director de Ingeniería en <a href="sentinel.la">Sentinel.la<a>.
 
 He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo largo de los años. Si te gustaría que hable en tu conferencia u organización, comicate conmigo. También tengo experiencia como docente en México y Latinoamérica, he impartido cursos en Perú, Bolivia y Chile.	
 
@@ -15,10 +15,8 @@ He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo
 <div class="col-lg-3 col-md-6 mb-30px card-group">
     <div class="card h-100">
         <div class="maxthumb">
-            <a href="">
-                
-                    <img class="img-fluid" src="/images/google.jpg" alt="A thumbnail image">
-                                
+            <a href=""> 
+                    <img class="img-fluid" src="/images/google.jpg" alt="A thumbnail image">               
             </a>
         </div>
         <div class="card-body">
@@ -35,9 +33,7 @@ He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo
     <div class="card h-100">
         <div class="maxthumb">
             <a href="">
-                
-                    <img class="img-fluid" src="/images/redhat.png" alt="A thumbnail image">
-                                
+                    <img class="img-fluid" src="/images/redhat.png" alt="A thumbnail image">         
             </a>
         </div>
         <div class="card-body">
@@ -54,9 +50,7 @@ He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo
     <div class="card h-100">
         <div class="maxthumb">
             <a href="">
-                
-                    <img class="img-fluid" src="/images/mirantis.png" alt="A thumbnail image">
-                                
+                    <img class="img-fluid" src="/images/mirantis.png" alt="A thumbnail image">              
             </a>
         </div>
         <div class="card-body">
@@ -73,9 +67,7 @@ He tenido la fortuna de haber sido invitado a hablar en varias conferencias a lo
     <div class="card h-100">
         <div class="maxthumb">
             <a href="">
-                
-                    <img class="img-fluid" src="/images/appcelerator.png" alt="A thumbnail image">
-                                
+                    <img class="img-fluid" src="/images/appcelerator.png" alt="A thumbnail image">               
             </a>
         </div>
         <div class="card-body">
@@ -97,11 +89,8 @@ Aunque mi trabajo no es lo único que me define. Si necesito describirme en una 
 
 Tengo algunos retos personales ya que me gusta mucho viajar. Quiero visitar todos los Estados de mi País (14 de 32). Quiero pisar todos los continentes (4 de 5) y quiero conocer 50 paises (15 de 50).
 
-Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a>. 
+Me gusta la fotografía, tengo una cámara canon e intento ir  capturando momentos y vivencias personales através del lente. También me gustá el fútbol, hincha del <a href="https://twitter.com/PumasMX">Club Universidad Nacional<a>.<br /><br /> Me gusta mucho correr, logré competar el maratón de la Ciudad de México =) y practico Mountan Bike, modalidad Cross Country y también Enduro.  Encontré en la bicicleta de montaña un escape del estrés y la vida cotidiana. La bicicleta te permite descubrir sitios increíbles y por el nivel de concentración que exige nos desinhibe del estres, dejando en un segundo plano los problemas.
 
-Practico Mountan Bike, modalidad Cross Country y también Enduro.  Cuando estoy arriba de la bici haciendo una bajada técnica me lleno de alegría, euforia, felicidad y satisfacción. Encontré en la bicicleta de montaña un escape del estrés y la vida cotidiana. Es una actividad que te acerca a la naturaleza. Pocos deportes como el mountain bike te pueden llevar a conocer y descubrir parajes espectaculares en tan poco tiempo. La bicicleta te permite descubrir sitios increíbles y por el nivel de concentración que exige nos desinhibe del estres, dejando en un segundo plano los problemas.
-
-<center>![](/images/mtb.jpg)</center>
+<center><img class="img-fluid" src="/images/mtb.jpg" alt="A thumbnail image"></center>
 
 
-En la foto estoy en la pista "Lions Hill"  en el Parque Nacional Desierto de los Leones. 
