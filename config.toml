@@ -9,6 +9,7 @@ disqusShortname = "galvarado-com-mx"
 googleAnalytics = "UA-118969871-1"
 comments = true
 
+
 [params]
   logo = "/images/profile.png"
   description ="Bienvenido a mi blog personal. Aquí encontrarás las experiencias de un desarrollador que migró al mundo de la infraestructura. Escribo de mi experiencia en Cloud, Containers, DevOps, Entrega continua, Microservicios, Desarrollo... "

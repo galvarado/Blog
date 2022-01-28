@@ -14,8 +14,9 @@
                 <h2><span>Todos los posts</span></h2>                
             </div>            
             <div class="row listrecent">
-                {{ $post_paginator := .Paginate (.Pages) 21 }}
-                {{ range $post_paginator.Pages }}
+                {{ $getstarted := site.GetPage "/post" }}
+                {{ $post_paginator := .Paginate (where .Data.Pages "Type" "post") }}
+                {{ range $getstarted.Pages }}
                     {{- partial "list-partials/postbox.html" . -}}
                 {{end}}
             </div>
