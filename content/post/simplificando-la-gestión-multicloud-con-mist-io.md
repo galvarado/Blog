@@ -80,7 +80,7 @@ Una vez agregadas las credenciales, el resumen de proveedores de nube se visuali
 
 La siguiente es la vista general de toda mi infraestructura de cómputo en todos los proveedores que agregué, donde se detalla el proveedor de nube, el tamaño de las VMS, sus direcciones IPs, el estado de ejecución y su tiempo de creación:
 
-![](/uploads/Captura de pantalla de 2019-02-28 16-57-11.png)
+![](/uploads/Capturadepantallade2019-02-2816-57-11.png)
 
 Podemos acceder a la misma información en cuanto a volúmenes de almacenamiento:
 

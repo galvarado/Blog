@@ -32,7 +32,7 @@ Para comenzar el despliegue accederemos a la consola de GCP en [https://console.
 
 En la esquina superior derecha buscaremos el ícono para activar Cloud Shell.
 
-![](/uploads/cloud shell.png)
+![](/uploads/cloud_shell.png)
 
 **¿Qué es Cloud Shell?**
 
@@ -49,7 +49,7 @@ Toma unos minutos aprovisionar y conectarnos al entorno. Cuando estamos conectad
 
 Se debería ver algo simiar a esto:
 
-![](/uploads/Captura realizada el 2019-10-25 14.16.11.png)
+![](/uploads/Captura_realizada_el_2019-10-25_14.16.11.png)
 
 Desde esta ventana ejecutaremos todos los comandos.
 
@@ -115,7 +115,7 @@ Puede llevar varios minutos terminar de crear el clúster. Poco después, deber�
 
 Si vamos al panel de Compute Engine, veremos las VMs que se crearon. Estás son los hosts del cluster de K8s.
 
-![](/uploads/Captura realizada el 2020-01-16 15.17.23.png)
+![](/uploads/Captura_realizada_el_2020-01-16_15.17.23.png)
 
 NOTA: Es posible que el acceso a la API para ejecutar este comando no está habilitado. En tal caso recibiremos un ERROR similar a este:
 
@@ -127,7 +127,7 @@ Basta con seguir el link que nos muestra el error. Desde ahí habilitaremos el a
 
 En el cuadro de busqueda filtraremos por "Compute" y habilitaremos el acceso:
 
-![](/uploads/Captura realizada el 2020-01-16 15.02.49.png)
+![](/uploads/Captura_realizada_el_2020-01-16_15.02.49.png)
 
 Si es la primera vez que usas Googe Cloud también deberás crear una cuenta de facturación. El cuadro de dialogo aparecerá en tal caso y basta con llenar el formulario.
 
@@ -168,7 +168,7 @@ _--port:_ Especifica el puerto que expone el contenedor. En este caso expondremo
 
 _--image:_  Especifica la imagen de contenedor para desplegar. En este caso, el comando extrae la imagen de ejemplo de un repositorio de Google Container Registry, en este caso  gcr.io/google-samples/hello-app:1.0 indica  la imagen y la versión  específica que se debe extraer. Si no se especificamos una versión, se utiliza la última versión. Si tienes curiosidad por la imagen la puedes consultar aquí: [https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app](https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app "https://console.cloud.google.com/gcr/images/google-samples/GLOBAL/hello-app")
 
-![](/uploads/Captura realizada el 2020-01-16 15.37.57.png)
+![](/uploads/Captura_realizada_el_2020-01-16_15.37.57.png)
 
 Ahora crearemos un objetivo tipo "Service" de Kubernetes, que es un recurso que  permite exponer la aplicación al tráfico externo. Al pasar type = "LoadBalancer" se crea un balanceador de carga de Compute Engine para la aplicación.
 
@@ -182,7 +182,7 @@ Salida:
 
 Si vamos a los recursos de red en el panel de GCP, podemos ver el balanceador recién creado:
 
-![](/uploads/Captura realizada el 2020-01-16 15.31.05.png)
+![](/uploads/Captura_realizada_el_2020-01-16_15.31.05.png)
 
 Estas son algunas de las bondades de GKE, puedes crear balanceadores de carga y hosts de Kubernetes con un par de comandos, gracias a la integración de K8s  con Google Cloud.
 
@@ -213,7 +213,7 @@ En mi caso:
 
 La página debe parecerse a lo siguiente:
 
-#### ![](/uploads/Captura realizada el 2020-01-16 15.26.49.png)
+#### ![](/uploads/Captura_realizada_el_2020-01-16_15.26.49.png)
 
 #### 6. Eliminar los recursos
 

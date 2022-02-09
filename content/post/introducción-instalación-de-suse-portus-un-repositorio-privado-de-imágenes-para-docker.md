@@ -244,12 +244,12 @@ En mi caso:
 
 [https://registry.galvarado.com.mx/](https://registry.galvarado.com.mx/ "https://registry.galvarado.com.mx/")
 
-![](/uploads/Captura realizada el 2019-09-20 13.27.35.png)
+![](/uploads/Captura_realizada_el_2019-09-20_13.27.35.png)
 
 Después de crear un usuario admin, configuramos el registro, en este caso es el mismo servicio inicado por docker-compose en el puerto 5000 del mismo host.
 
   
-![](/uploads/Captura realizada el 2019-09-20 13.36.31.png)
+![](/uploads/Captura_realizada_el_2019-09-20_13.36.31.png)
 
 **Subir una imagen a portus**
 
@@ -304,11 +304,11 @@ En mi caso:
 
 Así se ve en portus:
 
-![](/uploads/Captura realizada el 2019-09-20 14.42.07.png)
+![](/uploads/Captura_realizada_el_2019-09-20_14.42.07.png)
 
 Podemos observar la parte del análisis de vulnerabilidades de Clair claramente, detecta varias vulnerabilidades, al ver el detalle observamos:
 
-![](/uploads/Captura realizada el 2019-09-20 14.42.24.png)
+![](/uploads/Captura_realizada_el_2019-09-20_14.42.24.png)
 
 Lo que resta es subir más imagenes y crear más usuarios para ser usado por el resto de la organización.
 

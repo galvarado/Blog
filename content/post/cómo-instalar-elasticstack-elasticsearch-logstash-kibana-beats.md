@@ -21,7 +21,9 @@ Para una introducción a todos los componentes y casos de uso de Elasicsearch [p
 
 Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras aplicaciones para ser centralizados usando el Elastic Stack:
 <center>
+
 ![](/uploads/ELKdataflow.png)
+
 </center>
 
 1. **Beats** obtiene los logs de las aplicaciones y los envía a Logstash.
@@ -418,18 +420,18 @@ Para visualizar los logs en kibana debemos crear un index patter por cada indice
 
 1. Vamos a la opción Connect to your Elasticsearch index:
 
-![](/uploads/Captura de pantalla de 2020-02-19 16-42-40.png)
+![](/uploads/Captura_de_pantalla_de_2020-02-19_16-42-40.png)
 
-1. Colocamos el nombre del índice:
+2. Colocamos el nombre del índice:
 
-![](/uploads/Captura de pantalla de 2020-02-19 16-43-01.png)
+![](/uploads/Captura_de_pantalla_de_2020-02-19_16-43-01.png)
 
-2. Definimos el campo de ordenamiento:  
-   ![](/uploads/Captura de pantalla de 2020-02-19 16-43-14.png)
+3. Definimos el campo de ordenamiento:  
+   ![](/uploads/Captura_de_pantalla_de_2020-02-19_16-43-14.png)
 
 Una vez creado, podemos ir a la sección "Discover", ahí elegimos el índice y podremos visualizar los logs:
 
-![](/uploads/Captura de pantalla de 2020-02-19 16-49-21.png)
+![](/uploads/Captura_de_pantalla_de_2020-02-19_16-49-21.png)
 
 Si inspeccionamos uno de los registros podemos ver todos los campos:
 
