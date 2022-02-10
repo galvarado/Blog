@@ -1,6 +1,6 @@
 # ¿Quién soy?
 
-<center><img class="img-fluid" src="/images/profile.png" alt="A thumbnail image"> </center>
+<center><img class="img-fluid" src="/images/logop.png" alt="A thumbnail image"> </center>
 
 <br />
 <center><a target="_blank"  href="https://twitter.com/galvarado89"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="A thumbnail image"> </a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="A thumbnail image"> </a><a target="_blank"  href="https://github.com/galvarado"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="A thumbnail image"> </a></center>
