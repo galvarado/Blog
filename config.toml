@@ -22,7 +22,7 @@ comments = true
 
 [params.author]
   name = "Guillermo Alvarado"
-  thumbnail = "images/profile.png"
+  thumbnail = "images/logosmall.png"
   description = "Creador del blog"
 
 [params.index]
