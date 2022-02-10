@@ -3,8 +3,8 @@
 <center><img class="img-fluid" src="/images/profile.png" alt="A thumbnail image"> </center>
 
 <br />
-<center><a target="_blank"  href="https://twitter.com/galvarado89"><img class="img-fluid" src="/images/twitter.png" alt="A thumbnail image"> </a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/"><img class="img-fluid" src="/images/linkedin.png" alt="A thumbnail image"> </a></center>
-
+<center><a target="_blank"  href="https://twitter.com/galvarado89"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="A thumbnail image"> </a><a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="A thumbnail image"> </a><a target="_blank"  href="https://github.com/galvarado"><img width="50px"class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="A thumbnail image"> </a></center>
+<br />
 
 Mi nombre es Guillermo Antonio Alvarado Mejía, tengo 11 años de experiencia en TI, los últimos 7 años con experiencia práctica en arquitectura, automatizando, operando y optimizando implementaciones de misión crítica en grandes infraestructuras.Empecé mi carrera como Ingeniero de Software así que he podido desarrollar una visión de extremo a extremo.<br /><br />Hoy en día soy Director de Ingeniería en <a href="sentinel.la">Sentinel.la<a>.
 
