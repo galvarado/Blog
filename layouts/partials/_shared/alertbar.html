@@ -4,7 +4,7 @@
 	<div class="container text-center">
         <span>
             {{ if isset .Site.Params "logo" }}
-                <img style="height:60px" src="{{ .Site.Params.logo | urlize | relURL }}" alt="logo">
+                <img style="height:60px" src="/images/logosmall.png" alt="logo">
             {{ else }}
                 <span style="font-family:Righteous;">{{.Site.Title}}</span>
             {{ end }}
