@@ -1,8 +1,9 @@
 +++
 comments = "true"
 date = 2022-02-20T17:53:00Z
+draft = true
 image = "/uploads/terraformeks.png"
-tags = ["devops", "terraform","aws", "cloud", "containers"]
+tags = ["devops", "terraform", "aws", "cloud", "containers"]
 title = "Desplegar un cluster de Amazon EKS con Terraform"
 
 +++
