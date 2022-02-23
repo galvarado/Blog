@@ -40,17 +40,17 @@ Dos excelentes noticias: Terraform y Vagrant tienen soporte integrado para pasar
 
 ## Cloud-init vs Packer vs Ansible
 
-Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente lo ideal. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
+Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como [Packer](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/), pero eso no es necesariamente lo ideal. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
 
 Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando creamos la imagen, por lo que podemos configurar una imagen con Packer sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la instancia.
 
 Respecto a Ansible, este flujo debería venir después o integrado en la construcción de la imagen con Packer.  Si necesitamos una conexión SSH en un servidor para instalar dependencias, entonces tenemos un sistema que  tiene un único punto de falla.
 
-Entonces, dependiendo de la frecuencia de despliegue,es conveniente agrupar todo el software en una imagen AMI con Packer. No hay silverbullets ni mucho menos, pero mi conclusión y consejo es: Seguir el enfoque de infraestructura inmutable con Packer, creando imagenes con todo el stack e incluir cloud-init para personalizaciones posteriores. 
+Entonces, dependiendo de la frecuencia de despliegue,es conveniente agrupar todo el software en una imagen AMI con Packer. No hay silverbullets ni mucho menos, pero mi conclusión y consejo es: Seguir el enfoque de [infraestructura inmutable ](https://galvarado.com.mx/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform/)con Packer, creando imagenes con todo el stack e incluir cloud-init para personalizaciones posteriores. 
 
 _Ahora bien, cuando la personalización es muy sencilla, no es necesario empaquetar toda una imagen y podemos ir directo a Cloud-init._
 
-En cuanto a Ansible: Uso cloud-init para instalar lo mínimo que necesito y luego ejecuto la administración de configuración según sea necesario. Ansible es mucho más fácil de administrar, más flexible, más potentey, además, puede ejecutarse continuamente. Cloud-init se ejecuta una vez nada más, en el arranque.
+En cuanto a Ansible: Uso cloud-init para instalar lo mínimo que necesito y luego ejecuto la administración de configuración según sea necesario. Ansible es mucho más fácil de administrar, más flexible, más potente y además, puede ejecutarse continuamente. Cloud-init se ejecuta una vez nada más, en el arranque.
 
 **Mantengamos el inicio simple  y usemos ansible para lo demás.** 
 
