@@ -24,9 +24,11 @@ Recientemente tenia que crear unas instancias en AWS solo con nginx instalado. M
 
 Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD. 
 
-Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE.   ![](/uploads/distros.png) ​
+Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE:
 
-Para entornos basados en Microsoft Windows, el equivalente es CloudBase-init.  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas:
+![](/uploads/distros.png) ​
+
+Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](https://cloudbase.it/cloudbase-init/)  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas: Rackspace, OVH, VMWare. Azure, AWS, GCP, Joyent, Fujitsu, Oracle Cloud.
 
 ![](/uploads/providers.png)
 
