@@ -1,9 +1,10 @@
 +++
 comments = "true"
 date = 2022-02-22T06:00:00Z
+draft = true
 image = "/uploads/cloudinit-1.png"
 tags = ["cloud", "best practices"]
-title = "Personalización en la nube con cloud-init: Ejemplos con Terraform en AWS y Vagrant."
+title = "Personalización en la nube con cloud-init: Ejemplos con Terraform en AWS y Vagrant"
 
 +++
 Este post comienza con una lección que obtuve reciente mente y lo puedo resumir con la siguiente frase:
