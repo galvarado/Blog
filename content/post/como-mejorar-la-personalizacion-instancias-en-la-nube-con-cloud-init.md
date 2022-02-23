@@ -18,10 +18,20 @@ Otra forma de verlo es esta explicación del escritor William J. Hall: “La nav
 
 ## ¿Qué es Cloud-init?
 
-[Cloud-init ](https://cloud-init.io/)es un servicio utilizado para personalizar instancias en la nube basadas en Linux Nos permite personalizar las máquinas virtuales que nos proporcionan las distintas plataformas de nube modificando la configuración genérica del sistema  en el arranque. 
+[Cloud-init ](https://cloud-init.io/)es un servicio utilizado para personalizar instancias en la nube basadas en Linux Nos permite personalizar las máquinas virtuales que nos proporcionan las distintas plataformas de nube modificando la configuración genérica del sistema  en el arranque.
 
-Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD. Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE. ParaMicrosoft Windows, el equivalente es CloudBase-init.
-<center>
-![](/uploads/distros.png)
-</center>
-​
+Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD. 
+
+Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE. ParaMicrosoft Windows, el equivalente es CloudBase-init.
+
+![](/uploads/distros.png) ​
+
+Y esta disponible en las siguientes plataformas:
+
+![](/uploads/providers.png)
+
+## ¿Cuando usar Cloud-init?
+
+## Ejemplo de Cloud-init con Terraform en AWS
+
+## Cloud-init en entorno local con Vagrant 
