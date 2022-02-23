@@ -3,7 +3,7 @@ comments = "true"
 date = 2022-02-22T06:00:00Z
 image = "/uploads/cloudinit-1.png"
 tags = ["cloud", "best practices"]
-title = "Como mejorar la personalización instancias en la nube con cloud-init"
+title = "Mejorando la personalización instancias en la nube con cloud-init: Ejemplos con Terraform en AWS y Vagrant."
 
 +++
 Este post comienza con una lección que obtuve reciente mente y lo puedo resumir con la siguiente frase:
@@ -36,9 +36,13 @@ Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](h
 
 Cuando estamos configurando una instancia EC2, utilizando Terraform o la consola de AWS, o cualquier otro método, es posible que deseemos realizar alguna configuración automatizada cuando se inicie por primera vez. Sin iniciar sesión en la instancia manualmente, es posible que deseemos crear usuarios, instalar software, definir algunas variables de entorno o muchas otras cosas. Estas son cosas que solo se ejecutarán una vez cuando se cree la instancia.
 
+Dos excelentes noticias: Terraform y Vagrant tienen soporte integrado para pasar scripts de cloud-init al momento de crear VMs en la nube o en entornos locales. Así que más adelante te muestro como personalizar instancias en AWS con Terraform y para no tener que estar creando instancias en la nube al realizar los scripts, primero trabajamos con ellos en un entorno local con Vagrant. Cuando finalmente nuestro script hace lo que necesitamos, lo pasamos a Terraform y se comportará exactamente igual.
+
 ## Cloud-init vs Packer vs Ansible
 
-Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente para lo que la usaría. Crear una AMI que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar la infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando crea la AMI, por lo que puede configurar una AMI sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la AMI.
+Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente para lo que la usaría. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
+
+Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando crea la AMI, por lo que puede configurar una AMI sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la AMI.
 
 ## Ejemplo de Cloud-init con Terraform en AWS
 
