@@ -28,7 +28,7 @@ Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Lin
 
 ![](/uploads/distros.png) ​
 
-Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](https://cloudbase.it/cloudbase-init/)  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas: Rackspace, OVH, VMWare. Azure, AWS, GCP, Joyent, Fujitsu, Oracle Cloud.
+Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](https://cloudbase.it/cloudbase-init/)  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas: Rackspace, OVH, VMWare, Azure, AWS, GCP, Joyent, Fujitsu, Oracle Cloud.
 
 ![](/uploads/providers.png)
 
