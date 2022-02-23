@@ -22,11 +22,9 @@ Otra forma de verlo es esta explicación del escritor William J. Hall: “La nav
 
 Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD. 
 
-Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE. ParaMicrosoft Windows, el equivalente es CloudBase-init.
+Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE.   ![](/uploads/distros.png) ​
 
-![](/uploads/distros.png) ​
-
-Y esta disponible en las siguientes plataformas:
+Para entornos basados en Microsoft Windows, el equivalente es CloudBase-init.  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas:
 
 ![](/uploads/providers.png)
 
@@ -38,6 +36,6 @@ Cuando estamos configurando una instancia EC2, utilizando Terraform o la consola
 
 Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente para lo que la usaría. Crear una AMI que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar la infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando crea la AMI, por lo que puede configurar una AMI sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la AMI.
 
-## Cloud-init con Terraform en AWS
+## Ejemplo de Cloud-init con Terraform en AWS
 
 ## Cloud-init en entorno local con Vagrant 
