@@ -1,6 +1,7 @@
 +++
 comments = "true"
 date = 2022-02-22T06:00:00Z
+draft = true
 image = "/uploads/cloudinit-1.png"
 tags = ["devops", "architecture", "cloud", "development", "best practices", "containers", "GCP", "azure", "aws", "CloudOps"]
 title = "Como mejorar la personalización instancias en la nube con cloud-init"
