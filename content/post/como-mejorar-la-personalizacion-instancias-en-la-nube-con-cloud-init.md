@@ -40,7 +40,7 @@ Dos excelentes noticias: Terraform y Vagrant tienen soporte integrado para pasar
 
 ## Cloud-init vs Packer vs Ansible
 
-Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente para lo que la usaría. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
+Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como Packer, pero eso no es necesariamente lo ideal. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
 
 Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando crea la AMI, por lo que puede configurar una AMI sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la AMI.
 
