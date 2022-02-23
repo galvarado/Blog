@@ -16,6 +16,8 @@ Este principio es conocido como la navaja de Ockham y puedes leer más al respec
 
 Otra forma de verlo es esta explicación del escritor William J. Hall: “La navaja de Ockham se resume para nuestros propósitos de esta manera: las afirmaciones extraordinarias exigen pruebas extraordinarias”.
 
+Recientemente tenia que crear unas instancias en AWS solo con nginx instalado. Mi primer enfoque fue usar Packer para crear la imagen con el paquete instalado e iniciado, después con Terraform tomaría la imagen para crear las instancias. Pero entonces fue cuando un amigo me dijo, ¿Porque toda una imagen con Packer para solo instalar nginx? Fue entonces cuando recordé que tenia una opción mucho más simple... ¡Cloud-init!
+
 ## ¿Qué es Cloud-init?
 
 [Cloud-init ](https://cloud-init.io/)es un servicio utilizado para personalizar instancias en la nube basadas en Linux Nos permite personalizar las máquinas virtuales que nos proporcionan las distintas plataformas de nube modificando la configuración genérica del sistema  en el arranque.
