@@ -32,6 +32,36 @@ Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](h
 
 ![](/uploads/providers.png)
 
+El servicio de cloud-init se encuentra instalado en las VMs de estas plataformas y se inicia en el arranque (boot) de la VM, utiliza los metadatos proporcionados por el proveedor de la nube o los que nosotros mismos le damos.
+
+Lo hace mediante la ejecución de scripts, comúnmente desde el archivo [cloud-config ](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)Por lo tanto, para cambiar cualquier configuración predeterminada,  editamos o creamos este archivo, lo pasamos en la creación de la VM y cloud-init se pone en marcha.
+
+El archivo cloud-config es un archivo YAML que sigue  reglas básicas, como:
+
+    #cloud-config
+    
+    # boot commands
+    # default: none
+    # this is very similar to runcmd, but commands run very early
+    # in the boot process, only slightly after a 'boothook' would run.
+    # bootcmd should really only be used for things that could not be
+    # done later in the boot process.  bootcmd is very much like
+    # boothook, but possibly with more friendly.
+    # - bootcmd will run on every boot
+    # - the INSTANCE_ID variable will be set to the current instance id.
+    # - you can use 'cloud-init-per' command to help only run once
+    bootcmd:
+      - echo 192.168.1.130 us.archive.ubuntu.com >> /etc/hosts
+
+El ejemplo anterior agrega una linea al archivo _/etc/hosts._
+
+El servicio cloud-init se usa para una variedad de cosas, que incluyen:
+
+* Adición de usuarios y grupos.
+* Escribir archivos arbitrarios.
+* Agregar repositorios YUM.
+* Ejecutar comandos en el primer arranque.
+
 ## ¿Cuando usar Cloud-init?
 
 Cuando estamos configurando una instancia EC2, utilizando Terraform o la consola de AWS, o cualquier otro método, es posible que deseemos realizar alguna configuración automatizada cuando se inicie por primera vez. Sin iniciar sesión en la instancia manualmente, es posible que deseemos crear usuarios, instalar software, definir algunas variables de entorno o muchas otras cosas. Estas son cosas que solo se ejecutarán una vez cuando se cree la instancia.
