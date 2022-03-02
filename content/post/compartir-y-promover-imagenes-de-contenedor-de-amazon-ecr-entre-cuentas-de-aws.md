@@ -28,25 +28,14 @@ Agregar politica en la cuenta principal e intentar el pull de nuevo, debe funcio
           "Principal": {
     
             "AWS": [
-    
               "arn:aws:iam::335582020948:user/developer"
-    
             ]
-    
           },
-    
           "Effect": "Allow",
-    
           "Sid": "AllowCrossAccountPull"
-    
         }
-    
       ],
-    
       "Version": "2008-10-17"
-    
     }
-    
-    helper:
 
 get identity [https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html "https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html")
