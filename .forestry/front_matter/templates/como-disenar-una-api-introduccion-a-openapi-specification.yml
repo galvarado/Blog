@@ -49,6 +49,7 @@ pages:
 - content/post/como-mejorar-la-personalizacion-instancias-en-la-nube-con-cloud-init.md
 - content/post/comparación-de-balanceadores-de-carga-en-google-cloud-http-s-vs-ssl-proxy-vs-tcp-proxy-vs-internal-vs-network-vs-internal-http-s.md
 - content/post/comparación-de-bases-de-datos-en-google-cloud-datastore-vs-bigtable-vs-cloud-sql-vs-spanner-vs-bigquery.md
+- content/post/compartir-y-promover-imagenes-de-contenedor-de-amazon-ecr-entre-cuentas-de-aws.md
 - content/post/crear-un-kubernetes-facil-y-rapido-vagrant-kind.md
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
 - content/post/desplegar-un-api-gateway-con-nginx.md
