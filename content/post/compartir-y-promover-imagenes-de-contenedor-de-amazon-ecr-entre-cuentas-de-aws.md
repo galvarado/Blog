@@ -15,7 +15,9 @@ en la cuenta principal seguir los siguientes pasos para crear un repositorio y u
 
 En la segunda cuenta, hacer login al repo de la cuenta principal e intentar el pull: dará un error.
 
-Agregar politica en la cuenta principal e intentar el pull de nuevo, debe funcionar
+Agregar politica en la cuenta principal e intentar el pull de nuevo, debe funcionar.
+
+Politica:
 
     {
       "Statement": [
