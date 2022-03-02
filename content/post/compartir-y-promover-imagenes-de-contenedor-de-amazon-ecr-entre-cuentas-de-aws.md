@@ -50,23 +50,3 @@ Agregar politica en la cuenta principal e intentar el pull de nuevo, debe funcio
     helper:
 
 get identity [https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html "https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html")
-
-steps:
-
-Build docker images
-
-set-aws-environment-variables:
-
-          aws-access-key-id: << parameters.aws-access-key-id >>
-    
-          aws-secret-access-key: << parameters.aws-secret-access-key >>
-    
-          aws-region: << parameters.aws-region >>
-    
-          aws-ecr-account-url: << parameters.container-registry-url >>
-
-aws-cli/setup
-
-aws-ecr/ecr-login
-
-docker-push.sh
