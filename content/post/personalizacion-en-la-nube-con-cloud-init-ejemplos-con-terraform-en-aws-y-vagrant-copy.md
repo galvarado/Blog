@@ -2,7 +2,7 @@
 comments = "true"
 date = 2022-08-15T14:00:00Z
 image = "/uploads/openinfradaysmexico.png"
-tags = ["cloud", "best practices", "terraform", "aws", "vagrant"]
+tags = ["cloud", "terraform", "aws"]
 title = "Como implementar un Cloud ToolChain - OpenInfraDays México 2022"
 
 +++
