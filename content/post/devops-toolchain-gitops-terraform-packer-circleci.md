@@ -15,7 +15,7 @@ Hoy la infraestructura de TI debe ser una ventaja competitiva; ya que determina 
 En esta charla, compartiré algunas lecciones aprendidas sobre las mejores prácticas y herramientas para lograrlo. Hablaremos sobre Infraestructura como código con terraform y packer, así como herramientas de automatización como cloud-init y ansible y la importancia de las herramientas GitOps y los flujos de trabajo de CI/CD en la gestión del SDLC en el mercado actual.
 
 * Esta sesión tuvo lugar en vivo el Lunes 15 de Agosto en el marco del OpenInfraDays México: [https://openinfradays.mx/](https://openinfradays.mx/ "https://openinfradays.mx/")
-* La grabación de la sesión está disponible [en Youtube](https://www.youtube.com/channel/UCpB__-WAEyHdvKAK0Y15akQ).
+* La grabación de la sesión está disponible [en Youtube](https://www.youtube.com/watch?v=9DJHsmtMArQ).
 * Puedes descargar las slides de la sesión desde [aquí](https://github.com/galvarado/devops-toolchain/blob/main/assets/slides.pdf).
 * Todo el código está disponible en Githuib en el siguiente enlace: [https://github.com/galvarado/devops-toolchain](https://github.com/galvarado/devops-toolchain "https://github.com/galvarado/devops-toolchain")
 
@@ -60,7 +60,7 @@ Adicionalmente requerimos verificaciones de estado como prerequisitos antes de p
 
 Git es una herramienta de misión crítica para el desarrollo de software que permite flujos de trabajo de solicitud de incorporación o Pull Requests y revisión de código. Las solicitudes promueven la visibilidad de los cambios entrantes en una base de código y fomentan la comunicación, el debate y la revisión de los cambios.
 
-Estas, son una característica fundamental en el desarrollo de software colaborativo y cambiaron la forma en que los equipos y las empresas crean software ya que aportan transparencia a un proceso que antes era opaco.  Trabajar en este flujo  permite la evolución de los procesos DevOps hacia el desarrollo de software. 
+Estas, son una característica fundamental en el desarrollo de software colaborativo y cambiaron la forma en que los equipos y las empresas crean software ya que aportan transparencia a un proceso que antes era opaco.  Trabajar en este flujo  permite la evolución de los procesos DevOps hacia el desarrollo de software.
 
 Todo el código está disponible en Github en el siguiente enlace: [https://github.com/galvarado/devops-toolchain](https://github.com/galvarado/devops-toolchain "https://github.com/galvarado/devops-toolchain")
 
