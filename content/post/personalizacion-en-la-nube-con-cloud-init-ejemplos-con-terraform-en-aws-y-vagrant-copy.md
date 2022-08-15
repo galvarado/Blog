@@ -17,6 +17,7 @@ En esta charla, compartiré algunas lecciones aprendidas sobre las mejores prác
 * Esta sesión tuvo lugar en vivo el Lunes 15 de Agosto en el marco del OpenInfraDays México: [https://openinfradays.mx/](https://openinfradays.mx/ "https://openinfradays.mx/")
 * La grabación de la sesión está disponible [en Youtube](https://www.youtube.com/channel/UCpB__-WAEyHdvKAK0Y15akQ).
 * Puedes descargar las slides de la sesión desde [aquí](https://github.com/galvarado/devops-toolchain/blob/main/assets/slides.pdf).
+* Todo el código está disponible en Githuib en el siguiente enlace: [https://github.com/galvarado/devops-toolchain](https://github.com/galvarado/devops-toolchain "https://github.com/galvarado/devops-toolchain")
 
 ## Demo
 
