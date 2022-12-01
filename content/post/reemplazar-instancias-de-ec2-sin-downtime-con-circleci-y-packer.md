@@ -1,7 +1,6 @@
 +++
 comments = "true"
 date = 2022-12-02T17:00:00Z
-draft = true
 image = "/uploads/cicdpackerawsec2.png"
 tags = ["devops", "aws"]
 title = "Reemplazar instancias de EC2 sin downtime con CircleCI y Packer"
