@@ -1,6 +1,6 @@
 +++
 comments = "true"
-date = 2022-12-01T17:00:00Z
+date = 2022-12-12T17:00:00Z
 image = "/uploads/cicdpackeraws.png"
 tags = ["devops", "aws"]
 title = "Reemplazar instancias de EC2 sin downtime con CircleCI y Packer"
@@ -12,7 +12,30 @@ Estaremos resolviendo dos desafíos. El primero es ¿Cómo crear una pipelione d
 
 Este enfoque es  muy útil para liberar nuevas versiones de aplicaciones que están desplegadas en instancias de EC2.  Esta estrategia  significa reemplazar la o las  instancias EC2 para actualizar la aplicación o la configuración en lugar de implementar los cambios en instancias  que ya se están ejecutando. 
 
-Para logar esto haremos uso de los AutoScaling Groups, que son un conjunto de instancias EC2 que se tratan como una agrupación lógica para efectos de escalado y administración automática.  Si quieres saber  más sobre las ventajas de Packer [en este post](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) escribí al respecto y también sobre el concepto de  [infraestructura inmutable.](https://galvarado.com.mx/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform/)  Además te sugiero dar una lectura a [este tutorial](https://docs.aws.amazon.com/autoscaling/ec2/userguide/get-started-with-ec2-auto-scaling.html) sobre los ASG si quieres profundizar en el tema.
+Para logar esto haremos uso de los Auto Scaling Groups s, estos ayudan a mantener la disponibilidad de las aplicaciones a través de un amplio conjunto de funciones:
+
+* Integración en Elastic Load Balancing
+* Reemplazo automático de instancias en mal estado,
+* Escalamiento horizontal de instancias
+* Agregar/Eliminar de forma dinámica instancias,
+
+Si quieres saber  más sobre las ventajas de Packer [en este post](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/) escribí al respecto y también sobre el concepto de  [infraestructura inmutable.](https://galvarado.com.mx/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform/)  Además te sugiero dar una lectura a [este tutorial](https://docs.aws.amazon.com/autoscaling/ec2/userguide/get-started-with-ec2-auto-scaling.html) sobre los ASG si quieres profundizar en el tema.
+
+## Diseño de la solución
+
+Aquí hay una descripción general de lo que contiene la solución y cómo funciona:
+
+* Un grupo de EC2 Auto Scaling con dos instancias en ejecución, creado con Terraform.
+* Una Pipeline de CircleCI  que orquesta el flujo:
+  * Construye una nueva AMI usando Packer.
+
+
+  *  Crea una nueva nueva versión de la plantilla de lanzamiento (launch template) indicando la nueva imagen.
+  * Activa un instance-refresh en el ASG para que se realicé un _rolling update_ de las instancias.
+
+El ASG debe estar configurado con LaunchTemplateVersion = $Latest, para que cada nueva instancia que se lanza mediante el proceso Instance Refresh usa la AMI de la última versión de Launch Template.
+
+Podemos ver el flujo de la automatización en el siguiente diagrama.
 
 Referencias:
 
