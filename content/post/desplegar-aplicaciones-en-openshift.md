@@ -1,11 +1,10 @@
-+++
-comments = "true"
-date = 2023-02-23T00:00:00Z
-image = "/uploads/openshift.png"
-tags = ["devops", "cloud", "containers"]
-title = "Desplegar Aplicaciones en OpenShift"
-
-+++
+---
+comments: "true"
+date: "2023-02-23T00:00:00Z"
+image: "/uploads/openshift.png"
+tags: ["devops", "cloud", "containers"]
+title: "Desplegar Aplicaciones en OpenShift"
+---
 
 En este tutorial, aprenderás a crear una aplicación Node.js que se ejecuta en un contenedor y cómo desplegarla a un clúster Openshift.
 
