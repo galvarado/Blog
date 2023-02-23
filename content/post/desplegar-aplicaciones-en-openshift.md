@@ -22,13 +22,13 @@ Si estás buscando una plataforma de orquestación de contenedores para ejecutar
 * OpenShift proporciona una plataforma más segura y escalable que Kubernetes, con características de seguridad incorporadas y una capacidad de gestión de recursos más avanzada.
 * OpenShift es compatible con Kubernetes y se integra sin problemas con herramientas de automatización y DevOps, por lo que es una excelente opción para equipos de desarrollo que buscan una solución completa.
 
-En general, si eres nuevo en la orquestación de contenedores y buscas una plataforma fácil de usar y con una amplia gama de características, OpenShift puede ser una excelente opción para ti. 
+En general, si eres nuevo en la orquestación de contenedores y buscas una plataforma fácil de usar y con una amplia gama de características, OpenShift puede ser una excelente opción para ti.
 
 Si ya estás familiarizado con Kubernetes y buscas una solución más enfocada en la orquestación de contenedores, Kubernetes puede ser una mejor opción. Pero en última instancia, la elección depende de tus necesidades específicas y de las características que sean más importantes para ti.
 
 ## Tutorial
 
-El ódigo está disponible en Github: [https://github.com/galvarado/node-app-openshift-example](https://github.com/galvarado/node-app-openshift-example "https://github.com/galvarado/node-app-openshift-example")
+El código está disponible en Github: [https://github.com/galvarado/node-app-openshift-example](https://github.com/galvarado/node-app-openshift-example "https://github.com/galvarado/node-app-openshift-example")
 
 ### Requisitos
 
@@ -49,7 +49,7 @@ La aplicación debería estar disponible en [**http://127.0.0.1:8080/**](http://
 
 ![](/uploads/app.png)
 
- Ahora que la aplicación se está ejecutando, vamos a containerizarla
+Ahora que la aplicación se está ejecutando, vamos a containerizarla
 
 ### Containeriza la aplicación
 
