@@ -4,4 +4,11 @@
 
 Bienvenido a mi blog personal. Aquí encontrarás las experiencias de un desarrollador que migró al mundo de la infraestructura. Escribo de mi experiencia en Cloud, Containers, DevOps, Entrega continua, Microservicios, Desarrollo...
 
+Este blog está contruido con:
+
+![Hugo](static/images/hugo.jpg "Hugo")
+![Hugo](static/images/netlify.png "Netlify")
+![Tina](static/images/hugo.tina,ong "Tina")
+
+
 Visita el sitio online en: https://galvarado.com.mx
