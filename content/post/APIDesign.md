@@ -1,22 +1,16 @@
----
-title: "¿Cómo diseñar una API? Introducción a OpenAPI Specification"
-date: 2018-07-10 00:00:00 +0000
-tags:
-- development
-- cloud
-- api
-autoThumbnailImage: false
-thumbnailImagePosition: top
-image: images/api.jpg
-metaAlignment: center
-comments: true
++++
+comments = "true"
+date = 2018-07-10T05:00:00Z
+image = "images/api.jpg"
+tags = ["devops", "cloud", "best practices"]
+title = "¿Cómo diseñar una API? Introducción a OpenAPI Specification"
++++
 
----
-¿Cómo debo diseñar mi API? ¿Cómo voy a exponerla a distintos desarrolladores? Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software. Todos los productos necesitan un manual de uso  y las APIs no son la excepción. Es por eso que hoy escribí sobre OpenAPI, que es un estandar para crear este manual de uso para nuestra API.
+¿Cómo debo diseñar mi API? ¿Cómo voy a exponerla a distintos desarrolladores? Hoy en día las APIs son la parte modular de cualquier plataforma. Como sabemos, una API es un conjunto de funciones y procedimientos que cumplen una o muchas funciones con el fin de ser utilizadas por otro software. Todos los productos necesitan un manual de uso y las APIs no son la excepción. Es por eso que hoy escribí sobre OpenAPI, que es un estandar para crear este manual de uso para nuestra API.
 
 <!--more-->
 
-Todos los productos necesitan un manual de uso  y las APIs no son la excepción. Las APIs hoy en día son el "pegamento" de conexión entre las aplicaciones modernas. Casi todas las aplicaciones usan APIs para conectarse con fuentes de datos corporativas, servicios de datos de terceros u otras aplicaciones. OpenAPI se creó para "Crear un formato de descripción abierto para los servicios API que sea neutral, portátil y abierto, para acelerar la visión de un mundo verdaderamente conectado."
+Todos los productos necesitan un manual de uso y las APIs no son la excepción. Las APIs hoy en día son el "pegamento" de conexión entre las aplicaciones modernas. Casi todas las aplicaciones usan APIs para conectarse con fuentes de datos corporativas, servicios de datos de terceros u otras aplicaciones. OpenAPI se creó para "Crear un formato de descripción abierto para los servicios API que sea neutral, portátil y abierto, para acelerar la visión de un mundo verdaderamente conectado."
 
 ## OpenAPI Specification
 
@@ -24,11 +18,11 @@ Todos los productos necesitan un manual de uso, y las APIs no son la excepción.
 
 Las características más importantes de OpenAPI son las siguientes:
 
-* Ayuda a establecer un buen diseño de las APIs
-* Documentación completa
-* Testing más rápido gracias a la generación de un sandbox
-* Mejora el Time to market
-* Generación de un portal de documentación que describe la API, en formaato human-readable
+- Ayuda a establecer un buen diseño de las APIs
+- Documentación completa
+- Testing más rápido gracias a la generación de un sandbox
+- Mejora el Time to market
+- Generación de un portal de documentación que describe la API, en formaato human-readable
 
 Pero si hay que resumirlo en pocas palabras, _OpenAPI permite descubrir y comprender las capacidades de un servicio o una API, sin necesidad de acceder al código fuente_, sin documentación adicional o inspección de las peticiones. Cuando se diseña correctamente una API através de esta especificación, un desarrollador puede comprender e interactuar con el servicio mucho más fácil ya que se eliminan las suposiciones al llamar a un servicio.
 
@@ -38,10 +32,10 @@ Todo esto, no quiere decir que se tiene que volver a escribir el código de una 
 
 Básicamente, un archivo de OpenAPI nos permite describir los aspectos de una API como:
 
-* Información general sobre la API
-* Rutas disponibles (/ recursos)
-* Operaciones disponibles en cada ruta
-* Entrada / Salida para cada operación
+- Información general sobre la API
+- Rutas disponibles (/ recursos)
+- Operaciones disponibles en cada ruta
+- Entrada / Salida para cada operación
 
 Un archivo de especificación de API abierta se puede escribir en JSON o YAML.
 
@@ -86,7 +80,7 @@ Ahora bien, hay varias herramientas compatibles con este formato una de ellas es
 
 ## Swagger UI
 
-Swgger UI permite a cualquier persona, visualizar e interactuar con los recursos de la API sin tener implementada la lógica de implementación. Se genera automáticamente a partir de escribir archivos que cumplan con la especificación OpenAPI, con esto, la documentación visual se crea y  facilita la implementación de back-end y el consumo del lado del cliente.
+Swgger UI permite a cualquier persona, visualizar e interactuar con los recursos de la API sin tener implementada la lógica de implementación. Se genera automáticamente a partir de escribir archivos que cumplan con la especificación OpenAPI, con esto, la documentación visual se crea y facilita la implementación de back-end y el consumo del lado del cliente.
 
 Tomando como ejemplo el archivo anterior respecto a la API del aeropuerto, generé el sitio de documentación de esta API con Swagger. Aquí hay varias opciones, se puede descargar Swagger UI o usar SwaggerHub, que es la versión en la nube de todas las herramientas.
 
@@ -96,9 +90,9 @@ A manera de ejemplificar el poder de todo este tema de OpenAPI y entender por qu
 
 EL sitio generado, también sirve para comenzar a hacer peticiones a la API ya que integra un formunlario para enviar los argumentos que se necesitan y realizar las peticiones HTTP desde ahí sin necesidad de hacer una petición con CURL o usar Postman.
 
-Es una API con un solo endpoint, y es un GET, lo sé, pero imaginas una API con 120 endpoints y diferentes operaciones y métodos para cada uno, con 3, 4 o 5 argumentos por cada uno? Con Swagger siguiendo la especificacióon de OpenAPI todo estaría hecho y los desarrolladores comenzarían a trabajar en el FrontEnd de inmediato.  =)
+Es una API con un solo endpoint, y es un GET, lo sé, pero imaginas una API con 120 endpoints y diferentes operaciones y métodos para cada uno, con 3, 4 o 5 argumentos por cada uno? Con Swagger siguiendo la especificacióon de OpenAPI todo estaría hecho y los desarrolladores comenzarían a trabajar en el FrontEnd de inmediato. =)
 
-Checa todo lo que puedes hacer con  Swagger UI [aquí](https://swagger.io/tools/swagger-ui/).
+Checa todo lo que puedes hacer con Swagger UI [aquí](https://swagger.io/tools/swagger-ui/).
 
 ## Flasgger
 
