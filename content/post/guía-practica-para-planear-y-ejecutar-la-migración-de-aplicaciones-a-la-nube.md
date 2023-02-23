@@ -1,8 +1,3 @@
----
-_template: como_disenar_una_api_introduccion_a_openapi_specification
----
-
-
 +++
 comments = "true"
 date = "2019-08-30T05:00:00+00:00"
@@ -12,6 +7,7 @@ tags = ["cloud", "GCP", "architecture"]
 title = "Guía practica para planear y ejecutar la migración de aplicaciones a la nube"
 
 +++
+
 [https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform](https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform "https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform")
 
 [https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8](https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8 "https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8")

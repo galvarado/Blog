@@ -1,8 +1,3 @@
----
-_template: como_disenar_una_api_introduccion_a_openapi_specification
----
-
-
 +++
 comments = "true"
 date = 2022-03-15T06:00:00Z
@@ -11,6 +6,7 @@ tags = ["cloud", "best practices", "terraform", "aws", "vagrant"]
 title = "Personalización en la nube con cloud-init: Ejemplos con Terraform en AWS y Vagrant"
 
 +++
+
 Este post comienza con una lección que obtuve reciente mente y lo puedo resumir con la siguiente frase:
 
 > En igualdad de condiciones, la explicación más sencilla suele ser la más probable.
@@ -20,29 +16,30 @@ Este es un principio metodológico que nos enseña cómo lo simple es lo mejor, 
 Este principio es conocido como la navaja de Ockham y puedes leer más al respecto [ en Wikipedia.](https://es.wikipedia.org/wiki/Navaja_de_Ockham)
 
 Otra forma de verlo es esta explicación del escritor William J. Hall: “La navaja de Ockham se resume para nuestros propósitos de esta manera:"
->  Las afirmaciones extraordinarias exigen pruebas extraordinarias.
+
+> Las afirmaciones extraordinarias exigen pruebas extraordinarias.
 
 Recientemente tenia que crear unas instancias en AWS solo con nginx instalado. Mi primer enfoque fue usar Packer para crear la imagen con el paquete instalado e iniciado, después con Terraform tomaría la imagen para crear las instancias. Pero entonces fue cuando un amigo me dijo, ¿Porque toda una imagen con Packer para solo instalar nginx? Fue entonces cuando recordé que tenia una opción mucho más simple... ¡Cloud-init!
 
 ## ¿Qué es Cloud-init?
 
-[Cloud-init ](https://cloud-init.io/)es un servicio utilizado para personalizar instancias en la nube basadas en Linux. Nos permite personalizar las máquinas virtuales que nos proporcionan las distintas plataformas de nube modificando la configuración genérica del sistema  en el arranque.
+[Cloud-init ](https://cloud-init.io/)es un servicio utilizado para personalizar instancias en la nube basadas en Linux. Nos permite personalizar las máquinas virtuales que nos proporcionan las distintas plataformas de nube modificando la configuración genérica del sistema en el arranque.
 
-Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD. 
+Canonical inicialmente desarrolló cloud-init para Ubuntu, pero se expandió a la mayoría de los principales sistemas operativos Linux y FreeBSD.
 
 Hoy, es oficialmente compatible con 8 sistemas operativos Unix: Ubuntu, Arch Linux, CentOS, Red Hat, FreeBSD, Fedora, Gentoo Linux y openSUSE.
 
 ![](/uploads/distros.png) ​
 
-Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](https://cloudbase.it/cloudbase-init/)  Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas: Rackspace, OVH, VMWare, Azure, AWS, GCP, Joyent, Fujitsu, Oracle Cloud.
+Para entornos basados[ en Microsoft Windows el equivalente es CloudBase-init.](https://cloudbase.it/cloudbase-init/) Ya que cloud-init se ha convertido en un estándar, podemos encontrarlo en las siguientes plataformas: Rackspace, OVH, VMWare, Azure, AWS, GCP, Joyent, Fujitsu, Oracle Cloud.
 
 ![](/uploads/providers.png)
 
 El servicio de cloud-init se encuentra instalado en las VMs de estas plataformas y se inicia en el arranque (boot) de la VM, utiliza los metadatos proporcionados por el proveedor de la nube o los que nosotros mismos le damos.
 
-Lo hace mediante la ejecución de scripts, comúnmente desde el archivo [cloud-config ](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)Por lo tanto, para cambiar cualquier configuración predeterminada,  editamos o creamos este archivo, lo pasamos en la creación de la VM y cloud-init se pone en marcha.
+Lo hace mediante la ejecución de scripts, comúnmente desde el archivo [cloud-config ](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)Por lo tanto, para cambiar cualquier configuración predeterminada, editamos o creamos este archivo, lo pasamos en la creación de la VM y cloud-init se pone en marcha.
 
-El archivo cloud-config es un archivo YAML que sigue  reglas básicas, como:
+El archivo cloud-config es un archivo YAML que sigue reglas básicas, como:
 
     #cloud-config
     # boot commands
@@ -62,10 +59,10 @@ El ejemplo anterior agrega una linea al archivo _/etc/hosts._
 
 El servicio cloud-init se usa para una variedad de cosas, que incluyen:
 
-* Adición de usuarios y grupos.
-* Escribir archivos arbitrarios.
-* Agregar repositorios YUM.
-* Ejecutar comandos en el primer arranque.
+- Adición de usuarios y grupos.
+- Escribir archivos arbitrarios.
+- Agregar repositorios YUM.
+- Ejecutar comandos en el primer arranque.
 
 ## ¿Cuando usar Cloud-init?
 
@@ -75,26 +72,25 @@ Dos excelentes noticias: Terraform y Vagrant tienen soporte integrado para pasar
 
 ## Cloud-init vs Packer vs Ansible
 
-Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como [Packer](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/), pero eso no es necesariamente lo ideal. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar  infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI. 
+Entonces podemos usar cloud-init para configurar completamente una instancia EC2 básica y reemplazar una herramienta como [Packer](https://galvarado.com.mx/post/packer-automatiza-la-creacion-de-cualquier-tipo-de-imagen-de-maquina-virtual/), pero eso no es necesariamente lo ideal. Crear una AMI con Packer que esté completamente configurada para ejecutar una aplicación es una buena manera de implementar infraestructura; sin embargo, es posible que falten algunas cosas al crear la AMI.
 
 Es posible que las variables de entorno de una aplicación web o las direcciones IP de un balanceador de carga no se conozcan cuando creamos la imagen, por lo que podemos configurar una imagen con Packer sin estos detalles y usar cloud-init para configurar esos detalles cuando se crea la instancia.
 
-Respecto a Ansible, este flujo debería venir después o integrado en la construcción de la imagen con Packer.  Si necesitamos una conexión SSH en un servidor para instalar dependencias, entonces tenemos un sistema que  tiene un único punto de falla.
+Respecto a Ansible, este flujo debería venir después o integrado en la construcción de la imagen con Packer. Si necesitamos una conexión SSH en un servidor para instalar dependencias, entonces tenemos un sistema que tiene un único punto de falla.
 
-Entonces, dependiendo de la frecuencia de despliegue,es conveniente agrupar todo el software en una imagen AMI con Packer. No hay silverbullets ni mucho menos, pero mi conclusión y consejo es: Seguir el enfoque de [infraestructura inmutable ](https://galvarado.com.mx/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform/)con Packer, creando imagenes con todo el stack e incluir cloud-init para personalizaciones posteriores. 
+Entonces, dependiendo de la frecuencia de despliegue,es conveniente agrupar todo el software en una imagen AMI con Packer. No hay silverbullets ni mucho menos, pero mi conclusión y consejo es: Seguir el enfoque de [infraestructura inmutable ](https://galvarado.com.mx/post/beneficios-retos-y-como-lograr-infraestructura-inmutable-con-packer-ansible-y-terraform/)con Packer, creando imagenes con todo el stack e incluir cloud-init para personalizaciones posteriores.
 
 _Ahora bien, cuando la personalización es muy sencilla, no es necesario empaquetar toda una imagen y podemos ir directo a Cloud-init._
 
 En cuanto a Ansible: Uso cloud-init para instalar lo mínimo que necesito y luego ejecuto la administración de configuración según sea necesario. Ansible es mucho más fácil de administrar, más flexible, más potente y además, puede ejecutarse continuamente. Cloud-init se ejecuta una vez nada más, en el arranque.
 
-**Mantengamos el inicio simple  y usemos ansible para lo demás.** 
-
+**Mantengamos el inicio simple y usemos ansible para lo demás.**
 
 Manos a la obra, pasemos al código y te muestro como personalizar una VM de manera local en Vagrant y después como usar el mismo script de cloud-init en AWS con Terraform.
 
 Todo el código está disponible en: [https://github.com/galvarado/custom-cloud-instances-cloud-init](https://github.com/galvarado/custom-cloud-instances-cloud-init)
 
-## Cloud-init en entorno local con Vagrant 
+## Cloud-init en entorno local con Vagrant
 
 Ya hemos hablado de Vagrant anteriormente, por ahora vale la pena notar que cualquier escenario que involucre una instancia en la nube, puede ser fácilmente validado en Vagrant primero.
 
@@ -110,12 +106,10 @@ Más información en: [https://www.vagrantup.com/docs/cloud-init/usage](https://
 
 Para indicarle a Vagrant que use un archivo de cloud-init usamos:
 
-
     config.vm.cloud_init do |cloud_init|
       cloud_init.content_type = "text/cloud-config"
       cloud_init.path = "../scripts/cloud-config.yml"
     end
-
 
 Creamos el archivo en scripts/cloud-config.yml, este es el que contiene nuestra personalización:
 
@@ -133,12 +127,12 @@ Creamos el archivo en scripts/cloud-config.yml, este es el que contiene nuestra 
     - systemctl enable --no-block nginx
     - systemctl start --no-block nginx
     final_message: "The system is finally up, after $UPTIME seconds"
-    
+
 El script anterior instala nginx y cambia el archivo html default creando uno nuevo con un mensaje personalizado. Finalmente imprimimos un mensaje.
 
 El archivo Vagrantfile completo queda:
-  
-    Vagrant.configure("2") do |config|   
+
+    Vagrant.configure("2") do |config|
       config.env.enable # enable .env support plugin (needed to enable cloud_init support)
       config.vm.box = "ubuntu/bionic64"
       config.vm.hostname = "test"
@@ -162,8 +156,8 @@ Debemos ver:
 Y para confirmar el mensaje que definimos, entramos a la VM:
 
     $ vagrant ssh
- 
-Podemos ver los logs de cloud-init en: /var/log/cloud-init-output.log: 
+
+Podemos ver los logs de cloud-init en: /var/log/cloud-init-output.log:
 
     $ cat /var/log/cloud-init-output.log
 
@@ -171,20 +165,17 @@ Ahora que sabemos que nuestra personalización funciona y está lista, vamos a l
 
 ## Ejemplo de Cloud-init con Terraform en AWS
 
-  
-
 De la misma forma que hemos ya hablado de Terraform antes, por ahora nos centraremos en cómo pasar el archivo cloud-init a una instancia. La configuración relevante es:
 
- 
     data "cloudinit_config" "server_config" {
-      gzip = true  
+      gzip = true
       base64_encode = true
       part {
         content_type = "text/cloud-config"
         content = templatefile("../../scripts/cloud-config.yml")
       }
     }
-       
+
     resource "aws_instance" "webserver1" {
       ami = data.aws_ami.ubuntu.id
       instance_type = var.instance_type
@@ -204,7 +195,7 @@ De la misma forma que hemos ya hablado de Terraform antes, por ahora nos centrar
 Aqui estámos creando un recurso "cloudinit_config" que contiene la referencia al script de cloud-init:
 
      data "cloudinit_config" "server_config" {
-          gzip = true  
+          gzip = true
           base64_encode = true
           part {
             content_type = "text/cloud-config"
@@ -222,7 +213,6 @@ Configuramos nuestras credenciales de AWS para que terraform las use.
 Puedes seguir [esta documentación](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) para más detalle. Y para obtener las credenciales puedes [visitar este enlance.](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys)
 
 FInalmente para crear la VM en AWS, dentro del directorio de network, crearemos los recursos de red como la VPC, subnet, grupo de seguridad, etc:
- 
 
     $ terraform plan
     $ terraform apply
@@ -246,12 +236,10 @@ La salida se ve algo así:
     aws_route_table_association.prod_crta_public_subnet_1: Creating...
     aws_route_table_association.prod_crta_public_subnet_1: Creation complete after 0s [id=rtbassoc-083de874a727e9b93]
 
-
 Ahora dentro del grupo de compute, crearemos la instancia en la nube con los mismos comandos, primero el plan y luego aplicar:
 
     $ terraform plan
     $ terraform apply
-
 
 La salida se ve algo así:
 
@@ -262,45 +250,24 @@ La salida se ve algo así:
     aws_instance.webserver1: Creation complete after 32s [id=i-09fe8eb1ff807e5c6]
     Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
-
 Validamos en la IP que se asignó:
 
-  ![](/uploads/print2.png) ​
-
+![](/uploads/print2.png) ​
 
 Vemos el mismo resultado que en Vagrant pero esta vez en la nube.
 
 Así que de esta forma puedes personalizar tus instancias iterando de forma local y así llevar los resultados a tu ambiente de producción después.
-  
-
 
 Finalmente entramos de nuevo a cada directorio y destruimos los recursos:
 
     $ terraform destroy
 
-
 Si te resulta útil, comparte =)
-  
 
 Referencias:
-  
+
 - [https://www.vagrantup.com/docs/cloud-init/usage](https://www.vagrantup.com/docs/cloud-init/usage)
 - [https://www.vagrantup.com/docs/experimental](https://www.vagrantup.com/docs/experimental)
 - [https://learn.hashicorp.com/tutorials/terraform/cloud-init](https://learn.hashicorp.com/tutorials/terraform/cloud-init)
 - [https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/cloudinit_config)
 - [https://cloudinit.readthedocs.io/en/latest/index.html](https://cloudinit.readthedocs.io/en/latest/index.html)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

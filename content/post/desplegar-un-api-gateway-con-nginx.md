@@ -1,8 +1,3 @@
----
-_template: como_disenar_una_api_introduccion_a_openapi_specification
----
-
-
 +++
 comments = "true"
 date = 2022-01-06T17:53:00Z
@@ -11,11 +6,12 @@ tags = ["devops", "architecture", "cloud", "containers"]
 title = "Desplegar un API Gateway con Nginx"
 
 +++
-Para este tutorial preparé un proyecto demo que demostrará como desplegar endpoints construidos con stacks distintos  y colocar enfrente un API Gateway con Nginx.
+
+Para este tutorial preparé un proyecto demo que demostrará como desplegar endpoints construidos con stacks distintos y colocar enfrente un API Gateway con Nginx.
 
 El código disponible tiene dos APIs listas para responder peticiones, una construida con Python usando el framework de FastAPI y otra con Go usando el framework de Gin. Durante el tutorial se explica a detalle las configuraciones de nginx necesarias para funcionar como API Gateway.
 
-Después de realizar el tutorial, tendrás desplegados 3 contenedores con docker y una API que responde peticiones   protegida con HTTPS  usando un certifcado SSL y además autenticación basada en API Key.
+Después de realizar el tutorial, tendrás desplegados 3 contenedores con docker y una API que responde peticiones protegida con HTTPS usando un certifcado SSL y además autenticación basada en API Key.
 
 En el siguiente diagrama ilustramos el propósito:
 
@@ -25,25 +21,25 @@ Todo el código para seguir el tutorial está disponible en: [https://github.com
 
 ## ¿Qué es un API Gateway?
 
-Hoy en día no podemos hablar de  arquitecturas de aplicaciones modernas sin mencionar a las APIs. Estas proporciona una interfaz común, independientemente de la escala de la aplicación, desde un microservicio de propósito único hasta una aplicaión monolítica integral.
+Hoy en día no podemos hablar de arquitecturas de aplicaciones modernas sin mencionar a las APIs. Estas proporciona una interfaz común, independientemente de la escala de la aplicación, desde un microservicio de propósito único hasta una aplicaión monolítica integral.
 
 Básicamente, un API Gateway es un proxy inverso a los servicios y actúa como un punto de entrada único a todo el sistema. Todas las solicitudes de los clientes pasan primero por el API Gateway, luego este enruta las solicitudes al servicio o endpoint apropiado.
 
-Una de las principales ventajas de utilizar un API Gateway es que este encapsula la estructura interna de las servicios. En lugar de tener que invocar servicios específicos, los clientes simplemente hablan con el  API Gateway y este  proporciona a cada tipo de cliente una API específica. Esto reduce el número de viajes de ida y vuelta entre el cliente y la aplicación.
+Una de las principales ventajas de utilizar un API Gateway es que este encapsula la estructura interna de las servicios. En lugar de tener que invocar servicios específicos, los clientes simplemente hablan con el API Gateway y este proporciona a cada tipo de cliente una API específica. Esto reduce el número de viajes de ida y vuelta entre el cliente y la aplicación.
 
 Un API Gateway nos ayuda a resolver fácilmente cuestiones como:
 
-* Habilitar autenticación para un endpoint
-* Publicar un endpoint con HTTPS
-* Enrutamiento avanzado
-* Limitar el consumo de un endpoint (rate limit)
-* Balanceo de carga
+- Habilitar autenticación para un endpoint
+- Publicar un endpoint con HTTPS
+- Enrutamiento avanzado
+- Limitar el consumo de un endpoint (rate limit)
+- Balanceo de carga
 
-¿Desventajas? Un API Gateway es otro componente de alta disponibilidad que debe desarrollarse, implementarse y administrarse. También existe el riesgo de que  se convierta en un cuello de botella de desarrollo. Es importante que el proceso de actualización o publicación de nuevos servicios sea  lo más ligero posible. De lo contrario, los desarrolladores se verán obligados a esperar.  Sin embargo, a pesar de estos inconvenientes, para la mayoría de las aplicaciones del mundo real tiene sentido utilizar un API Gateway.
+¿Desventajas? Un API Gateway es otro componente de alta disponibilidad que debe desarrollarse, implementarse y administrarse. También existe el riesgo de que se convierta en un cuello de botella de desarrollo. Es importante que el proceso de actualización o publicación de nuevos servicios sea lo más ligero posible. De lo contrario, los desarrolladores se verán obligados a esperar. Sin embargo, a pesar de estos inconvenientes, para la mayoría de las aplicaciones del mundo real tiene sentido utilizar un API Gateway.
 
 ## Proyecto Demo | Book Store API
 
-Nuestro proyecto demo basado en docker es es la API para una tienda online de Libros que desplegaremos usando el dominio bookstore.io  Crearemos un certificado autofirmado con openssl y el dominio solo respondera localmente modificando el archivo _/etc/hosts_ .  La API de la tienda se implementa como una colección de servicios.  Para nuestros fines ilustrativos, tenemos  2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
+Nuestro proyecto demo basado en docker es es la API para una tienda online de Libros que desplegaremos usando el dominio bookstore.io Crearemos un certificado autofirmado con openssl y el dominio solo respondera localmente modificando el archivo _/etc/hosts_ . La API de la tienda se implementa como una colección de servicios. Para nuestros fines ilustrativos, tenemos 2 servicios diferentes para atender la tienda online: Catálogo y Tiendas. Estos se implementan como servicios separados construidos con diferentes stacks de tecnología y nuestro API Gateway los publica como una única API.
 
 ### FastAPI - API de Catalogo
 
@@ -61,37 +57,37 @@ Para iniciar nuestra API de catalogo, entramos al directorio catalog y construim
 
     $ docker build -t fastapi-catalog .
 
-Ahora, iniciamos el contenedor de la API  exponiendola en el host en el puerto 8888 con:
+Ahora, iniciamos el contenedor de la API exponiendola en el host en el puerto 8888 con:
 
     $ docker run -d --name fastapi-catalog --net=bookstore-network -p 8888:80 fastapi-catalog
 
 Probamos la API, para obtener todos los libros:
 
     $ curl -i --request GET  http://localhost:8888/books
-    
+
     HTTP/1.1 200 OK
     date: Thu, 09 Sep 2021 20:55:59 GMT
     server: uvicorn
     content-length: 221
     content-type: application/json
-    
+
     [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo","price":320},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz"},{"id":3,"name":"La casa junto al rio","author":"Elena Garro"}]
 
 Para obtener el detalle de un libro en particular, consultamos por su ID:
 
     $ curl -i --request GET  http://localhost:8888/books/3
-    
+
     HTTP/1.1 200 OK
     date: Thu, 09 Sep 2021 20:57:00 GMT
     server: uvicorn
     content-length: 73
     content-type: application/json
-    
+
     {"id":3,"name":"La casa junto al rio","author":"Elena Garro","price":410, "existence":10}
 
 ### Gin - API de Tiendas
 
-Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/).  Esta API nos da las sucursales físicas (tiendas)  que forman parte de nuestra tienda de libros.
+Usamos Go para construir nuestra API de tiendas, esta vez con el framework [Gin](https://gin-gonic.com/docs/). Esta API nos da las sucursales físicas (tiendas) que forman parte de nuestra tienda de libros.
 
 Para iniciar nuestra API de tiendas, entramos al directorio stores y construimos la imagen:
 
@@ -104,12 +100,12 @@ Ahora, iniciamos el contenedor de la API exponiendola en el host en el puerto 88
 Probamos la API, para obtener todas las tiendas:
 
     $ curl -i http://localhost:8889/stores
-    
+
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Wed, 15 Sep 2021 02:53:13 GMT
     Content-Length: 414
-    
+
     [
         {
             "id": "1",
@@ -128,7 +124,7 @@ Probamos la API, para obtener todas las tiendas:
         }
       ]
 
-Listo, en este momento nuestros dos servicios responden peticiones dado que con Docker estamos publicandolos en un puerto del host.  Ahora, implementaremos el api gateway y dejaremos de publicar estos servicios en el host, siendo accesibles solo dentro de la red de docker, dado que lo único que nos interesa publicar es el gateway de nginx.
+Listo, en este momento nuestros dos servicios responden peticiones dado que con Docker estamos publicandolos en un puerto del host. Ahora, implementaremos el api gateway y dejaremos de publicar estos servicios en el host, siendo accesibles solo dentro de la red de docker, dado que lo único que nos interesa publicar es el gateway de nginx.
 
 ## Nginx como API Gateway
 
@@ -143,11 +139,11 @@ Vamos a configurar Nginx para que actue como nuestro Gateway, a continuación la
         ├── api_gateway.conf …………………… Configuración raiz del API Gateway
         ├── nginx.conf …………………… Configuración raiz de nginx
 
-Los directorios y nombres de archivo para toda la configuración del API Gateway tienen el prefijo api_. Cada uno de estos archivos y directorios habilita una función o capacidad diferente del gateway  y se explica en detalle a continuación.
+Los directorios y nombres de archivo para toda la configuración del API Gateway tienen el prefijo api\_. Cada uno de estos archivos y directorios habilita una función o capacidad diferente del gateway y se explica en detalle a continuación.
 
 ### Archivo nginx.conf
 
-Toda la configuración de NGINX comienza con el archivo de configuración principal: _nginx.conf_. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway:  api_gateway.conf.
+Toda la configuración de NGINX comienza con el archivo de configuración principal: _nginx.conf_. Para leer la configuración del Gateway, agregamos una directiva include en el bloque http en nginx.conf que hace referencia al archivo que contiene la configuración del gateway: api_gateway.conf.
 
 Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.conf:
 
@@ -156,11 +152,11 @@ Entonces agregamos la linea include (linea 21 a continuación) al archivo nginx.
     error_log  /var/log/nginx/error.log notice;
     pid        /var/run/nginx.pid;
     load_module /etc/nginx/modules/ngx_http_js_module.so;
-    
+
     events {
         worker_connections  1024;
     }
-    
+
     http {
         include       /etc/nginx/mime.types;
         default_type  application/octet-stream;
@@ -183,12 +179,12 @@ Esto quiere decir que podemo tener mas de una API publicada en el Gateway, por e
 A continuación el archivo api_gateway.conf:
 
     include api_keys.conf;
-    
+
     server {
         access_log /var/log/nginx/api_access.log main; # Each API may also log to a separate file
         listen 443 ssl;
         server_name bookstore.io;
-    
+
         # TLS config
         ssl_certificate      /etc/ssl/certs/bookstore.io.cer;
         ssl_certificate_key  /etc/ssl/certs/bookstore.io.key;
@@ -196,16 +192,16 @@ A continuación el archivo api_gateway.conf:
         ssl_session_timeout  5m;
         ssl_ciphers          HIGH:!aNULL:!MD5;
         ssl_protocols        TLSv1.2 TLSv1.3;
-    
+
         # API definitions, one per file
         include api_conf.d/*.conf;
-    
+
         # Error responses
         error_page 404 = @400;         # Invalid paths are treated as bad requests
         proxy_intercept_errors on;     # Do not send backend errors to the client
         include api_json_errors.conf;  # API client friendly JSON error responses
         default_type application/json; # If no content-type then assume JSON
-        
+
         # API key validation
         location = /_validate_apikey {
             internal;
@@ -219,13 +215,13 @@ A continuación el archivo api_gateway.conf:
         }
     }
 
-Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios  se especifican en los archivos a los que hace referencia la directiva include en la línea 17, con esta linea estamos incluyendo las configuraciones en el directorio api_conf.d que por ahora está vacio, pero que contendra las reglas de nuestra API de libros (Bookstore) :
+Esta configuración está destinada a ser estática: los detalles de las API individuales y sus servicios se especifican en los archivos a los que hace referencia la directiva include en la línea 17, con esta linea estamos incluyendo las configuraciones en el directorio api_conf.d que por ahora está vacio, pero que contendra las reglas de nuestra API de libros (Bookstore) :
 
     include api_conf.d/*.conf;
 
 ### Manejo de errores
 
-Las líneas 19 a 23 del archivo de configuración raiz del gateway  (api_gateway.conf) tratan sobre el manejo de errores :
+Las líneas 19 a 23 del archivo de configuración raiz del gateway (api_gateway.conf) tratan sobre el manejo de errores :
 
     # Error responses
     error_page 404 = @400;         # Invalid paths are treated as bad requests
@@ -237,24 +233,24 @@ Cuando NGINX se implementa como un API Gateway, lo configuramos para devolver er
 
     error_page 400 = @400;
     location @400 { return 400 '{"status":400,"message":"Bad request"}\n'; }
-    
+
     # Without API KEY
     error_page 401 = @401;
     location @401 { return 401 '{"status":401,"message":"Unauthorized"}\n'; }
-    
+
     # Incorrect API KEY
     error_page 403 = @403;
     location @403 { return 403 '{"status":403,"message":"Forbidden"}\n'; }
-    
+
     error_page 404 = @404;
     location @404 { return 404 '{"status":404,"message":"Resource not found"}\n'; }
 
 ### Autenticación
 
-Las lineas 25 a 33 del archivo de configuración raiz del gateway  (api_gateway.conf) realizan la validación de la autenticación por apikey:
+Las lineas 25 a 33 del archivo de configuración raiz del gateway (api_gateway.conf) realizan la validación de la autenticación por apikey:
 
     # API key validation
-    
+
     location = /_validate_apikey {
         internal;
         if ($http_apikey = "") {
@@ -268,12 +264,12 @@ Las lineas 25 a 33 del archivo de configuración raiz del gateway  (api_gateway.
 
 Es inusual publicar API sin algún tipo de autenticación para protegerlas. NGINX ofrece varios enfoques para proteger la API y autenticar clientes , nosotros lo haremos con Autenticación de llaves o apikeys.
 
-Las llaves de API son un secreto compartido con el cliente y esta es  es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencial. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl:
+Las llaves de API son un secreto compartido con el cliente y esta es es esencialmente una contraseña larga y compleja emitida al cliente de API como una credencial. La creación de la llave es simple, creamos una cadena random codificando un numero con openssl:
 
     $ openssl rand -base64 18
      7B5zIqmRGXmrJTFmKa99vcit
 
-En el archivo  api_gateway.conf, en la primer liena incluimos el archivo  api_keys.conf que creamos a continuación con el valor obtenido:
+En el archivo api_gateway.conf, en la primer liena incluimos el archivo api_keys.conf que creamos a continuación con el valor obtenido:
 
     map $http_apikey $api_client_name {
         "7B5zIqmRGXmrJTFmKa99vcit" "client_one";
@@ -281,7 +277,7 @@ En el archivo  api_gateway.conf, en la primer liena incluimos el archivo  api_ke
 
 Las llaves de API se definen dentro de un bloque de map. La directiva del map toma dos parámetros. El primero define dónde encontrar la llave API, en este caso en el encabezado HTTP apikey de la solicitud del cliente y es capturada en la variable _http_apikey_. El segundo parámetro crea una nueva variable _api_client_name_ y la establece en el valor del segundo parámetro en la línea donde el primer parámetro coincide con la clave.
 
-Por ejemplo, cuando un cliente presenta la clave  _7B5zIqmRGXmrJTFmKa99vcit_, la variable _api_client_name_ se establece en _client_one_. Esta variable se puede utilizar para comprobar si hay clientes autenticados e incluirse en las entradas del registro para una auditoría más detallada. El formato del bloque de mapa es simple y fácil de integrar en los flujos de trabajo de automatización que generan el archivo api_keys.conf a partir de un almacén de credenciales existente.
+Por ejemplo, cuando un cliente presenta la clave _7B5zIqmRGXmrJTFmKa99vcit_, la variable _api_client_name_ se establece en _client_one_. Esta variable se puede utilizar para comprobar si hay clientes autenticados e incluirse en las entradas del registro para una auditoría más detallada. El formato del bloque de mapa es simple y fácil de integrar en los flujos de trabajo de automatización que generan el archivo api_keys.conf a partir de un almacén de credenciales existente.
 
 En conclusión, solo las peticiones que presenten un apikey existente en los headers de la petición, serán atendidas. El resto serán ignoradas. Con esto estámos autenticando nuestra API desde el Gateway, los servicios internos no se enteran de que existen estas validaciones.
 
@@ -289,12 +285,12 @@ En conclusión, solo las peticiones que presenten un apikey existente en los hea
 
 La API Bookstore se define en el archivo bookstore_api.conf mediante una serie de bloques de "location" en una configuración anidada, como se ilustra en el siguiente ejemplo.
 
-El bloque de ubicación exterior (/api/bookstore) identifica la ruta base, bajo la cual las ubicaciones anidadas especifican las ubicaciones válidas que se enrutan a los servicios  backend (catalog y stores).
+El bloque de ubicación exterior (/api/bookstore) identifica la ruta base, bajo la cual las ubicaciones anidadas especifican las ubicaciones válidas que se enrutan a los servicios backend (catalog y stores).
 
 Por lo tanto, definimos que nuestros servicios de catalog y stores estarán respectivamente en:
 
-* /api/bookstore/catalog
-* /api/bookstore/stores
+- /api/bookstore/catalog
+- /api/bookstore/stores
 
 Dentr de cada directiva location, hacemos uso de proxy pass, para enviar el trafico que llegue a esta url al servicio correspondiente.
 
@@ -303,18 +299,18 @@ Notese que usamos el nombre del contenedor que debe responder, en http simple.
 Finalmente para cualqui URL no conocida regresamos 404.
 
     # Bookstore API
-    
+
     location /api/bookstore {
         # Policy configuration here (authentication, rate limiting, logging, more...)
         access_log /var/log/nginx/api_bookstore.log main;
         auth_request /_validate_apikey;
-        
+
     	# URI routing
         location /api/bookstore/catalog/ {
             proxy_pass http://fastapi-catalog/;
             proxy_set_header Host $host;
         }
-    
+
         location /api/bookstore/stores/ {
             proxy_pass http://gin-stores/;
             proxy_set_header Host $host;
@@ -404,7 +400,7 @@ Paramos los servicios anteriores para dejar de publicarlos en los puertos del ho
 Deberiamos tener los siguientes contenedores ejecutandose:
 
     docker ps
-    
+
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                          NAMES
     5818f8b45c70        fastapi-catalog     "/start.sh"              2 seconds ago       Up 1 second         80/tcp                         fastapi-catalog
     5af2e4b88af1        gin-stores          "/main"                  19 seconds ago      Up 18 seconds                                      gin-stores
@@ -414,7 +410,7 @@ En este punto los servicios ya no son alcanzables desde los peurtos 8888 y 8889 
 
     curl -i --request GET  http://localhost:8888/books
     curl: (7) Failed to connect to localhost port 8888: Connection refused
-    
+
     curl -i --request GET  http://localhost:8889/stores
     curl: (7) Failed to connect to localhost port 8889: Connection refused
 
@@ -448,7 +444,7 @@ La salida es similar a:
     Content-Type: application/json
     Content-Length: 185
     Connection: keep-alive
-    
+
     [{"id":1,"name":"Pedro Páramo","author":"Juan Rulfo"},{"id":2,"name":"El Laberinto de la Soledad","author":"Octavio Paz"},{"id":3,"name":"La casa junto al rio","author":"Elena Garro"}]
 
 **Petición correcta al servicio de tiendas**
@@ -483,7 +479,7 @@ La salida es similar a:
 Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
 
     curl -ik --header "apikey:XXXXXXX" --request GET  https://bookstore.io/api/bookstore/catalog/books
-    
+
     HTTP/1.1 403 Forbidden
     Server: nginx/1.19.6
     Date: Thu, 06 Jan 2022 20:00:58 GMT
@@ -497,7 +493,7 @@ Si intentamos con una API keu incorrecta, obtenemos in 403 Forbidden:
 Si no agregamos un apikey como header, obtenemos un 401 Unathorized:
 
     curl -ik --request GET  https://bookstore.io/api/bookstore/catalog/books
-    
+
     HTTP/1.1 401 Unauthorized
     Server: nginx/1.19.6
     Date: Thu, 06 Jan 2022 20:01:27 GMT
