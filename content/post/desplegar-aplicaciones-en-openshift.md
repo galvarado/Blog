@@ -6,21 +6,22 @@ tags = ["devops", "cloud", "containers"]
 title = "Desplegar Aplicaciones en OpenShift"
 
 +++
+
 En este tutorial, aprenderás a crear una aplicación Node.js que se ejecuta en un contenedor y cómo desplegarla a un clúster Openshift.
 
 Puedes usar una instancia de [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) en la nube , como OpenShift Online (ahora conocido como Red Hat OpenShift Dedicated) o en la versión gratuita llamada Red Hat OpenShift [Sandbox](https://developers.redhat.com/developer-sandbox). OpenShift se puede desplegar en varias nubes públicas, incluyendo Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud.
 
-También puedes usar [Minishift](https://github.com/minishift/minishift) es un proyecto de código abierto que permite ejecutar OpenShift localmente en una máquina de desarrollo. Es esencialmente una instancia de OpenShift que se ejecuta como una máquina virtual en su computadora, lo que  permite probar y desarrollar aplicaciones OpenShift localmente.
+También puedes usar [Minishift](https://github.com/minishift/minishift) es un proyecto de código abierto que permite ejecutar OpenShift localmente en una máquina de desarrollo. Es esencialmente una instancia de OpenShift que se ejecuta como una máquina virtual en su computadora, lo que permite probar y desarrollar aplicaciones OpenShift localmente.
 
 ## Sobre OpenShift
 
 Si estás buscando una plataforma de orquestación de contenedores para ejecutar aplicaciones de manera escalable y flexible, es posible que hayas oído hablar de OpenShift y Kubernetes. Ambas son excelentes opciones para manejar contenedores, pero aquí te contaré un poco más sobre OpenShift y cómo se compara con Kubernetes.
 
-* OpenShift es una plataforma de orquestación de contenedores de Red Hat, que se basa en Kubernetes, pero incluye componentes adicionales para mejorar la experiencia de usuario.
-* OpenShift es una plataforma muy completa que cubre muchos aspectos de la implementación, la administración y el ciclo de vida de una aplicación, mientras que Kubernetes se enfoca en la orquestación de contenedores.
-* OpenShift es más fácil de usar y configurar que Kubernetes, ya que viene con una serie de herramientas integradas y una interfaz de usuario intuitiva.
-* OpenShift proporciona una plataforma más segura y escalable que Kubernetes, con características de seguridad incorporadas y una capacidad de gestión de recursos más avanzada.
-* OpenShift es compatible con Kubernetes y se integra sin problemas con herramientas de automatización y DevOps, por lo que es una excelente opción para equipos de desarrollo que buscan una solución completa.
+- OpenShift es una plataforma de orquestación de contenedores de Red Hat, que se basa en Kubernetes, pero incluye componentes adicionales para mejorar la experiencia de usuario.
+- OpenShift es una plataforma muy completa que cubre muchos aspectos de la implementación, la administración y el ciclo de vida de una aplicación, mientras que Kubernetes se enfoca en la orquestación de contenedores.
+- OpenShift es más fácil de usar y configurar que Kubernetes, ya que viene con una serie de herramientas integradas y una interfaz de usuario intuitiva.
+- OpenShift proporciona una plataforma más segura y escalable que Kubernetes, con características de seguridad incorporadas y una capacidad de gestión de recursos más avanzada.
+- OpenShift es compatible con Kubernetes y se integra sin problemas con herramientas de automatización y DevOps, por lo que es una excelente opción para equipos de desarrollo que buscan una solución completa.
 
 En general, si eres nuevo en la orquestación de contenedores y buscas una plataforma fácil de usar y con una amplia gama de características, OpenShift puede ser una excelente opción para ti.
 
@@ -58,17 +59,16 @@ Abre el archivo Docklefile que está en el repositorio:
     FROM node:18-alpine
     RUN mkdir -p /home/node/app/node_module
     WORKDIR /home/node/app
-    COPY app/package*.json ./ 
-    RUN npm install 
-    COPY app/ . 
-    EXPOSE 8080 
+    COPY app/package*.json ./
+    RUN npm install
+    COPY app/ .
+    EXPOSE 8080
     CMD [ "node", "app.js" ]
 
 Vamos linea por linea:
 
     FROM node:18-alpine
 
-  
 Esta línea indica que la imagen base para la construcción de esta imagen es la versión 18 de Node.js en su versión Alpine.
 
     RUN mkdir -p /home/node/app/node_modules
@@ -79,11 +79,11 @@ Esta línea crea un directorio en la ruta **`/home/node/app/node_modules`** para
 
 Esta línea establece el directorio de trabajo para la imagen en **`/home/node/app`**. Es decir, cuando se inicie un contenedor a partir de esta imagen, el directorio de trabajo se establecerá en **`/home/node/app`**.
 
-    javaCopy codeCOPY app/package*.json ./
+    COPY app/package*.json ./
 
 Esta línea copia el archivo **`package.json`** y **`package-lock.json`** (si existe) desde la carpeta **`app`** del host a la ruta actual de trabajo en la imagen.
 
-    Copy codeRUN npm install
+    RUN npm install
 
 Esta línea ejecuta el comando **`npm install`** dentro de la imagen para instalar las dependencias especificadas en el archivo **`package.json`**. Este comando se ejecuta dentro de la imagen, por lo que se instalarán las dependencias necesarias en la imagen.
 
@@ -91,7 +91,7 @@ Esta línea ejecuta el comando **`npm install`** dentro de la imagen para instal
 
 Esta línea copia todo el contenido de la carpeta **`app`** del host a la ruta actual de trabajo en la imagen.
 
-    yamlCopy codeEXPOSE 8080
+    EXPOSE 8080
 
 Esta línea indica que el contenedor expondrá el puerto 8080. Es decir, cuando se inicie un contenedor a partir de esta imagen, se podrá acceder al servicio que se ejecute dentro del contenedor en el puerto 8080.
 
@@ -196,4 +196,4 @@ Referencias:
 1. Página oficial de OpenShift: [**https://www.openshift.com/**](https://www.openshift.com/ "https://www.openshift.com/")
 2. Repositorio de GitHub del tutorial: [**https://github.com/galvarado/node-app-openshift-example**](https://github.com/galvarado/node-app-openshift-example "https://github.com/galvarado/node-app-openshift-example")
 3. Documentación de Kubernetes: [**https://kubernetes.io/docs/**](https://kubernetes.io/docs/ "https://kubernetes.io/docs/")
-4. Tutorial  containerizing Node.js applications: [**https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose**](https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose "https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose") - Este tutorial de DigitalOcean es la fuente citada en el texto para el código de la aplicación Node.js que se utiliza en el tutorial. Proporciona información detallada sobre cómo containerizar una aplicación Node.js para su uso en entornos de desarrollo.
+4. Tutorial containerizing Node.js applications: [**https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose**](https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose "https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose") - Este tutorial de DigitalOcean es la fuente citada en el texto para el código de la aplicación Node.js que se utiliza en el tutorial. Proporciona información detallada sobre cómo containerizar una aplicación Node.js para su uso en entornos de desarrollo.
