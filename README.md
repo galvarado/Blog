@@ -12,6 +12,6 @@ Este blog está contruido y funciona con:
 
 ![Hugo](static/images/hugo.jpg "Hugo")
 ![Netlify](static/images/netlify.png "Netlify")
-![Tina](static/images/hugo.tina.png "Tina")
+![Tina](static/images/tina.png "Tina")
 
 Conoce más en: https://galvarado.com.mx/post/comoestaconstruido/
