@@ -7,6 +7,7 @@ tags = ["cloud", "GCP", "architecture"]
 title = "Guía practica para planear y ejecutar la migración de aplicaciones a la nube"
 
 +++
+
 [https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform](https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform "https://cloud.google.com/blog/products/gcp/the-five-phases-of-migrating-to-google-cloud-platform")
 
 [https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8](https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8 "https://blog.hike.in/migration-to-google-cloud-platform-gcp-17c397e564b8")

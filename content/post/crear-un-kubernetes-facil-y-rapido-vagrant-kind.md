@@ -6,17 +6,18 @@ tags = ["devops", "cloud", "containers", "CloudOps"]
 title = "Crear un entorno local DevOps de kubernetes fácil y rápido: Vagrant + Kind"
 
 +++
-***
 
-\*****Actualización: 25 de Octubre de 2021**
+---
+
+\*\***\*Actualización: 25 de Octubre de 2021**
 
 Gracias a los comentarios de [**Adrián Freisinger**](https://disqus.com/by/adrinfreisinger/), se detectó que hay un bug del nginx ingress controller y por tal motivo se actualzó la instalación de Kind hacia v0.11.1 para que nos de un kubernetes en su última versión: v1.21.1 ya que ahí no nos afecta el bug.
 
-***
+---
 
-Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en  Kubernetes, ya que es una herramienta muy potente para desplegar  aplicaciones en producción y que  se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear  pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
+Como desarrolladores, es muy importante aprender a desarrollar aplicaciones listas para desplegarse en Kubernetes, ya que es una herramienta muy potente para desplegar aplicaciones en producción y que se está convertiendo en el líder del mercado. Si eres Sysadmin o DevOps, también te interesa tener un cluster para desplegar aplicaciones, crear pipelines de CI/CD o integrar herramientas como Helm o Spinnaker. Hay un universo de posibilidades.
 
-Como la mayoría del software  para crear un cluster, Kubernetes  puede ser un desafío.  Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno  de trabajo independiente y  replicable de un cluster  de kubernetes en nuestra laptop.
+Como la mayoría del software para crear un cluster, Kubernetes puede ser un desafío. Entonces en este tutorial usaremos Vagrant y Kind para crear un entorno de trabajo independiente y replicable de un cluster de kubernetes en nuestra laptop.
 
 ## Vagrant
 
@@ -26,19 +27,19 @@ Con un flujo de trabajo fácil de usar y un enfoque en la automatización, Vagra
 
 #### **¿Por qué Vagrant?**
 
-Vagrant proporciona entornos de trabajo fáciles de configurar, reproducibles y portátiles construidos sobre  tecnología estándar y controlados por un único flujo de trabajo  para ayudar a maximizar la productividad y flexibilidad de todo el equipo.
+Vagrant proporciona entornos de trabajo fáciles de configurar, reproducibles y portátiles construidos sobre tecnología estándar y controlados por un único flujo de trabajo para ayudar a maximizar la productividad y flexibilidad de todo el equipo.
 
-Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, Hyper-V,  VMware o KVM.  Vagrant puede configurar automáticamente carpetas compartidas, conexiones SSH, crear túneles HTTP en nuestro entorno de desarrollo, y mucho más. [Más información en su sitio oficial.](https://www.vagrantup.com/)
+Para lograr su magia, Vagrant se para sobre los hombros de gigantes. Las máquinas se aprovisionan sobre un hypervisor como VirtualBox, Hyper-V, VMware o KVM. Vagrant puede configurar automáticamente carpetas compartidas, conexiones SSH, crear túneles HTTP en nuestro entorno de desarrollo, y mucho más. [Más información en su sitio oficial.](https://www.vagrantup.com/)
 
 **Comandos útiles:**
 
-* `vagrant init`: Crea una nueva instancia de VM. Cada instancia tiene un directorio oculto (`.vagrant` ) y un archivo de configuración ( `Vagrantfile`).
-* `vagrant up`: Inicia la VM con  todas las configuraciones presentes el archivo `Vagrantfile` .
-* `vagrant ssh`: Acceder a la instancia de VM por secure shell.
-* `vagrant halt`: Detiene la instancia de virtualización.
-* `vagrant destroy`: Elimina la instancia y todas sus configuraciones, excepto el archivo de configuración `Vagrantfile`.
+- `vagrant init`: Crea una nueva instancia de VM. Cada instancia tiene un directorio oculto (`.vagrant` ) y un archivo de configuración ( `Vagrantfile`).
+- `vagrant up`: Inicia la VM con todas las configuraciones presentes el archivo `Vagrantfile` .
+- `vagrant ssh`: Acceder a la instancia de VM por secure shell.
+- `vagrant halt`: Detiene la instancia de virtualización.
+- `vagrant destroy`: Elimina la instancia y todas sus configuraciones, excepto el archivo de configuración `Vagrantfile`.
 
-La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de  Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks  LAMP, Ruby, Python, MySQL o entornos más complejos.Kind
+La forma más fácil de encontrar "boxes" es buscar en el [catálogo público de Vagrant](https://app.vagrantup.com/boxes/search) una caja que coincida con nuestro caso de uso. El catálogo contiene la mayoría de los principales sistemas operativos como bases, así como cajas especializadas para que podamos comenzar a trabajar rápidamente con stacks LAMP, Ruby, Python, MySQL o entornos más complejos.Kind
 
 ## Kind
 
@@ -48,9 +49,9 @@ Se diseñó principalmente para probar Kubernetes en sí, pero también para des
 
 #### **Características**
 
-* Kind admite clústers de múltiples nodos (incluido HA)
-* Soporte para make/bash/docker, o bazel, además de compilaciones publicadas previamente
-* Es compatible con Linux, macOS y Windows.
+- Kind admite clústers de múltiples nodos (incluido HA)
+- Soporte para make/bash/docker, o bazel, además de compilaciones publicadas previamente
+- Es compatible con Linux, macOS y Windows.
 
 Un punto muy importante, Kind es un instalador de Kubernetes certificado por CNCF. (minikube no lo es).
 
@@ -76,18 +77,18 @@ Pero también podemos definir el cluster en un archivo y crearlo como usualmente
 
 Si quieres interctuar con un cluster de kubernetes en tu máquina local, esta es una muy buena solución. El enfoque que estoy siguiendo es elegir herramientas que me permitan tener un ambiente homogéneo, capaz de ser automatizado y replicable fácilmente. Si bien podemos instalar directamente [minikube](https://galvarado.com.mx/post/6-herramientas-para-desplegar-un-cluster-de-kubernetes/) en nuestra laptop, esto nos limita en personalización pues minikube crea la VM por nosotros y se vuelve un artifact que no podemos replicar con el resto del equipo.
 
-**Usar Kind con Vagrant  nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.**
+**Usar Kind con Vagrant nos permite crear un entorno estandarizado para compartirlo con el resto de nuestro equipo.**
 
-Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el  [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos. B bastaría compartir nuestro archivo  en un repositorio de git y cualquiera que tenga instalado  Vagrant usará el Vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse. Cuando realicemos cambios, podremos compartirlos con los demás vía el repositorio.
+Como hemos venido mencionado Vagrant sirve para ayudarnos a crear y configurar máquinas virtuales con determinadas características y componentes. La gran ventaja de Vagrant es que posee un archivo de configuración, el [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile/) donde se centraliza toda la configuración de la VM que creamos. B bastaría compartir nuestro archivo en un repositorio de git y cualquiera que tenga instalado Vagrant usará el Vagrantfile para crear una VM exactamente igual cuantas veces quiera, está maquina tendrá todo el software preinstalado lista para usarse. Cuando realicemos cambios, podremos compartirlos con los demás vía el repositorio.
 
 Entonces, al combinar Vagrant con Kind, no instalamos software en nuestra laptop y logramos abstraer cada una de las capas. Kind se encargará de ejecutar kubernetes en un solo nodo, nuestra Vagrant box, además podremos instalar otros componentes como Helm o algún ingress controller.
 
 El enfoque DevOps de Kind es:
 
-* **Personalizaciones a través de un archivo de configuración declarativo:** Puedo definir un config.yaml que describa cómo se ve mi clúster de k8s  (por ejemplo, 1 maestro, 3workers).
-* **Clústers de múltiples nodos:** Para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
-* **Portabilidad**: Puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
-* **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústers con la misma configuración en los pipelines de de CI que los de producción.
+- **Personalizaciones a través de un archivo de configuración declarativo:** Puedo definir un config.yaml que describa cómo se ve mi clúster de k8s (por ejemplo, 1 maestro, 3workers).
+- **Clústers de múltiples nodos:** Para probar la resistencia de mi aplicación a medida que presento diferentes escenarios de falla. Los multiples nodos son contenedores dentro de una sola VM.
+- **Portabilidad**: Puedo compartir el archivo de configuración tanto de Vagrant como de Kind con el resto del equipo.
+- **Flujo de trabajo amigable para los desarrolladores:** La posibilidad de crear clústers con la misma configuración en los pipelines de de CI que los de producción.
 
 Entonces, cada ocasión que necesites interactuar con un cluster real de kubernetes, solo tendrás que ejecutar:
 
@@ -99,32 +100,32 @@ Todo lo necesario para ejecutar el entorno [está disponible en este repositorio
 
 El entorno que crearemos consiste en una VM manejada por Vagrant, virtualizada en VirtualBox. Esta contendrá un cluster de Kubernetes con un docker registry local y un nginx-ingress controller.
 
-Desplegaremos una aplicación en el kubernetes construyendo una imagen y subiendola al repositorio.  Crearemos el namespace, el deployment, el servicio y el ingress. Finalmente probaremos acceder a la aplicación recién creada desde nuestra laptop a través de nuestro navegador.
+Desplegaremos una aplicación en el kubernetes construyendo una imagen y subiendola al repositorio. Crearemos el namespace, el deployment, el servicio y el ingress. Finalmente probaremos acceder a la aplicación recién creada desde nuestra laptop a través de nuestro navegador.
 
-En el repositorio  encontrarás el directorio nginx-app-example que contiene un Dockerfile y  los manifest de kubernetes para desplegar la aplicación.
+En el repositorio encontrarás el directorio nginx-app-example que contiene un Dockerfile y los manifest de kubernetes para desplegar la aplicación.
 
 #### Instalar Vagrant
 
 Para instalar Vagrant, descargamos [el paquete que nos corresponde](https://www.vagrantup.com/downloads). Vagrant está empaquetado para los sistemas en especifico:
 
-* MAC OS X
-* WINDOWS
-* LINUX
-* DEBIAN
-* CENTOS
+- MAC OS X
+- WINDOWS
+- LINUX
+- DEBIAN
+- CENTOS
 
 El instalador agregará automáticamente Vagrant a la ruta del sistema para que esté disponible en la terminal.
 
 **Verificar la instalación**
 
-Después de instalar Vagrant, verificamos que la instalación funcionó  en la consola:
+Después de instalar Vagrant, verificamos que la instalación funcionó en la consola:
 
     $ vagrant -v
     Vagrant 2.2.9
 
 #### Instalar Virtualbox
 
-Los providers en Vagrant son los hipervisores  capaces de virtualizar, en nuestro caso instalaremos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están [ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
+Los providers en Vagrant son los hipervisores capaces de virtualizar, en nuestro caso instalaremos VirtualBox. Vamos [a la página de descarga](https://www.virtualbox.org/wiki/Downloads) y elegimos el paquete para nuestro sistema. Las versiones de VirtualBox compatibles con Vagrant están [ en la documentación oficial](https://www.vagrantup.com/docs/providers/virtualbox).
 
 #### Crear Vagrant box
 
@@ -164,33 +165,33 @@ Ya tenemos una imagen de Ubuntu, pero necesitamos instalar el software que reque
 Creamos un archivo en bash:
 
     #!/bin/bash
-    
+
     # Install docker
     sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     sudo apt-get update
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
     usermod -aG docker vagrant
     sudo docker run hello-world
     echo "**** End installing Docker CE"
-    
+
     # Install kubectl
     sudo apt-get update && sudo apt-get install -y apt-transport-https
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
     sudo apt-get update
-    sudo apt-get install -y kubectl 
+    sudo apt-get install -y kubectl
     kubectl cluster-info
     echo "**** End installing kubectl"
-    
+
     # Install kind
     curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
     chmod +x ./kind
     mv ./kind /usr/local/bin/kind
-    
+
     # Initialize kind
-    kind create cluster --name myk8s 
+    kind create cluster --name myk8s
     kind get clusters
     mkdir .kube
     kind get kubeconfig --name "myk8s" > .kube/config
@@ -212,7 +213,7 @@ Creamos un archivo en bash:
 
     #!/bin/sh
     set -o errexit
-    
+
     # create registry container unless it already exists
     reg_name='kind-registry'
     reg_port='5000'
@@ -222,7 +223,7 @@ Creamos un archivo en bash:
         -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
         registry:2
     fi
-    
+
     # create a cluster with the local registry enabled in containerd
     cat <<EOF | kind create cluster --config=-
     kind: Cluster
@@ -247,23 +248,23 @@ Creamos un archivo en bash:
         hostPort: 443
         protocol: TCP
     EOF
-    
+
     # connect the registry to the cluster network
     docker network connect "kind" "${reg_name}"
-    
+
     # tell https://tilt.dev to use the registry
     # https://docs.tilt.dev/choosing_clusters.html#discovering-the-registry
     for node in $(kind get nodes); do
       kubectl annotate node "${node}" "kind.x-k8s.io/registry=localhost:${reg_port}";
     done
-    
+
     # Initialize kind
     kind get clusters
     mkdir .kube
     kind get kubeconfig > .kube/config
-    # Create nginx-ingress controller 
+    # Create nginx-ingress controller
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
-    
+
     echo "**** Cluster started :) Ready to shine!"
 
 Colocamos este archivo en el mismo directorio que el Vagrantfile. En este último archivo, estamos indicando nuestro archivo bootstrap de la siguiente manera:
@@ -287,10 +288,10 @@ Y verificamos nuestro cluster con kubectl:
     $ kubectl cluster-info
     Kubernetes master is running at https://127.0.0.1:46157
     KubeDNS is running at https://127.0.0.1:46157/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-    
+
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
-Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster  más cercano a producción. Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que podemos interactuar. También podemos ver el contenedor del registro local:
+Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, en este caso es uno solo pero podríamos crear una topología más compleja para tener un cluster más cercano a producción. Dentro de este contenedor se está ejecutando todo un cluster de k8s con el que podemos interactuar. También podemos ver el contenedor del registro local:
 
     $ docker ps
     CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
@@ -299,7 +300,7 @@ Podemos listar los contenedores dentro de nuestra VM y veremos el nodo de k8s, e
 
 #### Desplegar una aplicación sobre nuestro clúster
 
-Si clonaste el  repositorio, entonces  el directorio `/vagrant` dentro de la VM contiene los manifests de kubernetes, dentro del directorio  `nginx-app-example` Si no los tienes, tómalos del repositorio y  colócalos en el mismo directorio donde tienes el archivo Vagrantfile y los podrás ver dentro de la VM.
+Si clonaste el repositorio, entonces el directorio `/vagrant` dentro de la VM contiene los manifests de kubernetes, dentro del directorio `nginx-app-example` Si no los tienes, tómalos del repositorio y colócalos en el mismo directorio donde tienes el archivo Vagrantfile y los podrás ver dentro de la VM.
 
 Construiremos una imagen y desplegaremos una aplicación en nuestro Kubernetes:
 
@@ -317,24 +318,24 @@ Taggeamos la imagen y hacemos push para subirla al docker registry local:
     $ docker tag nginx-app-example:latest localhost:5000/nginx-app-example:latest
     $ docker push localhost:5000/nginx-app-example:latest
     The push refers to repository [localhost:5000/nginx-app-example]
-    d2aca6f889f3: Pushed 
-    550333325e31: Pushed 
-    22ea89b1a816: Pushed 
-    a4d893caa5c9: Pushed 
-    0338db614b95: Pushed 
-    d0f104dc0a1f: Pushed 
+    d2aca6f889f3: Pushed
+    550333325e31: Pushed
+    22ea89b1a816: Pushed
+    a4d893caa5c9: Pushed
+    0338db614b95: Pushed
+    d0f104dc0a1f: Pushed
     latest: digest: sha256:bf7556c6be09126a4219cc9b2b7caac91d53f03b666e5f25e1ae4ab2ee9e9080 size: 1571
 
 Crear namespace:
 
-    $ kubectl create -f nginx-namespace.yml 
+    $ kubectl create -f nginx-namespace.yml
     namespace/nginx-app-example created
 
 Crear deployment:
 
-    kubectl create -f nginx-deployment.yml 
+    kubectl create -f nginx-deployment.yml
     deployment.apps/nginx-deployment created
-    
+
     $ kubectl get pods -n nginx-app-example
     NAME                                READY   STATUS    RESTARTS   AGE
     nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          9s
@@ -347,7 +348,7 @@ Crear servicio:
 
 Crear ingress:
 
-    kubectl create -f nginx-ingress.yml 
+    kubectl create -f nginx-ingress.yml
     ingress.networking.k8s.io/nginx-ingress created
 
 Revisamos los recursos creados:
@@ -355,19 +356,19 @@ Revisamos los recursos creados:
     NAME                                    READY   STATUS    RESTARTS   AGE
     pod/nginx-deployment-8469fcbd4f-9cvsk   1/1     Running   0          6m24s
     pod/nginx-deployment-8469fcbd4f-twczg   1/1     Running   0          6m24s
-    
+
     NAME                    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
     service/nginx-service   NodePort   10.111.22.182   <none>        80:31480/TCP   62s
     NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
     deployment.apps/nginx-deployment   2/2     2            2           6m24s
-    
+
     NAME                                          DESIRED   CURRENT   READY   AGE
     replicaset.apps/nginx-deployment-8469fcbd4f   2         2         2       6m24s
 
 Hacemos un curl para ver si nos responde el ingress:
 
     $ curl localhost/
-    
+
     <!DOCTYPE html>
     <html lang="en" class="no-js">
     <head>

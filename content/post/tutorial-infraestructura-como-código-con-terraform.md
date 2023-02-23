@@ -6,6 +6,7 @@ tags = ["devops", "cloud", "terraform "]
 title = "Tutorial: Infraestructura como código con Terraform"
 
 +++
+
 Esta ocasión quiero hablar sobre qué es la Infraestructura como código y cómo empezar a usarla con Terraform. **Terraform** es un software de código libre que permite a partir de un lenguaje de alto nivel crear el plan de construcción de una infraestructura compleja, esto sería Infrastructura como código (Infrastructure as Code).
 
 Los puntos que cubre esta guía son:
@@ -20,15 +21,15 @@ Los puntos que cubre esta guía son:
 
 ## ¿Qué es Infraestructura cómo código?
 
-Infraestructura como código hace referencia a la  práctica de utilizar scripts para configurar la infraestructura de una aplicación como máquinas virtuales, en lugar de configurar estas máquinas de forma manual.
+Infraestructura como código hace referencia a la práctica de utilizar scripts para configurar la infraestructura de una aplicación como máquinas virtuales, en lugar de configurar estas máquinas de forma manual.
 
-La infraestructura como código permite a las máquinas virtuales gestionarse de manera programada, lo que elimina la necesidad de realizar configuraciones manuales (y actualizaciones) de componentes individuales. Esto es una  construcción de infraestructura más consistente y de mayor calidad con mejores capacidades de administración, maximizando la eficiencia y evitando el error humano.
+La infraestructura como código permite a las máquinas virtuales gestionarse de manera programada, lo que elimina la necesidad de realizar configuraciones manuales (y actualizaciones) de componentes individuales. Esto es una construcción de infraestructura más consistente y de mayor calidad con mejores capacidades de administración, maximizando la eficiencia y evitando el error humano.
 
-El resultado es una infraestructura  muy elástica, escalable y replicable gracias a la  capacidad de modificar, configurar y apagar cientos de máquinas en cuestión de minutos con solo presionar un botón.
+El resultado es una infraestructura muy elástica, escalable y replicable gracias a la capacidad de modificar, configurar y apagar cientos de máquinas en cuestión de minutos con solo presionar un botón.
 
-Las mejores prácticas de DevOps, incluido el control de versiones, las pruebas  y el monitoreo continuo, se aplican al código que gobierna la creación y administración de la infraestructura. **Básicamente, la infraestructura es tratada de la misma manera que cualquier otro código.**
+Las mejores prácticas de DevOps, incluido el control de versiones, las pruebas y el monitoreo continuo, se aplican al código que gobierna la creación y administración de la infraestructura. **Básicamente, la infraestructura es tratada de la misma manera que cualquier otro código.**
 
-Los equipos ahora  pueden implementar o actualizar una infraestructura formada por docenas de servidores en cuestión de minutos sin necesidad de instalar nada. Simplemente se activa el proceso que se ha escrito en el código y las máquinas hacen el trabajo. Si es necesario es posible retroceder a la última versión estable de la configuración del servidor haciendo que las pruebas sean más sencillas.
+Los equipos ahora pueden implementar o actualizar una infraestructura formada por docenas de servidores en cuestión de minutos sin necesidad de instalar nada. Simplemente se activa el proceso que se ha escrito en el código y las máquinas hacen el trabajo. Si es necesario es posible retroceder a la última versión estable de la configuración del servidor haciendo que las pruebas sean más sencillas.
 
 ## Gestión de configuración vs orquestación
 
@@ -58,7 +59,7 @@ Las principales características de Terraform son:
 
 **Infraestructura como código:** La infraestructura se describe utilizando una sintaxis de alto nivel. Esto permite que un blueprint sea versionado y tratado como lo haría con cualquier otro código. Estos archivos que describen la infraestructura pueden ser compartidos y reutilizados.
 
-**Planes de Ejecución:** Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto  permite evitar sorpresas.
+**Planes de Ejecución:** Terraform tiene un paso de "planificación" donde genera un plan de ejecución. El plan de ejecución muestra lo que hará Terraform cuando se ejecute. Esto permite evitar sorpresas.
 
 **Gráfico de recursos:** Terraform crea un gráfico de todos los recursos y paraleliza la creación y modificación de cualquier recurso. Con esto los operadores obtienen información sobre las dependencias en la infraestructura.
 
@@ -74,12 +75,12 @@ Descargar el paquete según la plataforma. El paquete debe descargarse desde [ht
 
 Sistemas operativos compatibles con Terraform:
 
-* Linux: 32­bit | 64­bit | Arm
-* Windows: 32­bit | 64­bit
-* Mac OS X: 64­bit
-* FreeBSD: 32­bit | 64­bit | Arm
-* OpenBSD: 32­bit | 64­bit
-* Solaris: 64­bit
+- Linux: 32­bit | 64­bit | Arm
+- Windows: 32­bit | 64­bit
+- Mac OS X: 64­bit
+- FreeBSD: 32­bit | 64­bit | Arm
+- OpenBSD: 32­bit | 64­bit
+- Solaris: 64­bit
 
 Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linux 64­bit puesto que lo instalaremos en una maquina con Fedora 29.
 
@@ -96,7 +97,7 @@ Seleccionamos el sistema operativo y la arquitectura, en mi caso elegiremos Linu
 **2.3 Nos situamos en el directorio terraformy descomprimimos los binarios:**
 
     [root@zenbook Descargas]# cd /opt/terraform/
-    [root@zenbook terraform]# unzip terraform_0.11.13_linux_amd64.zip 
+    [root@zenbook terraform]# unzip terraform_0.11.13_linux_amd64.zip
     Archive:  terraform_0.11.13_linux_amd64.zip
       inflating: terraform
 
@@ -124,10 +125,10 @@ Terraform utiliza archivos de texto para describir la infraestructura y establec
 
 El formato de los archivos de configuración puede estar en dos formatos: formato Terraform y JSON. El formato de Terraform es más legible, admite comentarios y es el formato generalmente recomendado para la mayoría de los archivos de Terraform. El formato JSON está destinado a las máquinas para crear, modificar y actualizar, pero los operadores de Terraform también pueden hacerlo si lo prefiere. El formato Terraform termina en .tf y el formato JSON termina en .tf.json.
 
-Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para crear una máquina virtual:
+Ejemplo de archivo Terraform, en el cual conectamos a una nube OpenStack para crear una máquina virtual:
 
-    [root@zenbook terraform-example]# cat openstack-example.tf 
-    
+    [root@zenbook terraform-example]# cat openstack-example.tf
+
     # Configure the OpenStack Provider
     provider "openstack" {
       user_name   = "admin"
@@ -136,17 +137,17 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
       auth_url    = "http://controller01:5000/v3"
       region      = "RegionOne"
     }
-    
+
     # Create a RHEL server
     resource "openstack_compute_instance_v2" "basic" {
       name            = "vm_from_terraform"
       image_id        = "567887bd-2635-4c2e-9feb-248a1b770745"
       flavor_id       = "i78478b4-2d58-42f6-940e-15bdea5a7849"
-    
+
       metadata = {
         this = "that"
       }
-    
+
       network {
         name = "Some_Network"
       }
@@ -156,30 +157,30 @@ Ejemplo de archivo Terraform, en el cual  conectamos a una nube OpenStack para c
 
 Terraform se utiliza para crear, administrar y actualizar recursos de infraestructura como máquinas físicas, máquinas virtuales, routers , contenedores y más. Casi cualquier tipo de infraestructura puede representarse como un recurso en Terraform.
 
-Un proveedor es responsable de comprender las interacciones de  API entre terraform y la plataforma proveedora de los recursos y crear los recursos.
+Un proveedor es responsable de comprender las interacciones de API entre terraform y la plataforma proveedora de los recursos y crear los recursos.
 
 Los proveedores generalmente son IaaS, por ejemplo:
 
-* AWS
-* GCP
-* Microsoft Azure
-* OpenStack
-* Digital Ocean
+- AWS
+- GCP
+- Microsoft Azure
+- OpenStack
+- Digital Ocean
 
 Proveedores de PaaS:
 
-* Heroku
-* Nutanix
-* Rancher
-* Kubernetes (No es completamente un PaaS)
+- Heroku
+- Nutanix
+- Rancher
+- Kubernetes (No es completamente un PaaS)
 
-Servicios  SaaS:
+Servicios SaaS:
 
-* Terraform Enterprise
-* DNSimple
-* CloudFlare
-* Bitbucket
-* Datadog
+- Terraform Enterprise
+- DNSimple
+- CloudFlare
+- Bitbucket
+- Datadog
 
 La lista completa de proveedores se encuentra en la documentación oficial: [https://www.terraform.io/docs/providers/index.html](https://www.terraform.io/docs/providers/index.html "https://www.terraform.io/docs/providers/index.html")
 
@@ -223,7 +224,7 @@ Como ejemplo en este tutorial crearemos una base de datos de MySQL. El código d
 
 **1. Crear archivo de configuración**
 
-El arhivo de configuración define el proveedor, en este caso MySQL y contiene los datos para poder conectar al motor de base de datos y crear los recursos. También se definen los recursos a crear que serían una base de datos llamada "some_db_name"  y un usuario para la misma con su password.
+El arhivo de configuración define el proveedor, en este caso MySQL y contiene los datos para poder conectar al motor de base de datos y crear los recursos. También se definen los recursos a crear que serían una base de datos llamada "some_db_name" y un usuario para la misma con su password.
 
 mysql-example.tf:
 
@@ -232,12 +233,12 @@ mysql-example.tf:
       username = "root"   # Some existing ser with privileges
       password = "Pb5c2.<:-Gf7vc4M"  # User pass
     }
-    
+
     # Crear base de datos
     resource "mysql_database" "some_db" {
       name = "some_db_name"  #Database to be created
     }
-    
+
     # Crear usuario
     resource "mysql_user" "demo" {
       user     = "demo"  # User to be created
@@ -285,10 +286,10 @@ Con esto conocemos ahora como interactuar con Terraform para realizar despliegue
 
 Si te pareció útil, por favor comparte =)
 
-[PARTE II: Automatizar todo el despliegue de una aplicación con terraform y  automatizar la configuración de la aplicación con Ansible](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
+[PARTE II: Automatizar todo el despliegue de una aplicación con terraform y automatizar la configuración de la aplicación con Ansible](https://galvarado.com.mx/post/terraform-ansible-automatizar-el-despliegue-de-wordpress-en-digitalocean/)
 
 Referencias:
 
-* [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
-* [https://www.terraform.io/intro/index.html](https://www.terraform.io/intro/index.html "https://www.terraform.io/intro/index.html")
-* [https://learn.hashicorp.com/terraform/getting-started/install](https://learn.hashicorp.com/terraform/getting-started/install "https://learn.hashicorp.com/terraform/getting-started/install")
+- [https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html](https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html "https://terraform-infraestructura.readthedocs.io/es/latest/caracteristicas/index.html")
+- [https://www.terraform.io/intro/index.html](https://www.terraform.io/intro/index.html "https://www.terraform.io/intro/index.html")
+- [https://learn.hashicorp.com/terraform/getting-started/install](https://learn.hashicorp.com/terraform/getting-started/install "https://learn.hashicorp.com/terraform/getting-started/install")

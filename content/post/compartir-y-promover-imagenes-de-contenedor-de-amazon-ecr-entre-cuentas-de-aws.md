@@ -7,6 +7,7 @@ tags = ["devops", "architecture", "cloud", "development", "best practices", "con
 title = "Compartir y promover imagenes de contenedor de Amazon ECR entre cuentas de AWS"
 
 +++
+
 cumplir prerequisitos de clis
 
 en la cuenta principal seguir los siguientes pasos para crear un repositorio y una imagen, hacer build y push
@@ -28,7 +29,7 @@ Politica:
             "ecr:BatchGetImage"
           ],
           "Principal": {
-    
+
             "AWS": [
               "arn:aws:iam::335582020948:user/developer"
             ]

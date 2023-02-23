@@ -6,13 +6,14 @@ tags = ["devops", "cloud", "best practices"]
 title = "Beneficios y retos de la Infraestructura Inmutable + Tutorial: Packer, Ansible y Terraform"
 
 +++
+
 En los últimos años, la automatización se ha vuelto clave para la entrega de un producto de alta calidad.La clave aquí es: hazlo una vez, hazlo bien, hazlo replicable
 
 En teoría, se puede aplicar cierto nivel de automatización a cualquier tarea de TI. Por lo tanto, la automatización puede incorporarse y aplicarse a cualquier elemento, desde la la red hasta la infraestructura, la implementación en la nube, los sistemas operativos, la gestión de la configuración y el despliegue de aplicaciones.
 
 Dentro de la Automatización podemos encontrar la IaC o Infraestructura como código. Lo que nos lleva a hablar de Ia infraestructura Inmutable.
 
-Todo el código del ejemplo en: 
+Todo el código del ejemplo en:
 
 ![](/uploads/captura-realizada-el-2021-02-05-12-37-36.png)
 
@@ -40,7 +41,7 @@ Cuando las pruebas sean satisfactorias, daremos de baja el servidor original y l
 
 **¿Vamos a reemplazar los servidores?** Sí y la razón es sencilla: Es más fácil volver a partir de cero que lidiar con versiones y parches. ¿Qué pasaría si no logramos actualizar un paquete debido a algún error de red durante el despliegue? Podemos comenzar a tener "sucios" los ambientes. Sin embargo, si tenemos el proceso automatizado, crearemos nueva infraestructura y la reemplazaremos la primera, hasta estar seguros de que funciona el nuevo despliegue.
 
-Obviamente hay algunas condiciones que debemos cumplir: si estamos manejando una base de datos, tendremos  que migrarla al nuevo servidor. Lo mejor sería sacarla del servidor actual para no eliminar la información persistente y lograr tener una aplicación stateless. Luego, simplemente apuntaremos al nuevo servidor de base de datos cuando creemos un nuevo servidor de aplicación.
+Obviamente hay algunas condiciones que debemos cumplir: si estamos manejando una base de datos, tendremos que migrarla al nuevo servidor. Lo mejor sería sacarla del servidor actual para no eliminar la información persistente y lograr tener una aplicación stateless. Luego, simplemente apuntaremos al nuevo servidor de base de datos cuando creemos un nuevo servidor de aplicación.
 
 ## ¿Cuáles son los beneficios de la infraestructura inmutable?
 
@@ -52,7 +53,7 @@ Una máxima es:
 
 Sin embargo, si tenemos sistemas inmutables respaldados por procesos de automatización de uso frecuente, ya tenemos integrada la recuperación ante desastres. La infraestructura se vuelve desechable y podemos recrear entornos de forma rápida y sencilla.
 
-La infraestructura inmutable juega un papel muy importante en el desarrollo de software, ya que en lugar de cambiar parte de la infraestructura, ahora podemos crear una nueva con las nuevas características necesarias y desechar la antigua. La nube nos ha brindado las herramientas para hacerlo más barato y eficiente, de modo que todo tipo de sistemas, desde sitios web pequeños hasta plataformas  internacionales a gran escala puedan beneficiarse.
+La infraestructura inmutable juega un papel muy importante en el desarrollo de software, ya que en lugar de cambiar parte de la infraestructura, ahora podemos crear una nueva con las nuevas características necesarias y desechar la antigua. La nube nos ha brindado las herramientas para hacerlo más barato y eficiente, de modo que todo tipo de sistemas, desde sitios web pequeños hasta plataformas internacionales a gran escala puedan beneficiarse.
 
 ## ¿Dónde se puede aplicar la infraestructura inmutable? ¿Cuáles son los inconvenientes ?
 
@@ -66,7 +67,7 @@ Para usar este enfoque de manera eficiente debemos:
 
 Todas las actualizaciones (deploy) deberán pasar por un proceso automatizado. Sin una automatización bien probada, los despliegues suelen ser experiencias dolorosas, que provocan miedo y que consumen mucho tiempo. Sin embargo, cuando uno tiene confianza en la automatización y se puede estar seguro del estado de los sistemas en todo momento, los despliegues se vuelven simples y pueden realizarse muchas veces al día.
 
-> Algunas inversiones iniciales en la automatización de la infraestructura siembran las semillas que  permitirán cosechar grandes beneficios en tiempo y esfuerzo.
+> Algunas inversiones iniciales en la automatización de la infraestructura siembran las semillas que permitirán cosechar grandes beneficios en tiempo y esfuerzo.
 
 Esta es una herramienta de enorme importancia en el arsenal del desarrollo de software moderno.
 
@@ -80,7 +81,7 @@ Las herramientas para esto son:
 
 ![](/uploads/infraestructurainmutableansiblepackerterraform.png)
 
-Por lo tanto, en los proyectos donde queramos ir por el paradigma de la infraetructura inmutable deberiamos integrar estas 3 herramientas. En el repositorio deberíamos tendremos un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y  templates de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
+Por lo tanto, en los proyectos donde queramos ir por el paradigma de la infraetructura inmutable deberiamos integrar estas 3 herramientas. En el repositorio deberíamos tendremos un directorio con el template de Packer para construir la imagen del servidor, playbooks de ansible que instalarán la aplicación y cualquier dependencia y templates de terraform que nos permiten crear la infraestructura en la nube, a partir de la imagen recién construida.
 
 Para poner en práctica los conceptos, desplegaremos un sitio sencillo en DigitalOcean, pero puedes usarlo para cualquier aplicación escrita en Python, Java, PHP, Go, NodeJS, etc. Lo que cambia es el proceso de despliegue de cada aplicación y sus dependencias, pero en todos los caso: Construimos la imagen, la aprovisionamos y la desplegamos en la nube.
 
@@ -99,35 +100,35 @@ Creamos el playbook que aprovisiona el software:
     ---
     - name: 'Bootstrap server and Install application'
       hosts: default
-    
+
       tasks:
-    
+
         - name: Add epel-release repo
           yum:
             name: epel-release
             state: present
           become: yes
-    
+
         - name: Install nginx
           yum:
             name: nginx
             state: present
           become: yes
-    
+
         - name: start nginx
           service:
             name: nginx
             state: started
             enabled: yes
           become: yes
-    
+
         - name: "create html directory"
           become: yes
           file:
             path: /usr/share/nginx/html/app
             state: directory
             mode: '0775'
-    
+
         - name: "sync app code"
           become: yes
           synchronize:
@@ -137,16 +138,16 @@ Creamos el playbook que aprovisiona el software:
             checksum: yes
             recursive: yes
             delete: yes
-          
-    
+
+
         - name: Update default document root
           become: yes
-          replace: 
+          replace:
             path: "/etc/nginx/nginx.conf"
             replace: "root         /usr/share/nginx/html/app;"
             regexp: "root         /usr/share/nginx/html;"
           notify: restart nginx
-    
+
       handlers:
         - name: restart nginx
           service:
@@ -203,7 +204,7 @@ Cuando este termine, debemos ver la imagen recién creada en Digitla Ocean en: [
 
 ![](/uploads/captura-realizada-el-2021-02-05-11-32-19.png)
 
-Esta imagen es la que usará terraform para crear el servidor  en la nube y ya cuenta con todas las dependencias  y la aplicación. Así que en cualquier proceso de restauración, podemos siempre crear nuevos servidores a partir de esta imagen.
+Esta imagen es la que usará terraform para crear el servidor en la nube y ya cuenta con todas las dependencias y la aplicación. Así que en cualquier proceso de restauración, podemos siempre crear nuevos servidores a partir de esta imagen.
 
 ### Terraform
 
@@ -214,19 +215,19 @@ En el template de terraform que crea el servidor, indicamos una expresión regul
     variable "droplet_name" {}
     variable "droplet_size" {}
     variable "droplet_region" {}
-    
+
     # Configure the DigitalOcean Provider
     provider "digitalocean" {
       token = var.do_token
     }
-    
+
     # Get snapshot name
     data "digitalocean_droplet_snapshot" "ubuntu2004-packer-image" {
       name_regex  = "^image-by-packer-centos8"
       region      = "nyc1"
       most_recent = true
     }
-    
+
     # Create a web server
     resource "digitalocean_droplet" "server-by-terrraform" {
       image      = "${data.digitalocean_droplet_snapshot.ubuntu2004-packer-image.id}"
@@ -237,7 +238,7 @@ En el template de terraform que crea el servidor, indicamos una expresión regul
       ssh_keys   = [var.droplet_ssh_key_id]
     }
 
-Creamos el archivo de variables. En la ruta raíz del código de terraform  creamos  un archivo llamado terraform.tfvars y colocamos las siguientes variables:
+Creamos el archivo de variables. En la ruta raíz del código de terraform creamos un archivo llamado terraform.tfvars y colocamos las siguientes variables:
 
     do_token: must have the token created in the previous step.
     droplet_ssh_key_id: The id of the key in DigitalOcean that will be used to connect to the virtual machine
@@ -261,7 +262,7 @@ Para listar los tamaños de VM:
 
 Estos son los valores que también está usando packer.
 
-Nota: El tamaño de la VM puede diferir entre el tamaño que deseamos que use packer para construir la imagen  y el que será el tamaño final de la VM ya desplegada.
+Nota: El tamaño de la VM puede diferir entre el tamaño que deseamos que use packer para construir la imagen y el que será el tamaño final de la VM ya desplegada.
 
 **terraform.tfvars**
 
@@ -292,6 +293,6 @@ Si te pareció útil, por favor comparte. Si tienes dudas no dejes de escribir e
 
 Referencias:
 
-* [https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
-* [https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb](https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb "https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb")
-* [https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8](https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8 "https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8")
+- [https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure](https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure "https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure")
+- [https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb](https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb "https://medium.com/@archanabalasundaram/packer-with-terraform-8c45f895cddb")
+- [https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8](https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8 "https://itnext.io/immutable-infrastructure-using-packer-ansible-and-terraform-7ca6f79582b8")

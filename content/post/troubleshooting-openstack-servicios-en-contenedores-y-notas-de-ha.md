@@ -6,11 +6,12 @@ tags = ["containers", "CloudOps", "Openstack"]
 title = "Troubleshooting Openstack: Servicios en contenedores y notas de HA"
 
 +++
-Las versiones anteriores de  OpenStack  utilizaban Systemd para administrar los servicios para el control plane.  Pero desde la versión [Queens](https://releases.openstack.org/queens/index.html) (Equivalente a Red Hat Openstack Platform 13) ahora los servicios se ejecutan en  contenedores.  Proyectos como Openstack evolucionan bastante en cada versión. Ahora mismo la instalación ha ido evolucionando y la mayoria de las tareas se ejecutan con Ansible, solo por mencionar un ejemplo.  Esta evolución ha sido gradual pero ahora en la versión Train incluso el Undercloud se ejecuta en contenedores y con [podman](https://podman.io/whatis.html) como el cli por default sustituyendo al de docker.
 
-El cambio no es menor y el proceso de despliegue es totalmente diferente.  Debemos saber que cambian la rutas de los archivos de configuración, de los archivos de log, pero también la manera en la que se inician los servicios y la forma la que debemos realizar tareas de troubleshooting y debugging. Esta es una guia de apoyo para quien deba llevar estas tareas acabo.
+Las versiones anteriores de OpenStack utilizaban Systemd para administrar los servicios para el control plane. Pero desde la versión [Queens](https://releases.openstack.org/queens/index.html) (Equivalente a Red Hat Openstack Platform 13) ahora los servicios se ejecutan en contenedores. Proyectos como Openstack evolucionan bastante en cada versión. Ahora mismo la instalación ha ido evolucionando y la mayoria de las tareas se ejecutan con Ansible, solo por mencionar un ejemplo. Esta evolución ha sido gradual pero ahora en la versión Train incluso el Undercloud se ejecuta en contenedores y con [podman](https://podman.io/whatis.html) como el cli por default sustituyendo al de docker.
 
-La instalación de los ambientes donde he  obteniendo esta experiencia esta basada en TripleO, ya sea con [RHOSP](https://www.redhat.com/es/technologies/linux-platforms/openstack-platform) o con la versión upstream de Openstack instalado en CentOS , es decir [RDO](https://www.rdoproject.org/rdo/).
+El cambio no es menor y el proceso de despliegue es totalmente diferente. Debemos saber que cambian la rutas de los archivos de configuración, de los archivos de log, pero también la manera en la que se inician los servicios y la forma la que debemos realizar tareas de troubleshooting y debugging. Esta es una guia de apoyo para quien deba llevar estas tareas acabo.
+
+La instalación de los ambientes donde he obteniendo esta experiencia esta basada en TripleO, ya sea con [RHOSP](https://www.redhat.com/es/technologies/linux-platforms/openstack-platform) o con la versión upstream de Openstack instalado en CentOS , es decir [RDO](https://www.rdoproject.org/rdo/).
 
 NOTA: Los siguientes comandos usan docker como cliente, pero funcionan igual con podman. Depende de la versión de Openstack que estamos usando.
 
@@ -20,7 +21,7 @@ Ante el caso de un troubleshooting deberiamos primero obtener un diagnotico ráp
 
 **Revisión general de los servicios**
 
-Podemos realizar una validación rápida consultando los servicios de Openstack desde el CLI. 
+Podemos realizar una validación rápida consultando los servicios de Openstack desde el CLI.
 
 Podemos ejecutar estas validaciones con un script en bash desde el undercloud. Este script lista el estado de los hypervisores, lo agentes de cinder y neutron además de comprobar el estado del dashbard (horizon) así como obtnener un token de keystone para comprobar que está operando:
 
@@ -30,15 +31,15 @@ check_services.sh
     openstack volume service list
     openstack hypervisor list
     openstack network agent list
-    
+
     # Variables
     ENDPOINT='cloud.somedomain' # Openstck keystone endpoint
     USER='admin'
     PASSWORD='somestrongpass'
-    
+
     echo -e "\n\n ########## Horizon status ##########\n\n"
     curl -IL https://$ENDPOINT/dashboard
-    
+
     echo -e "\n\n ########## Keystone token ##########\n\n"
     curl -i \
       -H "Content-Type: application/json" \
@@ -56,8 +57,7 @@ check_services.sh
         }
       }
     }' \
-    "https://$ENDPOINT:13000/v3/auth/tokens" 
-    
+    "https://$ENDPOINT:13000/v3/auth/tokens"
 
 La salida sería similar a:
 
@@ -83,11 +83,11 @@ La salida sería similar a:
     | ad9f8b60-ab42-47e5-b8d2-1fffb0f3f228 | OVN Controller agent | controller02.localhost| n/a               | :-)   | UP    | ovn-controller                |
     | 8eccb86f-fe41-4254-8c98-f1b0407014e0 | OVN Controller agent | controller01.localhost| n/a               | :-)   | UP    | ovn-controller                |
     +--------------------------------------+----------------------+-----------------------+-------------------+-------+-------+-------------------------------+
-    
-    
+
+
      ########## Horizon status ##########
-    
-    
+
+
     HTTP/1.1 302 Found
     Date: Thu, 14 May 2020 05:09:30 GMT
     Server: Apache
@@ -97,7 +97,7 @@ La salida sería similar a:
     Location: https://cloud.somedomain/dashboard/auth/login/?next=/dashboard/
     Content-Type: text/html; charset=utf-8
     Set-Cookie: SERVERID=controller02.internalapi.localb; path=/
-    
+
     HTTP/1.1 200 OK
     Date: Thu, 14 May 2020 05:09:30 GMT
     Server: Apache
@@ -110,11 +110,11 @@ La salida sería similar a:
     Content-Length: 9489
     Content-Type: text/html; charset=utf-8
     Set-Cookie: SERVERID=controller03.internalapi.local; path=/
-    
-    
+
+
      ########## Keystone token ##########
-    
-    
+
+
     HTTP/1.1 201 CREATED
     Date: Thu, 14 May 2020 05:09:30 GMT
     Server: Apache
@@ -123,9 +123,8 @@ La salida sería similar a:
     x-openstack-request-id: req-b5eeb9a3-7324-4c50-a8e5-d7f131158d9a
     Content-Length: 312
     Content-Type: application/json
-    
+
     {"token": {"issued_at": "2020-05-14T05:09:31.000000Z", "audit_ids": ["rxApLmS2TXy9OkEKNlaQBg"], "methods": ["password"], "expires_at": "2020-05-14T06:09:31.000000Z", "user": {"password_expires_at": null, "domain": {"id": "default", "name": "Default"}, "id": "9227598ba27340309e12766f737efc92", "name": "admin"}}}
-    
 
 **Revisión de nodo de control**
 
@@ -151,14 +150,14 @@ check_health.sh:
 La salida:
 
     ########## Containers unhealthy ##########
-    
+
     ba53346c88d6        docker.io/tripleotrain/centos-binary-nova-scheduler:current-tripleo       "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       nova_scheduler
     5d7024a18ec1        docker.io/tripleotrain/centos-binary-nova-conductor:current-tripleo       "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       nova_conductor
     ee4a7107250b        docker.io/tripleotrain/centos-binary-cinder-scheduler:current-tripleo     "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       cinder_scheduler
     cf907b8344d6        docker.io/tripleotrain/centos-binary-heat-engine:current-tripleo          "dumb-init --singl..."   26 hours ago        Up 26 hours (unhealthy)                       heat_engine
-    
+
     ########## Pacemaker Status ##########
-    
+
     Cluster name: tripleo_cluster
     Stack: corosync
     Current DC: controller03 (version 1.1.20-5.el7_7.2-3c4c782f70) - partition with quorum
@@ -202,9 +201,9 @@ La salida:
       corosync: active/enabled
       pacemaker: active/enabled
       pcsd: active/enabled
-    
+
     ########## RabbitMQ Status ##########
-    
+
     Cluster status of node rabbit@controller01
     [{nodes,[{disc,[rabbit@controller01,rabbit@controller02,
                     rabbit@controller03]}]},
@@ -214,31 +213,31 @@ La salida:
      {alarms,[{rabbit@controller03,[]},
               {rabbit@controller02,[]},
               {rabbit@controller01,[]}]}]
-    
+
     ########## Galera Status ##########
-    
+
     | wsrep_evs_state               | OPERATIONAL                                                                                                          |
     | wsrep_local_state_comment     | Synced                                                                                                               |
-    
+
     ########## Redis Status ##########
-    
+
     UID          PID    PPID  C STIME TTY          TIME CMD
     root           1       0  0 May12 ?        00:00:00 dumb-init --single-child -- /bin/bash /usr/local/bin/kolla_start
     root           8       1  0 May12 ?        00:00:32 /usr/sbin/pacemaker_remoted
     redis         85       1  0 May12 ?        00:01:50 /usr/bin/redis-server 172.28.96.11:6379
     root      153828       0 24 23:50 ?        00:00:00 ps -efw
-    
+
     ########## HAProxy Status ##########
-    
+
     UID          PID    PPID  C STIME TTY          TIME CMD
     root           1       0  0 May12 ?        00:00:00 dumb-init --single-child -- /bin/bash /usr/local/bin/kolla_start
     root           8       1  0 May12 ?        00:00:00 /usr/sbin/haproxy-systemd-wrapper -f /etc/haproxy/haproxy.cfg
     haproxy       15       8  0 May12 ?        00:00:00 /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -Ds
     haproxy       16      15  0 May12 ?        00:12:43 /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -Ds
     root       11343       0  0 23:50 ?        00:00:00 ps -efw
-    
+
     ########## Ceph Status ##########
-    
+
       cluster:
         id:     f61a82a5-f279-4959-94a6-2fcf69f8f3c0
         health: HEALTH_OK
@@ -278,7 +277,7 @@ Dentro de este directorio están organizados por proyectos, podrás en contrar u
 
 **Monitorear los contenedores**
 
-    $ docker ps 
+    $ docker ps
 
 **Activar modo debug**
 
@@ -306,13 +305,13 @@ Por ejemplo, conocer el estado de rabbitmq en el contenedor que se está ejecuta
 
 Nos permite conocer la estructura y los metadatos del contenedor. Proporciona información sobre los montajes de volumenes en el contenedor, las etiquetas del contenedor, el comando del contenedor, etc.
 
-    $ docker inspect  [CONTAINER_NAME] 
+    $ docker inspect  [CONTAINER_NAME]
 
 **Exportar un contenedor**
 
 Cuando el contenedor falla, no sabemos que sucedió. Primero que nada debemos revisar los logs de las rutas antes mencionadas, por lo general son las salidas de stdout. Pero una gran opción es exportar la estructura del sistema de archivos del contenedor, esto nos dejará ver otros archivos de logs que pueden no estar en los volúmenes montados.
 
-Así exportamos el sistema de archivos completo de un contenedor hacia  un archivo tar que podremos explorar:
+Así exportamos el sistema de archivos completo de un contenedor hacia un archivo tar que podremos explorar:
 
     $ docker export [CONTAINER_NAME] -o [FILENAME].tar
 
@@ -346,55 +345,55 @@ Conocer el comando con el que paunch inicia el contenedor:
 
 ## Recursos en Alta Disponibilidad
 
-Comprender como funcionan los recursos de balanceo de carga y alta disponibilidad en Openstack  nos permiten debuggear los servicios más rápido.
+Comprender como funcionan los recursos de balanceo de carga y alta disponibilidad en Openstack nos permiten debuggear los servicios más rápido.
 
 ### VirtualIPs
 
-Cada recurso que se expone en Openstack se  establece en una dirección IP virtual que los clientes usan para solicitar acceso a un servicio. Si el nodo de control asignado a esa dirección IP falla, la dirección IP se reasigna a un controlador diferente. Además, las peticiones a estas VIPs se balancean al resto de los nodos vía HAProxy.
+Cada recurso que se expone en Openstack se establece en una dirección IP virtual que los clientes usan para solicitar acceso a un servicio. Si el nodo de control asignado a esa dirección IP falla, la dirección IP se reasigna a un controlador diferente. Además, las peticiones a estas VIPs se balancean al resto de los nodos vía HAProxy.
 
-Las IPs las usa más de un servicio y algunos servicios se exponen en más de una IP. Por ejemplo, Horizon se expone de manera pública e interna.  Existen 7 de ellas y las encontraremos en las configuraciones de HAProxy y Pacemaker. En el proceso de despliegue podemos elegir IPs fijas para estas VIPs, estas se indentifican de la siguiente manera:
+Las IPs las usa más de un servicio y algunos servicios se exponen en más de una IP. Por ejemplo, Horizon se expone de manera pública e interna. Existen 7 de ellas y las encontraremos en las configuraciones de HAProxy y Pacemaker. En el proceso de despliegue podemos elegir IPs fijas para estas VIPs, estas se indentifican de la siguiente manera:
 
 **DashboardFixedIp:**
 
-* IP del segmento External API. Para exponer servicios de manera pública.
-* Principalmente para keystone y para horizon. Es usada por HAProxy y Pacemaker.
+- IP del segmento External API. Para exponer servicios de manera pública.
+- Principalmente para keystone y para horizon. Es usada por HAProxy y Pacemaker.
 
 **ControlFixedIP**
 
-* IP del segmento de Control Plane
-* Principalmente para keystone_admin.  Es usada por HAProxy.
+- IP del segmento de Control Plane
+- Principalmente para keystone_admin. Es usada por HAProxy.
 
 **InternalApiVirtualFixedIP**
 
-* IP del segmento Internal API. Para exponer servicios de manera interna.
-* Principalmente para MySQL y keystone. Es usada por HAProxy y Pacemaker.
+- IP del segmento Internal API. Para exponer servicios de manera interna.
+- Principalmente para MySQL y keystone. Es usada por HAProxy y Pacemaker.
 
 **RedisVirtualFixedIP**
 
-* IP del segmento Internal API.
-* Para exponer redis de manera interna. Es usada por HAProxy y Pacemaker.
+- IP del segmento Internal API.
+- Para exponer redis de manera interna. Es usada por HAProxy y Pacemaker.
 
 **StorageVirtualFixedIPs**
 
-* IP del segmento Internal API. 
-* Para exponer swift de manera interna.Es usada por HAProxy y Pacemaker.
+- IP del segmento Internal API.
+- Para exponer swift de manera interna.Es usada por HAProxy y Pacemaker.
 
 **StorageMgmtVirtualFixedIPs**
 
-* Es usada por Pacemaker.
+- Es usada por Pacemaker.
 
 **OVNDBsVirtualFixedIPs**
 
-* IP del segmento Internal API. 
-* Para exponer la base de datos de [OVN](https://en.wikipedia.org/wiki/OVN). Es usada por Pacemaker.
+- IP del segmento Internal API.
+- Para exponer la base de datos de [OVN](https://en.wikipedia.org/wiki/OVN). Es usada por Pacemaker.
 
-_Nota: La IP de StorageMgmt y  OVNDBs no se gestiona en HAProxy._
+_Nota: La IP de StorageMgmt y OVNDBs no se gestiona en HAProxy._
 
 ### HAProxy
 
-HAProxy es el balanceador de carga que distribuye las peticiones a  los controladores, que finalmente ejecutan los servicios/contenedores de control plane de Openstack.
+HAProxy es el balanceador de carga que distribuye las peticiones a los controladores, que finalmente ejecutan los servicios/contenedores de control plane de Openstack.
 
-Los múltiples servicios de  Openstack se configuran con HAProxy y las configuraciones se encuentran en el archivo:
+Los múltiples servicios de Openstack se configuran con HAProxy y las configuraciones se encuentran en el archivo:
 
      /var/lib/config-data/haproxy/etc/haproxy/haproxy.cfg
 
@@ -404,11 +403,11 @@ Para ver las configuraciones en el contenedor de HAProxy, podemos ejecutar en al
 
 Para cada servicio en ese archivo, puede ver las siguientes propiedades:
 
-* listen: el nombre del servicio que está escuchando las solicitudes
-* bind: la dirección IP y el número de puerto TCP en el que escucha el servicio
-* server: el nombre de cada servidor que proporciona el servicio, la dirección IP del servidor y el puerto de escucha, y otra información.
+- listen: el nombre del servicio que está escuchando las solicitudes
+- bind: la dirección IP y el número de puerto TCP en el que escucha el servicio
+- server: el nombre de cada servidor que proporciona el servicio, la dirección IP del servidor y el puerto de escucha, y otra información.
 
-El siguiente ejemplo muestra cómo se configura  el balanceo para el servicio de Horizon en el archivo haproxy.cfg:
+El siguiente ejemplo muestra cómo se configura el balanceo para el servicio de Horizon en el archivo haproxy.cfg:
 
     listen horizon
       bind 172.128.96.9:443 transparent ssl crt /etc/pki/tls/private/overcloud_endpoint.pem
@@ -427,24 +426,24 @@ El siguiente ejemplo muestra cómo se configura  el balanceo para el servicio de
       server controller02.internalapi.localhost 172.128.96.12:80 check cookie controller02.internalapi.localhost fall 5 inter 2000 rise 2
       server controller03.internalapi.localhost 172.128.96.13:80 check cookie controller03.internalapi.localhost fall 5 inter 2000 rise 2
 
-Para el servicio de horizon se  identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind.  Puerto 443 y 80 en las IPs:
+Para el servicio de horizon se identifican las direcciones IP y los puertos en los que se ofrece el servicio, es decir el bind. Puerto 443 y 80 en las IPs:
 
-* 172.128.96.9
-* 172.128.99.9
+- 172.128.96.9
+- 172.128.99.9
 
-La dirección  172.128.96.9 es una dirección IP virtual en la red API interna para uso dentro de la nube y la dirección IP virtual 172.128.99.9 está en la red externa para proporcionar acceso desde fuera de la nube.
+La dirección 172.128.96.9 es una dirección IP virtual en la red API interna para uso dentro de la nube y la dirección IP virtual 172.128.99.9 está en la red externa para proporcionar acceso desde fuera de la nube.
 
 HAProxy balancea las peticiones realizadas para esas dos direcciones IP hacia los nodos de control, en su dirección de la red API internal:
 
-* controller01.internalapi.localhost 172.128.96.11
-* controller02.internalapi.localhost 172.128.96.12
-* controller03.internalapi.localhost 172.128.96.13
+- controller01.internalapi.localhost 172.128.96.11
+- controller02.internalapi.localhost 172.128.96.12
+- controller03.internalapi.localhost 172.128.96.13
 
-Las opciones establecidas  permiten las comprobaciones de estado y el servicio se considera inactivo después de cinco comprobaciones de estado fallidas (fail 5). El intervalo entre dos comprobaciones de estado  se establece en 2000 milisegundos o 2 segundos. Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (rise 2).
+Las opciones establecidas permiten las comprobaciones de estado y el servicio se considera inactivo después de cinco comprobaciones de estado fallidas (fail 5). El intervalo entre dos comprobaciones de estado se establece en 2000 milisegundos o 2 segundos. Un servidor se considera operativo después de 2 comprobaciones de estado exitosas (rise 2).
 
 ### Pacemaker
 
-En una implementación de Openstack en alta disponibilidad (HA), existen cuatro tipos de servicios: contenedores core,contededores  activos-pasivos, systemd y contenedor simples. Pacemaker ejecuta y administra los servicios de contenedores core y activos-pasivos
+En una implementación de Openstack en alta disponibilidad (HA), existen cuatro tipos de servicios: contenedores core,contededores activos-pasivos, systemd y contenedor simples. Pacemaker ejecuta y administra los servicios de contenedores core y activos-pasivos
 
 Todos los demás servicios son administrados directamente por systemd con el comando systemctl o por Podman/Docker con el comando podman/docker.
 
@@ -454,35 +453,35 @@ Los servicios básicos de contenedores incluyen Galera, RabbitMQ, Redis y HAProx
 
 **Contenedores Activo/Pasivo**
 
-Los servicios activos/pasivos se ejecutan en un solo nodo controlador a la vez e incluyen servicios como openstack-cinder-volume. El failover del servicio activo-pasivo se  realizar con Pacemaker.
+Los servicios activos/pasivos se ejecutan en un solo nodo controlador a la vez e incluyen servicios como openstack-cinder-volume. El failover del servicio activo-pasivo se realizar con Pacemaker.
 
-Las acciones fallidas relacionadas con los recursos administrados por Pacemaker se pueden  ver mediante el comando:
+Las acciones fallidas relacionadas con los recursos administrados por Pacemaker se pueden ver mediante el comando:
 
     $ pcs status
 
-Hay diferentes tipos  de problemas que pueden ocurrir. En general, puede ser un error en general del nodo de control o un error de un recurso específico.
+Hay diferentes tipos de problemas que pueden ocurrir. En general, puede ser un error en general del nodo de control o un error de un recurso específico.
 
 **Problema de nodos de control**
 
-Si fallan las comprobaciones de estado de un controlador,  podemos acceder al  controlador y comprobar si los servicios pueden iniciar . Los problemas  al iniciar los servicios podrían indicar un problema de comunicación/red entre los nodos de control.
+Si fallan las comprobaciones de estado de un controlador, podemos acceder al controlador y comprobar si los servicios pueden iniciar . Los problemas al iniciar los servicios podrían indicar un problema de comunicación/red entre los nodos de control.
 
 **Problema de recursos individuales**
 
-Si los servicios de un controlador  funcionan, pero solo un recurso individual falla, lo primero sería  interpretar la salida del comando de estado (pcs status).
+Si los servicios de un controlador funcionan, pero solo un recurso individual falla, lo primero sería interpretar la salida del comando de estado (pcs status).
 
-A partir de este punto debemos investigar los recursos que están fallando, para esto debemos primero entender como función Pacemaker,  a continuación una breve resumen de este funcionamiento y como debuggear un contenedor controlado por pacemaker que está fallando.
+A partir de este punto debemos investigar los recursos que están fallando, para esto debemos primero entender como función Pacemaker, a continuación una breve resumen de este funcionamiento y como debuggear un contenedor controlado por pacemaker que está fallando.
 
 **Pacemaker Bundles**
 
-Un bundle o paquete, es un conjunto de servicios y  ahora también contenedores que pacemaker  implementa en  los nodos de control.
+Un bundle o paquete, es un conjunto de servicios y ahora también contenedores que pacemaker implementa en los nodos de control.
 
 Para cada paquete o bundle, podemos ver los siguientes detalles:
 
-* El nombre que Pacemaker asigna al servicio.
-* La referencia al contenedor que está asociado con el paquete
-* La lista de las réplicas que se ejecutan en los diferentes controladores con su estado
+- El nombre que Pacemaker asigna al servicio.
+- La referencia al contenedor que está asociado con el paquete
+- La lista de las réplicas que se ejecutan en los diferentes controladores con su estado
 
-Si alguno de los recursos falla de alguna manera, se debería de observaren la salida del pcs status  debajo de _Failed Actions._
+Si alguno de los recursos falla de alguna manera, se debería de observaren la salida del pcs status debajo de _Failed Actions._
 
 **Bundle simple**
 
@@ -507,9 +506,9 @@ La salida se ve así:
        options=rw source-dir=/dev/log target-dir=/dev/log (haproxy-dev-log)
        options=ro source-dir=/etc/pki/tls/private/overcloud_endpoint.pem target-dir=/var/lib/kolla/config_files/src-tls/etc/pki/tls/private/overcloud_endpoint.pem (haproxy-cert)
 
-Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de  Pacemaker. Por tanto HAProxy se ejecuta en cada nodo de control.
+Aunque HAProxy proporciona servicios de alta disponibilidad al balancear el tráfico de carga de los servicios seleccionados, mantenemos HAProxy altamente disponible configurándolo como un servicio bundle de Pacemaker. Por tanto HAProxy se ejecuta en cada nodo de control.
 
-**Bundle  multi-state**
+**Bundle multi-state**
 
 Los servicios de Galera y Redis se ejecutan como recursos multi-state.
 

@@ -6,6 +6,7 @@ tags = ["architecture", "cloud", "GCP"]
 title = "Comparación de Balanceadores de carga en Google Cloud: Global HTTP(s) vs SSL Proxy vs TCP Proxy vs Network load balancer vs Internal TCP/UDP vs Internal HTTP(S)"
 
 +++
+
 En Google Cloud Platform contamos hoy en día con 6 diferentes balanceadores de carga disponibles para cada caso o situación. En este post describiré las características y diferencias entre ellos así como una guía de apoyo para saber elegir el que mejor se adapta a nuestras necesidades de arquitectura.
 
 ## Un breve recordatorio a los balanceadores de carga
@@ -22,9 +23,9 @@ Si un solo servidor deja de funcionar, el balanceador de carga redirige el tráf
 
 Estos Realizan las siguientes funciones:
 
-* Distribuye solicitudes de los clientes de manera eficiente en varios servidores.
-* Asegura alta disponibilidad y confiabilidad enviando solicitudes solo a servidores que están en línea
-* Brinda la flexibilidad de agregar o restar servidores según lo exija la demanda
+- Distribuye solicitudes de los clientes de manera eficiente en varios servidores.
+- Asegura alta disponibilidad y confiabilidad enviando solicitudes solo a servidores que están en línea
+- Brinda la flexibilidad de agregar o restar servidores según lo exija la demanda
 
 ## ¿Cómo elegir el Cloud Load Balancer correcto?
 
@@ -32,11 +33,11 @@ Existen 6 soluciones disponibles, cree una tabla de resumen basada en la documen
 
 ![](/uploads/LoadbalancersTable.png)
 
-Para decidir cual Balanceador de carga se adapta mejor a nuestra implementación  debemos responder a los siguientes cuestionamientos:
+Para decidir cual Balanceador de carga se adapta mejor a nuestra implementación debemos responder a los siguientes cuestionamientos:
 
-* ¿Necesito balanceo de carga global o regional?
-* ¿El tráfico es externo o  interno?
-* ¿Qué tipo de tráfico voy a balancear?
+- ¿Necesito balanceo de carga global o regional?
+- ¿El tráfico es externo o interno?
+- ¿Qué tipo de tráfico voy a balancear?
 
 **Balanceo de carga global versus regional**
 
@@ -60,20 +61,20 @@ Analogía: UDP es dejar una carta a la oficina de correos. TCP es enviar una car
 
 Ejemplos:
 
-* Tunneling / VPN
-* Transmisión de video (los cuadros perdidos están bien)
-* Juegos en linea a los que no les importa si recibes todas las actualizaciones
-* Domain Name System (DNS)
-* Voice over IP (VoIP)
+- Tunneling / VPN
+- Transmisión de video (los cuadros perdidos están bien)
+- Juegos en linea a los que no les importa si recibes todas las actualizaciones
+- Domain Name System (DNS)
+- Voice over IP (VoIP)
 
 **TCP**: casi cualquier cosa donde tenga que obtener todos los datos transmitidos
 
 Ejemplos
 
-* World Wide Web(HTTP)
-* E-mail - SMTP para enviar - IMAP/POP Para recibir
-* File Transfer Protocol (FTP)
-* Secure Shell (SSH)
+- World Wide Web(HTTP)
+- E-mail - SMTP para enviar - IMAP/POP Para recibir
+- File Transfer Protocol (FTP)
+- Secure Shell (SSH)
 
 _Nota: Aunque HTTP(S) es tráfico TCP, si nuestras aplicaciones usan esta comunicación se deben elegir los balanceadores HTTP(S) Global o interno._
 
@@ -81,11 +82,11 @@ _Nota: Aunque HTTP(S) es tráfico TCP, si nuestras aplicaciones usan esta comuni
 
 ### Global HTTP(S) load balancing
 
-* Proporciona balanceo de **carga global para tráfico externo** para solicitudes HTTP (S) destinado a las VMs.
-* Admite direcciones IPv4 e IPv6 para el tráfico del cliente.
-* Utiliza grupos de instancias para dirigir el trafico a las instancias.
+- Proporciona balanceo de **carga global para tráfico externo** para solicitudes HTTP (S) destinado a las VMs.
+- Admite direcciones IPv4 e IPv6 para el tráfico del cliente.
+- Utiliza grupos de instancias para dirigir el trafico a las instancias.
 
-Las solicitudes HTTP se pueden equilibrar en función de los puertos 80 y 8080. Las solicitudes HTTPS se pueden equilibrar en el puerto  443.
+Las solicitudes HTTP se pueden equilibrar en función de los puertos 80 y 8080. Las solicitudes HTTPS se pueden equilibrar en el puerto 443.
 
 Podemos configurar reglas de URL para enrutar algunas URL a un conjunto de instancias y enrutar otras URL a otras instancias.
 
@@ -95,11 +96,11 @@ Las solicitudes siempre se enrutan al grupo de instancias más cercano al usuari
 
 ### SSL Proxy
 
-* **Destinado al tráfico no HTTP (S) pero que si que utiliza SSL**
-* Para el tráfico HTTP (S), se debe usar la solución de anterior
-* Admite direcciones IPv4 e IPv6 para el tráfico del cliente
+- **Destinado al tráfico no HTTP (S) pero que si que utiliza SSL**
+- Para el tráfico HTTP (S), se debe usar la solución de anterior
+- Admite direcciones IPv4 e IPv6 para el tráfico del cliente
 
-Realiza el balanceo de carga **global para tráfico externo** con SSL, enrutando clientes al la VM más cercana con capacidad, similar a lo que hace HTTP (S) Load Balancing . Se puede configurar como un servicio de  balanceao global.
+Realiza el balanceo de carga **global para tráfico externo** con SSL, enrutando clientes al la VM más cercana con capacidad, similar a lo que hace HTTP (S) Load Balancing . Se puede configurar como un servicio de balanceao global.
 
 Las solicitudes de IPv6 del cliente finalizan en la capa de balanceo de carga global y luego se representan sobre IPv4 a sus backends
 
@@ -109,10 +110,10 @@ Aunque el proxy SSL puede manejar el tráfico HTTPS, HTTPS Load Balancing tiene 
 
 El equilibrio de carga HTTPS tiene la siguiente funcionalidad adicional:
 
-* Negocia HTTP / 2 y SPDY / 3.1
-* Rechaza solicitudes o respuestas HTTP no válidas
-* Reenvía solicitudes a diferentes grupos de instancias en función del host y la ruta URL
-* Se integra con Cloud CDN
+- Negocia HTTP / 2 y SPDY / 3.1
+- Rechaza solicitudes o respuestas HTTP no válidas
+- Reenvía solicitudes a diferentes grupos de instancias en función del host y la ruta URL
+- Se integra con Cloud CDN
 
 El equilibrio de carga de proxy SSL para Google Cloud se puede usar para otros protocolos que usan SSL, como Websockets e IMAP sobre SSL.
 
@@ -120,9 +121,9 @@ El equilibrio de carga de proxy SSL para Google Cloud se puede usar para otros p
 
 ### TCP Proxy
 
-* **Destinado a tráfico no HTTP y sin SSL.**
-* Permite usar una sola dirección IP para todos los usuarios en todo el mundo
-* Enruta automáticamente el tráfico a las instancias más cercanas al usuario
+- **Destinado a tráfico no HTTP y sin SSL.**
+- Permite usar una sola dirección IP para todos los usuarios en todo el mundo
+- Enruta automáticamente el tráfico a las instancias más cercanas al usuario
 
 Realiza el balanceo de carga **global para tráfico externo** . Admite direcciones IPv4 e IPv6 para tráfico de clientes. Las solicitudes de IPv6 del cliente finalizan en la capa de equilibrio de carga global, luego proxy sobre IPv4 a sus backends. Se puede configurar como un servicio de balanceo de carga global.
 
@@ -132,9 +133,9 @@ Realiza el balanceo de carga **global para tráfico externo** . Admite direccion
 
 El balanceador de carga de red es un balanceador de carga **regional y no proxy**. Se puede usar usar para **tráfico externo o interno** y se usa para la carga de los siguientes tipos de tráfico:
 
-* UPD
-* TCP
-* SSL
+- UPD
+- TCP
+- SSL
 
 Usado para **tráfico UDP y tráfico TCP/SSL** en puertos que no son compatibles con los balanceadores de carga de SSL proxy y TCP proxy.
 
@@ -142,9 +143,9 @@ Este es un balanceador cargade carga de paso. No hace proxy a las conexiones de 
 
 Utilizamos este balanceador de carga en las siguientes circunstancias:
 
-* Necesitamos balancear tráfico UDP o un puerto TCP que no sea compatible con las opciones anteriores.
-* Se deben reenviar los paquetes originales, es decir sin proxy.
-* Contamos con una configuración existente que utiliza un balanceador de carga de paso y deseamos migrarla sin cambios.
+- Necesitamos balancear tráfico UDP o un puerto TCP que no sea compatible con las opciones anteriores.
+- Se deben reenviar los paquetes originales, es decir sin proxy.
+- Contamos con una configuración existente que utiliza un balanceador de carga de paso y deseamos migrarla sin cambios.
 
 Nota: la autogestión de los certificados SSL del balanceador se debe realizar ya que los certificados SSL administrados por Google solo están disponibles para HTTPS y SSL Proxy
 
@@ -152,23 +153,23 @@ Nota: la autogestión de los certificados SSL del balanceador se debe realizar y
 
 ### Internal TCP/UDP
 
-El balanceador de carga TCP / UDP **interno** es regional y permite ejecutar y escalar  servicios detrás de una dirección IP da privada que solo es accesible  entre las instancias de la misma región donde está el balanceador, en la red VPC utilizando una **dirección IP privada (RFC 1918).**
+El balanceador de carga TCP / UDP **interno** es regional y permite ejecutar y escalar servicios detrás de una dirección IP da privada que solo es accesible entre las instancias de la misma región donde está el balanceador, en la red VPC utilizando una **dirección IP privada (RFC 1918).**
 
 El alcance de este balanceador interno es **regional, no global.** Esto significa que no puede abarcar varias regiones. Dentro de una sola región,da servicio a todas las zonas.
 
-Podemos utilizar este balanceador TCP / UDP interno junto con otros balanceadores de carga, como HTTP (S) donde al nivel web utilizamos el balanceador externo, que luego depende de los servicios detrás del balanceador  interno.
+Podemos utilizar este balanceador TCP / UDP interno junto con otros balanceadores de carga, como HTTP (S) donde al nivel web utilizamos el balanceador externo, que luego depende de los servicios detrás del balanceador interno.
 
 [https://cloud.google.com/load-balancing/docs/internal/](https://cloud.google.com/load-balancing/docs/internal/ "https://cloud.google.com/load-balancing/docs/internal/")
 
 ### Internal HTTP(S)
 
-El balanceador de carga interno HTTP (S) es **regional y no global.**  Destinado para **tráfico interno.** Se ubica  en la de capa 7 y  está basado en proxy. Permite ejecutar y escalar  servicios detrás de una dirección IP de a privada que solo es accesible en la región donde está el balanceador, enla red VPC.
+El balanceador de carga interno HTTP (S) es **regional y no global.** Destinado para **tráfico interno.** Se ubica en la de capa 7 y está basado en proxy. Permite ejecutar y escalar servicios detrás de una dirección IP de a privada que solo es accesible en la región donde está el balanceador, enla red VPC.
 
 Podemos usar este balanceador en conjunto con otros en una aplicación tradicional de 3 niveles (3 tier):
 
-* _Nivel web_: el tráfico ingresa desde Internet y se balancea mediante  HTTP (S) global y externo.
-* _Nivel de aplicación_: el nivel de aplicación se escala utilizando el balanceador de carga HTTP (S) interno regional.
-* _Nivel de base de datos_: el nivel de base de datos se escala utilizando el balanceador de carga TCP / UDP interno.
+- _Nivel web_: el tráfico ingresa desde Internet y se balancea mediante HTTP (S) global y externo.
+- _Nivel de aplicación_: el nivel de aplicación se escala utilizando el balanceador de carga HTTP (S) interno regional.
+- _Nivel de base de datos_: el nivel de base de datos se escala utilizando el balanceador de carga TCP / UDP interno.
 
 [https://cloud.google.com/load-balancing/docs/l7-internal/](https://cloud.google.com/load-balancing/docs/l7-internal/ "https://cloud.google.com/load-balancing/docs/l7-internal/")
 
@@ -176,9 +177,9 @@ Podemos usar este balanceador en conjunto con otros en una aplicación tradicion
 
 Basado en la documentación oficial, hice una traducción del flujo de decisión que responde a las 3 preguntas que debemos responder para elegir el balanceador correcto:
 
-* ¿Necesito balanceo de carga global o regional?
-* ¿El tráfico es externo o  interno?
-* ¿Qué tipo de tráfico voy a balancear?
+- ¿Necesito balanceo de carga global o regional?
+- ¿El tráfico es externo o interno?
+- ¿Qué tipo de tráfico voy a balancear?
 
 ![](/uploads/LoadbalancersGoogleCloudPlatform.png)
 

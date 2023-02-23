@@ -6,7 +6,8 @@ tags = ["devops", "cloud", "GCP", "packer"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
 
 +++
-Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Nos permite crear imágenes de máquina idénticas,  para múltiples plataformas de destino, desde una única fuente de configuración. [Packer](https://www.packer.io/) es compatible con Linux,  Windows y Mac OS X. También es  compatible con una amplia variedad de formatos de imagen y cuenta con  integraciones para otras herramientas.
+
+Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Nos permite crear imágenes de máquina idénticas, para múltiples plataformas de destino, desde una única fuente de configuración. [Packer](https://www.packer.io/) es compatible con Linux, Windows y Mac OS X. También es compatible con una amplia variedad de formatos de imagen y cuenta con integraciones para otras herramientas.
 
 Una imagen de máquina es una unidad estática que contiene un sistema operativo preconfigurado y un software instalado. Podemos usar imágenes para clonar o crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y despliegue de nueva infraestructura. Las imágenes vienen en muchos formatos, específicos para diversas plataformas y entornos de implementación.
 
@@ -18,19 +19,19 @@ Packer tiene soporte para crear imágenes de Amazon EC2, CloudStack, DigitalOcea
 
 ## ¿Por qué usar Packer?
 
-Construir imágenes es tedioso. Es normalmente un proceso manual por lo tanto es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con  herramientas de gestión de condiguraciones como Ansible. Packer  permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
+Construir imágenes es tedioso. Es normalmente un proceso manual por lo tanto es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con herramientas de gestión de condiguraciones como Ansible. Packer permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
 
 #### Casos de uso: Consistencia ambiental
 
 ¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, staging y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.
 
-Por ejemplo,  un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el "hardening" de base que para imponer estándares entre equipos.
+Por ejemplo, un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el "hardening" de base que para imponer estándares entre equipos.
 
 #### Casos de uso: Entrega continua
 
-Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación.  Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase [Bake de Spinnaker](https://galvarado.com.mx/post/despliegue-continuo-con-spinnaker/).
+Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación. Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase [Bake de Spinnaker](https://galvarado.com.mx/post/despliegue-continuo-con-spinnaker/).
 
-Packer puede crear imagenes de  Amazon Machine Images (AMI) , después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.
+Packer puede crear imagenes de Amazon Machine Images (AMI) , después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.
 
 Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.
 
@@ -40,7 +41,7 @@ Los beneficios de una infraestructura inmutable incluyen más consistencia y con
 
 ## Infraestructura Mutable vs Infraestructura Inmutable
 
-En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los  administradores que trabajan con este tipo de infraestructura pueden acceder a los servidores, actualizar paquetes manualmente, modificar los archivos de configuración servidor por servidor e implementar código nuevo directamente en los servidores. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación. La infraestructura compuesta por servidores mutables puede denominarse tradicional o (despectivamente) artesanal.
+En una infraestructura tradicional, los servidores se actualizan y modifican continuamente. Los administradores que trabajan con este tipo de infraestructura pueden acceder a los servidores, actualizar paquetes manualmente, modificar los archivos de configuración servidor por servidor e implementar código nuevo directamente en los servidores. En otras palabras, estos servidores son mutables; se pueden cambiar después de su creación. La infraestructura compuesta por servidores mutables puede denominarse tradicional o (despectivamente) artesanal.
 
 Una infraestructura inmutable es otro paradigma de infraestructura en el que los servidores nunca se modifican después de su implementación. Si algo necesita ser actualizado, reparado o modificado de alguna manera, se aprovisionan nuevos servidores construidos a partir de una imagen común con los cambios apropiados para reemplazar los antiguos. Una vez validados, se ponen en uso y los antiguos se retiran.
 
@@ -83,7 +84,7 @@ Documentación oficial: [https://www.packer.io/docs/install](https://www.packer.
 
 En el primer ejemplo, crearemos una imagen con Packer para ejecutar con Vagrant y Virtualbox en un entorno local. Esta imagen estará basada en Ubuntu 20.04. Para este caso es necesario descargar el ISO de Ubuntu. Packer nos ayudará a realizar una instalación desatentida mediante el[ autoinstall de Ubuntu.](https://ubuntu.com/server/docs/install/autoinstall)
 
-El código del ejemplo  listo para ejecutar lo puedes descargar desde [este repositorio den Github](https://github.com/Instituto-i2ds/packer-template-ubuntu20.04)
+El código del ejemplo listo para ejecutar lo puedes descargar desde [este repositorio den Github](https://github.com/Instituto-i2ds/packer-template-ubuntu20.04)
 
 Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: builders, provisioners y postprocesamiento y una opcional, variables.
 
@@ -150,11 +151,11 @@ Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una
 
 Los scripts utilizados:
 
-* update.sh: Actualiza los repositorios y paquetes del sistema
-* sudoers.sh: configura que el usuario vagrant este en e sudoers, lo que evita que se pregunte por la contraseña con el comando sudo.
-* virtualbox.sh: Instala los guest additions de vitualbox en la VM. Necesarios para funciones como shared folders.
-* vagrant.sh: Descarga y coloca la llave pública para el usuario vagrant.
-* cleanup: Borra archivos, el historial y reduce el tamaño final del disco.
+- update.sh: Actualiza los repositorios y paquetes del sistema
+- sudoers.sh: configura que el usuario vagrant este en e sudoers, lo que evita que se pregunte por la contraseña con el comando sudo.
+- virtualbox.sh: Instala los guest additions de vitualbox en la VM. Necesarios para funciones como shared folders.
+- vagrant.sh: Descarga y coloca la llave pública para el usuario vagrant.
+- cleanup: Borra archivos, el historial y reduce el tamaño final del disco.
 
 **Variables**
 

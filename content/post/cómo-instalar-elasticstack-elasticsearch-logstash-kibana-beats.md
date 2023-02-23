@@ -6,20 +6,22 @@ tags = ["devops", "architecture", "elasticsearch"]
 title = "Tutorial para instalar y configurar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
 
 +++
-El objetivo de este tutorial es instalar y configurar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil  para identificar problemas en los servidores o aplicaciones, ya que  permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
+
+El objetivo de este tutorial es instalar y configurar todo el Elastic Stack para centralizar los logs de nuestras aplicaciones. Esto puede ser muy útil para identificar problemas en los servidores o aplicaciones, ya que permite realizar búsquedas en todos los logs desde un solo sitio, con esto podemos identificar problemas que abarcan varios servidores vinculando los logs durante un período de tiempo específico.
 
 Los componentes que instalaremos son:
 
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch): Motor de búsqueda  distribuido que almacena todos los datos recopilados.
-* [Logstash](https://www.elastic.co/products/logstash): Procesamiento de datos, para  ingestar logs de múltiples fuentes simultáneamente y  transformarlos antes de que se indexen en Elasticsearch.
-* [Kibana](https://www.elastic.co/products/kibana): Interfaz web para buscar en los logs y crear gráficas  y  dashboards.
-* [Beats](https://www.elastic.co/products/beats): Agentes que transportan los datos, en este caso los archivos de logs hacia logstash para su procesamiento y posterior almacenamiento.
+- [Elasticsearch](https://www.elastic.co/products/elasticsearch): Motor de búsqueda distribuido que almacena todos los datos recopilados.
+- [Logstash](https://www.elastic.co/products/logstash): Procesamiento de datos, para ingestar logs de múltiples fuentes simultáneamente y transformarlos antes de que se indexen en Elasticsearch.
+- [Kibana](https://www.elastic.co/products/kibana): Interfaz web para buscar en los logs y crear gráficas y dashboards.
+- [Beats](https://www.elastic.co/products/beats): Agentes que transportan los datos, en este caso los archivos de logs hacia logstash para su procesamiento y posterior almacenamiento.
 
 Para una introducción a todos los componentes y casos de uso de Elasicsearch [puedes ver este post](https://galvarado.com.mx/post/introducci%C3%B3n-a-elastic-stack/).
 
 ## Flujo de datos
 
 Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras aplicaciones para ser centralizados usando el Elastic Stack:
+
 <center>
 
 ![](/uploads/ELKdataflow.png)
@@ -35,12 +37,12 @@ Este diagrama nos ayuda a entender el flujo que seguiran los logs de nuestras ap
 
 La versión que instalaremos será la 7.6 para todos los componentes del stack. Instalaremos Elasticsearch en una arquitectutra de alta disponibilidad, 3 nodos master y 3 nodos de datos (datanodes). Kibana y Logstash no se instalarán en alta disponibilidad. La instalación se realizará en máquinas virtuales, a continuación el inventario que usaré:
 
-* 3 Máquinas virtuales como Elasticsearch Master Nodes
-* 3 Máquinas virtuales como Elasticsearch Data Nodes
-* 1 Máquina virtual para Logstash
-* 1 Máquina virtual para Kibana
+- 3 Máquinas virtuales como Elasticsearch Master Nodes
+- 3 Máquinas virtuales como Elasticsearch Data Nodes
+- 1 Máquina virtual para Logstash
+- 1 Máquina virtual para Kibana
 
-Todas las Máquinas virtuales que usaré tienen 2GB RAM y 2 CPUs. Los requerimientos de CPU, Memoria y Disco dependen de cada caso de uso, el dimensionamiento de RAM y CPU que elegí es para un laboratorio. Una referencia para producción  [se puede encontrar aquí](https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html).
+Todas las Máquinas virtuales que usaré tienen 2GB RAM y 2 CPUs. Los requerimientos de CPU, Memoria y Disco dependen de cada caso de uso, el dimensionamiento de RAM y CPU que elegí es para un laboratorio. Una referencia para producción [se puede encontrar aquí](https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html).
 
 La instalación se realizará usando el Sistema Operativo CentOS versión 8.
 
@@ -72,7 +74,7 @@ En todos las máquinas virtuales instalamos Java 8 pues es un requisito:
 
 ## Instalación Elasticsearch
 
-Para instalar Elasticsearch podemos descargar el paquete desde el sito  de Elastic o utilizar el repositorio RPM. Para la instalación mediante YUM utilizando el RPM:
+Para instalar Elasticsearch podemos descargar el paquete desde el sito de Elastic o utilizar el repositorio RPM. Para la instalación mediante YUM utilizando el RPM:
 
 1\. Importar la clave PGP de Elasticsearch:
 
@@ -101,14 +103,14 @@ Elasticsearch es un motor que está diseñado para ser distruibuido y ofrecer al
 
 La configuración del cluster se realiza mediante el archivo /etc/elasticsearch/elasticsearch.yml, modificamos los siguientes parametros:
 
-* cluster.name: Nombre del cluster
-* node.name: Nombre del nodo
-* node.master: True o False, para determinar si un nodo es master node o es data node
-* node.data: True o False, para determinar si un nodo es master node o es data node
-* network.host: IP del nodo
-* http.port: Puerto donde se habilita Elasticsearch, default 9200
-* discover.seed_hosts: Lista de IPs de todos los nodos que forman el cluster (masternodes y datanodes)
-* cluster.initial_master_nodes: Lista de hostnames de los nodos master  del cluster
+- cluster.name: Nombre del cluster
+- node.name: Nombre del nodo
+- node.master: True o False, para determinar si un nodo es master node o es data node
+- node.data: True o False, para determinar si un nodo es master node o es data node
+- network.host: IP del nodo
+- http.port: Puerto donde se habilita Elasticsearch, default 9200
+- discover.seed_hosts: Lista de IPs de todos los nodos que forman el cluster (masternodes y datanodes)
+- cluster.initial_master_nodes: Lista de hostnames de los nodos master del cluster
 
 Por ejemplo en mi caso:
 
@@ -183,7 +185,7 @@ Para la instalación mediante YUM utilizando el RPM:
     gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled=1
     autorefresh=1
-    type=rpm-md                                                                                                                                                                                           
+    type=rpm-md
 
 3\. Instalar con yum
 
@@ -195,8 +197,8 @@ _Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la secció
 
 La configuración se realiza mediante el archivo: /etc/logstash/logstash.yml, modificamos los siguientes parametros:
 
-* http.host: IP del servidor
-* http.port: Puerto del endpoint de metricas
+- http.host: IP del servidor
+- http.port: Puerto del endpoint de metricas
 
 Por ejemplo en mi caso:
 
@@ -242,7 +244,7 @@ Para la instalación mediante YUM utilizando el RPM:
     gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled=1
     autorefresh=1
-    type=rpm-md                                                                                                                                                                                                
+    type=rpm-md
 
 3\. Instalar con yum
 
@@ -254,9 +256,9 @@ _Nota: Recuerda que uno de los prerequisitos es instalar Java. Revisa la secció
 
 La configuración se realiza mediante el archivo: /etc/kibana/kibana.yml, modificamos los siguientes parámetros:
 
-* server.port: Puerto donde se habilitará el servicio
-* server.host:  IP del servidor donde se expondrá el dashboard
-* elasticsearch.hosts: los endpoints de elasticsearch. Colocamos aquí los nodos master.
+- server.port: Puerto donde se habilitará el servicio
+- server.host: IP del servidor donde se expondrá el dashboard
+- elasticsearch.hosts: los endpoints de elasticsearch. Colocamos aquí los nodos master.
 
 Por ejemplo en mi caso:
 
@@ -284,9 +286,11 @@ Comprobamos que el servicio quedó habilitado:
     kibana.service                      enabled
 
 En este punto ya podemos entrar al dashboard, la página de bienvenida es esta:
+
 <center>
 
 ![](/uploads/kibanahome.png)
+
 </center>
 
 En secciones posteriores veremos como visualizar los datos que estarán almacenados en elasticsearch. Por ahora nos basta con saber que kibana está instalado y funcionando.
@@ -295,7 +299,7 @@ En secciones posteriores veremos como visualizar los datos que estarán almacena
 
 En este punto tenemos el stack instalado y funcionando. Ahora veremos como llevar logs de servicios usando los agentes de beats.
 
-Podemos instalar beats de multiples formas, dependiendo la pltaforma. Aquí lo haré desde el archivo RPM. Yo lo instalaré en CentOS como el resto de los componentes y el caso de uso que exploraré será enviar los logs de un servidor web apache. Si usas windows u otra distribución de Linux busca las instrucciones aqui en  [el enlance oficial del sitio de elasticsearch.](https://www.elastic.co/es/downloads/beats/filebeat)
+Podemos instalar beats de multiples formas, dependiendo la pltaforma. Aquí lo haré desde el archivo RPM. Yo lo instalaré en CentOS como el resto de los componentes y el caso de uso que exploraré será enviar los logs de un servidor web apache. Si usas windows u otra distribución de Linux busca las instrucciones aqui en [el enlance oficial del sitio de elasticsearch.](https://www.elastic.co/es/downloads/beats/filebeat)
 
 1\. Importar la clave PGP de Elasticsearch:
 
@@ -320,10 +324,10 @@ Podemos instalar beats de multiples formas, dependiendo la pltaforma. Aquí lo h
 
 La configuración se realiza mediante el archivo: /etc/filebeat/filebeat.yml, modificamos los siguientes parámetros:
 
-* enabled: Para habilitar el servicio
-* paths:  Las rutas de los archivos de log que deseamos capturar. Podemos agregar varios,  no solo uno.
-* output.logstash: habilitamos esta opción para indicar que enviaremos los logs hacia logstash
-* hosts: IP y puerto del host de logstash
+- enabled: Para habilitar el servicio
+- paths: Las rutas de los archivos de log que deseamos capturar. Podemos agregar varios, no solo uno.
+- output.logstash: habilitamos esta opción para indicar que enviaremos los logs hacia logstash
+- hosts: IP y puerto del host de logstash
 
 _Nota: la opción output.elasticsearch: debe estar deshabilitada, dejándola comentada, pues no enviaremos directamente hacia elasticsearch, si no a logstash._
 
@@ -332,12 +336,12 @@ Por ejemplo en mi caso:
     enabled: true
     paths:
         - /var/log/httpd/access_log
-    
+
     #-------------------------- Elasticsearch output ------------------------------
     #output.elasticsearch:
       # Array of hosts to connect to.
       #hosts: ["localhost:9200"]
-    
+
     #----------------------------- Logstash output --------------------------------
     output.logstash:
       #The Logstash hosts
@@ -358,9 +362,9 @@ Ahora, iniciamos kibana:Ahora, iniciamos filebeat:
 
 ## Configuración de Pipelines en Logstash
 
-Cómo último paso,  vamos a configurar un pipeline de procesamiento en logstash para que los archivos de log que se están enviando desde los agentes de beats sean recibidos, procesados y  posteriormente enviados a su destino final, elasticsearch.
+Cómo último paso, vamos a configurar un pipeline de procesamiento en logstash para que los archivos de log que se están enviando desde los agentes de beats sean recibidos, procesados y posteriormente enviados a su destino final, elasticsearch.
 
-Para habilitar algún  pipeline, este se e deben incluir en el archivo:
+Para habilitar algún pipeline, este se e deben incluir en el archivo:
 
 /etc/logstash/pipelines.yml:
 
@@ -374,13 +378,13 @@ Y la definición del pipeline la escribimos entonces en /etc/logstash/conf.d/apa
         port => "5044"
       }
     }
-    
-    
+
+
     filter{
-    
+
     }
     output {
-    
+
       elasticsearch {
         hosts => [ "159.89.89.122", "159.89.89.78", "159.89.89.207"]
         index => "apache_index"
@@ -394,7 +398,7 @@ Reiniciamos logstsash:
 
 Podemos ver si inició correctamente el servicio y que pipelines están configurados en el log:
 
-    $ tail -f /var/log/logstash/logstash-plain.log 
+    $ tail -f /var/log/logstash/logstash-plain.log
     [2020-02-19T22:31:35,722][INFO ][logstash.outputs.elasticsearch][apache] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//159.89.89.122"]}
     [2020-02-19T22:31:35,809][INFO ][logstash.outputs.elasticsearch][apache] Using default mapping template
     [2020-02-19T22:31:35,902][WARN ][org.logstash.instrument.metrics.gauge.LazyDelegatingGauge][apache] A gauge metric of an unknown type (org.jruby.specialized.RubyArrayOneObject) has been create for key: cluster_uuids. This may result in invalid serialization.  It is recommended to log an issue to the responsible developer/development team.
@@ -408,13 +412,13 @@ Podemos ver si inició correctamente el servicio y que pipelines están configur
 
 ### ¿Que significa?
 
-* **Input**: determina donde serán recibidos los logs, en este caso indicamos que se envian con beats y se reciben en el puerto 5044. Si deseamos tener multiples pipelines debemos definir un puerto para cada uno.
-* **Filter**: Podemos filtrar los archivos para descartar algunos o para transformarlos y enriquecerlos. En este ejemplo no agregaremos ni modificaremos campos.
-* **Output**: Indica hacia donde se debe enviar la información una vez filtrada y transformada. En este caso hacia elasticsearch. Usamos la IP de cada nodo master en el parámetro hosts.  Indicamos el nombre del indice con el parámetro index. Usamos el tipo default dedocumento.
+- **Input**: determina donde serán recibidos los logs, en este caso indicamos que se envian con beats y se reciben en el puerto 5044. Si deseamos tener multiples pipelines debemos definir un puerto para cada uno.
+- **Filter**: Podemos filtrar los archivos para descartar algunos o para transformarlos y enriquecerlos. En este ejemplo no agregaremos ni modificaremos campos.
+- **Output**: Indica hacia donde se debe enviar la información una vez filtrada y transformada. En este caso hacia elasticsearch. Usamos la IP de cada nodo master en el parámetro hosts. Indicamos el nombre del indice con el parámetro index. Usamos el tipo default dedocumento.
 
 ## Visualización de logs en Kibana
 
-Con esto tenemos centralizados los logs de apache, esto aplica para este nodo o si tuvieramos 20 nodos ejecutando apache y otras plataformas más pueden ser incluidas generando un pipeline para cada una, como en una arquitecrura 3Layer con Apache+MySQL+PHP.  Teniendo todos los logs en un solo lugar nos facilitará la tarea de troubleshooting para solucionar errores cuando estos se presenten.
+Con esto tenemos centralizados los logs de apache, esto aplica para este nodo o si tuvieramos 20 nodos ejecutando apache y otras plataformas más pueden ser incluidas generando un pipeline para cada una, como en una arquitecrura 3Layer con Apache+MySQL+PHP. Teniendo todos los logs en un solo lugar nos facilitará la tarea de troubleshooting para solucionar errores cuando estos se presenten.
 
 Para visualizar los logs en kibana debemos crear un index patter por cada indice:
 
