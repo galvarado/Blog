@@ -52,6 +52,7 @@ pages:
 - content/post/compartir-y-promover-imagenes-de-contenedor-de-amazon-ecr-entre-cuentas-de-aws.md
 - content/post/crear-un-kubernetes-facil-y-rapido-vagrant-kind.md
 - content/post/cómo-instalar-elasticstack-elasticsearch-logstash-kibana-beats.md
+- content/post/desplegar-aplicaciones-en-openshift.md
 - content/post/desplegar-un-api-gateway-con-nginx.md
 - content/post/desplegar-un-cluster-de-kubernetes-en-gke-en-15-minutos.md
 - content/post/despliegue-continuo-con-spinnaker.md
