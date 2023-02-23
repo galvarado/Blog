@@ -61,12 +61,19 @@ export default defineConfig({
             type: "image",
             name: "image",
             label: "image",
+            required: true,
+
           },
           {
             type: "string",
             name: "comments",
             label: "comments",
             required: true,
+          },
+          {
+            type: "boolean",
+            name: "draft",
+            label: "draft",
           },
           {
             type: "string",
