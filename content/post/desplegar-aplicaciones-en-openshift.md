@@ -53,7 +53,53 @@ Ahora que la aplicación se está ejecutando, vamos a containerizarla
 
 ### Containeriza la aplicación
 
-Primero, construimos la imagen con el siguiente comando:
+Abre el archivo Docklefile que está en el repositorio:
+
+    FROM node:18-alpine
+    RUN mkdir -p /home/node/app/node_module
+    WORKDIR /home/node/app
+    COPY app/package*.json ./ 
+    RUN npm install 
+    COPY app/ . 
+    EXPOSE 8080 
+    CMD [ "node", "app.js" ]
+
+Vamos linea por linea:
+
+    FROM node:18-alpine
+
+  
+Esta línea indica que la imagen base para la construcción de esta imagen es la versión 18 de Node.js en su versión Alpine.
+
+    RUN mkdir -p /home/node/app/node_modules
+
+Esta línea crea un directorio en la ruta **`/home/node/app/node_modules`** para almacenar los módulos de Node.js que se instalarán más adelante.
+
+    WORKDIR /home/node/app
+
+Esta línea establece el directorio de trabajo para la imagen en **`/home/node/app`**. Es decir, cuando se inicie un contenedor a partir de esta imagen, el directorio de trabajo se establecerá en **`/home/node/app`**.
+
+    javaCopy codeCOPY app/package*.json ./
+
+Esta línea copia el archivo **`package.json`** y **`package-lock.json`** (si existe) desde la carpeta **`app`** del host a la ruta actual de trabajo en la imagen.
+
+    Copy codeRUN npm install
+
+Esta línea ejecuta el comando **`npm install`** dentro de la imagen para instalar las dependencias especificadas en el archivo **`package.json`**. Este comando se ejecuta dentro de la imagen, por lo que se instalarán las dependencias necesarias en la imagen.
+
+    COPY app/ .
+
+Esta línea copia todo el contenido de la carpeta **`app`** del host a la ruta actual de trabajo en la imagen.
+
+    yamlCopy codeEXPOSE 8080
+
+Esta línea indica que el contenedor expondrá el puerto 8080. Es decir, cuando se inicie un contenedor a partir de esta imagen, se podrá acceder al servicio que se ejecute dentro del contenedor en el puerto 8080.
+
+    CMD [ "node", "app.js" ]
+
+Esta línea especifica el comando que se ejecutará cuando se inicie un contenedor a partir de esta imagen. En este caso, se ejecutará el comando **`node app.js`**, que ejecutará el archivo **`app.js`** del proyecto.
+
+Ahora, construimos la imagen con el siguiente comando:
 
     podman build -t nodejs-demo .
 
