@@ -1,13 +1,16 @@
 +++
 comments = "true"
 date = 2023-02-23T00:00:00Z
-draft = true
 image = "/uploads/openshift.png"
 tags = ["devops", "cloud", "containers"]
 title = "Desplegar Aplicaciones en OpenShift"
 
 +++
 En este tutorial, aprenderás a crear una aplicación Node.js que se ejecuta en un contenedor y cómo desplegarla a un clúster Openshift.
+
+Puedes usar una instancia de [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) en la nube , como OpenShift Online (ahora conocido como Red Hat OpenShift Dedicated) o en la versión gratuita llamada Red Hat OpenShift [Sandbox](https://developers.redhat.com/developer-sandbox). OpenShift se puede desplegar en varias nubes públicas, incluyendo Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud.
+
+También puedes usar [Minishift](https://github.com/minishift/minishift) es un proyecto de código abierto que permite ejecutar OpenShift localmente en una máquina de desarrollo. Es esencialmente una instancia de OpenShift que se ejecuta como una máquina virtual en su computadora, lo que  permite probar y desarrollar aplicaciones OpenShift localmente.
 
 ## Sobre OpenShift
 
@@ -19,24 +22,34 @@ Si estás buscando una plataforma de orquestación de contenedores para ejecutar
 * OpenShift proporciona una plataforma más segura y escalable que Kubernetes, con características de seguridad incorporadas y una capacidad de gestión de recursos más avanzada.
 * OpenShift es compatible con Kubernetes y se integra sin problemas con herramientas de automatización y DevOps, por lo que es una excelente opción para equipos de desarrollo que buscan una solución completa.
 
-En general, si eres nuevo en la orquestación de contenedores y buscas una plataforma fácil de usar y con una amplia gama de características, OpenShift puede ser una excelente opción para ti. Si ya estás familiarizado con Kubernetes y buscas una solución más enfocada en la orquestación de contenedores, Kubernetes puede ser una mejor opción. Pero en última instancia, la elección depende de tus necesidades específicas y de las características que sean más importantes para ti.
+En general, si eres nuevo en la orquestación de contenedores y buscas una plataforma fácil de usar y con una amplia gama de características, OpenShift puede ser una excelente opción para ti. 
+
+Si ya estás familiarizado con Kubernetes y buscas una solución más enfocada en la orquestación de contenedores, Kubernetes puede ser una mejor opción. Pero en última instancia, la elección depende de tus necesidades específicas y de las características que sean más importantes para ti.
 
 ## Tutorial
 
+El ódigo está disponible en Github: [https://github.com/galvarado/node-app-openshift-example](https://github.com/galvarado/node-app-openshift-example "https://github.com/galvarado/node-app-openshift-example")
+
 ### Requisitos
 
-Primero, asegúrate de tener instalado Node.js, npm y podman en tu máquina. También necesitarás acceso a un clúster Openshift. Si no tienes acceso a uno, puedes usar MiniShift para crear uno localmente y aprender a través de él.
+Primero, asegúrate de[ tener instalado](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) Node.js, npm y [podman](https://podman.io/getting-started/installation) en tu máquina. También necesitarás acceso a un clúster Openshift y el cliente[ oc instalado](https://docs.openshift.com/online/pro/cli_reference/get_started_cli.html).
 
 Una vez que hayas preparado el entorno, podrás ejecutar la aplicación localmente sin contenedor. Luego, containerizaremos la aplicación y la ejecutaremos en un contenedor. Finalmente, aprenderás a desplegar la aplicación a un clúster Openshift. ¡Comencemos!
 
+**Disclaimer**: el código de la aplicación lo tome de [este post de Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-build-a-node-js-application-with-docker) sobre conteneirizar aplicaciones en NodeJS.
+
 ### Ejecuta la aplicación localmente
 
-Para ejecutar la aplicación localmente, clona el repositorio y, dentro del directorio del proyecto, ejecuta los siguientes comandos:
+Para ejecutar la aplicación localmente, clona el repositorio y, dentro del directorio de app, ejecuta los siguientes comandos:
 
     npm install
     node app.js
 
-La aplicación debería estar disponible en [**http://127.0.0.1:8080/**](http://127.0.0.1:8080/). Ahora que la aplicación se está ejecutando, vamos a containerizarla
+La aplicación debería estar disponible en [**http://127.0.0.1:8080/**](http://127.0.0.1:8080/).
+
+![](/uploads/app.png)
+
+ Ahora que la aplicación se está ejecutando, vamos a containerizarla
 
 ### Containeriza la aplicación
 
@@ -54,7 +67,7 @@ Ahora, la aplicación debería estar disponible en [**http://127.0.0.1:8080/**](
 
 Primero, inicia sesión en el clúster Openshift y crea un proyecto:
 
-    eoc login
+    oc login
     oc new-project demo-project
 
 Obtén la ruta predeterminada del registro de Openshift:
@@ -85,42 +98,26 @@ Vamos a la explicación:
 **Archivo orchestration/deployment.yml**
 
     apiVersion: apps/v1
-
     kind: Deployment
-
     metadata:
-
-    name: nodejs-demo
-
+      name: nodejs-demo
     spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: nodejs-demo
+      template:
+        metadata:
+          labels:
+            app: nodejs-demo
+        spec:
+          containers:
+          - name: nodejs-demo
+            image: default-route-openshift-image-registry.apps.nombre-del-cluster.com/demo-project/nodejs-demo
+            ports:
+            - containerPort: 8080
 
-    replicas: 1
-
-    selector:
-
-    matchLabels:
-
-    app: nodejs-demo
-
-    template:
-
-    metadata:
-
-    labels:
-
-    app: nodejs-demo
-
-    spec:
-
-    containers:
-
-     - name: nodejs-demo
-
-    image: default-route-openshift-image-registry.apps.mtvosddev.bbej.p1.openshiftapps.com/demo-project/nodejs-demo
-
-    ports:
-
-     - containerPort: 8080
+Nota: debes cambiar el valor de la imagen, que dice: **`nombre-del-cluster.com`**
 
 Este es un archivo YAML que se utiliza para definir un Deployment de Kubernetes/Openshift. Un Deployment se utiliza para gestionar la implementación de un conjunto de réplicas de un pod.
 
@@ -146,4 +143,11 @@ El comando **`oc expose service`** en OpenShift se utiliza para crear una ruta q
 
 El parámetro **`-l route=external`** indica que la ruta creada debe tener una etiqueta de ruta externa, lo que significa que se puede acceder a ella desde fuera de la implementación de OpenShift. El parámetro **`--name`** especifica el nombre de la ruta que se creará. Al crear una ruta para un servicio, se puede acceder a la aplicación a través de una URL en la forma de **`http://nombre-de-la-ruta.nombre-del-proyecto.apps.nombre-del-cluster.com`**.
 
-Y eso es todo, ya tienes tu aplicación Node.js ejecutándose en Openshift! Espero que este tutorial haya sido útil para ti y que hayas aprendido cómo desplegar una aplicación Node.js en Openshift. Si tienes alguna pregunta, no dudes en preguntar en los comentarios. 
+Y eso es todo, ya tienes tu aplicación Node.js ejecutándose en Openshift! Espero que este tutorial haya sido útil para ti y que hayas aprendido cómo desplegar una aplicación Node.js en Openshift. Si tienes alguna pregunta, no dudes en preguntar en los comentarios.
+
+Referencias:
+
+1. Página oficial de OpenShift: [**https://www.openshift.com/**](https://www.openshift.com/ "https://www.openshift.com/")
+2. Repositorio de GitHub del tutorial: [**https://github.com/galvarado/node-app-openshift-example**](https://github.com/galvarado/node-app-openshift-example "https://github.com/galvarado/node-app-openshift-example")
+3. Documentación de Kubernetes: [**https://kubernetes.io/docs/**](https://kubernetes.io/docs/ "https://kubernetes.io/docs/")
+4. Tutorial  containerizing Node.js applications: [**https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose**](https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose "https://www.digitalocean.com/community/tutorials/how-to-containerize-a-node-js-application-for-development-with-docker-and-docker-compose") - Este tutorial de DigitalOcean es la fuente citada en el texto para el código de la aplicación Node.js que se utiliza en el tutorial. Proporciona información detallada sobre cómo containerizar una aplicación Node.js para su uso en entornos de desarrollo.
