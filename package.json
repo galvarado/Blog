@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galvarado/Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galvarado/Blog/issues"
+  },
+  "homepage": "https://github.com/galvarado/Blog#readme",
+  "dependencies": {
+    "@tinacms/cli": "^1.2.1",
+    "tinacms": "^1.2.1"
+  }
+}

@@ -1,3 +1,8 @@
+---
+_template: como_disenar_una_api_introduccion_a_openapi_specification
+---
+
+
 +++
 comments = "true"
 date = "2019-03-22T15:00:00+00:00"

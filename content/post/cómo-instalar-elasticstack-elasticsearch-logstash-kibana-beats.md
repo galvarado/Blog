@@ -1,3 +1,8 @@
+---
+_template: como_disenar_una_api_introduccion_a_openapi_specification
+---
+
+
 +++
 comments = "true"
 date = 2020-02-24T15:00:00Z
