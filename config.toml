@@ -48,7 +48,27 @@ Currently trying to get this blog running, still don't know what the blog will b
     identifier = "inicio"
     url = "/"
 [[menu.main]]
-    name = "¿Quién soy?"
+    name = "Bio"
     identifier = "me"
     weight = 200
     url = "/static/me"
+[[menu.main]]
+    name = "Github"
+    identifier = "github"
+    weight = 300
+    url = "https://github.com/galvarado"
+[[menu.main]]
+    name = "StackOverflow"
+    identifier = "stackoverflow"
+    weight = 400
+    url = "https://stackoverflow.com/users/1154952/guillermo-alvarado"
+[[menu.main]]
+    name = "Linkedin"
+    identifier = "linkedin"
+    weight = 500
+    url = "https://www.linkedin.com/in/guillermoalvarado89/"
+[[menu.main]]
+    name = "Twitter"
+    identifier = "twitter"
+    weight = 600
+    url = "https://twitter.com/galvarado89"
