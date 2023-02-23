@@ -1,5 +1,5 @@
 [build]
-publish = ".next"
+publish = "public"
 command = "npm run build"
 
 [context.production.environment]
