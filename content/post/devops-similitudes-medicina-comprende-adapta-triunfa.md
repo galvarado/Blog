@@ -1,7 +1,7 @@
 +++
 comments = "true"
 date = 2023-09-12T14:00:00Z
-image = "/uploads/devopsmedicine.png"
+image = "/uploads/devopsmed.png"
 tags = ["cloud", "devops"]
 title = "Similitudes entre DevOps y la Medicina: Comprende, Adapta y Triunfa."
 
