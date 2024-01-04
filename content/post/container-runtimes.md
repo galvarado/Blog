@@ -89,7 +89,7 @@ Imagenes obtenidas desde la [página oficial de kubernetes](https://kubernetes.i
 
 ## CRI runtimes
 
-Container Runtime Interface" (Interfaz de Runtime de Contenedores, en español). Define una interfaz estándar que Kubernetes utiliza para comunicarse con los runtimes de contenedores. Esta interfaz establece un conjunto de operaciones comunes que un runtime de contenedores debe implementar para que Kubernetes pueda administrar los contenedores.
+[Container Runtime Interface](https://kubernetes.io/es/docs/concepts/architecture/cri/) (Interfaz de Runtime de Contenedores, en español). Define una interfaz estándar que Kubernetes utiliza para comunicarse con los runtimes de contenedores. Esta interfaz establece un conjunto de operaciones comunes que un runtime de contenedores debe implementar para que Kubernetes pueda administrar los contenedores.
 
 CRI define las operaciones básicas que Kubernetes necesita para crear, destruir y administrar contenedores. Esto permite que Kubernetes sea agnóstico al runtime de contenedores subyacente, lo que significa que puede trabajar con diferentes runtimes sin necesidad de cambiar su lógica interna.
 
