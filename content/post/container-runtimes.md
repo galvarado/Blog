@@ -113,10 +113,14 @@ La Open Container Initiative, también conocida por sus siglas [OCI](https://ope
 
 Estos ripos de runtimes son responsables de generar un contenedor mediante llamadas al sistema del kernel de Linux, como cgroups y namespace. Y aqui destacan runc o gVisor.
 
-**[runC](https://www.docker.com/blog/runc/)** runc es un tiempo de ejecución de contenedores de bajo nivel. Utiliza las características nativas de Linux para crear y ejecutar contenedores. Sigue el estándar OCI e incluye libcontainer, una biblioteca en Go para crear contenedores.
+**[runC](https://www.docker.com/blog/runc/)** runc es un tiempo de ejecución de contenedores de bajo nivel. Utiliza las características nativas de Linux para crear y ejecutar contenedores. Sigue el estándar OCI e incluye libcontainer, una biblioteca en Go para crear contenedores. runC es usado por Containerd y también por Docker al mismo tiempo.
 
 **[gVisor](https://gvisor.dev/)** es un runtime OCI originalmente creado por personas de Google. gVisor es una aplicación del kernel, escrito en Go, que implementa una parte considerable de la interfaz de llamadas al sistema de Linux. Proporciona una capa adicional de aislamiento entre las aplicaciones en ejecución y el sistema operativo anfitrión.
 
 gVisor incluye un tiempo de ejecución de Open Container Initiative (OCI) llamado runsc, que facilita trabajar con herramientas de contenedores existentes. El tiempo de ejecución runsc se integra con Docker y Kubernetes, lo que hace que sea sencillo ejecutar contenedores en un entorno aislado.
 
-gVisor puede utilizarse con Docker, Kubernetes o directamente usando runsc. Este es el rntime que se ejecuta en la infraestructura de Google para ejecutar sus servicios en la nube como Google Cloud Run, Google App Engine (segunda generación) y Google Cloud Functions.
+gVisor puede utilizarse con Docker, Kubernetes o directamente usando runsc. Este es el runtime que se ejecuta en la infraestructura de Google para ejecutar sus servicios en la nube como Google Cloud Run, Google App Engine (segunda generación) y Google Cloud Functions.
+
+**[crun](https://github.com/containers/crun)** es un tiempo de ejecución de contenedores escrito en C (en contraste, runc está escrito en Go).
+
+**[firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd)** de AWS, que implementa la especificación OCI como máquinas virtuales ligeras individuales (y es también la misma tecnología que impulsa AWS Lambda).
