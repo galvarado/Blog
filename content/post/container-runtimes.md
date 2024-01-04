@@ -86,3 +86,37 @@ Así es como luce ahora la comunicación directamente hacia containerd sin pasar
 ![Docker layers](/uploads/kubelet_2.png)
 
 Imagenes obtenidas desde la [página oficial de kubernetes](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
+
+## CRI runtimes
+
+Container Runtime Interface" (Interfaz de Runtime de Contenedores, en español). Define una interfaz estándar que Kubernetes utiliza para comunicarse con los runtimes de contenedores. Esta interfaz establece un conjunto de operaciones comunes que un runtime de contenedores debe implementar para que Kubernetes pueda administrar los contenedores.
+
+CRI define las operaciones básicas que Kubernetes necesita para crear, destruir y administrar contenedores. Esto permite que Kubernetes sea agnóstico al runtime de contenedores subyacente, lo que significa que puede trabajar con diferentes runtimes sin necesidad de cambiar su lógica interna.
+
+Los runtimes que cumplen con la especificación CRI pueden ser utilizados por Kubernetes de manera uniforme, proporcionando la flexibilidad necesaria para elegir el runtime más adecuado para el entorno de trabajo.
+
+Dentro de estos destacan 2:
+
+**Containerd**: es un [runtime de contenedores](https://containerd.io/) con énfasis en la simplicidad, la robustez y la portabilidad. Está disponible como un demonio para Linux y Windows, puede gestionar el ciclo de vida completo del contenedor : transferencia y almacenamiento de imágenes, ejecución y supervisión de contenedores, almacenamiento de bajo nivel y conexiones de red, entre otros. Containerd es un miembro de CNCF con el estatus de 'graduado'.
+
+Containerd está diseñado para ser incrustado en un sistema más grande, en lugar de ser utilizado directamente por desarrolladores o usuarios finales.
+
+**CRI-O**: es [un runtime CRI](https://cri-o.io/) desarrollado principalmente por Red Hat. De hecho, este runtime se usa en Red Hat OpenShift. Ya no dependen de Docker. Curiosamente, RHEL 7 tampoco admite oficialmente Docker. En cambio, proporcionan Podman, Buildah y CRI-O para el entorno de contenedores.
+
+La fortaleza de CRI-O es su minimalismo, ya que fue creado para ser un runtime "CRI". Mientras que containerd comenzó como parte de Docker tratando de ser más de código abierto, ellos son un runtime CRI puro, por lo que CRI-O no tiene nada que CRI no requiera.
+
+Ahora bien, podriamos decir que los CRI runtimes son runtimes de alto nivel y entonces podemos hablar de los runtimes de bajo nivel como los OCI Runtimes
+
+## OCI runtimes
+
+La Open Container Initiative, también conocida por sus siglas [OCI](https://opencontainers.org/), es un proyecto de la Linux Foundation para diseñar un estándar abierto para virtualización a nivel de sistema operativo.​ El objetivo con estos estándares es asegurar que las plataformas de contenedores no estén vinculadas a ninguna empresa o proyecto concreto.
+
+Estos ripos de runtimes son responsables de generar un contenedor mediante llamadas al sistema del kernel de Linux, como cgroups y namespace. Y aqui destacan runc o gVisor.
+
+**[runC](https://www.docker.com/blog/runc/)** runc es un tiempo de ejecución de contenedores de bajo nivel. Utiliza las características nativas de Linux para crear y ejecutar contenedores. Sigue el estándar OCI e incluye libcontainer, una biblioteca en Go para crear contenedores.
+
+**[gVisor](https://gvisor.dev/)** es un runtime OCI originalmente creado por personas de Google. gVisor es una aplicación del kernel, escrito en Go, que implementa una parte considerable de la interfaz de llamadas al sistema de Linux. Proporciona una capa adicional de aislamiento entre las aplicaciones en ejecución y el sistema operativo anfitrión.
+
+gVisor incluye un tiempo de ejecución de Open Container Initiative (OCI) llamado runsc, que facilita trabajar con herramientas de contenedores existentes. El tiempo de ejecución runsc se integra con Docker y Kubernetes, lo que hace que sea sencillo ejecutar contenedores en un entorno aislado.
+
+gVisor puede utilizarse con Docker, Kubernetes o directamente usando runsc. Este es el rntime que se ejecuta en la infraestructura de Google para ejecutar sus servicios en la nube como Google Cloud Run, Google App Engine (segunda generación) y Google Cloud Functions.
