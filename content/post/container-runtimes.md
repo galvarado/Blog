@@ -19,7 +19,7 @@ Sin embargo los contenedores tienen sus raíces en la década de 1970, con la in
 
 Las chroot jails cambian la perspectiva del sistema de archivos para un proceso, haciéndole creer que tiene su propio entorno de archivos separado. Esto aísla al proceso y sus hijos, limitándose a acceder y alterar únicamente archivos y directorios dentro de un subdirectorio específico.
 
-Sin embargo, el concepto moderno de contenedores realmente despegó con el surgimiento de tecnologías como [LXC](https://linuxcontainers.org/lxc/introduction/) (Linux Containers) alrededor de 2008. LXC utilizaba funcionalidades del kernel de Linux, como cgroups y namespaces, para proporcionar una virtualización a nivel de sistema operativo, permitiendo la ejecución de múltiples entornos aislados en un solo sistema operativo.
+Ahora bien, el concepto moderno de contenedores realmente despegó con el surgimiento de tecnologías como [LXC](https://linuxcontainers.org/lxc/introduction/) (Linux Containers) alrededor de 2008. LXC utilizaba funcionalidades del kernel de Linux, como cgroups y namespaces, para proporcionar una virtualización a nivel de sistema operativo, permitiendo la ejecución de múltiples entornos aislados en un solo sistema operativo.
 
 - Los [cgroups](https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html) son un mecanismo en el kernel de Linux que controla y gestiona los recursos del sistema, como CPU, memoria, ancho de banda de red, entre otros.
 - Los [namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html) son un mecanismo de kernel de Linux que permite aislar y virtualizar recursos del sistema. Hay varios tipos de namespaces, cada uno enfocado en aislar un aspecto particular del sistema, como el espacio de nombres de procesos, el espacio de nombres de red, el espacio de nombres de montaje (filesystem), entre otros.
@@ -54,7 +54,7 @@ El motor de Docker, conocido como [Docker Engine](https://docs.docker.com/engine
 
 - **Interfaz de línea de comandos (CLI):** La interfaz de línea de comandos docker es la herramienta que utilizan los usuarios para interactuar con el servidor Docker. Permite a los usuarios enviar comandos al daemon de Docker a través de la API REST, facilitando operaciones como la creación, ejecución, inspección y gestión de contenedores, así como la manipulación de imágenes y redes.
 
-sLa relación de Docker con containerd puede ser un poco confusa debido a la forma en que interactúan. En resumen, Dockerd y containerd están interrelacionados en la arquitectura de Docker, pero tienen roles diferentes.
+La relación de Docker con containerd puede ser un poco confusa debido a la forma en que interactúan. En resumen, Dockerd y containerd están interrelacionados en la arquitectura de Docker, pero tienen roles diferentes.
 
 - **Dockerd (Docker Daemon):** Es el demonio de Docker, responsable de administrar los contenedores, imágenes, redes y volúmenes. Se comunica con el kernel del sistema operativo para construir y ejecutar contenedores utilizando runtimes específicos.
 - **containerd:** Es un tiempo de ejecución de contenedores de bajo nivel que se encarga de la gestión de contenedores y de las operaciones básicas, como iniciar, detener y eliminar contenedores. Dockerd utiliza containerd como su tiempo de ejecución subyacente para interactuar con el kernel y manejar la ejecución de los contenedores.
@@ -73,6 +73,16 @@ Para entender esta decisión, la siguiente imagen muestra los componentes que ku
 
 Así que de todo lo que ofrece docker engine, Kubernetes realmentes necesita lo que está dentro del área roja. Docker Network y Volume no se utilizan en Kubernetes. Tener más funciones cuando nunca las usas puede ser en sí mismo un riesgo para la seguridad. Cuantas menos funciones tengas, más pequeña será la superficie de ataque.
 
-Realmente Kubernetes dependia de [dockershim](https://kubernetes.io/blog/2022/05/03/dockershim-historical-context/) para hablar con docker, este era un componente dentro de que [actuaba como un puente entre Kubernetes y Docker.](https://kodekloud.com/blog/kubernetes-removed-docker-what-happens-now/) Básicamente, permitía que Kubernetes interactuara con Docker como su runtime de contenedores.
+Realmente Kubernetes dependia de [dockershim](https://kubernetes.io/blog/2022/05/03/dockershim-historical-context/) para hablar con docker, este era un componente que [actuaba como un puente entre Kubernetes y Docker.](https://kodekloud.com/blog/kubernetes-removed-docker-what-happens-now/) Básicamente, permitía que Kubernetes interactuara con Docker como su runtime de contenedores.
+
+La siguiente imagen ejemplifica la comunicación de kubernetes antes de que dockershim fuera deprecated.
+
+![Docker layers](/uploads/kubelet_1.png)
 
 Kubernetes buscó desacoplar su dependencia de un runtime específico de contenedores para fomentar la interoperabilidad y la elección de runtimes alternativos. Asi que kubernetes se ha centrado en la Container Runtime Interface (CRI), que proporciona una interfaz estándar para interactuar con los runtimes de contenedores, permitiendo así que otros runtimes, además de Docker, sean utilizados en un cluster de Kubernetes.
+
+Así es como luce ahora la comunicación directamente hacia containerd sin pasar por docker:
+
+![Docker layers](/uploads/kubelet_2.png)
+
+Imagenes obtenidas desde la [página oficial de kubernetes](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
