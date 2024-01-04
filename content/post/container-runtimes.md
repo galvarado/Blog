@@ -121,6 +121,8 @@ gVisor incluye un tiempo de ejecución de Open Container Initiative (OCI) llamad
 
 gVisor puede utilizarse con Docker, Kubernetes o directamente usando runsc. Este es el runtime que se ejecuta en la infraestructura de Google para ejecutar sus servicios en la nube como Google Cloud Run, Google App Engine (segunda generación) y Google Cloud Functions.
 
-**[crun](https://github.com/containers/crun)** es un tiempo de ejecución de contenedores escrito en C (en contraste, runc está escrito en Go).
+Otros runtimes a mencionar:
 
-**[firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd)** de AWS, que implementa la especificación OCI como máquinas virtuales ligeras individuales (y es también la misma tecnología que impulsa AWS Lambda).
+- **[crun](https://github.com/containers/crun)** es un tiempo de ejecución de contenedores escrito en C (en contraste, runc está escrito en Go).
+
+- **[firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd)** de AWS, que implementa la especificación OCI como máquinas virtuales ligeras individuales (y es también la misma tecnología que impulsa AWS Lambda).
