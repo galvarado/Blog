@@ -14,13 +14,11 @@ Este es el certificado que se obtiene al pasar el examen de certificación:
 
 ## ¿Cómo es el exámen?
 
-Está formado por 57 preguntas, el costo al día de hoy es de 70 USD y se aprueba con 70% que son básicamente 40 respuestas correctas.Las preguntas que puedes esperar están relacionadas a  comportamientos puntuales del flujo de terraform, sus comandos, la forma en la que opera y su arquitectura en general como los proviers, modulos, backends e incluso Terraform CLoud.  Además algunas preguntas presentan casos hipoteticos y debes responder que es lo que se debe de hacer según la necesidad expresada en el caso. 
+Está formado por 57 preguntas, el costo al día de hoy es de 70 USD y se aprueba con 70% que son básicamente 40 respuestas correctas.Las preguntas que puedes esperar están relacionadas a  comportamientos puntuales del flujo de terraform, sus comandos, la forma en la que opera y su arquitectura en general como los providers, modulos, backends e incluso Terraform CLoud.  Además algunas preguntas presentan casos hipoteticos y debes responder que es lo que se debe de hacer según la necesidad expresada en el caso. 
 
 El exámen se puede tomar desde cualquier lugar con PSI (Proctoring Service Inc) que brinda servicios de supervisión o vigilancien línea para exámenes y evaluaciones a través de Internet. El proctoring es un proceso que garantiza la integridad del examen al supervisar a los candidatos para prevenir trampas y asegurar que el examen se realice de manera justa y transparente.
 
 El formato específico de un examen con PSI puede variar según la institución o entidad que administre la prueba. Sin embargo, en términos generales, el proceso de un examen con Proctoring Services ciertos pasos comunes qye implica registro y verificación de identidad, descarga de software con funciones de vigilancia, verificación fisica del entorno de examen, conexión con un proctor en línea, y vigilancia durante el examen para prevenir trampas y garantizar la integridad del proceso.
-
-
 
 ## ¿Qué estudiar para pasar la certificación?
 
@@ -57,41 +55,45 @@ Algunos conceptos que debes domonar para el exámen incluyen:
 
 Recomiendo el curso de [Andrew Brown](https://exampro.co/terraform) de ExamPro  porque primero que nada, tiene una versión gratis que además incluye un simulador del exámen, es decir son 57 preguntas de opción múltiple orientado a tener la misma experiencia que cuando rindas el exámen de certificación.
 
+Anton Babenko [quien ha escrito muchos modulos de AWS(https://github.com/terraform-aws-modules) para Terraform, ha escrito también un [libro sobre las mejores prácticas de terraform]((https://www.terraform-best-practices.com/)) y tiene un vestión en linea que lo convierte en un gran recurso.
+
+[Terraform: Up & Running, 3rd edition](https://blog.gruntwork.io/terraform-up-running-3rd-edition-is-now-published-4b99804d922a) es un libro de Yevgeniy Brikman Co-founder de Gruntwork que debes leer si quieres dominar Terraform y finalmente Pluralsight tiene un [CheatSheet](https://www.pluralsight.com/resources/blog/cloud/the-ultimate-terraform-cheatsheet) de terraform bastante útil.
+
 
 ## Pregunas que puedes esperar en el éxamen
 
 Te dejo 10 preguntas muy similares a lo que puedes esperar en el exámen:
 
-**Pregunta #1 **
+**Pregunta 1**
 El archivo `terraform.tfstate` siempre coincide con la infraestructura actualmente construida.
 - A. Verdadero
 - B. Falso
 
-**Pregunta #2 **
+**Pregunta 2**
 Una configuración remota de backend siempre se asigna a un único espacio de trabajo remoto.
 - A. Verdadero
 - B. Falso
 
-**Pregunta #3 **
+**Pregunta 3**
 ¿En qué se diferencia el backend remoto de Terraform de otros backends de estado como S3, Consul, etc.?
 - A. Puede ejecutar ejecuciones de Terraform en infraestructura dedicada en las instalaciones o en Terraform Cloud.
 - B. No muestra la salida de un `terraform apply` localmente.
 - C. Solo está disponible para clientes de pago.
 - D. Todas las anteriores.
 
-**Pregunta #4 **
+**Pregunta 4**
 ¿Cuál es el flujo de trabajo para implementar nueva infraestructura con Terraform?
 - A. `terraform plan` para importar la infraestructura actual al archivo de estado, realizar cambios de código, y `terraform apply` para actualizar la infraestructura.
 - B. Escribir una configuración de Terraform, ejecutar `terraform show` para ver los cambios propuestos, y `terraform apply` para crear nueva infraestructura.
 - C. `terraform import` para importar la infraestructura actual al archivo de estado, realizar cambios de código, y `terraform apply` para actualizar la infraestructura.
 - D. Escribir una configuración de Terraform, ejecutar `terraform init`, ejecutar `terraform plan` para ver los cambios planificados en la infraestructura, y `terraform apply` para crear nueva infraestructura.
 
-**Pregunta #5 **
+**Pregunta 5**
 Siempre se requiere un bloque de configuración de proveedor en cada configuración de Terraform.
 - A. Verdadero
 - B. Falso
 
-**Pregunta #6 **
+**Pregunta 6**
 Ejecutas un aprovisionador `local-exec` en un recurso nulo llamado `null_resource.run_script` y te das cuenta de que necesitas volver a ejecutar el script.
 ¿Cuál de los siguientes comandos usarías primero?
 - A. `terraform taint null_resource.run_script`
@@ -99,14 +101,14 @@ Ejecutas un aprovisionador `local-exec` en un recurso nulo llamado `null_resourc
 - C. `terraform validate null_resource.run_script`
 - D. `terraform plan -target=null_resource.run_script`
 
-**Pregunta #7 **
+**Pregunta 7**
 ¿Cuál aprovisionador invoca un proceso en el recurso creado por Terraform?
 - A. `remote-exec`
 - B. `null-exec`
 - C. `local-exec`
 - D. `file`
 
-**Pregunta #8 **
+**Pregunta 8**
 ¿Cuál de las siguientes afirmaciones no es cierta acerca de los proveedores de Terraform?
 - A. Los proveedores pueden ser escritos por individuos.
 - B. Los proveedores pueden ser mantenidos por una comunidad de usuarios.
@@ -114,14 +116,14 @@ Ejecutas un aprovisionador `local-exec` en un recurso nulo llamado `null_resourc
 - D. Importantes proveedores en la nube y proveedores que no son en la nube pueden escribir, mantener o colaborar en proveedores de Terraform.
 - E. Ninguna de las anteriores.
 
-**Pregunta #9 **
+**Pregunta 9**
 ¿Qué comando requiere Terraform la primera vez que se ejecuta dentro de un directorio de configuración?
 - A. `terraform import`
 - B. `terraform init`
 - C. `terraform plan`
 - D. `terraform workspace`
 
-**Pregunta #10 **
+**Pregunta 10**
 Has implementado una nueva aplicación web con una dirección IP pública en un proveedor de servicios en la nube. Sin embargo, no creaste ninguna salida para tu código.
 ¿Cuál es el mejor método para encontrar rápidamente la dirección IP del recurso que implementaste?
 - A. Ejecutar `terraform output ip_address` para ver el resultado.
@@ -130,4 +132,4 @@ Has implementado una nueva aplicación web con una dirección IP pública en un 
 - D. Ejecutar `terraform destroy`, luego `terraform apply` y buscar la dirección IP en la salida estándar (stdout).
 
 
-Espero que esta informaciónt te ayude a pasar la certificación, si tienes dudas no dudes en contactarme.
+Espero que esta información te ayude a pasar la certificación, si tienes dudas no dudes en contactarme.
