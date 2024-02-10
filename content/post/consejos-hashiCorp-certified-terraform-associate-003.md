@@ -12,11 +12,9 @@ Las últimas semanas me preparé para rendir el examen y obtener la certificaci�
 Este es el certificado que se obtiene al pasar el examen de certificación:
 
 
-
 ## ¿Cómo es el exámen?
 
 Está formado por 57 preguntas, el costo al día de hoy es de 70 USD y se aprueba con 70% que son básicamente 40 respuestas correctas.Las preguntas que puedes esperar están relacionadas a  comportamientos puntuales del flujo de terraform, sus comandos, la forma en la que opera y su arquitectura en general como los proviers, modulos, backends e incluso Terraform CLoud.  Además algunas preguntas presentan casos hipoteticos y debes responder que es lo que se debe de hacer según la necesidad expresada en el caso. 
-
 
 El exámen se puede tomar desde cualquier lugar con PSI (Proctoring Service Inc) que brinda servicios de supervisión o vigilancien línea para exámenes y evaluaciones a través de Internet. El proctoring es un proceso que garantiza la integridad del examen al supervisar a los candidatos para prevenir trampas y asegurar que el examen se realice de manera justa y transparente.
 
@@ -32,13 +30,30 @@ Terraform utiliza una sintaxis declarativa que es fácil de entender y aprender.
 
 Algunos conceptos que debes domonar para el exámen incluyen:
 
-- Gestión del Estado: Comprender cómo Terraform mantiene y utiliza el estado para rastrear los recursos desplegados.
-- Módulos: Utilizar módulos para la reutilización de código y la construcción de abstracciones más complejas.
-- Provisionamiento Avanzado: Implementar estrategias de provisionamiento avanzadas, como la ejecución de scripts o la configuración de recursos después del despliegue.
-
+- **Gestión del Estado**, comprender cómo Terraform mantiene y utiliza el estado para rastrear los recursos desplegados.
+- **Saber de como destruir**: Comprender cómo eliminar recursos con el comando `terraform destroy` y `terraform plan`.
+- **Sintaxis y funciones**: Aprender sobre funciones como `join` y `splat` para manipulación de strings y listas.
+- **Ventajas de Terraform Cloud**: Beneficios de usar Terraform Cloud, como colaboración, seguridad y gestión de estados.
+- **Resource Meta-Parameter**: Entender meta-parámetros como `count`, `for_each` y `lifecycle`.
+- **Logs**: Acceso y uso de logs para diagnóstico de problemas.
+- **Instalar providers sin internet**: Instalación de plugins de proveedor localmente sin conexión a internet.
+- **State Drift**: Concepto de "drift" y cómo Terraform maneja las diferencias entre el estado declarado y real.
+- **Backends**: Configuración de backends para almacenamiento seguro y accesible del estado.
+- **Refresh/Lift**: Uso de ` terraform plan -refresh-only` para sincronización del estado.
+- **Workspaces**: Separación y organización del estado con workspaces en Terraform Cloud y entornos locales.
+- **Registry**: Uso del registro de Terraform para compartir y descubrir módulos.
+- **Terraform Workflow**: Flujo de trabajo estándar de Terraform desde `init` hasta `destroy`.
+- **Versionado de Proveedores**: Especificación de versiones exactas de proveedores para consistencia.
+- **Data Sources**: Referencia y uso de datos de fuentes externas en configuraciones de Terraform.
+- **Modificaciones de Estado**: Entender cuándo y cómo Terraform modifica el estado.
+- **Remover Recursos**: Eliminar recursos específicos del estado sin destruirlos.
+- **Funcionalidad de `fmt` y `validate`**: Uso de `terraform fmt` para formateo y `terraform validate` para validación.
+- **Propósito del Archivo de Lock**: Bloqueo de versiones de proveedores con `.terraform.lock.hcl`.
+- **Importación de Recursos**: Importar recursos existentes al estado de Terraform con `terraform import`.
+- **Uso de Módulos**: Utilización de módulos y comprender las opciones de (`source`) para referenciar módulos.
+- **Uso de Proveedores y Alias**: Configuración y uso de múltiples proveedores con alias.
 
 ## Recursos en línea
-
 
 Recomiendo el curso de [Andrew Brown](https://exampro.co/terraform) de ExamPro  porque primero que nada, tiene una versión gratis que además incluye un simulador del exámen, es decir son 57 preguntas de opción múltiple orientado a tener la misma experiencia que cuando rindas el exámen de certificación.
 
@@ -113,3 +128,6 @@ Has implementado una nueva aplicación web con una dirección IP pública en un 
 - B. En una nueva carpeta, utilizar el origen de datos `terraform_remote_state` para cargar el archivo de estado y luego escribir una salida para cada recurso que encuentres en el archivo de estado.
 - C. Ejecutar `terraform state list` para encontrar el nombre del recurso y luego `terraform state show` para encontrar los atributos, incluida la dirección IP pública.
 - D. Ejecutar `terraform destroy`, luego `terraform apply` y buscar la dirección IP en la salida estándar (stdout).
+
+
+Espero que esta informaciónt te ayude a pasar la certificación, si tienes dudas no dudes en contactarme.
