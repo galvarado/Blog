@@ -26,7 +26,7 @@ Mi compromiso con la innovación, la automatización y la seguridad sigue siendo
     <div class="">
         <div class="maxthumb">
             <a href=""> 
-                    <img class="img-fluid" src="/uploads/terraform.png" alt="A thumbnail image">               
+                    <img class="img-fluid" src="/static/terraformcertification.png" alt="A thumbnail image">               
             </a>
         </div>
     </div>

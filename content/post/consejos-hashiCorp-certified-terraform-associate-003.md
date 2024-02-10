@@ -55,7 +55,7 @@ Algunos conceptos que debes domonar para el exámen incluyen:
 
 Recomiendo el curso de [Andrew Brown](https://exampro.co/terraform) de ExamPro  porque primero que nada, tiene una versión gratis que además incluye un simulador del exámen, es decir son 57 preguntas de opción múltiple orientado a tener la misma experiencia que cuando rindas el exámen de certificación.
 
-Anton Babenko [quien ha escrito muchos modulos de AWS(https://github.com/terraform-aws-modules) para Terraform, ha escrito también un [libro sobre las mejores prácticas de terraform]((https://www.terraform-best-practices.com/)) y tiene un vestión en linea que lo convierte en un gran recurso.
+Anton Babenko [quien ha escrito muchos modulos de AWS](https://github.com/terraform-aws-modules) para Terraform, ha escrito también un [libro sobre las mejores prácticas de terraform]((https://www.terraform-best-practices.com/)) y tiene un vestión en linea que lo convierte en un gran recurso.
 
 [Terraform: Up & Running, 3rd edition](https://blog.gruntwork.io/terraform-up-running-3rd-edition-is-now-published-4b99804d922a) es un libro de Yevgeniy Brikman Co-founder de Gruntwork que debes leer si quieres dominar Terraform y finalmente Pluralsight tiene un [CheatSheet](https://www.pluralsight.com/resources/blog/cloud/the-ultimate-terraform-cheatsheet) de terraform bastante útil.
 
