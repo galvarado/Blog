@@ -11,6 +11,7 @@ Las últimas semanas me preparé para rendir el examen y obtener la certificaci�
 
 Este es el certificado que se obtiene al pasar el examen de certificación:
 
+![Terrafromcert](/uploads/terraformcertga.png)
 
 ## ¿Cómo es el exámen?
 
