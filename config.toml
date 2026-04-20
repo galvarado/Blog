@@ -16,7 +16,7 @@ comments = true
 
 [params]
   logo = "/images/logosmall.png"
-  description ="Escribo sobre mi transición hacia AI. Comparto experiencias combinando Cloud, Containers y Platform Engineering con inteligencia artificial aplicada, automatización y nuevos paradigmas de software."
+  description ="Escribo sobre mi viaje hacia AI. Comparto mi experiencia en Cloud y Platform Engineering con inteligencia artificial aplicada y nuevos paradigmas de software."
   mailchimp = "https://galvarado.us19.list-manage.com/subscribe/post?u=7ca0350f86d9576b40bfe7cee&amp;id=0649daac95"
   mailprotect = "b_7ca0350f86d9576b40bfe7cee_0649daac95"
 
