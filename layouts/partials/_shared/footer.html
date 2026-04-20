@@ -1,0 +1,20 @@
+<!-- Begin Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="site-footer-inner">
+            <a class="footer-brand" href="{{ .Site.BaseURL }}">
+                <img src="/images/logosmall_white.svg" class="footer-logo">
+                <span class="brand-initials">GA</span><span class="brand-sep">|</span><span class="brand-tagline">AI, Cloud &amp; Platform Engineering</span>
+            </a>
+            <div class="footer-links">
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
+            </div>
+            <div class="footer-copy">
+                &copy; {{ .Site.Copyright }}
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->

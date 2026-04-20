@@ -1,30 +1,23 @@
-<!-- Bottom Alert Bar
+<!-- Newsletter Popup
 ================================================== -->
-<div class="alertbar">
-	<div class="container text-center">
-        <span>
-            {{ if isset .Site.Params "logo" }}
-                <img style="height:50px" src="/images/logosmall_white.svg" alt="logo">
-            {{ else }}
-                <span style="font-family:Righteous;">{{.Site.Title}}</span>
-            {{ end }}
-            &nbsp; Recibe noticias de los temas <b>que te interesan</b>, suscribete =)
-        </span>
-
-        <form action="{{ with .Site.Params.mailchimp }}{{.}}{{end}}" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-		<input type="email" placeholder="Email" name="EMAIL" autocomplete="on" required>
-	    	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-	    	<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="{{ with .Site.Params.mailprotect }}{{.}}{{end}}" tabindex="-1" value=""></div>
-		<input type="submit" value="Suscribirse" name="suscribirse" >
-        </form>
-
-	</div>
+<div class="newsletter-popup" id="alertbar">
+    <button class="newsletter-close" onclick="document.getElementById('alertbar').style.display='none';localStorage.setItem('alertbar-closed',new Date().toDateString())" aria-label="Cerrar">&times;</button>
+    <p class="newsletter-title">Suscríbete al blog</p>
+    <p class="newsletter-desc">Nuevos posts de AI, Cloud y Platform Engineering directo en tu correo.</p>
+    <form action="{{ with .Site.Params.mailchimp }}{{.}}{{end}}" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="{{ with .Site.Params.mailprotect }}{{.}}{{end}}" tabindex="-1" value=""></div>
+        <input type="email" placeholder="tu@correo.com" name="EMAIL" autocomplete="on" required>
+        <input type="submit" value="Suscribirse">
+    </form>
     <script>
-        // Redirect in case of match the URL
         currentUrl=window.location.href;
-        if(currentUrl=="https://galvarado.com.mx/static/location/")
-            {
-                window.location.replace("https://goo.gl/maps/BfSgCgStr6FsHeF4A")
+        if(currentUrl=="https://galvarado.com.mx/static/location/") {
+            window.location.replace("https://goo.gl/maps/BfSgCgStr6FsHeF4A");
+        }
+        if(localStorage.getItem('alertbar-closed') !== new Date().toDateString()) {
+            setTimeout(function() {
+                document.getElementById('alertbar').style.display = 'block';
+            }, 4000);
         }
     </script>
-</div> 
+</div>
