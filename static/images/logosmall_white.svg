@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <clipPath id="sc">
+      <circle cx="40" cy="40" r="36"/>
+    </clipPath>
+  </defs>
+
+  <!-- G mark (small, coloreado para navbar oscuro) -->
+  <circle cx="40" cy="40" r="36" fill="#4338ca"/>
+
+  <!-- Top-right sector -->
+  <path d="M40,40 L40,4 A36,36 0 0,1 76,40 Z" fill="#818cf8"/>
+
+  <!-- Bottom-left sector -->
+  <path d="M40,40 L4,40 A36,36 0 0,0 40,76 Z" fill="#3730a3"/>
+
+  <!-- Teal crossbar -->
+  <rect x="40" y="30" width="36" height="20" fill="#2dd4bf" clip-path="url(#sc)"/>
+</svg>

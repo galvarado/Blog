@@ -1,27 +1,457 @@
- .sidebar-profile .sidebar-profile-picture  {
-width: 250px !important;
-height: auto !important;
-border-radius: 1px !important;
-}
-img.author-thumb {
-	width: 100px !important;
-}
-#about #about-card #about-card-picture {
-width: 250px !important;
-height: auto !important;
-border-radius: 1px !important;
-}
-.sidebar-profile-name, .sidebar-profile-bio{
-}
-.sidebar-container {
+/* ===== MODERN THEME — galvarado.com.mx ===== */
+
+:root {
+  --accent:        #6366f1;
+  --accent-dark:   #4f46e5;
+  --accent-light:  #eef2ff;
+  --text-primary:  #1e1b4b;
+  --text-body:     #334155;
+  --text-muted:    #64748b;
+  --bg-main:       #f8fafc;
+  --bg-card:       #ffffff;
+  --border:        #e2e8f0;
+  --radius:        12px;
+  --shadow-sm:     0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:     0 4px 20px rgba(0,0,0,.09), 0 2px 6px rgba(0,0,0,.04);
+  --transition:    all 0.2s ease;
 }
 
-#sidebar {
-
+/* ── Base ────────────────────────────────── */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-body);
 }
 
-#sidebar ul.sidebar-buttons li.sidebar-button .sidebar-button-link {
+a {
+  color: var(--accent);
+  transition: var(--transition);
 }
+a:hover {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+/* ── Hero header ────────────────────────── */
+.site-hero {
+  background: linear-gradient(135deg, #0d0b1e 0%, #1a1040 50%, #0f1b3d 100%);
+  padding: 1.5rem 1.5rem 1.25rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(99,102,241,0.25);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+}
+
+.site-hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.site-hero-logo {
+  max-width: 85%;
+  width: 480px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+.site-hero-desc {
+  color: rgba(226, 232, 240, 0.9);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* hide old mainheading on index if still present */
+.main-content > .mainheading:first-child {
+  display: none;
+}
+
+/* ── Navbar ──────────────────────────────── */
 #main-navbar {
-	background-color: #72609e!important;
+  background: linear-gradient(90deg, #0d0b1e 0%, #1a1040 60%, #1e1065 100%) !important;
+  border-bottom: 1px solid rgba(99,102,241,0.3);
+  box-shadow: 0 2px 20px rgba(0,0,0,.5);
+}
+
+.navbar-brand-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none !important;
+}
+
+.brand-logo {
+  height: 32px;
+  width: auto;
+}
+
+.brand-initials {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.brand-sep {
+  color: rgba(165,180,252,0.5);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.brand-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #a5b4fc;
+  letter-spacing: 0.2px;
+}
+
+#main-navbar .nav-item:nth-child(n+3) .nav-link {
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem !important;
+  color: #a5b4fc !important;
+}
+
+#main-navbar .nav-item:nth-child(n+3) .nav-link:hover {
+  color: #ffffff !important;
+}
+
+#main-navbar .nav-link {
+  color: rgba(226,232,240,0.85) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  padding: 0.5rem 1rem !important;
+}
+
+#main-navbar .nav-link:hover,
+#main-navbar .nav-item.active .nav-link {
+  color: #a5b4fc !important;
+}
+
+#main-navbar .navbar-toggler {
+  border-color: rgba(165,180,252,0.4);
+}
+
+#main-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ── Typography ─────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+.posttitle,
+.section-title h2 span {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.posttitle {
+  font-size: 2.35rem;
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+}
+
+.section-title h2 span {
+  font-size: 1.35rem;
+}
+
+/* ── Posts section ──────────────────────── */
+.recent-posts {
+  padding: 2.5rem 0 3rem;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+}
+
+.listrecent .card-group {
+  margin-bottom: 2rem !important;
+}
+
+/* ── Post cards ─────────────────────────── */
+.card {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-sm) !important;
+  background: var(--bg-card) !important;
+  transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+  overflow: hidden;
+}
+.card:hover {
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-3px);
+}
+
+.card .card-body {
+  padding: 1.25rem 1.4rem;
+}
+
+.card-title a {
+  color: var(--text-primary) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: -0.01em;
+}
+.card-title a:hover {
+  color: var(--accent) !important;
+}
+
+.card-text {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── Single post top spacing ────────────── */
+.mainheading {
+  padding-top: 2rem;
+}
+
+/* ── Article content ────────────────────── */
+.article-post {
+  font-size: 1.05rem;
+  line-height: 1.88;
+  color: var(--text-body);
+}
+
+.article-post h1,
+.article-post h2,
+.article-post h3,
+.article-post h4 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-post p {
+  margin-bottom: 1.4rem;
+}
+
+/* ── Featured image ─────────────────────── */
+.featured-image {
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Code ───────────────────────────────── */
+.article-post pre {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  color: #c9d1d9;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  overflow-x: auto;
+}
+
+.article-post code {
+  background: var(--accent-light);
+  border: 1px solid #c7d2fe;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 0.87em;
+  color: var(--accent-dark);
+}
+
+.article-post pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #c9d1d9;
+  font-size: inherit;
+}
+
+/* ── Blockquote ─────────────────────────── */
+.article-post blockquote,
+blockquote {
+  border-left: 4px solid var(--accent) !important;
+  background: #f5f3ff;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.5rem !important;
+  margin: 1.75rem 0 !important;
+  color: #4c1d95;
+  font-style: italic;
+}
+
+/* ── Tags ───────────────────────────────── */
+.tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  margin: 0;
+}
+
+.tags li a {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.tags li a:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ── Author box ─────────────────────────── */
+.post-top-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+img.author-thumb {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 50% !important;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.author-description {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Prev/Next nav ──────────────────────── */
+.PageNavigation a {
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+.PageNavigation a:hover {
+  color: var(--accent-dark);
+}
+
+/* ── Pagination ─────────────────────────── */
+.pagination .page-link {
+  border-radius: 8px;
+  margin: 0 3px;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+.pagination .page-item.active .page-link {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.pagination .page-link:hover {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+/* ── Footer ─────────────────────────────── */
+footer,
+.footer {
+  background: #09090f !important;
+  color: #94a3b8 !important;
+  border-top: 1px solid #1e293b !important;
+}
+
+footer a {
+  color: #a5b4fc !important;
+}
+footer a:hover {
+  color: #c7d2fe !important;
+}
+
+/* ── Alert / subscribe bar ──────────────── */
+.alertbar {
+  background: linear-gradient(90deg, #0d0b1e 0%, #1a1040 60%, #1e1065 100%) !important;
+  border-top: 1px solid rgba(99,102,241,0.3) !important;
+  padding: 1.5rem 0 !important;
+  color: rgba(226,232,240,0.9) !important;
+}
+
+.alertbar span,
+.alertbar b {
+  color: rgba(226,232,240,0.9) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+}
+
+.alertbar b {
+  color: #a5b4fc !important;
+  font-weight: 600;
+}
+
+.alertbar img {
+  height: 44px !important;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.alertbar input[type="email"] {
+  border-radius: 8px;
+  border: 1px solid rgba(99,102,241,0.4);
+  background: rgba(255,255,255,0.07);
+  color: #e2e8f0;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.alertbar input[type="email"]::placeholder {
+  color: rgba(148,163,184,0.6);
+}
+
+.alertbar input[type="email"]:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.1);
+}
+
+.alertbar input[type="submit"] {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 8px;
+}
+
+.alertbar input[type="submit"]:hover {
+  background: var(--accent-dark);
+}
+
+/* ── Author images (sidebar / about) ────── */
+.sidebar-profile .sidebar-profile-picture,
+#about #about-card #about-card-picture {
+  width: 250px !important;
+  height: auto !important;
+  border-radius: 10px !important;
+  box-shadow: var(--shadow-md);
 }

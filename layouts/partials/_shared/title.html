@@ -1,7 +1,8 @@
 <!-- Site Title
 ================================================== -->
-<div class="mainheading">
-    <p class="lead">
-         {{ .Site.Params.Description }} 
-    </p>
+<div class="site-hero">
+    <div class="site-hero-inner">
+        <img src="/images/logo.svg" alt="{{ .Site.Title }}" class="site-hero-logo">
+        <p class="site-hero-desc">{{ .Site.Params.Description }}</p>
+    </div>
 </div>

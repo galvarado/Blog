@@ -1,10 +1,11 @@
 <!-- Begin Menu Navigation
 ================================================== -->
-<nav id="main-navbar" style="background-color: black !important;" class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark fixed-top mediumnavigation nav-down">
     <div class="container pr-0">
         <!-- Begin Logo -->
-        <a class="navbar-brand" href="{{ .Site.BaseURL }}">
-            <img src="/images/logosmall_white.png">
+        <a class="navbar-brand navbar-brand-text" href="{{ .Site.BaseURL }}">
+            <img src="/images/logosmall_white.svg" class="brand-logo">
+            <span class="brand-initials">GA</span><span class="brand-sep">|</span><span class="brand-tagline">AI, Cloud &amp; Platform Engineering</span>
         </a>
         <!-- End Logo -->
 
@@ -19,7 +20,14 @@
             <ul class="navbar-nav ml-auto">
                 {{ range .Site.Menus.main }} 
                 <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
-                    <a class="nav-link" style=" color: white;"href="{{ .URL }}">{{ .Name | title }}</a>
+                    <a class="nav-link" href="{{ .URL }}">
+                        {{ if eq .Identifier "inicio" }}<i class="fas fa-home"></i> {{ .Name | title }}{{ end }}
+                        {{ if eq .Identifier "me" }}<i class="fas fa-user"></i> {{ .Name | title }}{{ end }}
+                        {{ if eq .Identifier "github" }}<i class="fab fa-github"></i>{{ end }}
+                        {{ if eq .Identifier "stackoverflow" }}<i class="fab fa-stack-overflow"></i>{{ end }}
+                        {{ if eq .Identifier "linkedin" }}<i class="fab fa-linkedin-in"></i>{{ end }}
+                        {{ if eq .Identifier "twitter" }}<i class="fab fa-twitter"></i>{{ end }}
+                    </a>
                 </li>
                 {{ end }}
             </ul>

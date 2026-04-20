@@ -67,11 +67,11 @@
                     
                     <!-- Next and PrevPage -->
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-                    {{with .NextPage}}
-                        <a class="d-block col-md-6" href="{{.URL}}"> &laquo; {{.Title}}</a>
+                    {{with .Next}}
+                        <a class="d-block col-md-6" href="{{.RelPermalink}}"> &laquo; {{.Title}}</a>
                     {{end}}
-                    {{with .PrevPage}}
-                        <a class="d-block col-md-6 text-lg-right" href="{{.URL}}">{{.Title}} &raquo;</a>
+                    {{with .Prev}}
+                        <a class="d-block col-md-6 text-lg-right" href="{{.RelPermalink}}">{{.Title}} &raquo;</a>
                     {{end}}
                     <div class="clearfix"></div>
                     </div>
