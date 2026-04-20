@@ -447,6 +447,39 @@ footer a:hover {
   background: var(--accent-dark);
 }
 
+/* ── Certifications ─────────────────────── */
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+
+.cert-item {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.cert-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: #c7d2fe;
+}
+
+.cert-item img {
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: contain;
+}
+
 /* ── Author images (sidebar / about) ────── */
 .sidebar-profile .sidebar-profile-picture,
 #about #about-card #about-card-picture {
