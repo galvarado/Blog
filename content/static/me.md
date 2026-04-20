@@ -1,3 +1,8 @@
+---
+title: "Acerca de mí"
+date: 2024-01-01
+---
+
 <center><img class="img-fluid" src="/images/logop.png" alt="Guillermo Alvarado"></center>
 
 <br />
