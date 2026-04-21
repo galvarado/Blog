@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-            <h4 class="card-text">{{ .Summary }}</h4>
+            <h4 class="card-text">{{ .Summary | plainify | truncate 160 }}</h4>
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">

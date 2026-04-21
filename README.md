@@ -8,10 +8,9 @@ Bienvenido a mi blog personal. Aquí encontrarás las experiencias de un desarro
 
 ## Acerca del blog
 
-Este blog está contruido con [Hugo](https://gohugo.io/), es gestionado con [TinaCMS](https://tina.io/) y está desplegado en [Netlify](https://www.netlify.com/).
+Este blog está contruido con [Hugo](https://gohugo.io/) y está desplegado en [Netlify](https://www.netlify.com/).
 
 ![Hugo](static/images/hugo.jpg "Hugo")
-![Tina](static/images/tina.png "Tina")
 ![Netlify](static/images/netlify.png "Netlify")
 
 Conoce más en: https://galvarado.com.mx/post/comoestaconstruido/

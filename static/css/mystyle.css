@@ -216,9 +216,16 @@ h1, h2, h3, h4, h5, h6,
 
 /* ── Article content ────────────────────── */
 .article-post {
-  font-size: 1.05rem;
-  line-height: 1.88;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.85;
   color: var(--text-body);
+}
+
+.article-post > p,
+.article-post > ul,
+.article-post > ol {
+  letter-spacing: 0.01em;
 }
 
 .article-post h1,

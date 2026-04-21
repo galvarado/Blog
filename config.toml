@@ -3,6 +3,7 @@ languageCode = "es-es"
 title = "Guillermo Alvarado"
 theme = "mediumish-gohugo-theme"
 summaryLength = 30
+paginate = 12
 copyright = "Guillermo Alvarado - Todos los derechos reservados"
 enableEmoji = true
 disqusShortname = "galvarado-com-mx"

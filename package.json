@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "tinacms dev -c \"hugo server -D\"",
-    "build": "tinacms build && hugo"
+    "dev": "hugo server -D",
+    "build": "hugo"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,6 @@
     "url": "https://github.com/galvarado/Blog/issues"
   },
   "homepage": "https://github.com/galvarado/Blog#readme",
-  "dependencies": {
-    "tinacms": "^1.2.1"
-  },
-  "devDependencies": {
-    "@tinacms/cli": "^1.2.1"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
