@@ -1,24 +1,25 @@
 ---
-title: "Acerca de mí"
-date: 2024-01-01
+title: ""
+date: 2026-01-21
 ---
 
-<center><img class="img-fluid" src="/images/logop.png" alt="Guillermo Alvarado"></center>
-
-<br />
-
-<center>
-<a target="_blank" href="https://twitter.com/galvarado89"><img width="40px" class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="Twitter"></a>&nbsp;&nbsp;
-<a target="_blank" href="https://www.linkedin.com/in/guillermoalvarado89/"><img width="40px" class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="LinkedIn"></a>&nbsp;&nbsp;
-<a target="_blank" href="https://github.com/galvarado"><img width="40px" class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="GitHub"></a>&nbsp;&nbsp;
-<a target="_blank" href="https://stackoverflow.com/users/1154952/guillermo-alvarado"><img width="40px" class="img-fluid" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg" alt="Stack Overflow"></a>
-</center>
-
-<br />
-
----
+<div class="profile-card">
+  <div class="profile-card-inner">
+    <img class="profile-avatar" src="/images/guillermo.jpg" alt="Guillermo Alvarado">
+    <h1 class="profile-name">Guillermo Alvarado</h1>
+    <p class="profile-role">Head of Engineering · Sentinella</p>
+    <p class="profile-tagline">Cloud · Platform Engineering · AI</p>
+    <div class="social-icons">
+      <a class="social-icon si-twitter" href="https://twitter.com/galvarado89" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a class="social-icon si-linkedin" href="https://www.linkedin.com/in/guillermoalvarado89/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a class="social-icon si-github" href="https://github.com/galvarado" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a class="social-icon si-stackoverflow" href="https://stackoverflow.com/users/1154952/guillermo-alvarado" target="_blank" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+      <a class="social-icon si-instagram" href="https://www.instagram.com/gravelfurtivo" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
 Hola, soy Guillermo.<br /><br />
-Trabajocon  sistemas, plataformas y su operación.  
+Trabajo con  sistemas, plataformas, IA y su operación.  
 
 Durante más de 15 años he estado construyendo y operando tecnología en entornos  como banca, telecomunicaciones y retail.
 
@@ -28,41 +29,15 @@ He liderado implementaciones en distintos países de Latinoamérica, colaborado 
 
 Hoy, soy **Head of Engineering en Sentinella**
 
-## 🤖 Lo que viene: AI
+## Lo que viene: 
 
 Estoy entrando de lleno en el mundo de la AI.
 
-No desde el hype, sino desde lo que sé hacer:
+No desde el hype, sino desde lo que sé hacer: llevar cosas a producción, hacerlas confiables e integrarlas en sistemas reales. Me interesa construir cosas que funcionen en el mundo real.
 
-- llevar cosas a producción
-- hacerlas confiables
-- integrarlas en sistemas reales
+Este espacio es para documentar eso.
 
-Me interesa especialmente la intersección entre AI y operación:
-
-- **AIOps**
-- **sistemas autónomos** (agentic systems)
-- **automatización inteligente** sobre plataformas cloud
-
-No me interesa experimentar por moda.  
-Me interesa construir cosas que funcionen en el mundo real.
-
-
-Este espacio es para documentar esa intersección:
-
-- Cloud y plataformas en la vida real
-- DevOps más allá de la teoría
-- AI aplicada, sin humo
-- Experimentos, errores y aprendizajes
-
-
-Si te interesa construir cosas que:
-
-- escalen
-- no se rompan fácil
-- y ahora además… puedan tomar decisiones
-
-Probablemente estemos en el mismo camino.
+Si te interesa construir cosas que escalenm no se rompan fácil y ahora además… puedan tomar decisiones probablemente estemos en el mismo camino.
 
 ---
 
@@ -95,3 +70,17 @@ Y con el tiempo entendí que eso es exactamente lo mismo que pasa en los sistema
 - la consistencia vence a los picos de rendimiento
 
 Mucho de cómo pienso la tecnología viene de ahí.
+
+---
+
+#### <a href="https://www.instagram.com/gravelfurtivo" target="_blank"><img width="28px" style="vertical-align:middle;margin-right:8px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="Instagram"></a> @gravelfurtivo
+
+Rutas, paisajes y kilómetros en gravel.
+
+<behold-widget feed-id="ym3ncw9iID9d0GoQCSJo"></behold-widget>
+<script>
+  (() => {
+    const d=document,s=d.createElement("script");s.type="module";
+    s.src="https://w.behold.so/widget.js";d.head.append(s);
+  })();
+</script>
