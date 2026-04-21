@@ -25,6 +25,23 @@
   padding-right: 2.5rem;
 }
 
+@media (max-width: 767px) {
+  /* baseof wraps main in .container — remove its padding so the inner
+     .container in single.html doesn't double-pad on mobile */
+  .site-content > .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .main-content .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  /* hide tagline in navbar so toggler isn't crowded */
+  .brand-tagline, .brand-sep {
+    display: none;
+  }
+}
+
 /* ── Base ────────────────────────────────── */
 body {
   background-color: var(--bg-main);
@@ -199,7 +216,7 @@ a:hover {
 }
 
 #main-navbar .navbar-toggler-icon {
-  filter: invert(1);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* ── Typography ─────────────────────────── */
