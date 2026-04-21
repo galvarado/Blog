@@ -6,7 +6,7 @@ tags = ["ai", "tecnologia", "futuro"]
 title = "No te va a reemplazar la IA. Te va a reemplazar alguien que ya la usa."
 +++
 
-Hay una conversación que no termina: "la IA nos va a quitar el trabajo". Aparece en LinkedIn, en conferencias, en chats de equipo. Cambian los ejemplos, cambian los estudios, pero la sensación es la misma: incertidumbre.
+Hay una conversación que no termina: - la IA nos va a quitar el trabajo -  aparece en LinkedIn, en conferencias, en chats de equipo. Cambian los ejemplos, cambian los estudios, pero la sensación es la misma: incertidumbre.
 
 **El problema es que está apuntando al lugar equivocado.** Mientras muchos siguen debatiendo si los va a reemplazar, otros ya operan de una forma distinta.
 
