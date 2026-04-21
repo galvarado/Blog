@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-05-15T16:00:00Z
 image = "/uploads/openstacktroubleshooting.png"
-tags = ["containers", "CloudOps", "Openstack"]
+tags = ["containers", "cloud", "openstack"]
 title = "Troubleshooting Openstack: Servicios en contenedores y notas de HA"
 
 +++

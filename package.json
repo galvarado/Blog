@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "hugo server -D",
-    "build": "hugo"
+    "build": "hugo && npx pagefind --site public"
   },
   "repository": {
     "type": "git",

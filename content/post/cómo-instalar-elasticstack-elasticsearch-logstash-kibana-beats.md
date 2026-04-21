@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-02-24T15:00:00Z
 image = "/uploads/ElasticStack.png"
-tags = ["devops", "architecture", "elasticsearch"]
+tags = ["devops", "architecture", "observability"]
 title = "Tutorial para instalar y configurar ElasticStack: Elasticsearch, Logstash, Kibana, Beats"
 
 +++

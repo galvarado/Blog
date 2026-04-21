@@ -2,7 +2,7 @@
 comments = "true"
 date = 2022-03-15T06:00:00Z
 image = "/uploads/cloudinit-1.png"
-tags = ["cloud", "best practices", "terraform", "aws", "vagrant"]
+tags = ["cloud", "architecture", "terraform", "aws", "containers"]
 title = "Personalización en la nube con cloud-init: Ejemplos con Terraform en AWS y Vagrant"
 
 +++

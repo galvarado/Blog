@@ -2,7 +2,7 @@
 comments = "true"
 date = 2024-02-08T14:00:00Z
 image = "/uploads/terraformcertification.png"
-tags = ["terraform", "devops", "cloud", "IaC"]
+tags = ["terraform", "devops", "cloud"]
 title = "Mis consejos para obtener la certificación HashiCorp Certified: Terraform Associate (003)"
 +++
 

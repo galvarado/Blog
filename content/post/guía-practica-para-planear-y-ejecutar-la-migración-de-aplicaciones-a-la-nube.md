@@ -3,7 +3,7 @@ comments = "true"
 date = "2019-08-30T05:00:00+00:00"
 draft = true
 image = ""
-tags = ["cloud", "GCP", "architecture"]
+tags = ["cloud", "gcp", "architecture"]
 title = "Guía practica para planear y ejecutar la migración de aplicaciones a la nube"
 
 +++

@@ -14,6 +14,10 @@ comments = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
 
 [params]
   logo = "/images/logosmall.png"

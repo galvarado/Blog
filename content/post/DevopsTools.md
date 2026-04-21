@@ -2,7 +2,7 @@
 comments = "true"
 date= 2018-06-30 00:00:00 
 image= "/uploads/devops.jpg"
-tags = ["devops", "cloud", "best practices"]
+tags = ["devops", "cloud", "architecture"]
 title= "20 herramientas de línea de comandos imprescindibles para DevOps"
 +++
 

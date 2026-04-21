@@ -3,7 +3,7 @@ comments = "true"
 date = 2022-03-01T06:00:00Z
 draft = true
 image = ""
-tags = ["devops", "architecture", "cloud", "development", "best practices", "containers", "GCP", "azure", "aws", "CloudOps"]
+tags = ["devops", "architecture", "cloud", "development", "containers", "gcp", "aws"]
 title = "Compartir y promover imagenes de contenedor de Amazon ECR entre cuentas de AWS"
 
 +++

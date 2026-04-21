@@ -2,7 +2,7 @@
 comments = "true"
 date = 2026-04-21T10:00:00Z
 image = "/uploads/ianotereemplaza.png"
-tags = ["ai", "tecnologia", "futuro"]
+tags = ["ai"]
 title = "No te va a reemplazar la IA. Te va a reemplazar alguien que ya la usa."
 +++
 

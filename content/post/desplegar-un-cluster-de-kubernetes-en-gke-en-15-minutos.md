@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-01-19T23:00:00Z
 image = "/uploads/KubernetesGoogleCloud.png"
-tags = ["devops", "cloud", "containers", "GCP", "kubernetes"]
+tags = ["devops", "cloud", "containers", "gcp", "kubernetes"]
 title = "Tutorial: Desplegar un cluster de Kubernetes en GKE en 15 minutos"
 
 +++

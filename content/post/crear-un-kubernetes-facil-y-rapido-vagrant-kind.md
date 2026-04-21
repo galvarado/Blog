@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-08-20T14:00:00Z
 image = "/uploads/vagrantkindkubernetes.png"
-tags = ["devops", "cloud", "containers", "CloudOps"]
+tags = ["devops", "cloud", "containers"]
 title = "Crear un entorno local DevOps de kubernetes fácil y rápido: Vagrant + Kind"
 
 +++

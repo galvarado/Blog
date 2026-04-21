@@ -1,0 +1,29 @@
+<div class="inline-share">
+  <span class="inline-share-label"><i class="fas fa-share-alt"></i> Compartir</span>
+  <div class="inline-share-btns">
+    <a class="inline-share-btn share-twitter"
+       href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink | urlquery }}"
+       target="_blank" rel="noopener" title="Twitter / X">
+      <i class="fab fa-twitter"></i> Twitter
+    </a>
+    <a class="inline-share-btn share-linkedin"
+       href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}"
+       target="_blank" rel="noopener" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i> LinkedIn
+    </a>
+    <a class="inline-share-btn share-whatsapp"
+       href="https://api.whatsapp.com/send?text={{ .Title | urlquery }}%20{{ .Permalink | urlquery }}"
+       target="_blank" rel="noopener" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a class="inline-share-btn share-telegram"
+       href="https://t.me/share/url?url={{ .Permalink | urlquery }}&text={{ .Title | urlquery }}"
+       target="_blank" rel="noopener" title="Telegram">
+      <i class="fab fa-telegram-plane"></i> Telegram
+    </a>
+    <a class="inline-share-btn share-copy" href="#"
+       onclick="navigator.clipboard.writeText('{{ .Permalink }}');this.innerHTML='<i class=\'fas fa-check\'></i> Copiado';setTimeout(()=>this.innerHTML='<i class=\'fas fa-link\'></i> Copiar link',2000);return false;">
+      <i class="fas fa-link"></i> Copiar link
+    </a>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 comments = "true"
 date = 2018-07-10T05:00:00Z
 image = "images/api.jpg"
-tags = ["devops", "cloud", "best practices"]
+tags = ["devops", "cloud", "architecture"]
 title = "¿Cómo diseñar una API? Introducción a OpenAPI Specification"
 +++
 

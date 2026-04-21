@@ -2,7 +2,7 @@
 comments = "true"
 date = 2020-10-23T12:00:00Z
 image = "/uploads/packercloud.png"
-tags = ["devops", "cloud", "GCP", "packer"]
+tags = ["devops", "cloud", "gcp", "terraform"]
 title = "Packer: Automatiza la creación de cualquier tipo de imagen de máquina virtual"
 
 +++

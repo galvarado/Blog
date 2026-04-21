@@ -2,7 +2,7 @@
 comments = "true"
 date = 2019-05-14T15:00:00Z
 image = "/uploads/Terraform.png"
-tags = ["devops", "cloud", "terraform "]
+tags = ["devops", "cloud", "terraform"]
 title = "Tutorial: Infraestructura como código con Terraform"
 
 +++

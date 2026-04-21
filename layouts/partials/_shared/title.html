@@ -1,8 +1,16 @@
-<!-- Site Title
+<!-- Site Hero
 ================================================== -->
 <div class="site-hero">
     <div class="site-hero-inner">
-        <img src="/images/logo.svg" alt="{{ .Site.Title }}" class="site-hero-logo">
-        <p class="site-hero-desc">{{ .Site.Params.Description }}</p>
+        <div class="site-hero-left">
+            <img src="/images/logo.svg" alt="{{ .Site.Title }}" class="site-hero-logo">
+        </div>
+        <div class="site-hero-divider"></div>
+        <div class="site-hero-right">
+            <p class="site-hero-welcome">Bienvenido a mi blog personal</p>
+            <p class="site-hero-name">{{ .Site.Title }}</p>
+            <p class="site-hero-tagline">AI, Cloud &amp; Platform Engineering</p>
+            <p class="site-hero-desc">{{ .Site.Params.Description }}</p>
+        </div>
     </div>
 </div>

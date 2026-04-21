@@ -1,0 +1,33 @@
+{{ define "header" }}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+<div class="main-content">
+    <div class="search-page-wrap">
+        <div class="search-page-header">
+            <i class="fas fa-search search-page-icon"></i>
+            <h1 class="search-page-title">Buscar en el blog</h1>
+            <p class="search-page-desc">Cloud, Platform Engineering, AI, DevOps y más</p>
+        </div>
+        <div id="search"></div>
+    </div>
+</div>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const ui = new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      translations: { placeholder: "Escribe para buscar..." }
+    });
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) ui.triggerSearch(q);
+  });
+</script>
+{{ end }}
+
+{{ define "footer" }}
+    {{- partial "_shared/footer.html" . -}}
+{{ end }}
