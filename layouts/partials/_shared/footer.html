@@ -3,8 +3,8 @@
     <div class="container">
         <div class="site-footer-inner">
             <a class="footer-brand" href="{{ .Site.BaseURL }}">
-                <img src="/images/logosmall_white.svg" class="footer-logo">
-                <span class="brand-initials">GA</span><span class="brand-sep">|</span><span class="brand-tagline">AI, Cloud &amp; Platform Engineering</span>
+                <span class="brand-mark" aria-hidden="true">G<span>A</span></span>
+                <span class="footer-name">{{ .Site.Title }}</span><span class="brand-sep">|</span><span class="brand-tagline">AI, Cloud &amp; Platform Engineering</span>
             </a>
             <div class="footer-links">
                 {{ range .Site.Menus.main }}

@@ -3,7 +3,6 @@
 {{ end }}
 
 {{ define "main" }}
-    {{- partial "_shared/title.html" . -}}
     <div class="main-content">
 
         {{ $allPosts := (site.GetPage "/post").RegularPages }}
@@ -32,8 +31,10 @@
         {{ end }}
         {{ end }}
 
+        {{- partial "_shared/title.html" . -}}
+
         <!-- Tag filter -->
-        <section class="tag-filter">
+        <section class="tag-filter" id="articulos">
             <div class="tag-filter-inner">
                 <button class="tag-filter-btn active" data-tag="all">Todos</button>
                 {{ range $name, $_ := site.Taxonomies.tags }}

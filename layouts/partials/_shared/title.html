@@ -1,16 +1,51 @@
-<!-- Site Hero
+<!-- Site Intro (collapsed by default)
 ================================================== -->
-<div class="site-hero">
-    <div class="site-hero-inner">
-        <div class="site-hero-left">
-            <img src="/images/logo.svg" alt="{{ .Site.Title }}" class="site-hero-logo">
+{{ $posts := (site.GetPage "/post").RegularPages }}
+<details class="site-intro">
+    <summary class="site-intro-summary">
+        <img src="/images/guillermo.jpg" alt="" class="site-intro-avatar" width="40" height="40">
+        <span class="site-intro-hook">
+            <span class="site-intro-hello">Hola, soy {{ .Site.Title }} 👋</span>
+            <span class="site-intro-sub">Conoce de qué trata este blog y quién lo escribe</span>
+        </span>
+        <span class="site-intro-toggle">
+            <span class="site-intro-toggle-open">Ver intro</span>
+            <span class="site-intro-toggle-close">Cerrar</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </span>
+    </summary>
+
+    <div class="site-intro-body">
+        <div class="site-intro-col">
+            <p class="site-intro-label">Sobre el blog</p>
+            <p class="site-intro-text">{{ .Site.Params.Description }}</p>
+            <div class="site-intro-topics">
+                {{ range first 6 site.Taxonomies.tags.ByCount }}
+                <a href="{{ .Page.RelPermalink }}" class="site-intro-topic">{{ .Name }} <span>{{ .Count }}</span></a>
+                {{ end }}
+            </div>
+            <p class="site-intro-stats"><strong>{{ len $posts }}</strong> artículos · <strong>{{ len site.Taxonomies.tags }}</strong> temas</p>
         </div>
-        <div class="site-hero-divider"></div>
-        <div class="site-hero-right">
-            <p class="site-hero-welcome">Bienvenido a mi blog personal</p>
-            <p class="site-hero-name">{{ .Site.Title }}</p>
-            <p class="site-hero-tagline">AI, Cloud &amp; Platform Engineering</p>
-            <p class="site-hero-desc">{{ .Site.Params.Description }}</p>
+
+        <div class="site-intro-col">
+            <p class="site-intro-label">Sobre mí</p>
+            <p class="site-intro-text">Head of Engineering en Sentinella. Escribo sobre Cloud, Platform Engineering e IA aplicada.</p>
+            <div class="site-intro-actions">
+                <a class="site-intro-btn site-intro-btn-primary" href="/static/me">Conóceme más →</a>
+                <button type="button" class="site-intro-btn" id="intro-subscribe">
+                    <i class="far fa-envelope" aria-hidden="true"></i> Suscribirme
+                </button>
+            </div>
         </div>
     </div>
-</div>
+</details>
+<script>
+    document.getElementById('intro-subscribe').addEventListener('click', function () {
+        var popup = document.getElementById('alertbar');
+        if (popup) {
+            popup.style.display = 'block';
+            var email = popup.querySelector('input[type=email]');
+            if (email) email.focus();
+        }
+    });
+</script>

@@ -3,7 +3,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {{ hugo.Generator }}
 	{{ with .Site.Params.logo }}
-	<link rel="icon" href="{{ . | urlize | relURL }}">
+	<link rel="icon" type="image/svg+xml" href="{{ . | urlize | relURL }}">
+	{{ end }}
+	{{ with .Site.Params.logoPng }}
+	<link rel="icon" type="image/png" sizes="180x180" href="{{ . | urlize | relURL }}">
+	<link rel="apple-touch-icon" href="{{ . | urlize | relURL }}">
 	{{ end }}
 	<title>{{ .Page.Title }} | {{ .Site.Title }}</title>
 	{{ with .Site.Params.meta.description }}<meta name="description" content="{{ . }}">{{ end }}

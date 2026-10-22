@@ -99,23 +99,3 @@
   </div>
 
 </aside>
-
-<script>
-(function() {
-  var bar = document.getElementById('reading-progress-bar');
-  var pctEl = document.getElementById('reading-progress-pct');
-  if (!bar) return;
-  function updateProgress() {
-    var article = document.querySelector('.article-post');
-    if (!article) return;
-    var scrollTop = window.scrollY;
-    var articleTop = article.offsetTop;
-    var articleHeight = article.offsetHeight;
-    var pct = Math.min(100, Math.max(0, ((scrollTop - articleTop) / articleHeight) * 100));
-    bar.style.width = pct + '%';
-    if (pctEl) pctEl.textContent = Math.round(pct) + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-})();
-</script>

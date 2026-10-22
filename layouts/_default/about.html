@@ -1,0 +1,140 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+{{ $posts := (site.GetPage "/post").RegularPages }}
+<div class="main-content about-page">
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <div class="about-hero-photo">
+            <img src="/images/guillermo.jpg" alt="{{ .Site.Title }}" width="220" height="220">
+        </div>
+        <div class="about-hero-copy">
+            <p class="about-eyebrow">{{ .Title }}</p>
+            <h1 class="about-title">Hola, soy {{ .Site.Title }}.</h1>
+            <p class="about-lead">{{ .Params.lead }}</p>
+            <p class="about-role"><i class="fas fa-briefcase" aria-hidden="true"></i> {{ .Params.role }}</p>
+            <div class="about-actions">
+                <a class="about-btn about-btn-primary" href="/">Leer el blog →</a>
+                <button type="button" class="about-btn" id="about-subscribe"><i class="far fa-envelope" aria-hidden="true"></i> Suscribirme</button>
+            </div>
+            <ul class="about-social" aria-label="Redes sociales">
+                {{ range .Params.social }}
+                <li><a href="{{ .url }}" target="_blank" rel="noopener"><i class="{{ .icon }}" aria-hidden="true"></i> {{ .name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </section>
+
+    <!-- Quick facts -->
+    <section class="about-facts" aria-label="En resumen">
+        {{ range .Params.facts }}
+        <div class="about-fact">
+            <span class="about-fact-value">{{ .value }}</span>
+            <span class="about-fact-label">{{ .label }}</span>
+        </div>
+        {{ end }}
+        <div class="about-fact">
+            <span class="about-fact-value">{{ len $posts }}</span>
+            <span class="about-fact-label">artículos en este blog</span>
+        </div>
+    </section>
+
+    <!-- Story + journey -->
+    <section class="about-grid">
+        <div class="about-prose article-post">
+            {{ .Content }}
+        </div>
+        <aside class="about-journey" aria-label="Trayectoria">
+            <p class="about-section-label">Trayectoria</p>
+            <ol class="about-timeline">
+                {{ range .Params.journey }}
+                <li>
+                    <span class="about-timeline-title">{{ .title }}</span>
+                    <span class="about-timeline-text">{{ .text }}</span>
+                </li>
+                {{ end }}
+            </ol>
+        </aside>
+    </section>
+
+    <!-- Certifications -->
+    {{ with .Params.certifications }}
+    <section class="about-section">
+        <h2 class="about-h2">Certificaciones</h2>
+        <ul class="about-certs">
+            {{ range . }}
+            <li class="about-cert">
+                <img src="{{ .image }}" alt="" loading="lazy">
+                <span>{{ .name }}</span>
+            </li>
+            {{ end }}
+        </ul>
+    </section>
+    {{ end }}
+
+    <!-- Outside tech -->
+    {{ with .Params.outside }}
+    <section class="about-section about-outside">
+        <div class="about-outside-copy">
+            <h2 class="about-h2">🚴 {{ .title }}</h2>
+            {{ range .intro }}<p>{{ . | markdownify }}</p>{{ end }}
+            <ul class="about-lessons">
+                {{ range .lessons }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            <p>{{ .outro }}</p>
+            {{ with .instagram }}
+            <a class="about-btn about-btn-instagram" href="https://www.instagram.com/{{ . }}" target="_blank" rel="noopener">
+                <i class="fab fa-instagram" aria-hidden="true"></i> @{{ . }}
+            </a>
+            {{ end }}
+        </div>
+        {{ with .behold_feed }}
+        <div class="about-outside-feed">
+            <behold-widget feed-id="{{ . }}"></behold-widget>
+            <script>
+                (() => {
+                    const d = document, s = d.createElement("script"); s.type = "module";
+                    s.src = "https://w.behold.so/widget.js"; d.head.append(s);
+                })();
+            </script>
+        </div>
+        {{ end }}
+    </section>
+    {{ end }}
+
+    <!-- Latest posts -->
+    <section class="about-section">
+        <div class="about-latest-head">
+            <h2 class="about-h2">Lo último que he escrito</h2>
+            <a href="/" class="about-latest-all">Ver todos →</a>
+        </div>
+        <div class="about-latest">
+            {{ range first 3 $posts }}
+            <a class="about-latest-card" href="{{ .RelPermalink }}">
+                <span class="about-latest-date">{{ dateFormat "Jan 2, 2006" .PublishDate }} · {{ .ReadingTime }} min</span>
+                <span class="about-latest-title">{{ .Title }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{- partial "_shared/alertbar.html" . -}}
+<script>
+    document.getElementById('about-subscribe').addEventListener('click', function () {
+        var popup = document.getElementById('alertbar');
+        if (popup) {
+            popup.style.display = 'block';
+            var email = popup.querySelector('input[type=email]');
+            if (email) email.focus();
+        }
+    });
+</script>
+{{ end }}
+
+{{ define "footer"}}
+    {{- partial "_shared/jumbotron.html" . -}}
+    {{- partial "_shared/footer.html" . -}}
+{{ end }}
